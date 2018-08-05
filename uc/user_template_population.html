@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>VAR-UC-UTP</title>
+		<link rel="stylesheet" type="text/css" href="../css/main.css" />		
+		<link rel="stylesheet" type="text/css" href="../css/uc.css?v=12df23112" />		
+		<link rel="stylesheet" type="text/css" href="../css/honeyswitch.css" />	
+			
+		<script type="text/javascript" src="../js/jquery_2.2.4.js" ></script>
+		<script type="text/javascript" src="../js/honeyswitch.js" ></script>
+		<script type="text/javascript" src="../js/draggabilly.pkgd.js" ></script>
+		<script type="text/javascript" src="../js/main.js" ></script>
+		
+	</head>
+	<body>
+		<!-- <div style="width: 100%; height: 100px; background-color: #234238"></div>
+	  -->
+		<div class="page-main-div">
+			<div class="uc-quick-populate-container">
+				<div class="uc-quick-populate-container-mask"></div>
+				<div class="uc-quick-populate-container-expert"></div>
+				<div class="uc-quick-populate-container-simple">
+					<div class="uc-quick-populate-browser"></div>
+					<div class="uc-quick-populate-components"></div>
+				</div>
+			</div>
+			<div class="uc-main-container">
+				<div class="uc-template-sample">
+					<img src="../images/uc/uc-float-menu-downarrow-icon.svg" class="uc-sample-template-icon" />
+				</div>
+				<div class="uc-populate-container">
+				
+					<div class="uc-canvas">
+						<div class="uc-float-menu">
+							<img alt="demo" title="corpus" src="../images/uc/uc-float-menu-demo-icon.svg" class="uc_i_corpus" />
+							<img alt="demo" title="banner" src="../images/uc/uc-float-menu-demo-icon.svg" class="uc_i_banner" />
+							<img alt="demo" title="ranker" src="../images/uc/uc-float-menu-demo-icon.svg" class="uc_i_ranker" />
+							<img alt="demo" title="subscriber" src="../images/uc/uc-float-menu-demo-icon.svg" class="uc_i_subscriber" />
+							<img alt="demo" title="timeseries" src="../images/uc/uc-float-menu-demo-icon.svg" class="uc_i_timeseries" />
+							<img alt="help" title="help" src="../images/uc/uc-float-menu-help-icon.svg" class="uc_i_help" />
+						</div>
+						
+						<div class="uc-canvasM">
+							
+						</div>
+					</div>
+					<div class="uc-edit-panel">
+						<div class="uc-edit-panel-summary">
+							<span class="uc-input-title en_block_title">Scenario Basic Information</span>
+							<img src="../images/icon_help.svg"/>
+							<div class="uc-input-area">
+								<div class="uc-input-block">
+									<span class="uc-input-label en_input_label">Address</span>
+									<div class="uc-input">
+										<div name="in_addr_box" class="uc-input-text">
+											<input name="in_addr" type="text" style="width: 100%; height: 100%; border:0px solid #ffffff;"/>
+											<img name="in_addr_alert" src="../images/uc/uc_input_alert.svg" class="uc-input-hint-icon" />
+									  </div>
+									  <div name="in_addr_hint" class="uc-input-hint-text en_input_hint">
+									  	<span >some hints here</span>
+									  </div>	
+									</div>
+								</div>
+								<div class="empty_block_10"></div>
+								<div class="uc-input-block">
+									<span class="uc-input-label en_input_label">Title</span>
+									<div class="uc-input">
+										<div name="in_title_box" class="uc-input-text">
+											<input name="in_title" type="text" style="width: 100%; height: 100%; border:0px solid #ffffff;"/>
+											<img name="in_title_alert" src="../images/uc/uc_input_alert.svg" class="uc-input-hint-icon" />
+									  </div>
+									  <div name="in_title_hint" class="uc-input-hint-text en_input_hint">
+									  	<span >some hints here</span>
+									  </div>	
+									</div>
+								</div>
+								<div class="empty_block_10"></div>
+								<div class="uc-input-block">
+									<span class="uc-input-label en_input_label">Summary</span>
+									<div class="uc-input">
+										<div class="uc-input-text">
+											<input type="text" style="width: 100%; height: 100%; border:0px solid #ffffff;"/>
+											<img src="../images/uc/uc_input_alert.svg" class="uc-input-hint-icon" />
+									  </div>
+									  <div class="uc-input-hint-text en_input_hint">
+									  	<span >some hints here</span>
+									  </div>	
+									</div>
+								</div>
+								<div class="empty_block_10"></div>
+								<div class="uc-input-block">
+									<div style="display: flex; align-items: center; padding: 0px;">
+										<span class="uc-input-label en_input_label">Automation</span>&nbsp;&nbsp;&nbsp;
+										<span name="in_isauto" class="switch-off" themeColor="gold"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="uc-edit-panel-components">
+							<span class="uc-input-title en_block_title">Scenario Actions</span>
+							<img src="../images/icon_help.svg"/>
+							<div class="uc-input-area">
+								<div style="display: flex; align-items: center; justify-content: center; width: 100%; height:auto; margin: 0px; padding: 0px;">
+									<img onmouseover="changPointer(this)" src="../images/uc/uc_comps_bg.svg"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="uc-edit-panel-layout">
+							<span class="uc-input-title en_block_title">Scenario Layout</span>
+							<img src="../images/icon_help.svg"/>
+							<div class="uc-input-area">
+								<div class="uc-input-block">
+									<span class="uc-input-label en_input_label">Bg Color</span>
+									<div style="display: flex;">
+										<div class="uc-input">
+											<div name="in_bgcolor_box" class="uc-input-text">
+												<input name="in_bgcolor" type="color" value="#ffffff" style="width: 100%; height: 100%; border:0px solid #ffffff;"/>
+												<img name="in_bgcolor_alert" src="../images/uc/uc_input_alert.svg" class="uc-input-hint-icon" />
+										  </div>
+										  <div name="in_bgcolor_hint" class="uc-input-hint-text en_input_hint">
+										  	<span >some hints here</span>
+										  </div>	
+										</div>
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<div class="uc-input">
+											<div name="in_bgcolor_box" class="uc-input-text">
+												<input name="in_bgcolor" type="text" value="You can input custom color here" style="width: 100%; height: 100%; border:0px solid #ffffff; color: #888888; font-style: italic;"/>
+												<img name="in_bgcolor_alert" src="../images/uc/uc_input_alert.svg" class="uc-input-hint-icon" />
+										  </div>
+										  <div name="in_bgcolor_hint" class="uc-input-hint-text en_input_hint">
+										  	<span >some hints here</span>
+										  </div>	
+										</div>
+									</div>
+								</div>
+								<div class="empty_block_10"></div>
+								<div class="uc-input-block">
+									<span class="uc-input-label en_input_label">Border</span>
+									<div style="display: flex; padding: 4px 0px 2px 0px; height: 35px; width: 100%;">
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px; border-top:3px solid #888888;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px; border-right:3px solid #888888;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px; border-bottom:3px solid #888888;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px; border-left:3px solid #888888;"></div>
+										</div>
+									</div>
+								</div>
+								<div class="empty_block_10"></div>
+								<div class="uc-input-block">
+									<span class="uc-input-label en_input_label">Shadow</span>
+									<div style="display: flex; padding: 4px 0px 2px 0px; height: 35px; width: 100%;">
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div onmouseover="changPointer(this)" style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 5px #888888;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div onmouseover="changPointer(this)" style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 5px #888888;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div onmouseover="changPointer(this)" style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 5px #888888;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div onmouseover="changPointer(this)" style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 5px #888888 inset;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div onmouseover="changPointer(this)" style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 5px #888888 inset;"></div>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%; ">
+											<div onmouseover="changPointer(this)" style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 5px #888888 inset;"></div>
+										</div>
+									</div>
+								</div>
+						</div>
+						
+						<div class="uc-edit-panel-schedule"></div>
+						<div class="uc-edit-panel-share">
+							<span class="uc-input-title en_block_title">Scenario Scheduler</span>
+							<img src="../images/icon_help.svg"/>
+							<div class="uc-input-area">
+								<div class="uc-input-block">
+									<span class="uc-input-label en_input_label">Share Scenario</span>
+									<div style="display: flex; padding: 4px 0px 2px 0px; width: 100%;">
+										<div style="display: flex; align-items: center; justify-content: center; padding: 0px; width: 50%;">
+											<span class="en_input_hint" style="color: #888888;">Theme</span>&nbsp;&nbsp;&nbsp;
+											<span name="in_shareTheme" class="switch-off" themeColor="gold"></span>
+										</div>
+										<div style="display: flex; align-items: center; justify-content: center; padding: 0px; width: 50%;">
+											<span class="en_input_hint" style="color: #888888;">Whole</span>&nbsp;&nbsp;&nbsp;
+											<span name="in_shareWhole" class="switch-off" themeColor="gold"></span>
+										</div>
+									</div>
+								</div>
+								</div>
+						</div>
+					</div> 
+				</div>
+				
+			</div>
+			<div class="uc-float-button"></div>
+		</div>
+		<!-- 
+		<div class="uc-tempalte-main">
+			<div class="common-row">
+				<div class="cell-left">飞行模式</div>
+				<div class="cell-right"><span class="switch-on" themeColor="gold" id="fly"></span></div>
+			</div>
+			
+		</div> 
+		<div class="overlay" style="height: 100%; width: 100%; display: none;"></div>
+		-->
+		<div class="uc-edit-panel-components">
+		
+		</div>
+		
+		<div class="uc_t_corpus">
+			<div class="uc_t_corpusD"></div>
+		</div>
+		<div class="uc_t_banner">
+			<div class="uc_t_bannerD"></div>
+		</div>
+		<div class="uc_t_ranker">
+			<div class="uc_t_rankerD"></div>
+		</div>
+		<div class="uc_t_subscriber">
+			<div class="uc_t_subscriberD"></div>
+		</div>
+		<div class="uc_t_timeseries">
+			<div class="uc_t_timeseriesD"></div>
+		</div>
+			
+		<script type="text/javascript" src="../js/uc.js" ></script>
+	</body>
+</html>

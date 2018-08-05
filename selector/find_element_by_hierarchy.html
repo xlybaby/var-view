@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="../js/invoke.js"></script>
+		<script type="text/javascript" src="../js/findElementsByHierarchy.js"></script>
+		<script type="text/javascript" src="../js/jquery_2.2.4.js"></script>
+		<script type="text/javascript">
+			function detectXpath() {
+				var inxpath=$("[name='xpath']");
+				if (inxpath) {
+					var xpath = inxpath.val();
+					var components = findElementsByHierarchy(xpath);
+					if( components ) {
+						request("POST", uri, entity, callback)
+					}
+				}
+			}
+		</script>
+		<title>Detect</title>
+	</head>
+<body>
+	<div>
+		把XPath贴进去: <input type="text" name="xpath" value="" />
+		<input type="button" name="detect" value="探测" onclick="detectXpath();" />
+		<div onclick="detectXpath();"><span>可以持续探测</span></div>
+	</div>
+</body>
+</html>

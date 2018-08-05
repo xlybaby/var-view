@@ -1,0 +1,421 @@
+.uc-main-container{
+	 display:flex;
+	 flex-direction: column;
+   width: 100%;
+   height: auto;
+   background-color: #ffffff;
+}
+
+.uc-template-sample{
+	width: 100%;
+	background-color: #333333;
+	height: 0;
+}
+
+.uc-populate-container {
+	display:flex;
+	flex-direction: row;
+	width: 100%;
+	background-color: #efefef;
+	height: 700px;
+}
+
+.uc-my-template{
+	display:flex;
+	flex-direction: row;
+	width: 100%;
+	background-color: #efefef;
+	height: 0;
+}
+
+.uc-canvas{
+	background-color: #f7f3d3;
+  width: 60%;
+  height: 100%;
+  margin: 0px;		
+}
+
+.uc-canvasM{
+	margin: 10px;
+	border:1px dashed #cfcfcf;
+}
+
+.uc-input-title{
+	position: relative;
+	color: rgb(44,128,252);
+}
+.uc-input-area{
+	position: relative;
+	background-color: #f1f4f2;
+	border-radius: 10px;
+	width: 100%;
+	height: 100%;
+	margin: 5px 0px 20px 0px;
+	padding: 5px 0px 20px 0px;
+}
+.uc-input-block{
+	position: relative;
+	left: 10%;
+	width: 80%;
+	margin: 10px 0px 10px 0px;
+}
+.uc-input{
+	background-color: #ffffff;
+	width: 100%;
+	height: 25px;
+	margin: 5px 0px 0px 0px;	
+}
+.uc-input-text{
+	width: 100%;
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-direction: row;
+	height: 100%;
+	margin: 0px;
+	border-radius: 5px;
+	padding: 2px 2px 2px 2px;
+	border:2px solid #efefef;
+	box-shadow: 1px 1px 1px #333333 inset;
+	
+	/*
+	border:2px solid rgb(188, 20, 96);
+	
+	width: 90%;
+	height: 100%;
+	vertical-align: middle;
+	display: block;*/
+}
+.uc-input-hint-icon{
+	position: absolute;
+	height: 70%;
+	margin: 0px 3px 0px 0px;
+	display: none;
+	/*	top: 20%;
+	position: absolute;
+	
+	width: 15px;
+	height: 15px;*/
+}
+.uc-input-hint-text{
+	width: 100%;
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-direction: row;
+	margin: 3px 0px 0px 0px;
+	color: rgb(225, 84, 148);
+	visibility:hidden;
+}
+.uc-input-label{
+	color: rgb(96, 84, 90);
+}
+
+.uc-edit-panel-components{
+	
+}
+
+.uc-edit-panel{
+	position: flex;
+	flex-direction: column;
+	background-color: #ffffff;
+  width: 40%;
+  height: 100%;
+  margin: 0px;	
+  padding: 10px;
+}
+.uc-edit-panel-summary{
+	width: 100%;
+	/*height: 300px;*/
+}
+.uc-edit-panel-layout{
+	width: 100%;
+}
+.uc-edit-panel-components{
+	width: 100%;
+}
+.uc-edit-panel-schedule{
+	width: 100%;
+}
+
+.uc-float-menu{
+	position: absolute;
+	box-pack: start;
+	margin-left: 15px;
+	/*
+	box-align: center;
+	vertical-align:middle;
+	
+	
+	display:box;
+	position: absolute;
+  left: 30px; 
+  box-shadow: 0 0 0 1px #4c4c4c;
+  
+  
+  */ 
+  border:1px solid #cccccc;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 10px #efefef;
+  top: 120px;
+  height: 250px;
+  width: 50px;
+}
+
+.uc-float-button{
+	background-color: #000000;
+	position: absolute; 
+  left: 30px; 
+  top: 400px; 
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+}
+
+.uc-quick-populate-container{
+	display: none;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	z-index: 3;
+}
+.uc-quick-populate-container-mask{
+	position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0, 0.6);
+}
+.uc-quick-populate-container-expert{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	margin: 50px;
+	padding: 0px;
+}
+.uc-quick-populate-container-simple{
+	position: flex;
+	flex-direction: row;
+	height: 100%;
+	width: 100%;
+	margin: 50px;
+	padding: 0px;
+}
+.uc-quick-populate-components{
+	background-color: #ffffff;
+  width: 30%;
+  height: 100%;
+  margin: 0px;	
+}
+.uc-quick-populate-browser{
+	background-color: #ffc0cb;
+  width: 70%;
+  height: 100%;
+  margin: 0px;	
+}
+
+.uc-sample-template-icon{
+	position: relative;
+	box-pack: start;
+	margin-left: 15px;
+	vertical-align: bottom;
+	top: 100%;
+	z-index: 2;
+}
+
+.uc_i_corpus{
+	background-color:;
+	background-image:url(../images/uc/);
+}
+.uc_i_ranker{
+}
+.uc_i_subscriber{
+}
+.uc_i_timeseries{
+}
+.uc_i_banner{
+}
+.uc_i_help{
+}
+
+.uc_t_corpus{
+	position: relative;
+	width: 200px;
+	height: 150px;
+	display: none;
+	background-color: rgb(79, 141, 217);
+	background-repeat: no-repeat;
+	background-position:center center;
+	background-image:url(../images/uc/uc_bg_corpus.svg);
+}
+.uc_t_banner{
+	position: relative;
+	width: 200px;
+	height: 150px;
+	display: none;
+	background-color: rgb(246, 222, 88);
+	background-repeat: no-repeat;
+	background-position:center center;
+	background-image:url(../images/uc/uc_bg_banner.svg);
+}
+.uc_t_ranker{
+	position: relative;
+	width: 200px;
+	height: 150px;
+	display: none;
+	background-color: rgb(86, 149, 109);
+	background-repeat: no-repeat;
+	background-position:center center;
+	background-image:url(../images/uc/uc_bg_ranker.svg);
+}
+.uc_t_subscriber{
+	position: relative;
+	width: 200px;
+	height: 150px;
+	display: none;
+	background-color: rgb(150, 34, 67);
+	background-repeat: no-repeat;
+	background-position:center center;
+	background-image:url(../images/uc/uc_bg_subscriber.svg);
+}
+.uc_t_timeseries{
+	position: relative;
+	width: 200px;
+	height: 150px;
+	display: none;
+	background-color: rgb(42, 177, 226);
+	background-repeat: no-repeat;
+	background-position:center center;
+	background-image:url(../images/uc/uc_bg_timeseries.svg);
+}
+		
+@-webkit-keyframes uc-brwsr-slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes uc-brwsr-slideInRight {
+  0%   {width:2%;}
+	100% {width:30%;}
+}
+
+.uc-browser-slideInRight{
+	-webkit-animation-name: uc-brwsr-slideInRight;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  /*-webkit-animation-timing-function: cubic-bezier(.25,.01,.25,1) */
+  
+  animation-name: uc-brwsr-slideInRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  /*animation-timing-function: cubic-bezier(.25,.01,.25,1)*/
+}
+
+@-webkit-keyframes uc-brwsr-slideOutRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes uc-brwsr-slideOutRight {
+  0%   {width:30%;}
+	100% {width:2%;}
+}
+
+.uc-browser-slideOutRight{
+	-webkit-animation-name: uc-brwsr-slideOutRight;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  
+  animation-name: uc-brwsr-slideOutRight;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes uc-temp-slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes uc-temp-slideInRight {
+  0%   {height: 0px;}
+	100% {height: 100px;}
+}
+
+.uc-template-sample-slideDownRight{
+	-webkit-animation-name: uc-temp-slideInRight;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  /*-webkit-animation-timing-function: cubic-bezier(.25,.01,.25,1) */
+  
+  animation-name: uc-temp-slideInRight;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  /*animation-timing-function: cubic-bezier(.25,.01,.25,1)*/
+}
+
+@-webkit-keyframes uc-temp-slideUpRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes uc-temp-slideUpRight {
+  0%   {height: 100px;}
+	100% {height: 0px;}
+}
+
+.uc-template-sample-slideUpRight{
+	-webkit-animation-name: uc-temp-slideUpRight;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  /*-webkit-animation-timing-function: cubic-bezier(.25,.01,.25,1) */
+  
+  animation-name: uc-temp-slideUpRight;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  /*animation-timing-function: cubic-bezier(.25,.01,.25,1)*/
+}
