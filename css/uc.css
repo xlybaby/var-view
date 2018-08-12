@@ -183,7 +183,7 @@
 	align-items: center; 
 }
 .uc-edit-components-editerC{
-	height: 25%;
+	/*height: 25%;*/
 	width: 100%;
 	display: flex;
 	flex-direction: column;
