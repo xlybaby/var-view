@@ -3,14 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>VAR-UC-UTP</title>
-		<link rel="stylesheet" type="text/css" href="../css/main.css" />		
-		<link rel="stylesheet" type="text/css" href="../css/uc.css?v=12df23112" />		
+		<link rel="stylesheet" type="text/css" href="../css/main.css?v=1s112vb" />	
+		<link rel="stylesheet" type="text/css" href="../css/slider.css" />	
+		<link rel="stylesheet" type="text/css" href="../css/uc.css?v=1s2wevb" />		
 		<link rel="stylesheet" type="text/css" href="../css/honeyswitch.css" />	
 			
 		<script type="text/javascript" src="../js/jquery_2.2.4.js" ></script>
 		<script type="text/javascript" src="../js/honeyswitch.js" ></script>
 		<script type="text/javascript" src="../js/draggabilly.pkgd.js" ></script>
 		<script type="text/javascript" src="../js/main.js" ></script>
+		<script type="text/javascript" src="../js/slider.min.js" ></script>
 		
 	</head>
 	<body>
@@ -42,7 +44,11 @@
 						</div>
 						
 						<div class="uc-canvasM">
-							
+							<div class="fd-slider halfSize theSlider" id="fd-slider-v-offset1" aria-disabled="false">
+							<span class="fd-slider-inner"></span>
+							<span class="fd-slider-bar"></span>
+							<button type="button" class="fd-slider-handle" role="slider" aria-valuemin="-10" aria-valuemax="10" aria-valuenow="-10" aria-valuetext="-10" style="left: 0px;">&nbsp;</button>
+							</div>
 						</div>
 					</div>
 					<div class="uc-edit-panel">
@@ -216,12 +222,86 @@
 			</div>
 			
 		</div> 
-		<div class="overlay" style="height: 100%; width: 100%; display: none;"></div>
 		-->
-		<div class="uc-edit-panel-components">
+		<div class="overlay" style="height: 100%; width: 100%;"></div>
 		
+		<div class="uc-edit-components">
+			<div class="uc-edit-components-top">
+				<div class="uc-edit-components-bro-win">
+						<div class="uc-edit-components-bro-win-addr">
+						<!-- 
+							<input type="text" name="txt-bro-win-addr" style="width: 80%; height: 30%;"/>
+							 -->
+						</div>
+						<div class="uc-edit-components-bro-win-tool">
+					
+						</div>
+						<div class="uc-edit-components-bro-win-frame">
+							<!-- <iframe src="http://drugs.dxy.cn/" name="bro-win-frame" style="width: 100%; height: 100%; border: 0px; "></iframe> -->
+							<img src="../images/capture_drugs.dxy.cn.png" class="uc_bro_capture_img" style="width: 1417px; height: 978px;"/>
+							
+						</div>
+					</div>
+			<!-- 
+				<div class="uc-edit-components-top-bg"></div>
+					
+					 -->
+			</div>
+			<!--  -->
+			<div class="uc-edit-components-bottom">
+				<div class="uc-edit-components-editer">
+					<img src="../images/uc/uc_add_page_icon.svg" />
+				</div>
+			</div>
 		</div>
 		
+		<div class="uc-edit-components-float">
+			<div class="uc-edit-components-float-bg"></div>
+			<div class="uc-edit-components-float-con">
+			<div class="uc-edit-components-float-left"></div>
+			<div class="uc-edit-components-float-right">
+						<div class="uc-edit-components-editerC">
+								<div style="background-color: rgb(255,255,255); width: 90%; height: 90%; display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; border: 1px solid rgb(183,185,180); box-shadow: 0 0 5px #ffffff inset; border-radius: 5px;">
+									<div style="background-color: rgb(235,235,235); width: 100%; height: 30px; display: flex;">
+									</div>
+									
+									<div style="width: 45%; height: 24px; display: flex;">
+										<span class="en_input_label" style="width: 30%; color: #333333;">Tag&nbsp;</span>
+										<input type="text" style="width: 70%; background-color:rgba(0,0,0,0.0); border: 0px; border-bottom: 1px solid #333333;"/>
+									</div>
+									<div style="width: 45%; height: 24px; display: flex;">
+										<span class="en_input_label" style="width: 30%;color: #333333;">Name&nbsp;</span>
+										<input type="text" style="width: 70%;background-color:rgba(0,0,0,0.0); border: 0px; border-bottom: 1px solid #333333;"/>
+									</div>
+									<div style="width: 45%; height: 24px; display: flex;">
+										<span class="en_input_label" style="width: 30%;color: #333333;">Class&nbsp;</span>
+										<input type="text" style="width: 70%;background-color:rgba(0,0,0,0.0); border: 0px; border-bottom: 1px solid #333333;"/>
+									</div>
+									<div style="width: 45%; height: 24px; display: flex;">
+										<span class="en_input_label" style="width: 30%;color: #333333;">Id&nbsp;</span>
+										<input type="text" style="width: 70%;background-color:rgba(0,0,0,0.0); border: 0px; border-bottom: 1px solid #333333;"/>
+									</div>
+									<div style="width: 45%; height: 24px; display: flex;">
+										<span class="en_input_label" style="width: 30%;color: #333333;">XPath&nbsp;</span>
+										<input type="text" style="width: 70%;background-color:rgba(0,0,0,0.0); border: 0px; border-bottom: 1px solid #333333;"/>
+									</div>
+									<div style="width: 45%; height: 24px; display: flex;">
+										<span class="en_input_label" style="width: 30%;color: #333333;">Index&nbsp;</span>
+										<input type="text" style="width: 70%;background-color:rgba(0,0,0,0.0); border: 0px; border-bottom: 1px solid #333333;"/>
+									</div>
+								</div>
+							</div>
+						
+					
+						<div class="uc-edit-components-editerIt">
+						</div>
+						<div class="uc-edit-components-editerI">
+						</div>
+						<div class="uc-edit-components-editerP">
+						</div>
+					</div>
+					</div>
+		</div>
 		<div class="uc_t_corpus">
 			<div class="uc_t_corpusD"></div>
 		</div>
