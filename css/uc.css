@@ -117,7 +117,6 @@
 	position: absolute;
 	display: flex;
 	align-items: center;
-	flex-direction: column;
 	
 	left:0;
   right:0;
@@ -132,28 +131,144 @@
 	
 }
 
+.uc-edit-comp-l{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	
+	width: 50%;
+	height: 100%;
+}
+.uc-edit-comp-r{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	width: 50%;
+	height: 100%;
+}
+.uc-edit-comp-r-top{
+	display: flex;
+	flex-direction: column;
+	width: 95%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+.uc-edit-comp-r-tool{
+	width: 100%;
+	height: 40px;
+	display: flex;
+	background-color: rgb(244,244,244);
+	border-bottom: 1px solid rgb(183, 185, 180);
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	justify-content: flex-end;
+	align-items: center;
+}
+.uc-edit-comp-r-container{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	background-color: #ffffff;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.uc-edit-comp-r-list{
+	width: 180px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.uc-edit-comp-r-list-con{
+	width: 90%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.uc-edit-comp-r-editor{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+.uc-edit-comp-r-editor-con{
+	width: 90%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+}
+.uc-edit-comp-r-editor-nav{
+	width: 100%;
+	height: 35px;
+	display: flex;
+	margin: 0px;
+}
+.uc-edit-comp-r-editor-content{
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+.uc-edit-components-selector{
+	/*height: 25%;*/
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.uc-edit-comp-r-editor-input-area{
+	background-color: rgb(235,235,235); width: 100%; display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; border: 1px solid rgb(183,185,180); box-shadow: 0 0 5px #ffffff inset; border-radius: 5px;
+}
+.uc-edit-comp-r-editor-input-head{
+	width: 100%; height: 30px; display: flex; align-items: center;justify-content: center;
+}
+.uc-edit-comp-r-editor-input-body{
+	width: 100%; display: flex; flex-direction: column;
+}
+.uc-edit-comp-r-editor-input-block{
+	margin-top: 10px; width: 100%; height: 25px; display: flex;  justify-content: center; align-items: center;
+}
+.uc-edit-comp-r-editor-input-title{
+	display: flex; 
+	width: 55px; height: 100%; 
+	background-color: rgb(244,244,244); 
+	color: #333333;
+	justify-content: center; align-items: center; 
+	border: 0px solid #efefef;border-top-left-radius: 5px;border-bottom-left-radius: 5px;
+}
+.uc-edit-comp-r-editor-input-label{
+	display: flex; 
+	width: 55px; height: 100%; 
+	justify-content: flex-end; align-items: center; 
+	padding: 0px 6px 0px 0px;
+	border: 0px solid #efefef;
+}
+.uc-edit-comp-r-editor-input{
+	width: 100%; height: 100%; 
+	border: 0px solid #efefef; border-top-right-radius: 5px;border-bottom-right-radius: 5px;
+	background-color: #ffffff;   
+}
+.uc-edit-comp-r-editor-input-opr{
+display: flex;  width: 65px; height: 100%; align-items: center; justify-content: space-around;
+}
+
 .uc-edit-components-float{
   position: absolute;
   display: flex;
+  top: 100px;
   
   width: 450px;
-	height: 650px;
-	
-	left:0;
-  right:0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-	padding: 0px;
-	
+	height: 750px;	
 	z-index: 5;
 }
 .uc-edit-components-float-con{
 	display: flex;
 	position: absolute;
-	width: 90%;
-	height: 90%; 
-	left: 5%; 
+	width: 95%;
+	left: 2%; 
 	top: 5%;
 }
 .uc-edit-components-float-bg{
@@ -161,16 +276,16 @@
 	height: 100%;
 	background-color: #333333;
 	border-radius: 5px;
-	filter:alpha(opacity:90);
-	opacity:0.9; 
-	-moz-opacity:0.9;
-	-khtml-opacity: 0.9;
+	filter:alpha(opacity:85);
+	opacity:0.85; 
+	-moz-opacity:0.85;
+	-khtml-opacity: 0.85;
 	
-	
-	background:-moz-linear-gradient(top, #754cc1, #5180b8);/*Mozilla*/
-	background:-webkit-gradient(linear,50% 0,50% 100%,from(#754cc1),to(#5180b8));/*Old gradient for webkit*/
-	background:-webkit-linear-gradient(top,#754cc1,#5180b8);/*new gradient for Webkit*/
-	background:-o-linear-gradient(top,#754cc1,#5180b8); /*Opera11*/
+	 
+	background:-moz-linear-gradient(top, rgb(25,57,67), rgb(5,29,40));/*Mozilla*/
+	background:-webkit-gradient(linear,50% 0,50% 100%,from(rgb(25,57,67)), to(rgb(5,29,40)));/*Old gradient for webkit*/
+	background:-webkit-linear-gradient(top,rgb(25,57,67), rgb(5,29,40));/*new gradient for Webkit*/
+	background:-o-linear-gradient(top,rgb(25,57,67), rgb(5,29,40)); /*Opera11*/
 	
 }
 .uc-edit-components-float-right{
@@ -178,9 +293,8 @@
 	position: absolute;
 	flex-direction: column;
 	width: 100%;
-	height: 100%; 
-	justify-content: center; 
-	align-items: center; 
+	/*height: 100%; */
+	
 }
 .uc-edit-components-editerC{
 	/*height: 25%;*/
@@ -191,7 +305,7 @@
 	align-items: center;
 }
 .uc-edit-components-editerIt{
-	height: 25%;
+	/*height: 25%;*/
 	width: 100%;
 	display: flex;
 	justify-content: center;
