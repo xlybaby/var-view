@@ -1,3 +1,15 @@
+@media screen and (max-height:600px){
+	.uc-populate-container{
+		height: 600px;
+	}
+}
+
+@media screen and (min-height:600px){
+	.uc-populate-container{
+		height: calc(100vh - 0px);
+	}
+}
+
 .uc-main-container{
 	 display:flex;
 	 flex-direction: column;
@@ -17,7 +29,7 @@
 	flex-direction: row;
 	width: 100%;
 	background-color: #efefef;
-	height: 700px;
+	/*height: 700px;*/
 }
 
 .uc-my-template{
@@ -30,14 +42,22 @@
 
 .uc-canvas{
 	background-color: #f7f3d3;
-  width: 60%;
+  width: 100%;
   height: 100%;
   margin: 0px;		
 }
 
-.uc-canvasM{
-	margin: 10px;
-	border:1px dashed #cfcfcf;
+.uc-canvasM{	
+	position: relative;
+	min-height: 90%;
+	width: 80%;
+	left:0;
+  right:0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+	padding: 0px;
+	border:2px dashed #cfcfcf;
 }
 
 .uc-input-title{
@@ -50,8 +70,9 @@
 	border-radius: 10px;
 	width: 100%;
 	height: 100%;
-	margin: 5px 0px 20px 0px;
-	padding: 5px 0px 20px 0px;
+	/*margin: 15px 0px 0px 0px;*/
+	margin-top: 5px;
+	padding: 5px 0px 15px 0px;
 }
 .uc-input-block{
 	position: relative;
@@ -115,7 +136,7 @@
 
 .uc-edit-components{
 	position: absolute;
-	display: flex;
+	display: none;
 	align-items: center;
 	
 	left:0;
@@ -506,17 +527,52 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 }
 
 .uc-edit-panel{
-	position: flex;
-	flex-direction: column;
+	display: flex;
+	/*flex-direction: column;*/
 	background-color: #ffffff;
-  width: 40%;
   height: 100%;
   margin: 0px;	
-  padding: 10px;
+  padding: 0px;
 }
+.uc-edit-panel-bar{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	background-color: rgb(111, 154, 55, 1.0);
+  width: 55px;
+  height: 100%;
+  margin: 0px;	
+  padding: 0px;
+}
+.uc-edit-panel-bar-font{
+	font-family: boxii; 
+	font-weight: 100; 
+	font-size: 45px; 
+	color: #333;
+}
+.uc-edit-panel-main{
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	
+  width: 100%;
+  height: 100%;
+  margin: 0px;	
+  padding: 0px;
+  overflow: hidden;
+}
+.uc-edit-panel-block{
+	width: 90%;
+	/*margin-left: 5px;
+	marign-right: 5px;*/
+	margin-top: 10px;
+}
+/*
 .uc-edit-panel-summary{
 	width: 100%;
-	/*height: 300px;*/
 }
 .uc-edit-panel-layout{
 	width: 100%;
@@ -526,7 +582,7 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 }
 .uc-edit-panel-schedule{
 	width: 100%;
-}
+}*/
 
 .uc-float-menu{
 	position: absolute;
@@ -631,117 +687,103 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 .uc_i_help{
 }
 
-.uc_t_corpus{
-	position: relative;
-	width: 200px;
-	height: 150px;
-	display: none;
-	background-color: rgb(79, 141, 217);
-	background-repeat: no-repeat;
-	background-position:center center;
-	background-image:url(../images/uc/uc_bg_corpus.svg);
+
+.uc_t_tool_bar{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 35px;
+	background-color: rgb(63,57,42,1.0);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	
+	filter:alpha(opacity:0);
+	opacity:0; 
+	-moz-opacity:0;
+	-khtml-opacity: 0;
 }
-.uc_t_banner{
-	position: relative;
-	width: 200px;
-	height: 150px;
+
+.uc_t_box{
+	position: absolute;
+	left: 0px;/*calc(50% - 200px);*/
+	top: 0px;/*calc(50% - 125px);*/
+	width: 40%;
+	height: 25%;
 	display: none;
-	background-color: rgb(246, 222, 88);
+	flex-direction: column;
+	border-radius: 5px;
+	
+	background-color: rgb(255, 255, 255, 0.85);
 	background-repeat: no-repeat;
 	background-position:center center;
-	background-image:url(../images/uc/uc_bg_banner.svg);
+	background-size: 35%;
 }
-.uc_t_ranker{
-	position: relative;
-	width: 200px;
-	height: 150px;
+
+.uc_t_boxD{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	
+	width: 100%;
+	height: 100%;
 	display: none;
-	background-color: rgb(86, 149, 109);
-	background-repeat: no-repeat;
-	background-position:center center;
-	background-image:url(../images/uc/uc_bg_ranker.svg);
-}
-.uc_t_subscriber{
-	position: relative;
-	width: 200px;
-	height: 150px;
-	display: none;
-	background-color: rgb(150, 34, 67);
-	background-repeat: no-repeat;
-	background-position:center center;
-	background-image:url(../images/uc/uc_bg_subscriber.svg);
-}
-.uc_t_timeseries{
-	position: relative;
-	width: 200px;
-	height: 150px;
-	display: none;
-	background-color: rgb(42, 177, 226);
-	background-repeat: no-repeat;
-	background-position:center center;
-	background-image:url(../images/uc/uc_bg_timeseries.svg);
+	background-color: rgb(33, 33, 33,0.5);
 }
 		
-@-webkit-keyframes uc-brwsr-slideInRight {
-  from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes uc-brwsr-slideInRight {
-  0%   {width:2%;}
+@-webkit-keyframes uc-panelIn-frm {
+  0%   {width:55px;}
 	100% {width:30%;}
 }
 
-.uc-browser-slideInRight{
-	-webkit-animation-name: uc-brwsr-slideInRight;
+@keyframes uc-panelIn-frm {
+  0%   {width:55px;}
+	100% {width:30%;}
+}
+
+.uc-panelIn{
+	/*
+	-webkit-animation-name: uc-panelIn-frm;
   -webkit-animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   -webkit-animation-timing-function: ease-in-out;
-  /*-webkit-animation-timing-function: cubic-bezier(.25,.01,.25,1) */
+  -webkit-animation-timing-function: cubic-bezier(.25,.01,.25,1) 
   
-  animation-name: uc-brwsr-slideInRight;
+  animation-name: uc-panelIn-frm;
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
-  /*animation-timing-function: cubic-bezier(.25,.01,.25,1)*/
+  animation-timing-function: cubic-bezier(.25,.01,.25,1)
+  */
 }
 
-@-webkit-keyframes uc-brwsr-slideOutRight {
-  from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
-  }
 
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
+@-webkit-keyframes uc-panelOut-frm {
+  0%   {width: 30%;}
+	100% {width: 55px;}
 }
 
-@keyframes uc-brwsr-slideOutRight {
-  0%   {width:30%;}
-	100% {width:2%;}
+@keyframes uc-panelOut-frm {
+  0%   {width: 30%;}
+	100% {width: 55px;}
 }
 
-.uc-browser-slideOutRight{
-	-webkit-animation-name: uc-brwsr-slideOutRight;
+.uc-panelOut{
+	/*
+	-webkit-animation-name: uc-panelOut-frm;
   -webkit-animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   -webkit-animation-timing-function: ease-in-out;
   
-  animation-name: uc-brwsr-slideOutRight;
+  animation-name: uc-panelOut-frm;
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
+  */
 }
 
 @-webkit-keyframes uc-temp-slideInRight {

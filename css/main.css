@@ -31,6 +31,23 @@
 	font-family: Sansation_Regular;
 	src: url('../fonts/Sansation_Regular.ttf'),url('../fonts/Sansation_Regular.eot'); /* IE9 */
 }
+@font-face{
+	font-family: boxii;
+	src: url('../fonts/A Box For 2.ttf'),url('../fonts/A Box For 2.eot'); /* IE9 */
+}
+@font-face{
+	font-family: box;
+	src: url('../fonts/A Box For.ttf'),url('../fonts/A Box For.eot'); /* IE9 */
+}
+@font-face{
+	font-family: boxiii;
+	src: url('../fonts/A Box For 3.ttf'),url('../fonts/A Box For 3.eot'); /* IE9 */
+}
+@font-face{
+	font-family: akbar;
+	src: url('../fonts/akbar.ttf'),url('../fonts/akbar.eot'); /* IE9 */
+}
+
 
 .en_block_title{
 	font-family: Sansation_Bold;
@@ -170,5 +187,6 @@ body {
     background-size: 100% 100%;
     background-image: url(../images/neon-lights-background_600x594_h.jpg);
     */
+    display: none;
     z-index: 3;
 }

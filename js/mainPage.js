@@ -15,14 +15,14 @@ $(document).ready(function(){
 	
 	$("#signin").on("mouseover",function(){
 		this.style.cursor="pointer";
-		img = $("#icon-guaniu01");
+		img = $("#signintop");
 		if (img)
 			img.addClass("m-title-sign-anim");
 		
 	});
 	
 	$("#signin").on("mouseout",function(){
-		img = $("#icon-guaniu01");
+		img = $("#signintop");
 		if (img)
 			img.removeClass("m-title-sign-anim");
 		
