@@ -271,7 +271,20 @@ $(document).ready(function(){
 	$("#btn_sScenario").on("click",function(){
 		collectAndSubmit();
 	});
+	$("#signin").on("mouseover",function(){
+		this.style.cursor="pointer";
+		img = $("#signintop");
+		if (img)
+			img.addClass("m-title-sign-anim");
+		
+	});
 	
+	$("#signin").on("mouseout",function(){
+		img = $("#signintop");
+		if (img)
+			img.removeClass("m-title-sign-anim");
+		
+	});
 //	      var rule;
 //	      var ss = document.styleSheets;
 //	      for (var i = 0; i < ss.length; ++i) {

@@ -4,7 +4,7 @@
 
 /*@media screen and (min-width:800px){
 	body{background:red;}
-}宽度大于800px时 红色*/
+}宽度大于800px时 红色
 
 @media screen and (max-height:600px){
 	.m-page{
@@ -22,7 +22,7 @@
 	.m-transparent{
 		height: calc(100vh - 0px);
 	}
-}
+}*/
 
 .m-transparent {
 	display: flex;
@@ -52,63 +52,6 @@
   width: 100%;
   height: 100%;
 }
-
-.m-page {
-	display:flex;
-	flex-direction: column;
-  width: 100%;
-  /*
-  height: 100%;
-  background-color: #ffffff;*/
-}
-
-.m-title {
-	display:flex;
-	justify-content: space-between;
-	align-items: flex-end;
-	
-  width: 100%;
-  height: 68px;
-  padding: 0px;
-	margin: 0px;
-	
-  background-color: rgb(244,244,244);
-}
-.m-logo{
-	display:flex;
-  width: 130px;
-  height: 100%;
-  margin-left: 9%;
-  border: 1px dashed #888888;
-}
-.m-nav{
-	display:flex;
-	
-	width: 30%;
-	height: 25px;
-	justify-content: space-around;
-	align-items: center;
-	
-	margin-bottom: 9px;
-}
-.m-sign{
-	display:flex;
-	flex-direction: column;
-	
-	padding: 0px;
-	margin: 0px;
-	
-	width: 50px;
-	height: 65px;
-	margin-right: 10px;
-	margin-bottom: 4px;
-	
-	justify-content: center;
-	align-items: center;
-}		
-.m-profile{
-	display: none;	
-}	
 		
 .m-panel {
 	display:flex;
@@ -217,134 +160,4 @@
   font: normal 1.94em/37px "Lato";
   
   margin-left: 4px;
-}
-
-.m-map {
-	display:flex;
-	flex-direction: column;
-	align-items: center;
-	
-  width: 100%;
-  height: 355px;
-  background-color: rgb(66,67,58);
-}
-.m-map-top{
-	display:flex;
-	width: 80%;
-	height: 45%;
-	
-}
-.m-map-middle{
-	display:flex;
-	width: 80%;
-	height: 40%;
-	justify-content: space-between;
-}
-.m-map-bottom{
-	display:flex;
-	width: 80%;
-	height: 15%;
-	
-	border-top: 1px solid #bfbfbf;
-}
-.m-map-bottom-follow {
-	display:flex;
-	width: 50%;
-	align-items: center;
-	
-}
-.m-map-bottom-rights {
-	display:flex;
-	width: 50%;
-	align-items: center;
-	justify-content: flex-end;
-}	
-		
-.m-rights {
-	display:flex;
-  width: 100%;
-  height: 45px;
-  background-color: rgb(244,244,244);
-}
-
-
-@-webkit-keyframes m-title-sign-bounce {
-  from,
-  20%,
-  53%,
-  80%,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  40%,
-  43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    -webkit-transform: translate3d(0, -30px, 0);
-    transform: translate3d(0, -30px, 0);
-  }
-
-  70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    -webkit-transform: translate3d(0, -15px, 0);
-    transform: translate3d(0, -15px, 0);
-  }
-
-  90% {
-    -webkit-transform: translate3d(0, -4px, 0);
-    transform: translate3d(0, -4px, 0);
-  }
-}
-
-@keyframes m-title-sign-bounce {
-  from,
-  20%,
-  53%,
-  80%,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  40%,
-  43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    -webkit-transform: translate3d(0, -30px, 0);
-    transform: translate3d(0, -30px, 0);
-  }
-
-  70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    -webkit-transform: translate3d(0, -15px, 0);
-    transform: translate3d(0, -15px, 0);
-  }
-
-  90% {
-    -webkit-transform: translate3d(0, -4px, 0);
-    transform: translate3d(0, -4px, 0);
-  }
-}
-
-.m-title-sign-anim {
-	-webkit-animation-name: m-title-sign-bounce;
-  animation-name: m-title-sign-bounce;
-  -webkit-transform-origin: center bottom;
-  transform-origin: center bottom;
-  
-  -webkit-animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  -webkit-animation-timing-function: ease-in-out;
-  
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in-out;
 }
