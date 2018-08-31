@@ -50,13 +50,16 @@ function resize(sDrag, container, resizable) {
 				var target = event.target, x = (parseFloat(target
 						.getAttribute('data-x')) || 0), y = (parseFloat(target
 						.getAttribute('data-y')) || 0);
-				var rect = figureRect(".uc-canvasM");
+				var rect = figureRect(".uc-canvas-container");
 				
 				// update the element's style
-				target.style.width = event.rect.width + 'px';
-				target.style.height = event.rect.height + 'px';
-				console.log("current target's width/parent's is "+(event.rect.width/rect["width"]))
-				console.log("current target's height/parent's is "+(event.rect.height/rect["height"]))
+				//target.style.width = event.rect.width + 'px';
+				//target.style.height = event.rect.height + 'px';
+				target.style.width  = (Math.round(event.rect.width/rect["width"]*10000)/100)+"%";
+				target.style.height = (Math.round(event.rect.height/rect["height"]*10000)/100)+"%";
+				//console.log("current target's width/parent's is "+(Math.round(event.rect.width/rect["width"]*10000)/100)+"%");
+				//console.log("current target's height/parent's is "+(Math.round(event.rect.height/rect["height"]*10000)/100)+"%");
+				
 				// translate when resizing from top or left edges
 				x += event.deltaRect.left;
 				y += event.deltaRect.top;
@@ -71,7 +74,7 @@ function resize(sDrag, container, resizable) {
 			});
 }
 
-function draggabilly(sDrag, container, onMove, onEnd, resizable) {
+function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict) {
 	// target elements with the "draggable" class
 	onMoveListener = dragMoveListener;
 	onEndListener = dragMoveEndListener;
@@ -79,21 +82,24 @@ function draggabilly(sDrag, container, onMove, onEnd, resizable) {
 		onMoveListener = onMove;
 	if (onEnd)
 		onEndListener = onEnd;
-
+	
 	var dragobj = interact(sDrag).draggable({
 		// enable inertial throwing
 		inertia : true,
 		// keep the element within the area of it's parent
-		restrict : {
-			restriction : container,
-			endOnly : true,
-			elementRect : {
-				top : 0,
-				left : 0,
-				bottom : 1,
-				right : 1
-			}
-		},
+		restrict : restrict,
+		/*
+		 {
+						restriction : container,
+						endOnly : true,
+						elementRect : {
+							top : 0,
+							left : 0,
+							bottom : 1,
+							right : 1
+						}
+					}
+					*/
 		// enable autoScroll
 		autoScroll : true,
 
@@ -159,14 +165,47 @@ function figureRect(select) {
 
 	return rect;
 }
-
-$(document).ready(function(){     
+function wheel(event) {
+    var delta = 0;
+    if (!event) /* For IE. */
+        event = window.event;
+    if (event.wheelDelta) { /* IE/Opera. */
+        delta = event.wheelDelta / 120;
+    } else if (event.detail) { /* Mozilla. */
+        delta = -event.detail / 3;
+    }
+    if (delta) wheelHandle(delta);
+    if (event.preventDefault)
+        event.preventDefault();
+    event.returnValue = false;
+}
+function wheelHandle(delta) {
+    if (delta < 0) {
+        console.log("鼠标滑轮向下滚动：" + delta + "次！"); // 1
+        return;
+    } else {
+        console.log("鼠标滑轮向上滚动：" + delta + "次！"); // -1
+        return;
+    }
+}
+function mainInit(){     
 	if (window.screen) {              
 		var myw = screen.availWidth;   
 		var myh = screen.availHeight;  
 		window.moveTo(0, 0);           
 		window.resizeTo(myw, myh);
     }
+	/*
+	document.body.parentNode.style.overflowY = "hidden";
+	$("body").parent().css("overflow-y","hidden");
+	if (window.addEventListener) {
+	    // DOMMouseScroll is for mozilla. 
+	    window.addEventListener('DOMMouseScroll', wheel, false);
+	}
+	// IE/Opera. 
+	window.onmousewheel = document.onmousewheel = wheel;
+	*/
+	
 	/*
 	$(window).resize(function() {
 	    alert('pp');
@@ -189,4 +228,4 @@ $(document).ready(function(){
 			img.removeClass("m-title-sign-anim");
 		
 	});
-});
+}

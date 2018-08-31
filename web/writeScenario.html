@@ -2,8 +2,8 @@
 		<script type="text/javascript" src="/var/js/interact_v1.3.4.js" ></script>
 		<script type="text/javascript" src="/var/js/honeyswitch.js" ></script>
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=4356fg" />
-		<script type="text/javascript" src="/var/js/uc.js?v=t534gdf"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=k26y6" />
+		<script type="text/javascript" src="/var/js/uc.js?v=23er"></script>
 		
 		<style>
 			.slider {
@@ -25,30 +25,96 @@
 				</div>
 			</div>
 			<div class="uc-main-container">
+			<!-- 
 				<div class="uc-template-sample">
 					<img src="/var/images/uc/uc-float-menu-downarrow-icon.svg" class="uc-sample-template-icon" />
-				</div>
+				</div> -->
 				<div class="uc-populate-container">
 				
 					<div class="uc-canvas">
 						<div class="uc-float-menu">
+							<div class="uc-float-menu-item">
+								<div style="display: flex; width: 35px; height: 100%; background-image:url(/var/images/round-left.png); background-repeat: no-repeat;background-position:center right;background-size:auto 100%; justify-content: flex-end; margin: 0px;padding:0px;">
+									<!--  <img src="/var/images/round-left.png" style="height: 100%;"/>-->
+								</div>
+								<div class="uc-float-menu-block">
+									<div class="uc-float-menu-block-c">
+										<span class="en_input_label" style="font-size: 75%; color: #efefef">Scenario</span>
+									</div>
+								</div>
+								<div class="uc-float-menu-item-icon">
+									<!--  <img src="/var/images/round-right.png" style="height: 100%;"/>-->
+									<svg class="icon" style="margin-left: -10px; font-size: 20px; font-weight: 400;color: #efefef;" aria-hidden="true">
+		    						<use xlink:href="#icon-yuliaoguanli"></use>
+									</svg>
+								</div>
+								<div class="uc-float-menu-item-mask" name="menuAddSce">
+								</div>
+							</div>
+							<br/>
+							<div class="uc-float-menu-item">
+								<div style="display: flex; width: 35px; height: 100%; background-image:url(/var/images/round-left.png); background-repeat: no-repeat;background-position:center right;background-size:auto 100%; justify-content: flex-end; margin: 0px;padding:0px;">
+									<!--  <img src="/var/images/round-left.png" style="height: 100%;"/>-->
+								</div>
+								<div class="uc-float-menu-block">
+									<div class="uc-float-menu-block-c">
+										<span class="en_input_label" style="font-size: 75%; color: #efefef">Background</span>
+									</div>
+								</div>
+								<div class="uc-float-menu-item-icon">
+									<!--  <img src="/var/images/round-right.png" style="height: 100%;"/>-->
+									<svg class="icon" style="margin-left: -10px; font-size: 20px; font-weight: 400;color: #efefef;" aria-hidden="true">
+		    						<use xlink:href="#icon-beijing"></use>
+									</svg>
+								</div>
+								<div class="uc-float-menu-item-mask" name="menuChgBg">
+								</div>
+							</div>
+							<br/>
+							<div class="uc-float-menu-item">
+								<div style="display: flex; width: 35px; height: 100%; background-image:url(/var/images/round-left.png); background-repeat: no-repeat;background-position:center right;background-size:auto 100%; justify-content: flex-end; margin: 0px;padding:0px;">
+									<!--  <img src="/var/images/round-left.png" style="height: 100%;"/>-->
+								</div>
+								<div class="uc-float-menu-block">
+									<div class="uc-float-menu-block-c">
+										<span class="en_input_label" style="font-size: 75%; color: #efefef">Tutorial</span>
+									</div>
+								</div>
+								<div class="uc-float-menu-item-icon">
+									<!--  <img src="/var/images/round-right.png" style="height: 100%;"/>-->
+									<svg class="icon" style="margin-left: -10px; font-size: 20px; font-weight: 400;color: #efefef;" aria-hidden="true">
+		    						<use xlink:href="#icon-shejiqiyanshi"></use>
+									</svg>
+								</div>
+								<div class="uc-float-menu-item-mask" name="menuIntro">
+								</div>
+							</div>
+						<!-- 
 							<img alt="demo" title="corpus" src="/var/images/uc/uc-float-menu-demo-icon.svg" class="uc_i_corpus" />
 							<img alt="demo" title="banner" src="/var/images/uc/uc-float-menu-demo-icon.svg" class="uc_i_banner" />
 							<img alt="demo" title="ranker" src="/var/images/uc/uc-float-menu-demo-icon.svg" class="uc_i_ranker" />
 							<img alt="demo" title="subscriber" src="/var/images/uc/uc-float-menu-demo-icon.svg" class="uc_i_subscriber" />
 							<img alt="demo" title="timeseries" src="/var/images/uc/uc-float-menu-demo-icon.svg" class="uc_i_timeseries" />
 							<img alt="help" title="help" src="/var/images/uc/uc-float-menu-help-icon.svg" class="uc_i_help" />
+						 -->
 						</div>
 						
+						
 						<div class="uc-canvasM">
-							
+							<div class="uc-canvas-container"></div>
+						<!-- 
+							<img src="/var/images/mainbg/ride-on-yela-star-citizen-4k-m1.jpg" style="width: 2048px;height: 1152px; filter: blur(25px); "/>
+							 -->
 						</div>
-						<div>
-							<input type="button" id="btn_sScenario" name="sScenario" value="Save" />&nbsp;
-							<input type="button" id="btn_aScenario" name="aScenario" value="Abandon" />
+						 
+						<div class="uc-canvasSubmit">
+							<input class="uc-canvasSubmitBtn" type="button" id="btn_sScenario" name="sScenario" value="Save" />&nbsp;
+							<input class="uc-canvasSubmitBtn" type="button" id="btn_aScenario" name="aScenario" value="Abandon" />
 						</div>
+						 
 					</div>
 					<div class="uc-edit-panel">
+					<!-- 
 						<div class="uc-edit-panel-bar">
 							<span class="uc-edit-panel-bar-font">P</span>
 							<span class="uc-edit-panel-bar-font">A</span>
@@ -57,7 +123,7 @@
 							<span class="uc-edit-panel-bar-font">O</span>
 							<span class="uc-edit-panel-bar-font">R</span>
 							<span class="uc-edit-panel-bar-font">A</span>
-						</div>
+						</div> -->
 						<div class="uc-edit-panel-main">
 							<div class="uc-edit-panel-block">
 								<span class="uc-input-title en_block_title">Scenario Basic Information</span>
@@ -218,7 +284,8 @@
 					</div>
 				
 			</div>
-			<div class="uc-float-button"></div>
+			<!-- 
+			<div class="uc-float-button"></div> -->
 		</div>
 		
 		
@@ -454,9 +521,25 @@
 		    		<use xlink:href="#icon-beijingse1"></use>
 					</svg>
 					<span onmouseover="event.stopPropagation();event.cancelBubble = true;" onmouseout="event.stopPropagation();event.cancelBubble = true;" style="font-size: 20px; color: #aaaaaa;">|</span>
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+					<!-- <svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 		    		<use xlink:href="#icon-ziti2"></use>
+					</svg> -->
+					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+		    		<use xlink:href="#icon-paiming1"></use>
 					</svg>
+					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+		    		<use xlink:href="#icon-paiming"></use>
+					</svg>
+					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+		    		<use xlink:href="#icon-dingyue"></use>
+					</svg>
+					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+		    		<use xlink:href="#icon-banner"></use>
+					</svg>
+					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+		    		<use xlink:href="#icon-yemianzujian"></use>
+					</svg>
+					
 					<span onmouseover="event.stopPropagation();event.cancelBubble = true;" onmouseout="event.stopPropagation();event.cancelBubble = true;" style="font-size: 20px; color: #aaaaaa;">|</span>
 					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 		    		<use xlink:href="#icon-bianji"></use>

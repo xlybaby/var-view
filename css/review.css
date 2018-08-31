@@ -1,0 +1,30 @@
+.page-main-div{
+	display: inline;
+  width: 100%;
+  height: 100%;
+  
+  background-color: #fff;
+}
+.box_block{
+	display: none;
+	background-color: #33e;
+}
+.CORPUSCOLLECT{
+	display: none;
+}	
+
+.RANKLIST{
+	display: none;
+}	
+
+.REFRESHBLOCK{
+	display: none;
+}	
+
+.TIMESERIES{
+	display: none;
+}
+
+.BANNER{
+	display: none;
+}

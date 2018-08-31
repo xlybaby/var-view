@@ -75,6 +75,10 @@
   overflow: hidden;
   justify-content: center;
   align-items: center;
+  
+  background-image: url(/var/images/mainbg/vintage-typewriter-qhd-2048x1152.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
 }
 
 .m-panel-demo {
