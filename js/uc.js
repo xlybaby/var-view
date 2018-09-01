@@ -18,6 +18,24 @@ var templateInstance = (function ($) {
 	var _TIMESERIES = function(scenarioId){
 		
 	};
+	var _COMPONENTSINFO = function(scenarioId){
+		var componentsRoot = $(".uc-edit-components[id='"+ scenarioId +"']");
+		if( componentsRoot.length>0 ) {
+			var containerSel = componentsRoot.children(".uc-edit-components-selector.container-selector");
+			if(containerSel.length>0){
+				for(var i=0;i<containerSel.length;i++){
+					var consel=containerSel[i];
+					
+				}
+			}
+		}
+	}
+	var _COMMONINFO = function(scenarioId){
+		var editPanel= $(".uc-edit-panel-main[id='"+ scenarioId +"']");
+		if( editPanel.length>0 ) {
+			
+		}
+	}
 	
 	var pub = {
         newTemplate: function () {
@@ -451,7 +469,6 @@ $(document).ready(function(){
 	$("#btn_sScenario").on("click",function(){
 		collectAndSubmit();
 	});
-	
 //	      var rule;
 //	      var ss = document.styleSheets;
 //	      for (var i = 0; i < ss.length; ++i) {
