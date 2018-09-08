@@ -1,5 +1,27 @@
-<div class="uc-edit-panel-main" id="">
-	<div class="uc-edit-panel-block">
+<link rel="stylesheet" type="text/css" href="/var/css/honeyswitch.css" />	
+<script type="text/javascript" src="/var/js/interact_v1.3.4.js" ></script>
+<script type="text/javascript" src="/var/js/honeyswitch.js" ></script>
+<script type="text/javascript" src="/var/js/jscolor.js" ></script>
+		
+<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=232442" />
+<script type="text/javascript" src="/var/js/uc.js?v=3242sd"></script>
+<style>
+	.slider {
+		width: 25px;
+		height: 25px;
+	}
+</style>
+		
+<div class="uc-edit-panel">
+
+<div class="uc-edit-panel-main" id="">	
+	<div class="uc-edit-panel-block basic-info">
+		<input type="hidden" id="in_scenarioType" value=""/>
+		<input type="hidden" id="in_scenarioTypeName" value=""/>
+		<input type="hidden" id="in_maxDuration" value="7200"/>
+		<input type="hidden" id="in_maxThreadNum" value="1"/>
+		<input type="hidden" id="in_delay" value=""/>
+		
 		<span class="uc-input-title en_block_title">Scenario Basic
 			Information</span> <img src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
@@ -7,7 +29,7 @@
 				<span class="uc-input-label en_input_label">Address</span>
 				<div class="uc-input">
 					<div name="in_addr_box" class="uc-input-text">
-						<input name="in_addr" type="text"
+						<input name="in_href" type="text"
 							style="width: 100%; height: 100%; border: 0px solid #ffffff;" />
 						<img name="in_addr_alert" src="/var/images/uc/uc_input_alert.svg"
 							class="uc-input-hint-icon" />
@@ -22,7 +44,7 @@
 				<span class="uc-input-label en_input_label">Title</span>
 				<div class="uc-input">
 					<div name="in_title_box" class="uc-input-text">
-						<input name="in_title" type="text"
+						<input id="in_title" type="text"
 							style="width: 100%; height: 100%; border: 0px solid #ffffff;" />
 						<img name="in_title_alert" src="/var/images/uc/uc_input_alert.svg"
 							class="uc-input-hint-icon" />
@@ -37,7 +59,7 @@
 				<span class="uc-input-label en_input_label">Summary</span>
 				<div class="uc-input">
 					<div class="uc-input-text">
-						<input type="text"
+						<input type="text" id="in_keywords"
 							style="width: 100%; height: 100%; border: 0px solid #ffffff;" />
 						<img src="/var/images/uc/uc_input_alert.svg"
 							class="uc-input-hint-icon" />
@@ -51,7 +73,7 @@
 			<div class="uc-input-block">
 				<div style="display: flex; align-items: center; padding: 0px;">
 					<span class="uc-input-label en_input_label">Automation</span>&nbsp;&nbsp;&nbsp;
-					<span name="in_isauto" class="switch-off" themeColor="gold"></span>
+					<span id="in_isauto" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
 				</div>
 			</div>
 		</div>
@@ -61,23 +83,25 @@
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
 			<div
-				style="display: flex; align-items: center; justify-content: center; width: 100%; height: auto; margin: 0px; padding: 0px;">
-				<img onmouseover="changPointer(this)"
+				style="display: flex; align-items: center; justify-content: center; width: 100%; height: 65px; margin: 0px; padding: 0px;">
+				<img onmouseover="changPointer(this)" style="height: 100%;"
 					src="/var/images/uc/uc_comps_bg.svg" />
 			</div>
 		</div>
 	</div>
-	<div class="uc-edit-panel-block">
+	<div class="uc-edit-panel-block layout-info">
 		<span class="uc-input-title en_block_title">Scenario Layout</span> <img
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label">Bg Color</span>
+				<span class="uc-input-label en_input_label" style="font-size: 15px;">Bg Color</span>
 				<div style="display: flex;">
 					<div class="uc-input">
 						<div name="in_bgcolor_box" class="uc-input-text">
+						<!-- 
 							<input name="in_bgcolor" type="color" value="#ffffff"
-								style="width: 100%; height: 100%; border: 0px solid #ffffff;" />
+								style="width: 100%; height: 100%; border: 0px solid #ffffff;" /> -->
+							<input id="in_bgcolor" style="width: 100%; height: 100%; border: 0px solid #ffffff;" class="jscolor" value="#ffffff">
 							<img name="in_bgcolor_alert"
 								src="/var/images/uc/uc_input_alert.svg"
 								class="uc-input-hint-icon" />
@@ -87,6 +111,7 @@
 							<span>some hints here</span>
 						</div>
 					</div>
+					<!--  
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<div class="uc-input">
 						<div name="in_bgcolor_box" class="uc-input-text">
@@ -101,82 +126,69 @@
 							class="uc-input-hint-text en_input_hint">
 							<span>some hints here</span>
 						</div>
-					</div>
+					</div>-->
 				</div>
 			</div>
 			<div class="empty_block_10"></div>
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label">Border</span>
-				<div
-					style="display: flex; padding: 4px 0px 2px 0px; height: 35px; width: 100%;">
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div
-							style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div
-							style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px; border-top: 3px solid #888888;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div
-							style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px; border-right: 3px solid #888888;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div
-							style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px; border-bottom: 3px solid #888888;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div
-							style="width: 30px; height: 30px; border: 1px dashed #888888; border-radius: 5px; border-left: 3px solid #888888;"></div>
-					</div>
+				<span class="uc-input-label en_input_label" style="font-size: 15px;">Border</span>
+				<div id="border-style" style="margin-top: 3px; display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
+					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px;"></div>
+					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-top: 2px solid #888888;" id="border-top"></div>
+					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-right: 2px solid #888888;" id="border-right"></div>
+					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-bottom: 2px solid #888888;" id="border-bottom"></div>
+					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-left: 2px solid #888888;" id="border-left"></div>
 				</div>
 			</div>
 			<div class="empty_block_10"></div>
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label">Shadow</span>
-				<div
-					style="display: flex; padding: 4px 0px 2px 0px; height: 35px; width: 100%;">
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div onmouseover="changPointer(this)"
-							style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 5px #888888;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div onmouseover="changPointer(this)"
-							style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 5px #888888;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div onmouseover="changPointer(this)"
-							style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 5px #888888;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div onmouseover="changPointer(this)"
-							style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 5px #888888 inset;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div onmouseover="changPointer(this)"
-							style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 5px #888888 inset;"></div>
-					</div>
-					<div
-						style="display: flex; align-items: center; justify-content: center; padding: 2px; width: 20%; height: 100%;">
-						<div onmouseover="changPointer(this)"
-							style="width: 30px; height: 30px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 5px #888888 inset;"></div>
-					</div>
+				<span class="uc-input-label en_input_label" style="font-size: 15px;">Shadow</span>
+				<div id="shadow-style" style="margin-top: 3px;display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
+					<div id="style1" onmouseover="changPointer(this)"
+							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 3px #888888;"></div>
+					<div id="style2" onmouseover="changPointer(this)"
+							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 3px #888888;"></div>
+					<div id="style3" onmouseover="changPointer(this)"
+							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 3px #888888;"></div>
+					<div id="style4" onmouseover="changPointer(this)"
+							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 3px #888888 inset;"></div>
+					<div id="style5" onmouseover="changPointer(this)"
+							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 3px #888888 inset;"></div>
+					<div id="style6" onmouseover="changPointer(this)"
+							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 3px #888888 inset;"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="uc-edit-panel-block"></div>
-	<div class="uc-edit-panel-block">
+	<div class="uc-edit-panel-block schedule-info">
+		<input type="hidden" id="in_schedule" value=""/>
+	
+		<span class="uc-input-title en_block_title">Schedule</span> <img
+			src="/var/images/icon_help.svg" />
+		<div class="uc-input-area">
+			<div class="uc-input-block">
+				<span class="uc-input-label en_input_label" style="font-size: 15px;">分钟级</span>
+				<div style="display: flex; align-items: center; justify-content: space-around; padding: 4px 0px 2px 0px; height: 25px; width: 100%;">
+					<img src="/var/images/uc/uc_sche_1m.png" style="height: 100%;"/>
+					<img src="/var/images/uc/uc_sche_5m.png" style="height: 100%;"/>
+					<img src="/var/images/uc/uc_sche_10m.png" style="height: 100%;"/>
+					<img src="/var/images/uc/uc_sche_25m.png" style="height: 100%;"/>
+					
+				</div>
+			</div>
+			<div class="uc-input-block">
+				<span class="uc-input-label en_input_label" style="font-size: 15px;">小时级</span>
+				<div style="display: flex; align-items: center; justify-content: space-around; padding: 4px 0px 2px 0px; height: 25px; width: 100%;">
+					<img src="/var/images/uc/uc_sche_1h.png" style="height: 100%;"/>
+					<img src="/var/images/uc/uc_sche_6h.png" style="height: 100%;"/>
+					<img src="/var/images/uc/uc_sche_12h.png" style="height: 100%;"/>
+					<img src="/var/images/uc/uc_sche_24h.png" style="height: 100%;"/>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="uc-edit-panel-block sharing-info">
 		<span class="uc-input-title en_block_title">Sharing</span> <img
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
@@ -186,15 +198,16 @@
 					<div
 						style="display: flex; align-items: center; justify-content: center; padding: 0px; width: 50%;">
 						<span class="en_input_hint" style="color: #888888;">Theme</span>&nbsp;&nbsp;&nbsp;
-						<span name="in_shareTheme" class="switch-off" themeColor="gold"></span>
+						<span name="in_shareTheme" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
 					</div>
 					<div
 						style="display: flex; align-items: center; justify-content: center; padding: 0px; width: 50%;">
 						<span class="en_input_hint" style="color: #888888;">Whole</span>&nbsp;&nbsp;&nbsp;
-						<span name="in_shareWhole" class="switch-off" themeColor="gold"></span>
+						<span name="in_shareWhole" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
