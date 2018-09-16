@@ -2,8 +2,11 @@
 		<script type="text/javascript" src="/var/js/interact_v1.3.4.js" ></script>
 		<script type="text/javascript" src="/var/js/honeyswitch.js" ></script>
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=k26y6" />
-		<script type="text/javascript" src="/var/js/uc.js?v=232222er"></script>
+		<script type="text/javascript" src='/var/js/spectrum.js'></script>
+		<link rel='stylesheet' href='/var/css/spectrum.css' />
+		
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=enn7" />
+		<script type="text/javascript" src="/var/js/uc.js?v=fg56"></script>
 		
 		<style>
 			.slider {
@@ -11,11 +14,22 @@
 				height: 25px;
 				
 			}
+			.sp-preview{
+			height: 10px;
+			}
+			.sp-dd{
+			height: 6px;
+			line-height: 10px;
+			}
+			.sp-replacer{
+			background-color: rgb(238,238,238,0.0);
+			}
 		</style>
 	
 		<!-- <div style="width: 100%; height: 100px; background-color: #234238"></div>
-	  -->
+	  -->	  
 		<div class="page-main-div">
+		
 			<div class="uc-quick-populate-container">
 				<div class="uc-quick-populate-container-mask"></div>
 				<div class="uc-quick-populate-container-expert"></div>
@@ -152,47 +166,116 @@
 		</div>
 		
 			<div class="uc_t_box" id="uc_box_temp">
-			 	<div class="uc_t_tool_bar">
-					
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-beijingse1"></use>
-					</svg>
-					<span onmouseover="event.stopPropagation();event.cancelBubble = true;" onmouseout="event.stopPropagation();event.cancelBubble = true;" style="font-size: 20px; color: #aaaaaa;">|</span>
-					<!-- <svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-ziti2"></use>
-					</svg> -->
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-paiming1"></use>
-					</svg>
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-paiming"></use>
-					</svg>
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-dingyue"></use>
-					</svg>
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-banner"></use>
-					</svg>
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-yemianzujian"></use>
-					</svg>
-					
-					<span onmouseover="event.stopPropagation();event.cancelBubble = true;" onmouseout="event.stopPropagation();event.cancelBubble = true;" style="font-size: 20px; color: #aaaaaa;">|</span>
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-bianji"></use>
-					</svg>
-					<svg class="icon" style="font-size: 20px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-shuangping1"></use>
-					</svg>
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-xiangxixinxi"></use>
-					</svg>
-					<span onmouseover="event.stopPropagation();event.cancelBubble = true;" onmouseout="event.stopPropagation();event.cancelBubble = true;" style="font-size: 20px; color: #aaaaaa;">|</span>
-					<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-		    		<use xlink:href="#icon-shanchudelete30"></use>
-					</svg>
-			 	</div>
-	 			<div class="uc_t_boxD"></div>
+				<div class="uc_t_tool_addr">
+					<input type="text" placeholder="Input address here" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;" />
+				</div>
+				 	<div class="uc_t_tool_bar">
+							
+							<div class="uc-float-icon-con">
+								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    				<use xlink:href="#icon-beijingse1"></use>
+								</svg>
+								<div class="uc-float-icon-input">
+									<input type="text" id="cp-flat" style="height: 80%;"/>
+								</div>
+								<input id="in_bgcolor" type="hidden" value="" />
+								<div class="uc-float-icon-mask" id="icon-beijingse1"></div>
+							</div>
+							
+							
+							
+							<div class="uc-float-icon-con">
+								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    				<use xlink:href="#icon-tool"></use>
+								</svg>
+								<div class="uc-float-icon-input"></div>
+								<input id="in_scenarioType" type="hidden" value="" />
+								<div class="uc-float-icon-mask" id="icon-tool"></div>
+							</div>
+							
+							
+							<div class="uc-float-icon-con">
+								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    				<use xlink:href="#icon-moniqi"></use>
+								</svg>
+								<div class="uc-float-icon-input"></div>
+								<input id="in_automation" type="hidden" value="" />
+								<div class="uc-float-icon-mask" id="icon-moniqi"></div>
+							</div>
+							
+							
+							<div class="uc-float-icon-con">
+								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    				<use xlink:href="#icon-guanjianzi"></use>
+								</svg>
+								<div class="uc-float-icon-input"></div>
+								<input id="in_keywords" type="hidden" value="" />
+								<div class="uc-float-icon-mask" id="icon-guanjianzi"></div>
+							</div>
+							
+						
+							<div class="uc-float-icon-con">
+								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    				<use xlink:href="#icon-fenxiang2"></use>
+								</svg>
+								<div class="uc-float-icon-input"></div>
+								<input id="in_shareTemp" type="hidden" value="" />
+								<input id="in_shareContent" type="hidden" value="" />
+								<div class="uc-float-icon-mask" id="icon-fenxiang2"></div>
+							</div>
+							
+						
+							<div class="uc-float-icon-con">
+								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    				<use xlink:href="#icon-lajitong"></use>
+								</svg>
+								
+							</div>
+							
+						
+						<!-- 					
+						<span onmouseover="event.stopPropagation();event.cancelBubble = true;" onmouseout="event.stopPropagation();event.cancelBubble = true;" style="font-size: 20px; color: #aaaaaa;">|</span>
+						
+						<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-ziti2"></use>
+						</svg> -->
+						
+						<!-- 
+						<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-paiming1"></use>
+						</svg>
+						<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-paiming"></use>
+						</svg>
+						<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-dingyue"></use>
+						</svg>
+						<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-banner"></use>
+						</svg>
+						<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-yemianzujian"></use>
+						</svg>
+						 -->
+						
+						<!-- 
+						<span onmouseover="event.stopPropagation();event.cancelBubble = true;" onmouseout="event.stopPropagation();event.cancelBubble = true;" style="font-size: 20px; color: #aaaaaa;">|</span>
+						
+						<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-bianji"></use>
+						</svg>
+						<svg class="icon" style="font-size: 20px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-shuangping1"></use>
+						</svg>
+						<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			    		<use xlink:href="#icon-xiangxixinxi"></use>
+						</svg> 
+						<span onmouseover="event.stopPropagation();event.cancelBubble = true;" onmouseout="event.stopPropagation();event.cancelBubble = true;" style="font-size: 20px; color: #aaaaaa;">|</span>
+						-->
+						
+				 	</div>
+				 	
+	 			 <div class="uc_t_boxD"></div>
 	 			
 			</div>
 		</div>

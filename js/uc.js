@@ -355,18 +355,18 @@ var containerOverflowYBoxNum={};
 function cloneDiv(sDiv, type){
 	c=$("#"+sDiv).clone(true);
 	var cid = sDiv+"_"+guid();
-	var bgcolors=["#0073e6","#00e6ac","#e60073","#e67300","#333333","#669900"];
+	//var bgcolors=["#0073e6","#00e6ac","#e60073","#e67300","#333333","#669900"];
 	c.css('display','flex');
 	c.attr('id',cid);
 	c.attr('sType',type);
 	
-	var x = bgcolors.length-1;     
-	var y = 0; 
-	c.css('background-color', bgcolors[parseInt(Math.random() * (x - y + 1) + y)]);
+	//var x = bgcolors.length-1;     
+	//var y = 0; 
+	//c.css('background-color', bgcolors[parseInt(Math.random() * (x - y + 1) + y)]);
 	c.css('background-image','url(/var/images/uc/uc_bg_'+type+'.svg)');
-	c.css('background-position','center center');
+	c.css('background-position','50% 75%');
 	c.css('background-size','45% 45%');
-	/*
+	/*－
 	draggable=c.children(sDrag);
 	var $draggable = draggable.draggabilly({
 		containment: '.uc-canvasM'
@@ -482,6 +482,11 @@ function toolbarClick(type) {
 	
 }
 
+function showColorPicker(event,id) {
+	console.log("show color of "+id);
+	document.getElementById(id).jscolor.show();
+}
+
 $(document).ready(function(){ 
 	mainInit();
 	
@@ -534,7 +539,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	
+	/*
 	$(".uc_t_tool_bar").on({
 		//mousedown:function(event){toolbarclick(event,true);},
 		//mouseup:function(event){toolbarclick(event,false);},
@@ -562,7 +567,8 @@ $(document).ready(function(){
 	    		event.target.style.opacity="0";
 	        }
 	    }
-	});
+	});*/
+	
 	$(".uc-float-menu-item-mask").on({
 			//mousedown:function(event){toolbarclick(event,true);},
 			//mouseup:function(event){toolbarclick(event,false);},
@@ -597,8 +603,106 @@ $(document).ready(function(){
 		    }
 		});
 	
-	
-	$(".icon").on({
+	$(document).on('click',':not(.uc-float-icon-input)',function(){
+        $(".uc-float-icon-input").hide();
+        return;
+    })
+
+	$(".uc-float-icon-mask").on({
+		//mousedown:function(event){toolbarclick(event,true);},
+		//mouseup:function(event){toolbarclick(event,false);},
+		
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+			console.log($("#in_bgcolor")[0]._jscLinkedInstance);
+			//$("#in_bgcolor").trigger("mousedown");
+			
+			var box = $(event.target).parents(".uc_t_box");
+			var icon = $(event.target).parent(".uc-float-icon-con");
+			var input = $(event.target).siblings(".uc-float-icon-input");
+			console.log(box);
+			console.log(icon);
+			console.log(input);
+			
+			var iconrect = figureRect(icon[0]);
+			
+			var cinput = box.children("#cinput_"+$(event.target).attr("id"));
+			if( cinput.length <= 0 )
+				cinput = input.clone(true);
+			
+			
+			var cinputW = (box.width()-iconrect["width"]) > 250 ? 250 : (box.width()-iconrect["width"]);
+			var inputID = "cinput_"+$(event.target).attr("id");
+			var cp = cinput.children("#cp-flat");
+			cp.attr("id",inputID);
+			cp.spectrum({
+			    color: "#e67300"
+			});
+			
+			cinput.css("height", iconrect["height"]+"px");
+			cinput.css("width", cinputW+"px");
+			cinput.css("left", (iconrect["positionX"]+iconrect["width"])+"px");
+			cinput.css("top", iconrect["positionY"]+"px");
+			cinput.css("display", "flex");
+			cinput.attr("id","cinput_"+$(event.target).attr("id"));
+			//cinput.html('<input id="in_bgcolor" style="width: 100%; height: 100%; border: 0px solid #ffffff;" class="jscolor" value="#ffffff">');
+//			cinput.on({
+//				mouseout:function(event){
+//					var box = $(event.target).parents(".uc_t_box");
+//					var input = box.children("#"+inputID);
+//					input.css("display","none");
+//					event.stopPropagation();    //标准   
+//			        event.cancelBubble = true;  //IE 
+//				}
+//			});
+			
+			console.log("cinput height: "+iconrect["height"]+"px");
+			console.log("cinput width: "+cinputW+"px");
+			console.log("cinput left: "+(iconrect["positionX"]+iconrect["width"])+"px");
+			console.log("cinput top: "+iconrect["positionY"]+"px");
+			
+			box.append(cinput);
+			
+			//cinput.animate({width:cinputW+"px"},500,"linear");
+			
+			//event.target.setAttribute('onIcon', true);
+			event.stopPropagation();    //标准   
+	        event.cancelBubble = true;  //IE  
+		},  
+	    mouseout:function(event){
+	    	var id = $(event.target).attr("id");
+			var box = $(event.target).parents(".uc_t_box");
+			
+			
+	        
+			var input = box.children("#cinput_"+id);
+			var inputID = "#cinput_"+id;
+			if( input.length > 0 ) {
+				var x = event.pageX;
+		        var y = event.pageY; 
+		    	//var icons = $(event.target).children(".icon");
+		        var y1 = input.offset().top;  //div上面两个的点的y值
+		        var y2 = y1 + input.height();//div下面两个点的y值
+		        var x1 = input.offset().left;  //div左边两个的点的x值
+		        var x2 = x1 + input.width();  //div右边两个点的x的值
+		        console.log("pageX: "+x+", pageY: "+y);
+		        console.log("tool bar rect[ ("+x1+","+y1+") ("+x2+","+y2+") ]");
+		        if( x < x1 || x > x2 || y < y1 || y > y2) {
+		        	//input.animate({width:"0px"},500,"linear", function(){
+		        		//box.remove(inputID);
+		        	//	input.css("display","none");
+		        	//});
+					//input.animate({display:"none"},500,"linear");
+		        	input.css("display","none");
+		        }
+		        
+			}
+	    	event.stopPropagation();    //标准   
+	        event.cancelBubble = true;  //IE 
+	    }
+	});
+	/*
+	$(".uc-float-icon").on({
 		//mousedown:function(event){toolbarclick(event,true);},
 		//mouseup:function(event){toolbarclick(event,false);},
 		click: function(event){
@@ -625,7 +729,7 @@ $(document).ready(function(){
 	    	event.stopPropagation();    //标准   
 	        event.cancelBubble = true;  //IE 
 	    }
-	});
+	});*/
 	
 	$(".uc_i_corpus").on("click",function(){
 		addTemplate(1);

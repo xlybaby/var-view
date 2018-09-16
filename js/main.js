@@ -149,10 +149,10 @@ function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict) {
 
 function figureRect(select) {
 	var rect = {};
-	rect["offsetX"] = $(select).offset().top;
-	rect["offsetY"] = $(select).offset().left;
-	rect["positionX"] = $(select).position().top;
-	rect["positionY"] = $(select).position().left;
+	rect["offsetX"] = $(select).offset().left;
+	rect["offsetY"] = $(select).offset().top;
+	rect["positionX"] = $(select).position().left;
+	rect["positionY"] = $(select).position().top;
 	
 	rect["width"] = $(select).width();
 	rect["height"] = $(select).height();

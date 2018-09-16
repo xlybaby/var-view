@@ -387,6 +387,10 @@ body {
 	background-color: #ffffff;	
 }
 
+input {
+	outline:0; 
+}
+
 .overlay { 
     position: fixed;
     top: 0;
