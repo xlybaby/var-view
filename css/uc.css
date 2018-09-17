@@ -66,8 +66,8 @@
 	top: 5%;
 	*/
 	height: 90%;
-	width: 90%;
-	
+	width: 95%;
+	position: relative;
 	
 	display: flex;
 	align-items: center;
@@ -82,7 +82,7 @@
 	-khtml-opacity: 0.85;
 	*/
 	border-radius: 10px;
-	margin-left: 20px;
+	margin-left: 0px;
 	/*margin-right: 10px;
 	background-image: url(/var/images/mainbg/vintage-volkswagen-van-toy-1g-2048x1152.jpg);
 	background-repeat: no-repeat;
@@ -691,15 +691,14 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 	
 	flex-direction: column;
 	-webkit-flex-direction: column;
-	justify-content: center;
-	-webkit-justify-content: center;
+	justify-content: space-around;
+	-webkit-justify-content: space-around;
 	align-items: center;
 	-webkit-align-items: center;
 	
-  height: 100%;
   /*width: 70px;*/
   
-  z-index: 4;
+  z-index: 4000;
 }
 
 .uc-float-menu-block{
@@ -727,6 +726,22 @@ width:100%;
 height:100%; 
 left:-100%; 
 background-color:rgb(228,183,10,1.0);
+}
+.uc-float-menu-one{
+	
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	align-items: center;
+	-webkit-align-items: center;
+	justify-content: center;
+	-webkit-justify-content: center;
+	
+	width:55px; 
+	height:55px; 
+	background-image:url(/var/images/round-1.png);
+	background-size: 100% 100%;
+	background-position: center center;
 }
 .uc-float-menu-item{
 	display: flex; 
