@@ -4,9 +4,9 @@
 	}
 }
 
-@media screen and (max-height:600px){
+@media screen and (max-height:656px){
 	.m-page{
-		height: 600px;
+		height: 656px;
 	}
 }
 
@@ -21,6 +21,7 @@
 	flex-direction: column;
   width: 100%;
   min-width: 800px;
+  min-height: 656px;
   /*
   height: 100%;
   background-color: #ffffff;*/
@@ -278,7 +279,7 @@
 }
 
 .empty_block_10{
-	height: 0px;
+	height: 2px;
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
@@ -403,5 +404,5 @@ input {
     background-image: url(../images/neon-lights-background_600x594_h.jpg);
     */
     display: none;
-    z-index: 3;
+    z-index: 5;
 }

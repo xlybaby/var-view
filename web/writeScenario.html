@@ -1,13 +1,22 @@
  		<link rel="stylesheet" type="text/css" href="/var/css/honeyswitch.css" />	
 		<script type="text/javascript" src="/var/js/interact_v1.3.4.js" ></script>
 		<script type="text/javascript" src="/var/js/honeyswitch.js" ></script>
+		<script type="text/javascript" src="/var/js/invoke.js?v=nnn"></script>
 		
 		<script type="text/javascript" src='/var/js/spectrum.js'></script>
+		<script type="text/javascript" src='/var/js/jquery.spinner.js?v=002'></script>
+		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=enn777" />
-		<script type="text/javascript" src="/var/js/uc.js?v=fg5644"></script>
+		<script type="text/javascript" src="/var/js/uc.js?v=8765"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=er001"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/honeyswitch.css" />
 		
+<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css" />
+<script type="text/javascript" src="/var/js/jscolor.js" ></script>
+<script type="text/javascript" src="/var/js/nouislider.js" ></script>
+
 		<style>
 			.slider {
 				width: 25px;
@@ -52,7 +61,14 @@
 							<img src="/var/images/mainbg/ride-on-yela-star-citizen-4k-m1.jpg" style="width: 2048px;height: 1152px; filter: blur(25px); "/>
 							 -->
 							 <div class="uc-float-menu">
+							 <!-- 
 							 	<div class="uc-float-menu-one">
+								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+				    				<use xlink:href="#icon-beijing2"></use>
+									</svg>
+								 </div>
+								  -->
+							 	<div class="uc-float-menu-one icon-iconwangyesheji">
 								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 				    				<use xlink:href="#icon-iconwangyesheji"></use>
 									</svg>
@@ -62,7 +78,7 @@
 				    				<use xlink:href="#icon-beijing"></use>
 									</svg>
 								 </div>
-								 <div class="uc-float-menu-one">
+								 <div class="uc-float-menu-one icon-tijiao">
 								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 				    				<use xlink:href="#icon-tijiao5"></use>
 									</svg>
@@ -77,17 +93,22 @@
 				    				<use xlink:href="#icon-fanhui"></use>
 									</svg>
 								 </div>
+								 <div class="uc-float-menu-one icon-guaniu01">
+								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+				    				<use xlink:href="#icon-guaniu01"></use>
+									</svg>
+								 </div>
 							 </div>
 						</div>
-						 
+						 <!-- 
 						<div class="uc-canvasSubmit">
 							<input class="uc-canvasSubmitBtn" type="button" id="btn_sScenario" name="sScenario" value="Save" />&nbsp;
 							<input class="uc-canvasSubmitBtn" type="button" id="btn_aScenario" name="aScenario" value="Abandon" />
 						</div>
-						 
+						  -->
 					</div>
-					<!--<div class="uc-edit-panel">
-					 
+					<div class="uc-edit-panel">
+					 <!--
 						<div class="uc-edit-panel-bar">
 							<span class="uc-edit-panel-bar-font">P</span>
 							<span class="uc-edit-panel-bar-font">A</span>
@@ -97,8 +118,8 @@
 							<span class="uc-edit-panel-bar-font">R</span>
 							<span class="uc-edit-panel-bar-font">A</span>
 						</div> 
-						
-					</div>-->
+						-->
+					</div>
 				
 			</div>
 			<!-- 
@@ -110,7 +131,7 @@
 					<input type="text" placeholder="Input address here" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;" />
 				</div>
 				 	<div class="uc_t_tool_bar">
-							
+							<!-- 
 							<div class="uc-float-icon-con">
 								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 			    				<use xlink:href="#icon-beijingse1"></use>
@@ -121,7 +142,7 @@
 								<input id="in_bgcolor" type="hidden" value="" />
 								<div class="uc-float-icon-mask" id="icon-beijingse1"></div>
 							</div>
-							
+							 -->
 							
 							
 							<div class="uc-float-icon-con">
@@ -129,51 +150,48 @@
 			    				<use xlink:href="#icon-tool"></use>
 								</svg>
 								<div class="uc-float-icon-input">
-									<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-paiming1"></use>
+									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+						    		<use xlink:href="#icon-paiming1" type="4"></use>
 									</svg>
-									<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-paiming"></use>
+									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+						    		<use xlink:href="#icon-paiming" type="3"></use>
 									</svg>
-									<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-dingyue"></use>
+									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+						    		<use xlink:href="#icon-dingyue" type="2"></use>
 									</svg>
-									<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-banner"></use>
+									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+						    		<use xlink:href="#icon-banner" type="1"></use>
 									</svg>
-									<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-yemianzujian"></use>
+									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+						    		<use xlink:href="#icon-yemianzujian" type="5"></use>
 									</svg>
 								</div>
 								<input id="in_scenarioType" type="hidden" value="" />
 								<div class="uc-float-icon-mask" id="icon-tool"></div>
 							</div>
-							
-							
+							<!--  
 							<div class="uc-float-icon-con">
 								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-			    				<use xlink:href="#icon-moniqi"></use>
+			    				<use xlink:href="#icon-biankuang1"></use>
 								</svg>
 								<div class="uc-float-icon-input">
-									<input type="checkbox" value=""/><span>automation</span>
-									<span>delay after</span><input type="text" value="" placeholder="Input delay seconds" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;"/>
+									
 								</div>
-								<input id="in_automation" type="hidden" value="" />
-								<div class="uc-float-icon-mask" id="icon-moniqi"></div>
+								<div class="uc-float-icon-mask" id="icon-biankuang"></div>
 							</div>
-							
+							-->
 							<div class="uc-float-icon-con">
 								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 			    				<use xlink:href="#icon-peizhi"></use>
 								</svg>
 								<div class="uc-float-icon-input">
-									<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+									<svg class="icon editManually" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 						    		<use xlink:href="#icon-bianji"></use>
 									</svg>
-									<svg class="icon" style="font-size: 20px; font-weight: 400;color: #efefef;" aria-hidden="true">
+									<svg class="icon editCompInfo" style="font-size: 20px; font-weight: 400;color: #efefef;" aria-hidden="true">
 						    		<use xlink:href="#icon-shuangping1"></use>
 									</svg>
-									<svg class="icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+									<svg class="icon editCommonInfo" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 						    		<use xlink:href="#icon-xiangxixinxi"></use>
 									</svg> 
 								</div>
@@ -192,6 +210,90 @@
 				 	
 	 			 <div class="uc_t_boxD"></div>
 	 			
+			</div>
+			
+			<div class="uc_submit_box">
+		<input type="hidden" id="in_maxDuration" value="7200"/>
+		<input type="hidden" id="in_maxThreadNum" value="1"/>
+		
+			<div class="uc_submit_box_title">
+				Submit Scenario!
+			</div>
+			<div class="uc_submit_box_con">
+				<div class="uc-edit-panel-block basic-info">
+		
+		
+		<span class="uc-input-title en_block_title">Finish the 
+			Information</span> 
+		<div class="uc-input-area">
+			<!-- <div class="uc-input-block">
+				<span class="uc-input-label en_input_label">Address</span>
+				<div class="uc-input">
+					<div name="in_addr_box" class="uc-input-text">
+						<input name="in_href" type="text"
+							style="width: 100%; height: 100%; border: 0px solid #ffffff;" />
+						<img name="in_addr_alert" src="/var/images/uc/uc_input_alert.svg"
+							class="uc-input-hint-icon" />
+					</div>
+					<div name="in_addr_hint" class="uc-input-hint-text en_input_hint">
+						<span>some hints here</span>
+					</div>
+				</div>
+			</div>
+			<div class="empty_block_10"></div> -->
+			<div class="uc-input-block">
+				<span class="uc-input-label en_input_label">Scenario name</span>
+				<div class="uc-input">
+					<div name="in_title_box" class="uc-input-text">
+						<input id="in_title" type="text" placeholder="Give me a name"
+							style="width: 100%; height: 100%; border: 0px solid #ffffff;" />
+						<img name="in_title_alert" src="/var/images/uc/uc_input_alert.svg"
+							class="uc-input-hint-icon" />
+					</div>
+					<div name="in_title_hint" class="uc-input-hint-text en_input_hint">
+						<span>some hints here</span>
+					</div>
+				</div>
+			</div>
+			<div class="empty_block_10"></div>
+			<div class="uc-input-block">
+				<span class="uc-input-label en_input_label">Key words</span>
+				<div class="uc-input">
+					<div class="uc-input-text">
+						<input type="text" id="in_keywords" placeholder="Use comma/space to separate multiple keywords"
+							style="width: 100%; height: 100%; border: 0px solid #ffffff;" />
+						<img src="/var/images/uc/uc_input_alert.svg"
+							class="uc-input-hint-icon" />
+					</div>
+					<div class="uc-input-hint-text en_input_hint">
+						<span>some hints here</span>
+					</div>
+				</div>
+			</div>
+			<div class="empty_block_10"></div>
+			
+			<div class="uc-input-block">
+				<span class="uc-input-label en_input_label">Share Scenario</span>
+				<div style="display: flex; padding: 4px 0px 2px 0px; width: 100%;">
+					<div style="display: flex; align-items: center; justify-content: space-around; padding: 0px; width: 50%;">
+						<span class="en_input_hint" style="color: #888888;">Theme</span>&nbsp;&nbsp;&nbsp;
+						<span name="in_shareTheme" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
+					</div>
+					<div style="display: flex; align-items: center; justify-content: space-around; padding: 0px; width: 50%;">
+						<span class="en_input_hint" style="color: #888888;">Whole</span>&nbsp;&nbsp;&nbsp;
+						<span name="in_shareWhole" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+	<div style="width: 100%; height: 55px; display: flex; align-items: center; justify-content: space-around;">
+		<input type="button" name="uc_submit_ok" value="OK" style="font-family: Sansation_Regular;font-size: 13px;color: #ffffff;width: 95px; height: 65%; background-color: rgb(42,199,51,1.0);border: 0px solid #333333;border-radius:5px;" />
+		<input type="button" name="uc_submit_cancel" value="Cancel" style="font-family: Sansation_Regular;font-size: 13px;color: #ffffff;width: 95px; height: 65%; background-color: rgb(42,199,51,1.0);border: 0px solid #333333;border-radius:5px;" />
+	</div>
+	</div>
 			</div>
 		</div>
 			
