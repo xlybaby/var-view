@@ -404,6 +404,34 @@ $(document).ready(function(){
 				});
 				console.log(delaySpinner);
 				delaySpinner.spinner();
+				
+				var paddingLeft = panelMain.find("#sp-padding-left");
+				paddingLeft.spinner();
+				var paddingLeftVal = panelMain.find("#sp-padding-left-val");
+				paddingLeftVal.spinner("changing",function(e, newVal, oldVal){
+					paddingLeftVal.html(newVal);
+				});
+				
+				var paddingRight = panelMain.find("#sp-padding-right");
+				paddingRight.spinner();
+				var paddingRightVal = panelMain.find("#sp-padding-right-val");
+				paddingRightVal.spinner("changing",function(e, newVal, oldVal){
+					paddingRightVal.html(newVal);
+				});
+				
+				var paddingTop = panelMain.find("#sp-padding-top");
+				paddingTop.spinner();
+				var paddingTopVal = panelMain.find("#sp-padding-top-val");
+				paddingTopVal.spinner("changing",function(e, newVal, oldVal){
+					paddingTopVal.html(newVal);
+				});
+				
+				var paddingDown = panelMain.find("#sp-padding-down");
+				paddingDown.spinner();
+				var paddingDownVal = panelMain.find("#sp-padding-down-val");
+				paddingDownVal.spinner("changing",function(e, newVal, oldVal){
+					paddingDownVal.html(newVal);
+				});
 			}
 			var rect = figureRect(".uc-populate-container");
 			console.log("uc-populate-container's width: " + rect["width"] + ", 30percent: " + (rect["width"]*0.3)+", min-width is 350px.");
