@@ -9,7 +9,7 @@
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=45hu" />
-		<script type="text/javascript" src="/var/js/uc.js?v=45hu"></script>
+		<script type="text/javascript" src="/var/js/uc.js?v=89uy"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=er001"></script>
 		<link rel="stylesheet" type="text/css" href="/var/css/honeyswitch.css" />
 		
@@ -263,50 +263,64 @@
 				<span class="uc-input-label en_input_label" style="font-size: 15px;">Padding</span>
 				<div style="display: flex; align-items: center; justify-content: center; position: relative; width: 100%;">
 					<div style="display: flex; ">
-						<div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;">
-						  <div style="display: flex; align-items: center; justify-content: center; ">0</div>
-							<svg class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+						<div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;" id="sp-padding-left">
+							<input type="text" value="0" style="text-align:right; width: 24px; background-color: rgb(255,255,255,0.0); border: 0px solid #fff;" data-ruler="quantity" />
+							<input type="hidden" id="sp-padding-left-val" value="0" />
+							<svg id="sp-padding-left-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="up" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 				    				<use xlink:href="#icon-arrow-left-copy-copy-copy"></use>
-									</svg>
-									<svg class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
+							</svg>
+							<svg id="sp-padding-left-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="down" class="uc-float-icon"  style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
 				    				<use xlink:href="#icon-jiantou-right"></use>
-									</svg>
-									
+							</svg>
 						</div>
 						<div style="width: 100%; display: flex; flex-direction: column;">
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">0</div>
+							<div style="width: 100%; display: flex; flex-direction: column;"  id="sp-padding-top">
 							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<svg class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    				<use xlink:href="#icon-jiantou11"></use>
-									</svg>
+								<input type="text" value="0" style="text-align:center; width: 24px; background-color: rgb(255,255,255,0.0); border: 0px solid #fff;" data-ruler="quantity" />
+								<input type="hidden" id="sp-padding-top-val" value="0" />
 							</div>
 							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<svg class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    				<use xlink:href="#icon-jiantou"></use>
-									</svg>
+								<svg id="sp-padding-top-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="up" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
+				    					<use xlink:href="#icon-jiantou11"></use>
+								</svg>
 							</div>
+							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
+								<svg id="sp-padding-top-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="down" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
+				    					<use xlink:href="#icon-jiantou"></use>
+								</svg>
+							</div>
+							</div>
+							
 							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
 								<div style="margin-top:3px; margin-bottom: 3px;margin-left:3px; margin-right: 3px;border-radius:5px; border: 2px solid #888888; width: 32px; height: 32px;"></div>
 							</div>
+							<div style="width: 100%; display: flex; flex-direction: column;"  id="sp-padding-down">
+							
 							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<svg class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    				<use xlink:href="#icon-jiantou11"></use>
-									</svg>
+								<svg id="sp-padding-down-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="down" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
+				    					<use xlink:href="#icon-jiantou11"></use>
+								</svg>
 							</div>
 							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<svg class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    				<use xlink:href="#icon-jiantou"></use>
-									</svg>
+								<svg id="sp-padding-down-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="up" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
+				    					<use xlink:href="#icon-jiantou"></use>
+								</svg>
 							</div>
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">0</div>
+							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
+								<input type="text" value="0" style="text-align:center; width: 24px; background-color: rgb(255,255,255,0.0); border: 0px solid #fff;" data-ruler="quantity" />
+								<input type="hidden" id="sp-padding-down-val" value="0" />
+							</div>
 						</div>
-						<div style="width: 100%; display: flex; align-items: center; justify-content: flex-start;">
-							<svg class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-arrow-left-copy-copy-copy"></use>
- 							<svg class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    		<use xlink:href="#icon-jiantou-right"></use>
-							</svg>	
-							<div style="display: flex; align-items: center; justify-content: center; ">0</div>		
+						</div>
+						<div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;" id="sp-padding-right">
+							<input type="hidden" id="sp-padding-right-val" value="0" />
+							<svg id="sp-padding-right-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="down" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				    				<use xlink:href="#icon-arrow-left-copy-copy-copy"></use>
+							</svg>
+							<svg id="sp-padding-right-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="up" class="uc-float-icon"  style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
+				    				<use xlink:href="#icon-jiantou-right"></use>
+							</svg>
+							<input type="text" value="0" style="width: 24px; background-color: rgb(255,255,255,0.0); border: 0px solid #fff;" data-ruler="quantity" />
 						</div>
 						
 					</div>
