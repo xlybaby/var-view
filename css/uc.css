@@ -620,6 +620,8 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 }
 
 .uc-edit-panel{
+	position: relative;
+	
 	display: flex;
 	/*flex-direction: column;*/
 	background-color: #ffffff;
@@ -627,6 +629,7 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
   width: 0px;
   margin: 0px;	
   padding: 0px;
+  overflow: hidden;
 }
 .uc-edit-panel-bar{
 	display: flex;
@@ -647,7 +650,11 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 	color: #efefef;
 }
 .uc-edit-panel-main{
-	display: flex;
+	position: absolute;
+	left: 0px; 
+	top: 0px;
+	
+	display: none;
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;

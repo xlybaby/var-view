@@ -988,6 +988,7 @@
         var viewWidth = docElem.clientWidth + $(doc).scrollLeft();
         var viewHeight = docElem.clientHeight + $(doc).scrollTop();
         var offset = input.offset();
+        //var offset = input.position();
         offset.top += inputHeight;
 
         offset.left -=

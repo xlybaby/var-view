@@ -372,13 +372,38 @@ $(document).ready(function(){
 			else
 				return false;
 			
+			var panel = $(".uc-edit-panel");					
 			var box = tag.parents(".uc_t_box");
 			var scenarioId = box.attr("scenario-id");
 			var editPanel = $("uc-edit-panel-main[id='"+scenarioId+"']");
 			if( editPanel.length <= 0 ) {
-				invokeGet( "/var/subview/uc/scenarioEditPanel", function(data){
-					console.log(data);
+				//invokeGet( "/var/subview/uc/scenarioEditPanel", function(data){
+				//	console.log(data);
+				//});
+				var panelMain = $(".uc-edit-panel-main[id='temp']").clone(true);
+				panelMain.attr("id", scenarioId);
+				panelMain.css("display","flex");
+				panel.append(panelMain);
+				
+				var bgColorPicker = panelMain.find("#in_bgcolor_box");
+				var rangeSlider = panelMain.find("#in_borderRadius");
+				var delaySpinner = panelMain.find("#in_auto_delay");
+				
+				console.log(bgColorPicker);
+				bgColorPicker.spectrum({
+				    color: "#e67300"
 				});
+				
+				console.log(rangeSlider);
+				noUiSlider.create(rangeSlider[0], {
+				    start: [1],
+				    range: {
+				        'min': [1],
+				        'max': [20]
+				    }
+				});
+				console.log(delaySpinner);
+				delaySpinner.spinner();
 			}
 			var rect = figureRect(".uc-populate-container");
 			console.log("uc-populate-container's width: " + rect["width"] + ", 30percent: " + (rect["width"]*0.3)+", min-width is 350px.");
@@ -387,26 +412,27 @@ $(document).ready(function(){
 				mw=rect["width"] * 0.3;
 			}
 			
-			var panel = $(".uc-edit-panel");
-			var blocks = $(".uc-edit-panel-main");
+			//var blocks = $(".uc-edit-panel-main");
 			if (panel.hasClass("uc-panelIn")){
 				panel.removeClass("uc-panelIn");
 				panel.addClass("uc-panelOut");
 				//panel.css("min-width","initial");
 				panel.animate({width:"55px",minWidth:"0px"},500,"linear");
 				//blocks.animate({display: "none"},500,"linear");
-				blocks.css("display","none");
+				//blocks.css("display","none");
 			} else if(panel.hasClass("uc-panelOut")) {
 				panel.removeClass("uc-panelOut");
 				panel.addClass("uc-panelIn");
 				//panel.css("min-width","350px");
 				panel.animate({width:"30%",minWidth:mw+"px"},500,"linear");
 				//blocks.animate({display: "block"},500,"linear");
-				blocks.css("display","flex");
+				//blocks.css("display","flex");
 			} else {
 				panel.addClass("uc-panelIn");
 				//panel.css("min-width","350px");
-				panel.animate({width:"30%",minWidth:mw+"px"},500,"linear",function(){blocks.css("display","flex");});
+				panel.animate({width:"350px"},500,"linear",function(){
+					//blocks.css("display","flex");
+					});
 				//blocks.animate({display: "block"},500,"linear");
 				
 			}
@@ -620,4 +646,6 @@ $(document).ready(function(){
 		}
 
 	});
+	
+	
 });
