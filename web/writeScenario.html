@@ -8,8 +8,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=45hu" />
-		<script type="text/javascript" src="/var/js/uc.js?v=89uy"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=400u" />
+		<script type="text/javascript" src="/var/js/uc.js?v=8446"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=er001"></script>
 		<link rel="stylesheet" type="text/css" href="/var/css/honeyswitch.css" />
 		
@@ -17,6 +17,8 @@
 <script type="text/javascript" src="/var/js/jscolor.js" ></script>
 <script type="text/javascript" src="/var/js/nouislider.js" ></script>
 
+ 		<link rel="stylesheet" type="text/css" href="/var/css/customDropdownList.css?v=007" />	
+		
 		<style>
 			.slider {
 				width: 25px;
@@ -25,6 +27,7 @@
 			}
 			.sp-preview{
 			height: 10px;
+			width: 55px;
 			}
 			.sp-dd{
 			height: 6px;
@@ -108,7 +111,18 @@
 						  -->
 					</div>
 					<div class="uc-edit-panel">
-					
+						<div class="uc-edit-panel-top" onmouseover="changPointer(this)">
+							<svg id="btn-panel-up"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-jiantou11"></use>
+							</svg>
+						</div>
+						<div class="uc-edit-panel-mid"></div>
+						<div class="uc-edit-panel-bot" onmouseover="changPointer(this)">
+							<svg id="btn-panel-down"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-jiantou"></use>
+							</svg>
+						</div>
+						
 					 <!--
 						<div class="uc-edit-panel-bar">
 							<span class="uc-edit-panel-bar-font">P</span>
@@ -200,7 +214,7 @@
 		</div>
 	</div> -->
 	<div class="uc-edit-panel-block">
-		<span class="uc-input-title en_block_title">Scenario Actions</span> <img
+		<span class="uc-input-title en_block_title">Components</span> <img
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
 			<div
@@ -211,56 +225,132 @@
 		</div>
 	</div>
 	<div class="uc-edit-panel-block layout-info">
-		<span class="uc-input-title en_block_title">Scenario Layout</span> <img
+		<span class="uc-input-title en_block_title">Color</span> <img
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
-		
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label" style="font-size: 15px;">Bg Color</span>
-				<input type="text" id="in_bgcolor_box" style="height: 80%;"/>
-							
-			</div>			 
+				<div style="width: 100%; display: flex;">
+					<div style="width: 90px;">
+						<span class="uc-input-label en_input_label" style="font-size: 13px;">Background:</span>
+					</div>
+					<div style="width: 90px;">
+						<input type="text" id="in_bgcolor_box" style="height: 80%;"/>
+					</div>
+				</div>
+			</div>	
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label" style="font-size: 15px;">Border</span>
+				<div style="width: 100%; display: flex;">
+					<div style="width: 90px;">
+						<span class="uc-input-label en_input_label" style="font-size: 13px;">Foreground:</span>
+					</div>
+					<div style="width: 90px;">
+						<input type="text" id="in_fgcolor_box" style="height: 80%;"/>
+					</div>
+				</div>
+			</div>	
+					 
+		</div>
+	</div>
+	
+	<div class="uc-edit-panel-block layout-info">
+		<span class="uc-input-title en_block_title">Border</span> <img
+			src="/var/images/icon_help.svg" />
+		<div class="uc-input-area">
+			<div class="uc-input-block">
 				<div id="border-style" style="margin-top: 3px; display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
-					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px;"></div>
+					<div id="in-border-style" style="width: 23px; height: 23px; border-top:1px dashed #888888;border-right:1px dashed #888888;border-bottom:1px dashed #888888;border-left:1px dashed #888888; border-radius: 5px;"></div>
+					<!-- 
 					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-top: 2px solid #888888;" id="border-top"></div>
 					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-right: 2px solid #888888;" id="border-right"></div>
 					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-bottom: 2px solid #888888;" id="border-bottom"></div>
 					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-left: 2px solid #888888;" id="border-left"></div>
+					 -->
+					<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-border-top-solid"></use>
+							</svg>
+					<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-border-right-solid"></use>
+							</svg>
+					<svg id="border-style-bottom" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-border-top-solid-copy"></use>
+							</svg>
+					<svg id="border-style-left" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-shadow-left"></use>
+							</svg>		
 				</div>
 			</div>
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label" style="font-size: 15px;">Border-Radius</span>
+				<div style="width: 100%; display: flex;">
+					<div style="width: 90px;">
+						<span class="uc-input-label en_input_label" style="font-size: 13px;">Radius</span>
+					</div>
+					<div style="width: 90px;display: flex; align-items:center;justify-content:center;">
+					</div>
+				</div>
 				<!-- 
 				<div id="border-radius" style="margin-top: 3px; display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
 					<div id="border-radius-range"></div>
 					<div id="border-radius-value"></div>
-				</div> -->
-				<div id="border-radius" style="margin-top: 6px; display: flex; width: 100%;">
-					
-					<div id="in_borderRadius" style="width: 50%; height: 10px;"></div>
+				</div> 
+				
+				-->
+				<div id="border-radius" style="display: flex; align-items:center;justify-content:center; width: 100%;">
+					<div id="border-radius-val" style="display: flex; align-items:center;justify-content:center; width: 40%; height: 30px; border: 1px solid #888;"></div>
+				</div>
+				
+				<div id="border-radius" style="margin-top: 6px; display: flex; align-items:center;justify-content:center; width: 100%;">
+					<div id="in_borderRadius" style="width: 80%; height: 10px;"></div>
 				</div>
 			</div>
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label" style="font-size: 15px;">Shadow</span>
+				<span class="uc-input-label en_input_label" style="font-size: 13px;">Shadow</span>
 				<div id="shadow-style" style="margin-top: 3px;display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
-					<div id="style1" onmouseover="changPointer(this)"
-							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 3px #888888;"></div>
-					<div id="style2" onmouseover="changPointer(this)"
-							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 3px #888888;"></div>
-					<div id="style3" onmouseover="changPointer(this)"
-							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 3px #888888;"></div>
-					<div id="style4" onmouseover="changPointer(this)"
-							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 3px #888888 inset;"></div>
-					<div id="style5" onmouseover="changPointer(this)"
-							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 3px #888888 inset;"></div>
-					<div id="style6" onmouseover="changPointer(this)"
-							style="width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 3px #888888 inset;"></div>
+					<div id="shadow-style1" onmouseover="changPointer(this)"
+							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 3px #888888;">
+							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-submit"></use>
+							</svg>
+					</div>
+					<div id="shadow-style2" onmouseover="changPointer(this)"
+							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 3px #888888;">
+							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-submit"></use>
+							</svg>
+					</div>
+					<div id="shadow-style3" onmouseover="changPointer(this)"
+							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 3px #888888;">
+							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-submit"></use>
+							</svg>
+							</div>
+					<div id="shadow-style4" onmouseover="changPointer(this)"
+							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 3px #888888 inset;">
+							<svg class="uc-float-icon" style="display: none; font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-submit"></use>
+							</svg>
+							</div>
+					<div id="shadow-style5" onmouseover="changPointer(this)"
+							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 3px #888888 inset;">
+							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-submit"></use>
+							</svg>
+							</div>
+					<div id="shadow-style6" onmouseover="changPointer(this)"
+							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 3px #888888 inset;">
+							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-submit"></use>
+							</svg>
+							</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	
+	<div class="uc-edit-panel-block layout-info">
+		<span class="uc-input-title en_block_title">Padding</span> <img
+			src="/var/images/icon_help.svg" />
+		<div class="uc-input-area">
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label" style="font-size: 15px;">Padding</span>
 				<div style="display: flex; align-items: center; justify-content: center; position: relative; width: 100%;">
 					<div style="display: flex; ">
 						<div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;" id="sp-padding-left">
@@ -269,7 +359,7 @@
 							<svg id="sp-padding-left-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="up" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 				    				<use xlink:href="#icon-arrow-left-copy-copy-copy"></use>
 							</svg>
-							<svg id="sp-padding-left-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="down" class="uc-float-icon"  style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
+							<svg id="sp-padding-left-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="down" class="uc-float-icon"  style="margin-right: 5px; font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
 				    				<use xlink:href="#icon-jiantou-right"></use>
 							</svg>
 						</div>
@@ -284,7 +374,7 @@
 				    					<use xlink:href="#icon-jiantou11"></use>
 								</svg>
 							</div>
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
+							<div style="margin-bottom: 5px; display: flex; align-items: center; justify-content: center; width: 100%">
 								<svg id="sp-padding-top-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="down" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
 				    					<use xlink:href="#icon-jiantou"></use>
 								</svg>
@@ -292,11 +382,15 @@
 							</div>
 							
 							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<div style="margin-top:3px; margin-bottom: 3px;margin-left:3px; margin-right: 3px;border-radius:5px; border: 2px solid #888888; width: 32px; height: 32px;"></div>
+								<!-- <div style="margin-top:3px; margin-bottom: 3px;margin-left:3px; margin-right: 3px;border-radius:5px; border: 2px solid #888888; width: 22px; height: 22px;"></div>
+								 -->
+								 <svg class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">
+				    				<use xlink:href="#icon-biankuang1"></use>
+								 </svg>
 							</div>
 							<div style="width: 100%; display: flex; flex-direction: column;"  id="sp-padding-down">
 							
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
+							<div style="margin-top: 5px; display: flex; align-items: center; justify-content: center; width: 100%">
 								<svg id="sp-padding-down-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="down" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
 				    					<use xlink:href="#icon-jiantou11"></use>
 								</svg>
@@ -314,7 +408,7 @@
 						</div>
 						<div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;" id="sp-padding-right">
 							<input type="hidden" id="sp-padding-right-val" value="0" />
-							<svg id="sp-padding-right-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="down" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+							<svg id="sp-padding-right-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="down" class="uc-float-icon" style="margin-left: 5px; font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 				    				<use xlink:href="#icon-arrow-left-copy-copy-copy"></use>
 							</svg>
 							<svg id="sp-padding-right-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="up" class="uc-float-icon"  style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
@@ -325,9 +419,10 @@
 						
 					</div>
 				</div>
-			</div>
+			</div>	
 		</div>
 	</div>
+	
 	<div class="uc-edit-panel-block schedule-info">
 		<input type="hidden" id="in_schedule" value=""/>
 	
@@ -335,6 +430,7 @@
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
 			<div class="uc-input-block">
+			<!--  
 				<span class="uc-input-label en_input_label" style="font-size: 15px;">分钟级</span>
 				<div style="display: flex; align-items: center; justify-content: space-around; padding: 4px 0px 2px 0px; height: 25px; width: 100%;">
 					<img src="/var/images/uc/uc_sche_1m.png" style="height: 100%;"/>
@@ -342,16 +438,53 @@
 					<img src="/var/images/uc/uc_sche_10m.png" style="height: 100%;"/>
 					<img src="/var/images/uc/uc_sche_25m.png" style="height: 100%;"/>
 					
+				</div>-->
+				<div style="width: 100%; display: flex; align-items: flex-end; justify-content: space-around;">
+					
+					<div id="in_delay_1m" onmouseover="changPointer(this);">
+						<span class="uc-input-label en_input_label" style="font-size: 13px;">1m</span>
+					</div>
+					<div id="in_delay_5m" onmouseover="changPointer(this);">
+						<span class="uc-input-label en_input_label" style="font-size: 13px;">5m</span>
+					</div>
+					<svg class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">
+			    	<use xlink:href="#icon-dingshi1"></use>
+					</svg>
+					<div id="in_delay_10m" onmouseover="changPointer(this);">
+						<span class="uc-input-label en_input_label" style="font-size: 13px;">10m</span>
+					</div>
+					<div id="in_delay_25m" onmouseover="changPointer(this);">
+						<span class="uc-input-label en_input_label" style="font-size: 13px;">25m</span>
+					</div>
 				</div>
 			</div>
-			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label" style="font-size: 15px;">小时级</span>
+			<div class="uc-input-block" style="margin-top: 15px;">
+				<!--  <span class="uc-input-label en_input_label" style="font-size: 15px;">小时级</span>
 				<div style="display: flex; align-items: center; justify-content: space-around; padding: 4px 0px 2px 0px; height: 25px; width: 100%;">
 					<img src="/var/images/uc/uc_sche_1h.png" style="height: 100%;"/>
 					<img src="/var/images/uc/uc_sche_6h.png" style="height: 100%;"/>
 					<img src="/var/images/uc/uc_sche_12h.png" style="height: 100%;"/>
 					<img src="/var/images/uc/uc_sche_24h.png" style="height: 100%;"/>
 					
+				</div>-->
+				<div style="width: 100%; display: flex; align-items: flex-end; justify-content: space-around;">
+				
+					
+						<div id="in_delay_1h" onmouseover="changPointer(this);">
+							<span class="uc-input-label en_input_label" style="font-size: 13px;">1h</span>
+						</div>
+						<div id="in_delay_6h" onmouseover="changPointer(this);">
+							<span class="uc-input-label en_input_label" style="font-size: 13px;">6h</span>
+						</div>
+						<svg class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">
+				    	<use xlink:href="#icon-dingshi"></use>
+						</svg>
+						<div id="in_delay_12h" onmouseover="changPointer(this);">
+							<span class="uc-input-label en_input_label" style="font-size: 13px;">12h</span>
+						</div>
+						<div id="in_delay_24h" onmouseover="changPointer(this);">
+							<span class="uc-input-label en_input_label" style="font-size: 13px;">24h</span>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -363,26 +496,28 @@
 		<div class="uc-input-area">
 			
 			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label">Mode</span>
+				<div style="width: 100%; display: flex; align-items: center; justify-content: space-around;">		
+					<span class="en_input_hint" style="color: #888888;">Headless</span>&nbsp;&nbsp;&nbsp;
+					<span id="in_headless" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
+				</div>	
+			</div>
+			<div class="uc-input-block">
+				<div style="width: 100%; display: flex; align-items: center; justify-content: space-around;">
 			
-				<div style="display: flex; padding: 4px 0px 2px 0px; width: 100%;">
-					<div style="display: flex; align-items: center; justify-content: space-around; padding: 0px; width: 50%;">
-						<span class="en_input_hint" style="color: #888888;">Headless</span>&nbsp;&nbsp;&nbsp;
-						<span id="in_headless" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
-					</div>
-					<div style="display: flex; align-items: center; justify-content: space-around; padding: 0px; width: 50%;">
-						<span class="en_input_hint" style="color: #888888;">Delay</span>&nbsp;&nbsp;&nbsp;
-						
-						<div id="in_auto_delay" style="display: flex; align-items: center; padding: 0px; width: 45px;">
-						  <button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
-						  <input type="text" value="1" style="width: 20px;" data-ruler="quantity">
-						  <button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
-						</div>
+					<span class="en_input_hint" style="color: #888888;">Delay</span>&nbsp;&nbsp;&nbsp;
+					<div id="in_auto_delay" style="display: flex; align-items: center; padding: 0px; width: 45px;">
+						<button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
+						<input type="text" id="in_auto_delay_val" value="0" style="width: 20px;" data-ruler="quantity">
+						<button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="uc-edit-panel-block">
+		
+	</div>
+	
 	<!-- 
 	<div class="uc-edit-panel-block sharing-info">
 		<span class="uc-input-title en_block_title">Sharing</span> <img
@@ -411,83 +546,37 @@
 				<div class="uc_t_tool_addr">
 					<input type="text" placeholder="Input address here" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;" />
 				</div>
-				 	<div class="uc_t_tool_bar">
-							
-							<div class="uc-float-icon-con">
-								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-			    				<use xlink:href="#icon-beijingse1"></use>
-								</svg>
-								<div class="uc-float-icon-input">
-									<input type="text" id="cp-flat" style="height: 80%;"/>
-								</div>
-								<input id="in_bgcolor" type="hidden" value="" />
-								<div class="uc-float-icon-mask" id="icon-beijingse1"></div>
-							</div>
-							 
-							
-							
-							<div class="uc-float-icon-con">
-								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-			    				<use xlink:href="#icon-tool"></use>
-								</svg>
-								<div class="uc-float-icon-input">
-									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-paiming1" type="4"></use>
-									</svg>
-									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-paiming" type="3"></use>
-									</svg>
-									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-dingyue" type="2"></use>
-									</svg>
-									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-banner" type="1"></use>
-									</svg>
-									<svg class="icon scenarioTypeIcon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-yemianzujian" type="5"></use>
-									</svg>
-								</div>
-								<input id="in_scenarioType" type="hidden" value="" />
-								<div class="uc-float-icon-mask" id="icon-tool"></div>
-							</div>
-							<!--  
-							<div class="uc-float-icon-con">
-								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-			    				<use xlink:href="#icon-biankuang1"></use>
-								</svg>
-								<div class="uc-float-icon-input">
-									
-								</div>
-								<div class="uc-float-icon-mask" id="icon-biankuang"></div>
-							</div>
-							-->
-							<div class="uc-float-icon-con">
-								<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-			    				<use xlink:href="#icon-peizhi"></use>
-								</svg>
-								<div class="uc-float-icon-input">
-									<svg class="icon editManually" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-bianji"></use>
-									</svg>
-									<svg class="icon editCompInfo" style="font-size: 20px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-shuangping1"></use>
-									</svg>
-									<svg class="icon editCommonInfo" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-						    		<use xlink:href="#icon-xiangxixinxi"></use>
-									</svg> 
-								</div>
-								<input id="in_shareTemp" type="hidden" value="" />
-								<input id="in_shareContent" type="hidden" value="" />
-								<div class="uc-float-icon-mask" id="icon-peizhi"></div>
-							</div>
-							
-							<div class="uc-float-icon-con">
-								<svg class="uc-float-icon icon-lajitong" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
-			    				<use xlink:href="#icon-lajitong"></use>
-								</svg>
+				<div class="uc_t_tool_bar">
+					<select id="st_select">
+						<option value="hide">icon-tool</option>
+						<option value="4">icon-paiming1</option>
+						<option value="3">icon-paiming</option>
+						<option value="2">icon-dingyue</option>
+						<option value="1">icon-banner</option>
+						<option value="5">icon-yemianzujian</option>
+					</select> 
+					<div style="margin-right: 8px; height: 60%; width: 5px; border-right: 1px inset #999999;"></div>
+					<svg class="uc-float-icon" style="font-size: 15px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			   		<use xlink:href="#icon-iconwangyesheji"></use>
+					</svg>
+					<div style="margin-right: 8px; height: 60%; width: 5px; border-right: 1px inset #999999;"></div>
+					<svg class="icon editManually" style="font-size: 15px; font-weight: 400;color: #efefef;" aria-hidden="true">
+						<use xlink:href="#icon-bianji"></use>
+					</svg>
+					&nbsp;&nbsp;
+					<svg class="icon editCompInfo" style="font-size: 15px; font-weight: 400;color: #efefef;" aria-hidden="true">
+					  <use xlink:href="#icon-shuangping1"></use>
+					</svg>								
+					&nbsp;&nbsp;
+					<svg class="icon editCommonInfo" style="font-size: 12px; font-weight: 400;color: #efefef;" aria-hidden="true">
+					  <use xlink:href="#icon-xiangxixinxi"></use>
+					</svg> 
+					<div style="margin-right: 8px; height: 60%; width: 5px; border-right: 1px inset #999999;"></div>
+					<svg class="uc-float-icon icon-lajitong" style="font-size: 12px; font-weight: 400;color: #efefef;" aria-hidden="true">
+			   		<use xlink:href="#icon-lajitong"></use>
+					</svg>
 								
-							</div>
-				 	</div>
+			 	</div>
 				 	
 	 			 <div class="uc_t_boxD"></div>
 	 			
@@ -579,6 +668,4 @@
 			
 			
 
-		</div>
-			
-	
+		</div>	
