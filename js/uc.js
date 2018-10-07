@@ -420,6 +420,96 @@ $(document).ready(function(){
 	    }
 	});
 	
+	$(".icon.editManually").on({
+		click: function(event){
+			var clicktag = event.target.tagName;
+			if(clicktag==="svg")
+				var tag = $(event.target).children("use");
+			else if(clicktag==="use")
+				var tag = $(event.target);
+			else
+				return false;
+			
+			var overlay = $(".overlay");
+			overlay.css("display","block");
+			overlay.on({
+				click: function(event){
+					$(event.target).hide();
+					var compEditor = $(".page-main-div").find(".uc-edit-components[status='modify']");
+					compEditor.hide();
+					compEditor.attr("status","hide");
+				}
+			});
+			var main = $(".page-main-div");
+			var box = tag.parents(".uc_t_box");
+			var scenarioId = box.attr("scenario-id");
+			var compEditor = $(".uc-edit-components[scenario-id='"+scenarioId+"']");
+			if(compEditor.length <= 0){
+				compEditor = $(".uc-edit-components[id='_temp']").clone(true);
+				compEditor.attr("scenario-id",scenarioId);
+				main.append(compEditor);
+			}
+			var compEditorRight=compEditor.children(".uc-edit-comp-l");
+			compEditorRight.css("display","none");
+			
+			compEditor.css("display","flex");
+			compEditor.attr("status","modify");
+			
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+			
+			//event.target.setAttribute('onIcon', true);
+			//event.stopPropagation();    //标准   
+	        //event.cancelBubble = true;  //IE  
+		}
+	});
+	
+	$(".icon.editCompInfo").on({
+		click: function(event){
+			var clicktag = event.target.tagName;
+			if(clicktag==="svg")
+				var tag = $(event.target).children("use");
+			else if(clicktag==="use")
+				var tag = $(event.target);
+			else
+				return false;
+			
+			var overlay = $(".overlay");
+			overlay.css("display","block");
+			overlay.on({
+				click: function(event){
+					$(event.target).hide();
+					var compEditor = $(".page-main-div").find(".uc-edit-components[status='modify']");
+					compEditor.hide();
+					compEditor.attr("status","hide");
+				}
+			});
+			var main = $(".page-main-div");
+			var box = tag.parents(".uc_t_box");
+			var scenarioId = box.attr("scenario-id");
+			var compEditor = $(".uc-edit-components[scenario-id='"+scenarioId+"']");
+			if(compEditor.length <= 0){
+				compEditor = $(".uc-edit-components[id='_temp']").clone(true);
+				compEditor.attr("scenario-id",scenarioId);
+				main.append(compEditor);
+			}
+			var compEditorRight=compEditor.children(".uc-edit-comp-l");
+			compEditorRight.css("display","flex");
+			
+			compEditor.css("display","flex");
+			compEditor.attr("status","modify");
+			
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+			
+			//event.target.setAttribute('onIcon', true);
+			//event.stopPropagation();    //标准   
+	        //event.cancelBubble = true;  //IE  
+		}
+	});
+	
 	$(".icon.editCommonInfo").on({
 		click: function(event){
 			var clicktag = event.target.tagName;
@@ -487,7 +577,7 @@ $(document).ready(function(){
 				//	console.log(data);
 				//});
 				var panelMain = $(".uc-edit-panel-main[id='temp']").clone(true);
-				panelMain.attr("id", scenarioId);
+				panelMain.attr("scenario-id", scenarioId);
 				panelMain.css("display","flex");
 				//panel.append(panelMain);
 				panelMid.append(panelMain);
