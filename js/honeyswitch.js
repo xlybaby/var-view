@@ -41,11 +41,11 @@ honeySwitch.init = function() {
 			}
 			if ($(this).hasClass('switch-on')) {
 				if ( typeof on == 'function') {
-					on();
+					on($(this));
 				}
 			} else {
 				if ( typeof off == 'function') {
-					off();
+					off($(this));
 				}
 			}
 		});

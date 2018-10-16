@@ -219,6 +219,100 @@ function populateFloatMenu() {
 	fmenu.attr("direction-x","left");
 }
 
+function deleteInputBlock(event) {
+	var tag = $(event.target);
+	var block = tag.parents(".uc-edit-comp-r-editor-input-block");
+	block.remove();
+}
+
+function changePageComponentEditor(event) {
+	var target = $(event.target);
+	if(event.target.tagName.toUpperCase()==="USE")
+		target = $(event.target).parent("svg");
+	
+	if(target.attr("modify")==="current")
+		return;
+	var root = target.parents(".uc-edit-components");
+	
+	var targetIdx = target.index();
+	console.log("page "+targetIdx);
+	var current = target.siblings("svg[modify='current']");
+	current.css("font-size","28px");
+	current.css("color","#cfcfcf");
+	current.attr("modify","none");
+	
+	target.css("font-size","31px");
+	target.css("color","rgb(149, 69, 138)");
+	target.attr("modify","current");
+	
+	var editor = root.find(".uc-edit-comp-r-editor");
+	var pageIdx = targetIdx/2;
+	var currentIdx = current.index()/2;
+	
+	var currentCon = editor.children(".uc-edit-comp-r-editor-con[page='"+currentIdx+"']");
+	currentCon.hide();
+	
+	var newCon = editor.children(".uc-edit-comp-r-editor-con[page='"+pageIdx+"']");
+	if( newCon.length <= 0 ) {	
+		newCon = currentCon.clone(true);
+		newCon.attr("page",pageIdx);
+		discardPageComponents(newCon);
+		editor.append(newCon);
+	} 
+	newCon.show();
+}
+
+function discardPageComponents(pageCon) {
+	var page = parseInt(pageCon.attr("page"));
+	//if( page > 0 ){
+		var root = pageCon.parents(".uc-edit-components");
+		var cons = root.find(".uc-edit-comp-r-editor-con");
+		if( cons.length > (page+1) ) {
+			bootbox.confirm("This page has linked pages, discard this page will also discard all linked pages.Do you want to continue?", function(result) {
+                console.log("Discard confirm " + result);
+            });
+		}
+	//}
+	var comps = pageCon.find(".uc-edit-components-selector");
+	for( var i=0; i<comps.length; i++ ) {
+		var inputs = comps.find("input[type='text']");
+		inputs.val('');
+		var switchs = comps.find(".switch-on");
+		//switchs.trigger("click");
+		for(var si=0;si<switchs.length;si++)
+			honeySwitch.showOff(switchs[si]);
+	}
+	
+	var customers = pageCon.find(".uc-edit-comp-add-attr-area");
+	var customerBodys = customers.find(".uc-edit-comp-r-editor-input-body");
+	customerBodys.empty();
+	customerBodys.append($('<div class="uc-edit-comp-r-editor-input-block">'+
+							'	<div style="display: flex; width: 90%; height: 100%;">'+
+							'	<div class="uc-edit-comp-r-editor-input-title"'+
+							'		style="width: 85px;">'+
+							'		<input type="text" placeholder="Attr Name" class="input_text_hint" />'+
+							'	</div>'+
+							'	<div class="uc-edit-comp-r-editor-input">'+
+							'		<input type="text" placeholder="    input value here"'+
+							'			class="input_text_hint" />'+
+							'	</div>'+
+							'	<div class="uc-edit-comp-r-editor-input-opr">'+
+									
+							'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;"'+
+							'			aria-hidden="true">'+
+							'							<use xlink:href="#icon-jianhao"></use>'+
+							'							</svg>'+
+					
+							'	</div>'+
+							'</div>'+
+						'</div>'));
+	
+	var firstNav = pageCon.find(".uc-edit-comp-nav-bar").eq(0);
+	firstNav.trigger('click');
+	
+	
+}
+
 $(document).ready(function(){ 
 	mainInit();
 	
@@ -303,6 +397,12 @@ $(document).ready(function(){
 	
 	$(document).on('click',':not(.uc-float-icon-input)',function(){
         $(".uc-float-icon-input").hide();
+        return;
+    });
+	
+	$(document).on('click','.uc-edit-components',function(event){
+        $(event.target).hide();
+        $(".overlay").hide();
         return;
     });
 	
@@ -694,28 +794,28 @@ $(document).ready(function(){
 				paddingLeft.spinner();
 				var paddingLeftVal = panelMain.find("#sp-padding-left-val");
 				paddingLeftVal.spinner("changing",function(e, newVal, oldVal){
-					paddingLeftVal.html(newVal);
+					paddingLeftVal.val(newVal);
 				});
 				
 				var paddingRight = panelMain.find("#sp-padding-right");
 				paddingRight.spinner();
 				var paddingRightVal = panelMain.find("#sp-padding-right-val");
 				paddingRightVal.spinner("changing",function(e, newVal, oldVal){
-					paddingRightVal.html(newVal);
+					paddingRightVal.val(newVal);
 				});
 				
 				var paddingTop = panelMain.find("#sp-padding-top");
 				paddingTop.spinner();
 				var paddingTopVal = panelMain.find("#sp-padding-top-val");
 				paddingTopVal.spinner("changing",function(e, newVal, oldVal){
-					paddingTopVal.html(newVal);
+					paddingTopVal.val(newVal);
 				});
 				
 				var paddingDown = panelMain.find("#sp-padding-down");
 				paddingDown.spinner();
 				var paddingDownVal = panelMain.find("#sp-padding-down-val");
 				paddingDownVal.spinner("changing",function(e, newVal, oldVal){
-					paddingDownVal.html(newVal);
+					paddingDownVal.val(newVal);
 				});
 			}
 			var rect = figureRect(".uc-populate-container");
@@ -862,12 +962,14 @@ $(document).ready(function(){
 	
 	$(".uc-float-menu-one.icon-iconwangyesheji").on({
 		click: function(event){
-			var scenario_div = cloneDiv("uc_box_temp","unknown");
-			var scenario = templateInstance.newScenario();
-			editable_template["scenarios"][scenario["scenarioId"]] = scenario;
-			console.log("Add new scenario: ");
-			console.log(scenario);
-			scenario_div.attr("scenario-id",scenario["scenarioId"]);
+			var scenario_div = cloneDiv("uc_box_temp",5);
+            var id = "uc_sce__"+guid();
+
+			//var scenario = templateInstance.newScenario();
+			//editable_template["scenarios"][scenario["scenarioId"]] = scenario;
+			//console.log("Add new scenario: ");
+			//console.log(scenario);
+			scenario_div.attr("scenario-id",id);
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
@@ -888,7 +990,7 @@ $(document).ready(function(){
 	});
 	$("input[name='uc_submit_ok']").on({
 		click: function(event){
-			collectAndSubmit();
+			collectAndSubmit(event.target);
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
@@ -962,5 +1064,158 @@ $(document).ready(function(){
 
 	});
 	
+	$(".uc-edit-comp-add-attr").on({
+		click: function(event){
+			var clicktag = event.target.tagName;
+			if(clicktag==="svg")
+				var target = $(event.target).children("use");
+			else if(clicktag==="use")
+				var target = $(event.target);
+			else
+				return false;
+			event.stopPropagation(); 
+			
+			var area = target.parents(".uc-edit-comp-add-attr-area");
+			var areaBody = area.children(".uc-edit-comp-r-editor-input-body");
+			areaBody.append($('<div class="uc-edit-comp-r-editor-input-block">'+
+											'<div style="display: flex; width: 90%; height: 100%;">'+
+											'	<div class="uc-edit-comp-r-editor-input-title" style="width: 85px;">'+
+											'		<input type="text" placeholder="Attr name" class="input_text_hint" />'+
+											'	</div>'+
+											'	<div class="uc-edit-comp-r-editor-input">'+
+											'		<input type="text" placeholder="    input value here" class="input_text_hint" />'+
+											'	</div>'+
+											'	<div class="uc-edit-comp-r-editor-input-opr">'+	
+											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;" aria-hidden="true">'+
+		    								'			<use xlink:href="#icon-jianhao"></use>'+
+											'		</svg>'+
+											'	</div>'+
+										'	</div>'+
+										'</div>'));
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
 	
+	$(".uc-edit-comp-nav-bar").on({
+		click: function(event){
+			var target = $(event.target);
+			if(target.attr("class")!=="uc-edit-comp-nav-bar") {
+				target = target.parents(".uc-edit-comp-nav-bar");
+			}
+			event.stopPropagation(); 
+			var targetIdx = target.attr("index");
+			
+			var mask = target.parents(".uc-edit-comp-r-editor-nav").siblings("#uc-edit-comp-nav-bar-mask");
+			var maskIdx = mask.attr("index");
+			console.log(mask.width());
+			var move = targetIdx*mask.width();
+			console.log("move: "+move);
+			mask.animate({ left:move+"px"}, 400,"linear");
+			
+			var selector = mask.siblings(".uc-edit-comp-r-editor-content").children(".uc-edit-components-selector[index='"+targetIdx+"']");
+			var displaySel = mask.siblings(".uc-edit-comp-r-editor-content").children(".uc-edit-components-selector[index='"+maskIdx+"']");
+			displaySel.hide();
+			selector.show();
+			
+			mask.attr("index",targetIdx);
+
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
+	
+	switchEvent("#in_element_expand",function(target){
+		console.log("switch on");
+		console.log(target);
+		var components = target.parents(".uc-edit-components");
+		var parentCon = target.parents(".uc-edit-comp-r-editor-con");
+		var targetPage = parseInt(parentCon.attr("page"));
+		var linkedPageCon = parentCon.siblings(".uc-edit-comp-r-editor-con[page='"+(targetPage+1)+"']");
+		if( linkedPageCon.length > 0 ){
+			console.log("Find linked page, do nothing.");
+			return;
+		}
+		var pageList = components.find(".uc-edit-comp-r-list-con");
+		pageList.append($('<svg class="icon"'+
+							'	style="font-size: 34px; color: #cfcfcf;"'+
+							'	aria-hidden="true">'+
+	    					'<use xlink:href="#icon-lianjiexian2"></use>'+
+							'</svg>'+
+							'<svg onmouseover="this.style.cursor=\'pointer\';" onclick="changePageComponentEditor(event)" class="icon"'+
+								'style="font-size: 28px; color: #cfcfcf;"'+
+								'aria-hidden="true">'+
+							'<use xlink:href="#icon-yemianzujian"></use>'+
+							'</svg>'))
+	},
+	function(target){
+		console.log("switch off");
+		console.log(target);
+		var components = target.parents(".uc-edit-components");
+		var listcon = components.find(".uc-edit-comp-r-list-con");
+		var pages = listcon.children("svg");
+		
+		var parentCon = target.parents(".uc-edit-comp-r-editor-con");
+		var targetPage = parseInt(parentCon.attr("page"));
+		if( ((pages.length-1)/2) > targetPage ) {
+			bootbox.confirm({message: "Disable extraction will also discard linked page.Do you want to continue?", 
+							buttons: {
+						        confirm: {
+						            label: 'Yes',
+						            className: 'btn-success'
+						        },
+						        cancel: {
+						            label: 'No',
+						            className: 'btn-danger'
+						        }
+						    },
+						    callback:function(result) {
+				              console.log("Discard confirm " + result);
+				              if(result) {
+				            	  for(var i=(targetPage*2+1);i<pages.length;i++){
+				      				$(pages[i]).remove();
+				      				if(i%2==0){
+				      					var pageCon = components.find(".uc-edit-comp-r-editor-con[page='"+(i/2)+"']");
+				      					if(pageCon.length>0)
+				      						pageCon.remove();
+				      				}
+				      			}
+				              }else{
+				            	  honeySwitch.showOn(target);
+				              }
+						    }
+						    });
+		}
+//		var linkedPageCon = parentCon.siblings(".uc-edit-comp-r-editor-con[page='"+(targetPage+1)+"']");
+//		if( linkedPageCon.length > 0 ){
+//			console.log("Find linked page, discard it.");
+//			bootbox.confirm("Disable extraction will also discard linked page.Do you want to continue?", function(result) {
+//                console.log("Discard confirm " + result);
+//            });
+//		}
+		
+	});
+	
+	$(".uc-edit-comp-discard-btn").on({
+		click:function(event){
+			var target = $(event.target);
+			var root = target.parents(".uc-edit-components");
+			var currentPg = root.find(".uc-edit-comp-r-list-con").children("svg[modify='current']");
+			var currentPgIdx = currentPg.index()/2;
+			
+			var pageCon = root.find(".uc-edit-comp-r-editor-con[page='"+currentPgIdx+"']");
+			discardPageComponents(pageCon);
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
+	
+//	$(".uc-edit-components").on({
+//		click: function(event){
+//			
+//		}
+//	});
 });

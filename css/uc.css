@@ -158,15 +158,15 @@
 	position: relative;
 	left: 10%;
 	width: 80%;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 2px;
+	margin-bottom: 4px;
 	/*
 	margin: 5px 0px 5px 0px;*/
 }
 .uc-input{
 	background-color: #ffffff;
 	width: 100%;
-	height: 18px;
+	height: 28px;
 	margin: 5px 0px 0px 0px;	
 }
 .uc-input-text{
@@ -237,7 +237,7 @@
 	flex-direction: column;
 	
 	width: 65%;
-	height: 85%;
+	height: 92%;
 }
 .uc-edit-comp-r{
 	display: flex;
@@ -245,7 +245,7 @@
 	flex-direction: column;
 
 	width: 450px;
-	height: 85%;
+	height: 92%;
 }
 .uc-edit-comp-r-top{
 	display: flex;
@@ -254,15 +254,16 @@
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
+	border-radius: 5px;
+	overflow: hidden;
 }
 .uc-edit-comp-r-tool{
 	width: 100%;
 	height: 40px;
 	display: flex;
-	background-color: rgb(244,244,244);
+	background-color: rgb(244,244,244,1.0);
 	border-bottom: 1px solid rgb(183, 185, 180);
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
+	
 	justify-content: flex-end;
 	align-items: center;
 }
@@ -271,9 +272,18 @@
 	height: 100%;
 	display: flex;
 	background-color: #ffffff;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
 }
+.uc-edit-comp-r-bottom{
+	width: 100%;
+	height: 40px;
+	display: flex;
+	background-color: rgb(43,201,50,1.0);
+	border-top: 1px solid rgb(183, 185, 180);
+	
+	justify-content: flex-end;
+	align-items: center;
+}
+
 .uc-edit-comp-r-list{
 	width: 80px;
 	height: 100%;
@@ -296,6 +306,8 @@
 	align-items: center;
 }
 .uc-edit-comp-r-editor-con{
+	position: relative;
+	
 	width: 90%;
 	height: 90%;
 	display: flex;
@@ -311,6 +323,10 @@
 	width: 100%;
 	height: 100%;
 	display: flex;
+	
+	margin-top: 15px;
+	/*overflow: scroll;*/
+	
 }
 .uc-edit-components-selector{
 	/*height: 25%;*/
@@ -318,6 +334,7 @@
 	
 	flex-direction: column;
 	align-items: center;
+	overflow-y: auto;
 }
 .container-selector{
 	display: flex;

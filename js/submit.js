@@ -3,71 +3,114 @@ var scenarioTypeNames = ["DEFAULT","BANNER","REFRESHBLOCK","RANKLIST","TIMESERIE
 
 var templateInstance = (function ($) {
 	
-	var _CORPUSCOLLECT = function(scenarioId){
-		
-	};
-	var _BANNER = function(scenarioId){
-		
-	};
-	var _REFRESHBLOCK = function(scenarioId){  
-		
-	};
-	var _RANKLIST = function(scenarioId){
-		
-	};
-	var _TIMESERIES = function(scenarioId){
-		
-	};
-	var _COMPONENTSINFO = function(scenarioId){
-		var componentArray = [];
-		
-		var componentsRoot = $(".uc-edit-components[id='"+ scenarioId +"']");
-		if( componentsRoot.length>0 ) {
-			var components = componentsRoot.children(".uc-edit-comp-r-editor-con");
-			if( components.length>0 ) {
-				for(var ci=0;ci<components.length;ci++ ) {
-					var compObj = {};
-					var comp = components[ci];
-					var containerSel = comp.children(".uc-edit-components-selector.container-selector");
-					var iteratorSel = comp.children(".uc-edit-components-selector.iterator-selector");
-					var elementSel = comp.children(".uc-edit-components-selector.element-selector");
-					var paginationSel = comp.children(".uc-edit-components-selector.pagination-selector");
-					compObj["containers"]={};
-					compObj["containers"]["selector"]=_collectSel(containerSel);
-					compObj["containers"]["iterators"]={};
-					compObj["containers"]["iterators"]["selector"]=_collectSel(iteratorSel);
-					
-					compObj["containers"]["iterators"]["items"]={};
-					compObj["containers"]["iterators"]["items"]["selector"]=_collectSel(elementSel);
-					if( elementSel.children("#in_hyperlink").hasClass("switch-on") ){
-						compObj["containers"]["iterators"]["items"]["link"] = 1;
-					} else
-						compObj["containers"]["iterators"]["items"]["link"] = 0;
-					
-					if( elementSel.children("#in_expand").hasClass("switch-on") ){
-						compObj["containers"]["iterators"]["items"]["extract"] = 1;
-					} else
-						compObj["containers"]["iterators"]["items"]["extract"] = 0;
-					
-					if( elementSel.children("#in_isimage").hasClass("switch-on") ){
-						compObj["containers"]["iterators"]["items"]["img"] = 1;
-					} else
-						compObj["containers"]["iterators"]["items"]["img"] = 0;
-					
-					compObj["pagination"]={};
-					compObj["pagination"]["selector"]=_collectSel(paginationSel);
-//					if(containerSel.length>0){
-//						for(var i=0;i<containerSel.length;i++){
-//							var consel=containerSel[i];
-//							
-//						}
-//					}
-					componentArray.push(compObj);
-				}
-				
+	var _COLLECTPAGES = function(pageComponents){
+		var pageAry=[];
+//		var scenarioId = target.attr("scenario-id");
+//		var scenarioType = target.attr("sType");
+//		var componentsRoot = $(".uc-edit-components[scenario-id='"+ scenarioId +"']");
+//		if(componentsRoot.length>0) {
+			var pages = pageComponents.find(".uc-edit-comp-r-editor-con");
+			for(var i=0;i<pages.length;i++){
+				var pageJson={};
+				var page=$(pages[i]);
+				var pageIdx = parseInt(page.attr("page"));
+				pageJson["pageId"]=scenarioId+"_page"+pageIdx;
+				pageJson["no"]=pageIdx;
+//				if( scenarioType == 1 ) {
+//	            	//scenario["collect"] = _BANNER;
+//					pageJson["pageComponent"] = _BANNER(page);
+//	            } else if( scenarioType == 2 ) {
+//	            	//scenario["collect"] = _REFRESHBLOCK;
+//	            	pageJson["pageComponent"] = _REFRESHBLOCK(page);
+//	            } else if( scenarioType == 3 ) {
+//	            	//scenario["collect"] = _RANKLIST;
+//	            	pageJson["pageComponent"] = _RANKLIST(page);
+//	            } else if( scenarioType == 4 ) {
+//	            	///scenario["collect"] = _TIMESERIES;
+//	            	pageJson["pageComponent"] = _TIMESERIES(page);
+//	            } else if( scenarioType == 5 ) {
+//	            	//scenario["collect"] = _CORPUSCOLLECT;
+//	            	pageJson["pageComponent"] = _CORPUSCOLLECT(page);
+//	            }
+				pageJson["pageComponent"] = _COMPONENTSINFO(page);
+				pageAry.push(pageJson);
 			}
-		}
-		return componentArray;
+		//}
+		return pageAry;
+	}
+	
+	var _CORPUSCOLLECT = function(target){
+		var scenarioId = target.attr("scenario-id");
+		var scenarioType = target.attr("sType");
+		var componentsRoot = $(".uc-edit-components[scenario-id='"+ scenarioId +"']");
+		if(componentsRoot.length>0) {
+			pageComponent["pages"] = _COLLECTPAGES(componentsRoot);//_COMPONENTSINFO(page);
+			var pageComponent={};
+			pageComponent["properties"] = {};
+			return pageComponent;
+		} else 
+			return null;
+	};
+	
+	var _BANNER = function(page){
+		
+	};
+	
+	var _REFRESHBLOCK = function(page){  
+		
+	};
+	
+	var _RANKLIST = function(page){
+		
+	};
+	
+	var _TIMESERIES = function(page){
+		
+	};
+	
+	var _COMPONENTSINFO = function(page){
+		var compObj = {};
+		
+		var containerSel = page.find(".uc-edit-components-selector.container-selector");
+		var iteratorSel = page.find(".uc-edit-components-selector.iterator-selector");
+		var elementSel = page.find(".uc-edit-components-selector.element-selector");
+		var paginationSel = page.find(".uc-edit-components-selector.pagination-selector");
+		
+		compObj["containers"]={};
+		compObj["containers"]["selector"]=_collectSel(containerSel);
+		compObj["containers"]["iterators"]={};
+		compObj["containers"]["iterators"]["selector"]=_collectSel(iteratorSel);
+		
+		compObj["containers"]["iterators"]["items"]={};
+		compObj["containers"]["iterators"]["items"]["selector"]=_collectSel(elementSel);
+		if( elementSel.find("#in_element_hyperlink").hasClass("switch-on") ){
+			compObj["containers"]["iterators"]["items"]["link"] = 1;
+		} else
+			compObj["containers"]["iterators"]["items"]["link"] = 0;
+		
+		if( elementSel.children("#in_element_expand").hasClass("switch-on") ){
+			compObj["containers"]["iterators"]["items"]["extract"] = 1;
+		} else
+			compObj["containers"]["iterators"]["items"]["extract"] = 0;
+		
+		if( elementSel.children("#in_element_isimage").hasClass("switch-on") ){
+			compObj["containers"]["iterators"]["items"]["img"] = 1;
+		} else
+			compObj["containers"]["iterators"]["items"]["img"] = 0;
+		
+		compObj["pagination"]={};
+		compObj["pagination"]["selector"]=_collectSel(paginationSel);
+//		if(containerSel.length>0){
+//			for(var i=0;i<containerSel.length;i++){
+//				var consel=containerSel[i];
+//				
+//			}
+//		}
+		//componentArray.push(compObj);
+		
+		console.log("compObj:");
+		console.log(compObj);
+		return compObj;
 	}
 	
 	var _collectSel = function( selector ) {
@@ -130,13 +173,18 @@ var templateInstance = (function ($) {
 		return selector;
 	}
 	
-	var _COMMONINFO = function(scenarioId){
-		var scenario = editable_template["scenarios"][scenarioId];
-		var editPanel= $(".uc-edit-panel-main[id='"+ scenarioId +"']");
+	var _COMMONINFO = function(target){
+		//var scenario = editable_template["scenarios"][scenarioId];
+		var scenarioId = target.attr("scenario-id");
+		var editPanel= $(".uc-edit-panel-main[scenario-id='"+ scenarioId +"']");
 		if( editPanel.length>0 ) {
 			var baseInfo = editPanel.children(".uc-edit-panel-block.basic-info");
-			var layoutInfo = editPanel.children(".uc-edit-panel-block.layout-info");
-			var sharingInfo = editPanel.children(".uc-edit-panel-block.sharing-info");
+			//var layoutInfo = editPanel.children(".uc-edit-panel-block.layout-info");
+			var colorInfo = editPanel.children(".uc-edit-panel-block.layout-color-info");
+			var borderInfo = editPanel.children(".uc-edit-panel-block.layout-border-info");
+			var paddingInfo = editPanel.children(".uc-edit-panel-block.layout-padding-info");
+			
+			//var sharingInfo = editPanel.children(".uc-edit-panel-block.sharing-info");
 			var scheduleInfo = editPanel.children(".uc-edit-panel-block.schedule-info");
 			var modeInfo = editPanel.children(".uc-edit-panel-block.mode-info");
 			
@@ -153,82 +201,94 @@ var templateInstance = (function ($) {
 			
 			baseInfoObj["maxDuration"]=baseInfo.children("#in_maxDuration").val();
 			baseInfoObj["maxThreadNum"]=baseInfo.children("#in_maxThreadNum").val();
-			baseInfoObj["scenarioType"]=baseInfo.children("#in_scenarioType").val();
-			baseInfoObj["scenarioTypeName"]=baseInfo.children("#in_scenarioTypeName").val();
-			baseInfoObj["title"]=baseInfo.children("#in_title").val();
-			baseInfoObj["keywords"]=baseInfo.children("#in_keywords").val();
-			baseInfoObj["delay"]=baseInfo.children("#in_delay").val();
-			baseInfoObj["href"]=baseInfo.children("#in_href").val();
+			//baseInfoObj["scenarioType"]=baseInfo.children("#in_scenarioType").val();
+			//baseInfoObj["scenarioTypeName"]=baseInfo.children("#in_scenarioTypeName").val();
+			//baseInfoObj["title"]=baseInfo.children("#in_title").val();
+			//baseInfoObj["keywords"]=baseInfo.children("#in_keywords").val();
+			//baseInfoObj["delay"]=baseInfo.children("#in_delay").val();
+			//baseInfoObj["href"]=baseInfo.children("#in_href").val();
 			
-			baseInfoObj["scenelist"]=[];
+			//baseInfoObj["scenelist"]=[];
 			
 			//sceneObj["delay"]=baseInfo.children("#in_delay").val();
 			//sceneObj["href"]=baseInfo.children("#in_href").val();
-			baseInfoObj["scenelist"].push(sceneObj);
+//			baseInfoObj["scenelist"].push(sceneObj);
+//			
+//			if( sharingInfo.children("#in_shareTheme").hasClass("switch-on") ) {
+//				sharingInfoObj["shareTheme"] = 1;
+//			} else
+//				sharingInfoObj["shareTheme"] = 0;
+//			if( sharingInfo.children("#in_shareWhole").hasClass("switch-on") ) {
+//				sharingInfoObj["shareWhole"] = 1;
+//			} else
+//				sharingInfoObj["shareWhole"] = 0;
 			
-			if( sharingInfo.children("#in_shareTheme").hasClass("switch-on") ) {
-				sharingInfoObj["shareTheme"] = 1;
-			} else
-				sharingInfoObj["shareTheme"] = 0;
-			if( sharingInfo.children("#in_shareWhole").hasClass("switch-on") ) {
-				sharingInfoObj["shareWhole"] = 1;
-			} else
-				sharingInfoObj["shareWhole"] = 0;
 			
-			layoutInfoObj["backgroundColor"] = layoutInfo.children("#in_bgcolor").val();
-			var borders = layoutInfo.children("#border-style");
+			var bgColorPicker = colorInfo.find("#in_bgcolor_box");
+			var fgColorPicker = colorInfo.find("#in_fgcolor_box");
+			layoutInfoObj["backgroundColor"] = bgColorPicker.val();
+			layoutInfoObj["foregroundColor"] = fgColorPicker.val();
+			
+			var borders = borderInfo.find("#border-style");
 			if(borders.length>0){
-				var top = borders.children("#border-top");
-				var bottom = borders.children("#border-bottom");
-				var left = borders.children("#border-left");
-				var right = borders.children("#border-right");
-				
-				if(top.attr("clicked")==="true") {
-					layoutInfoObj["borderTop"] = "1px solid #333333";
-				}
-				if(bottom.attr("clicked")==="true") {
-					layoutInfoObj["borderBottom"] = "1px solid #333333";
-				}
-				if(left.attr("clicked")==="true") {
-					layoutInfoObj["borderLeft"] = "1px solid #333333";
-				}
-				if(right.attr("clicked")==="true") {
-					layoutInfoObj["borderRight"] = "1px solid #333333";
-				}
+				layoutInfoObj["borderTop"] = borders.children("#in-border-top-style");
+				layoutInfoObj["borderRight"] = borders.children("#in-border-right-style");
+				layoutInfoObj["borderBottom"] = borders.children("#in-border-bottom-style");
+				layoutInfoObj["borderLeft"] = borders.children("#in-border-left-style");
 				
 			}
 			
-			var radius = layoutInfo.children("#in_borderRadius");
+			var radius = borderInfo.find("#border-radius-val");
 			if(radius.length>0)
-				layoutInfoObj["borderRadius"] = radius.val();
+				layoutInfoObj["borderRadius"] = parseInt(radius.text());
 			
-			var shadow = layoutInfo.children("#shadow-style");
+			var shadow = borderInfo.find("#shadow-style").children("div[id^='shadow-style'] [selected='selected']");
 			if(shadow.length>0){
-				if( borders.children("#style1").attr("clicked")==="true" ) {
-					layoutInfoObj["borderShadow"] = "0 0 3px #888888";
-					
-				}else if( borders.children("#style2").attr("clicked")==="true" ) {
-					layoutInfoObj["borderShadow"] = "2px 2px 3px #888888";
-					
-				}else if( borders.children("#style3").attr("clicked")==="true" ) {
-					layoutInfoObj["borderShadow"] = "-2px -2px 3px #888888";
-					
-				}else if( borders.children("#style4").attr("clicked")==="true" ) {
-					layoutInfoObj["borderShadow"] = "0 0 3px #888888 inset";
-					
-				}else if( borders.children("#style5").attr("clicked")==="true" ) {
-					layoutInfoObj["borderShadow"] = "2px 2px 3px #888888 inset";
-					
-				}else if( borders.children("#style6").attr("clicked")==="true" ) {
-					layoutInfoObj["borderShadow"] = "-2px -2px 3px #888888 inset";
-					
-				}
+				layoutInfoObj["borderShadow"] = shadow.css("box-shadow");
 			}
 			
-			scheduleInfoObj["interval"] = scheduleInfo.children("#in_schedule").val();
+			layoutInfoObj["paddingTop"] = paddingInfo.find("#sp-padding-top-val").val();
+			layoutInfoObj["paddingLeft"] = paddingInfo.find("#sp-padding-left-val").val();
+			layoutInfoObj["paddingBottom"] = paddingInfo.find("#sp-padding-down-val").val();
+			layoutInfoObj["paddingRight"] = paddingInfo.find("#sp-padding-right-val").val();
+
+				
+			scheduleInfoObj["interval"] = scheduleInfo.find("div[id^='in_delay'] [selected='selected']").attr("value");
 			scheduleInfoObj["unit"]="SECONDS";
 			
-			baseInfoObj["sharing"]=sharingInfoObj;
+			//baseInfoObj["sharing"]=sharingInfoObj;
+			baseInfoObj["layout"]=layoutInfoObj;
+			baseInfoObj["schedule"]=scheduleInfoObj;
+			
+			return baseInfoObj;
+		} else {
+			var baseInfoObj = {};
+			var layoutInfoObj = {};
+			var scheduleInfoObj = {};
+			
+			baseInfoObj["automation"]=0;
+			baseInfoObj["maxDuration"]=7200;
+			baseInfoObj["maxThreadNum"]=1;
+			
+			layoutInfoObj["backgroundColor"] = "#ffffff";
+			layoutInfoObj["foregroundColor"] = "#ffffff";
+			
+			layoutInfoObj["borderTop"] = "0px solid #ffffff";
+			layoutInfoObj["borderRight"] = "0px solid #ffffff";
+			layoutInfoObj["borderBottom"] = "0px solid #ffffff";
+			layoutInfoObj["borderLeft"] = "0px solid #ffffff";
+			layoutInfoObj["borderRadius"] = "0px";
+			
+			layoutInfoObj["paddingTop"] = "0px";
+			layoutInfoObj["paddingLeft"] = "0px";
+			layoutInfoObj["paddingBottom"] = "0px";
+			layoutInfoObj["paddingRight"] = "0px";
+
+				
+			scheduleInfoObj["interval"] = 3600;
+			scheduleInfoObj["unit"]="SECONDS";
+			
+			//baseInfoObj["sharing"]=sharingInfoObj;
 			baseInfoObj["layout"]=layoutInfoObj;
 			baseInfoObj["schedule"]=scheduleInfoObj;
 			
@@ -246,37 +306,58 @@ var templateInstance = (function ($) {
             
             return temp;
         },
-        newScenario: function (scenarioType) {
+        newScenario: function (target) {
+        	var container = $(".uc-canvas-container");
+        	var scenarioType = target.attr("sType");
+        	var scenarioId = target.attr("scenario-id");
+        	var href = target.children(".uc_t_tool_addr").children("input[type='text']").val();
+        	
+			//scenario[i]["position"] = position;
+			//scenario[i]["collect"](scenario[i]["scenarioId"]);
+			//scenario["configuration"] = position;
+			//scenario["pages"] = position;
+			
             var scenario = {};
+			scenario["position"] = calcPosition(container, target);
+
             var schedule = {};
             //var layout = {};
             var sceneList = [];
             
-            var id = "uc_sce__"+guid();
-            scenario["scenarioId"] = id;
+            scenario["scenarioId"] = scenarioId;
             scenario["scenarioType"] = scenarioType;
             scenario["scenarioTypeName"] = scenarioTypeNames[scenarioType];
-            scenario["automation"] = 0;
-            scenario["maxDuration"] = 2*60*60;//seconds
-            scenario["maxThreadNum"] = 1;
+            scenario["href"] = href;
             
+//            scenario["automation"] = 0;
+//            scenario["maxDuration"] = 2*60*60;//seconds
+//            scenario["maxThreadNum"] = 1;
+//            schedule["interval"]=1*60*60;
+//            schedule["unit"]="second";
+//            //scenario["layout"]=layout;
+//            scenario["schedule"]=schedule;
+            scenario["configuration"] = _COMMONINFO(target);
+            //scenario["pages"] = _COLLECTPAGES(target);
             if( scenarioType == 1 ) {
-            	scenario["collect"] = _BANNER;
+            	//scenario["collect"] = _BANNER;
+            	var actors = _BANNER(target);
             } else if( scenarioType == 2 ) {
-            	scenario["collect"] = _REFRESHBLOCK;
+            	//scenario["collect"] = _REFRESHBLOCK;
+            	var actors = _REFRESHBLOCK(target);
             } else if( scenarioType == 3 ) {
-            	scenario["collect"] = _RANKLIST;
+            	//scenario["collect"] = _RANKLIST;
+            	var actors = _RANKLIST(target);
             } else if( scenarioType == 4 ) {
-            	scenario["collect"] = _TIMESERIES;
+            	///scenario["collect"] = _TIMESERIES;
+            	var actors = _TIMESERIES(target);
             } else if( scenarioType == 5 ) {
-            	scenario["collect"] = _CORPUSCOLLECT;
+            	//scenario["collect"] = _CORPUSCOLLECT;
+            	var actors = _CORPUSCOLLECT(target);
             }
-            
-            schedule["interval"]=1*60*60;
-            schedule["unit"]="second";
-            //scenario["layout"]=layout;
-            scenario["schedule"]=schedule;
-            
+            if(!actors) {
+        		console.log("scenario has no actors");
+        	}
+        	scenario["actors"] = actors;
             return scenario;
         }
     	
@@ -300,36 +381,55 @@ var templateCollect = (function ($) {
     return pub;    
 })(window.jQuery);
 
-function collectAndSubmit() {
+function calcPosition(container, target) {
+	var position = {};
+	var x = (parseFloat(target.attr("data-x")) || 0);
+	var y = (parseFloat(target.attr("data-y")) || 0);
+	var w = (parseFloat(target.width()) || 430);
+	var h = (parseFloat(target.height()) || 260);
+		
+	position["x"] = Math.round(parseFloat(x/container.width())*10000) / 100;
+	position["y"] = Math.round(parseFloat(y/container.height())*10000) / 100;
+	position["width"] = parseFloat(w/container.width());
+	position["height"] = parseFloat(h/container.height());
+	//position["z-index"] = "10"+index;
+	
+	return position;
+}
+
+function collectAndSubmit(target) {
+	var submitbox = $(target).parents(".uc_submit_box");
 	var container = $(".uc-canvas-container");
+	var scenarioTemplates = container.find(".uc_t_box");
+	
 	//var scenario = container.children(".uc_t_box");
-	var scenario = editable_template["scenarios"];
+	//var scenario = editable_template["scenarios"];
 	var datas={};
 	var template = {};
-	if( scenario.length > 0 ) {
+	if( scenarioTemplates.length > 0 ) {
 		var scenarios=[];
-		for(var i=0;i<scenario.length;i++){
-			var position = {};
-			var x = (parseFloat(scenario[i].getAttribute("data-x")) || 0);
-			var y = (parseFloat(scenario[i].getAttribute("data-y")) || 0);
-			var w = (parseFloat($(scenario[i]).width()) || 400);
-			var h = (parseFloat($(scenario[i]).height()) || 250);
-			var type = scenario[i].getAttribute("sType");
-			position["x"]=Math.round(parseFloat(x/container.width())*10000) / 100;
-			position["y"]=Math.round(parseFloat(y/container.height())*10000) / 100;
-			position["width"]=parseFloat(w/container.width());
-			position["height"]=parseFloat(h/container.height());
-			
-			scenario[i]["position"] = position;
-			scenario[i]["collect"](scenario[i]["scenarioId"]);
+		for(var i=0;i<scenarioTemplates.length;i++){
+			var scenario = templateInstance.newScenario($(scenarioTemplates[i]));//{};
 			
 			//console.log("Save scenario: " + type +", position: ("+ x +","+ y + "), rect: " + w +"x"+ h);
 			//console.log("Save scenario: " + type +", position: ("+ parseFloat(x/container.width()) +","+ parseFloat(y/container.height()) + "), rect: " + parseFloat(w/container.width()) +"x"+ parseFloat(h/container.height()));
-			scenarios.push(scenario[i]);
+			scenarios.push(scenario);
 			
 		}
+		template["title"] = submitbox.find("#in_title").val();
+		template["keywords"] = submitbox.find("#in_keywords").val();
+		if( submitbox.find("#in_shareTheme").hasClass("switch-on"))
+			template["shareTemplate"] = true;
+		else
+			template["shareTemplate"] = false;
+		
+		if( submitbox.find("#in_shareWhole").hasClass("switch-on"))
+			template["shareContent"] = true;
+		else
+			template["shareContent"] = false;
+		
 		template["scenarios"] = scenarios;
-		console.log(scenarios);
+		console.log(template);
 		//request("post", "/datacenter/", template, callback)
 	}
 }
