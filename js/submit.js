@@ -143,7 +143,7 @@ var templateInstance = (function ($) {
 		var tagInput = selector.find(".input_text_hint[name='txtTag']");
 		var tagVal = null;
 		if( tagInput.length>0 && tagInput.val())
-			tagVal = tagInput.val();
+			tagVal = tagInput.val(); 
 		
 		var classInput = selector.find(".input_text_hint[name='txtClass']");
 		var classVal = null;
