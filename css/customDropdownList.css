@@ -21,7 +21,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  /*background-color: #c0392b;*/
+  background-color: #c0392b;
   padding: 2px 10px;
   -moz-transition: all 0.2s ease-in;
   -o-transition: all 0.2s ease-in;
@@ -45,7 +45,7 @@
   /*background-color: #ab3326;*/
 }
 .select-styled:active:after, .select-styled.active:after {
-  top: 9px;
+  top: 3px;
   border-color: transparent transparent #fff transparent;
 }
 
@@ -63,8 +63,8 @@
 }
 .select-options li {
   margin: 0;
-  padding: 12px 0;
-  text-indent: 15px;
+  padding: 1px 0;
+  text-indent: 8px;
   border-top: 1px solid #efefef;
   -moz-transition: all 0.15s ease-in;
   -o-transition: all 0.15s ease-in;

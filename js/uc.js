@@ -9,64 +9,7 @@ function cloneDiv(sDiv, type){
 	c.attr('id',cid);
 	c.attr('sType',type);
 
-	c.find("#st_select").each(function(){
-	    var $this = $(this), numberOfOptions = $(this).children('option').length;
-	  
-	    $this.addClass('select-hidden'); 
-	    $this.wrap('<div class="select"></div>');
-	    $this.after('<div class="select-styled"></div>');
-
-	    var $styledSelect = $this.next('div.select-styled');
-	    //$styledSelect.text($this.children('option').eq(0).text());
-	    $styledSelect.html('<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
-				+'<use xlink:href="#'+$this.children('option').eq(0).text()+'"></use>'+
-				'</svg>');
-	    var $list = $('<ul />', {
-	        'class': 'select-options'
-	    }).insertAfter($styledSelect);
-	  
-	    for (var i = 0; i < numberOfOptions; i++) {
-	        $('<li />', {
-	            //text: $this.children('option').eq(i).text(),
-	        	html: '<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
-				+'<use xlink:href="#'+$this.children('option').eq(i).text()+'"></use>'+
-				'</svg>',
-	            rel: $this.children('option').eq(i).val(),
-	            icon: $this.children('option').eq(i).text()
-	        }).appendTo($list);
-	    }
-	  
-	    var $listItems = $list.children('li');
-	  
-	    $styledSelect.click(function(e) {
-	        e.stopPropagation();
-	        $('div.select-styled.active').not(this).each(function(){
-	            $(this).removeClass('active').next('ul.select-options').hide();
-	        });
-	        $(this).toggleClass('active').next('ul.select-options').toggle();
-	    });
-	  
-	    $listItems.click(function(e) {
-	        e.stopPropagation();
-	        //$styledSelect.text($(this).text()).removeClass('active');
-	        //c.find(".select-styled").text($(this).text()).removeClass('active');
-	        c.find(".select-styled").html('<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
-					+'<use xlink:href="#'+$(this).attr('icon')+'"></use>'+
-					'</svg>').removeClass('active');
-	        
-	        //$this.val($(this).attr('rel'));
-	        c.find("#st_select").val($(this).attr('rel'));
-	        //$list.hide();
-	        c.find(".select-options").hide();
-	        //console.log($this.val());
-	    });
-	  
-	    $(document).click(function() {
-	        $styledSelect.removeClass('active');
-	        $list.hide();
-	    });
-
-	});
+	
 	//var x = bgcolors.length-1;     
 	//var y = 0; 
 	//c.css('background-color', bgcolors[parseInt(Math.random() * (x - y + 1) + y)]);
@@ -197,6 +140,15 @@ function showColorPicker(event,id) {
 
 function populateFloatMenu() {
 	var menus = $(".uc-float-menu-one");
+	var typemenus = $(".uc-float-menu-type");
+	for(var i=0;i<typemenus.length;i++) {
+		var typemenu = typemenus[i];
+		typemenu.style.left = "3px";
+		typemenu.style.top = "3px";//Math.round(parseFloat((startTop+padding)/container.height())*10000) / 100 + "%";
+		//padding+=10;
+		//startTop+=55;
+	}
+	
 	var fmenu = $(".uc-float-menu");
 
 	var menuTotHeight = menus.length * parseInt(menus.css("height")) + (menus.length-1) * 10;
@@ -400,11 +352,22 @@ $(document).ready(function(){
         return;
     });
 	
-	$(document).on('click','.uc-edit-components',function(event){
-        $(event.target).hide();
-        $(".overlay").hide();
-        return;
-    });
+//	$(document).on('click','.uc-edit-components',function(event){
+//        $(event.target).hide();
+//        $(".overlay").hide();
+//        return;
+//    });
+	$(".uc_edit_components_cancel").on({
+		mouseover:function(event){
+    		event.target.style.cursor="pointer";
+    		event.stopPropagation();
+    	},
+    	click:function(event){
+    		event.stopPropagation();
+    		$(event.target).parents(".uc-edit-components").hide();
+            $(".overlay").hide();
+    	}
+	});
 	
     $(".uc-float-icon.icon-lajitong").on({
     	mouseover:function(event){
@@ -732,6 +695,7 @@ $(document).ready(function(){
 							var borderstyle = panelMain.find("#in-border-style");
 							if( borderstyle.css("border-top").indexOf("dashed") >= 0 ){
 								borderstyle.css("border-top","2px solid #888888");
+								
 							} else {
 								borderstyle.css("border-top","1px dashed #888888");
 							}
@@ -962,17 +926,16 @@ $(document).ready(function(){
 	
 	$(".uc-float-menu-one.icon-iconwangyesheji").on({
 		click: function(event){
-			var scenario_div = cloneDiv("uc_box_temp",5);
-            var id = "uc_sce__"+guid();
+			$(".overlay").css("display","block");
+			$(".uc_addnew_box").css("display","flex");
+			var div=$(".page-main-div");
+			$(".uc_addnew_box").css("left", (($(window).width()-$(".uc_addnew_box").width())/2)+"px");
+			$(".uc_addnew_box").css("top", (($(window).height()-$(".uc_addnew_box").height())/2)+"px");
 
-			//var scenario = templateInstance.newScenario();
-			//editable_template["scenarios"][scenario["scenarioId"]] = scenario;
-			//console.log("Add new scenario: ");
-			//console.log(scenario);
-			scenario_div.attr("scenario-id",id);
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
+			
 		}
 	});
 	
@@ -1005,7 +968,49 @@ $(document).ready(function(){
 			event.target.style.cursor="pointer";
 		}
 	});
-	
+	$("input[name='uc_addnew_ok']").on({
+		click: function(event){
+			var box = $(event.target).parents(".uc_addnew_box");
+			var scenarioTypeInput = box.find("#uc_addnew_type_select");
+			var addr = box.find("#in_addr").val();
+			
+			var scenarioType = scenarioTypeInput.val();
+			if( !scenarioType || scenarioType === 'hide' ) {
+				var block = scenarioTypeInput.parents(".uc-input-block");
+				var hint = block.find(".uc-input-hint-icon");
+				var alert = block.find(".en_input_hint");
+				hint.show();
+				alert.show();
+				return;
+			}
+			var scenario_div = cloneDiv("uc_box_temp",scenarioType);
+            var id = "uc_sce__"+guid();
+
+			//var scenario = templateInstance.newScenario();
+			//editable_template["scenarios"][scenario["scenarioId"]] = scenario;
+			//console.log("Add new scenario: ");
+			//console.log(scenario);
+			scenario_div.attr("scenario-id",id);
+			if(addr) {
+				var addrInput = scenario_div.children(".uc_t_tool_addr").children("input[type='text']");
+				addrInput.val(addr);
+			}
+			$(".overlay").css("display","none");
+			$(".uc_addnew_box").css("display","none");
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
+	$("input[name='uc_addnew_cancel']").on({
+		click: function(event){
+			$(".overlay").css("display","none");
+			$(".uc_addnew_box").css("display","none");
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
 	$(".uc-float-menu-one.icon-guaniu01").on("click",function(){
 		var menus = $(".uc-float-menu-one");
 		var fmenu = $(".uc-float-menu");
@@ -1080,10 +1085,10 @@ $(document).ready(function(){
 			areaBody.append($('<div class="uc-edit-comp-r-editor-input-block">'+
 											'<div style="display: flex; width: 90%; height: 100%;">'+
 											'	<div class="uc-edit-comp-r-editor-input-title" style="width: 85px;">'+
-											'		<input type="text" placeholder="Attr name" class="input_text_hint" />'+
+											'		<input type="text" name="attrName" placeholder="Attr name" class="input_text_hint" />'+
 											'	</div>'+
 											'	<div class="uc-edit-comp-r-editor-input">'+
-											'		<input type="text" placeholder="    input value here" class="input_text_hint" />'+
+											'		<input type="text" name="attrValue" placeholder="    input value here" class="input_text_hint" />'+
 											'	</div>'+
 											'	<div class="uc-edit-comp-r-editor-input-opr">'+	
 											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;" aria-hidden="true">'+
@@ -1213,6 +1218,125 @@ $(document).ready(function(){
 		}
 	});
 	
+	$("#uc_addnew_type_select").each(function(){
+	    var $this = $(this), numberOfOptions = $(this).children('option').length;
+	  
+	    $this.addClass('select-hidden'); 
+	    $this.wrap('<div class="select"></div>');
+	    $this.after('<div class="select-styled"></div>');
+
+	    var $styledSelect = $this.next('div.select-styled');
+	    //$styledSelect.text($this.children('option').eq(0).text());
+	    $styledSelect.html('<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
+				+'<use xlink:href="#'+$this.children('option').eq(0).text()+'"></use>'+
+				'</svg>');
+	    var $list = $('<ul />', {
+	        'class': 'select-options'
+	    }).insertAfter($styledSelect);
+	  
+	    for (var i = 0; i < numberOfOptions; i++) {
+	        $('<li />', {
+	            //text: $this.children('option').eq(i).text(),
+	        	html: '<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
+				+'<use xlink:href="#'+$this.children('option').eq(i).text()+'"></use>'+
+				'</svg>',
+	            rel: $this.children('option').eq(i).val(),
+	            icon: $this.children('option').eq(i).text()
+	        }).appendTo($list);
+	    }
+	  
+	    var $listItems = $list.children('li');
+	  
+	    $styledSelect.click(function(e) {
+	        e.stopPropagation();
+	        $('div.select-styled.active').not(this).each(function(){
+	            $(this).removeClass('active').next('ul.select-options').hide();
+	        });
+	        $(this).toggleClass('active').next('ul.select-options').toggle();
+	    });
+	  
+	    $listItems.click(function(e) {
+	        e.stopPropagation();
+	        //$styledSelect.text($(this).text()).removeClass('active');
+	        //c.find(".select-styled").text($(this).text()).removeClass('active');
+	        $(".uc_addnew_box").find(".select-styled").html('<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
+					+'<use xlink:href="#'+$(this).attr('icon')+'"></use>'+
+					'</svg>').removeClass('active');
+	        
+	        //$this.val($(this).attr('rel'));
+	        $(".uc_addnew_box").find("#uc_addnew_type_select").val($(this).attr('rel'));
+	        //$list.hide();
+	        $(".uc_addnew_box").find(".select-options").hide();
+	        //console.log($this.val());
+	    });
+	  
+	    $(document).click(function() {
+	        $styledSelect.removeClass('active');
+	        $list.hide();
+	    });
+
+	});
+	
+	$(".element-selector .labelon").on({
+		click: function(event){
+			var target = $(event.target);
+			if( target.hasClass("uc-edit-components-selector-opton") )
+				return;
+			
+			var selector = target.parents(".element-selector");
+			var selectorOn = selector.find(".valueon");
+			
+			var selectorKey = selector.children(".uc-edit-components-selector-elkey");
+			var selectorVal = selector.children(".uc-edit-components-selector-elval");
+			selectorKey.show();
+			selectorVal.hide();
+			
+			target.removeClass("uc-edit-components-selector-optoff");
+			selectorOn.removeClass("uc-edit-components-selector-opton");
+			target.addClass("uc-edit-components-selector-opton");
+			selectorOn.addClass("uc-edit-components-selector-optoff");
+		}
+	});
+	
+	$(".element-selector .valueon").on({
+		click: function(event){
+			var target = $(event.target);
+			if( target.hasClass("uc-edit-components-selector-opton") )
+				return;
+			var selector = target.parents(".element-selector");
+			var selectorOff = selector.find(".labelon");
+			
+			var selectorKey = selector.children(".uc-edit-components-selector-elkey");
+			var selectorVal = selector.children(".uc-edit-components-selector-elval");
+			selectorKey.hide();
+			selectorVal.show();
+			
+			target.removeClass("uc-edit-components-selector-optoff");
+			selectorOff.removeClass("uc-edit-components-selector-opton");
+			target.addClass("uc-edit-components-selector-opton");
+			selectorOff.addClass("uc-edit-components-selector-optoff");
+		}
+	});
+	
+	$(".element-selector #btn_elmtLabel_detail").on({
+		click: function(event){
+			var target = $(event.target);
+			var state = target.attr("status");
+			var selector = target.parents(".uc-edit-components-selector-elkey");
+			var editarea = selector.find(".uc-edit-comp-r-editor-input-area:gt(0)");
+			
+			if( state === "up" ) {
+				editarea.show();
+				target.text("-");
+				target.attr("status","expand");
+			} else if( state === "expand" ) {
+				editarea.hide();
+				target.text("+");
+				target.attr("status","up");
+			}
+			
+		}
+	});
 //	$(".uc-edit-components").on({
 //		click: function(event){
 //			

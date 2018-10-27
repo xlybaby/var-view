@@ -9,6 +9,7 @@ var templateInstance = (function ($) {
 //		var scenarioType = target.attr("sType");
 //		var componentsRoot = $(".uc-edit-components[scenario-id='"+ scenarioId +"']");
 //		if(componentsRoot.length>0) {
+		var scenarioId = pageComponents.attr("scenario-id");
 			var pages = pageComponents.find(".uc-edit-comp-r-editor-con");
 			for(var i=0;i<pages.length;i++){
 				var pageJson={};
@@ -44,8 +45,8 @@ var templateInstance = (function ($) {
 		var scenarioType = target.attr("sType");
 		var componentsRoot = $(".uc-edit-components[scenario-id='"+ scenarioId +"']");
 		if(componentsRoot.length>0) {
-			pageComponent["pages"] = _COLLECTPAGES(componentsRoot);//_COMPONENTSINFO(page);
 			var pageComponent={};
+			pageComponent["pages"] = _COLLECTPAGES(componentsRoot);//_COMPONENTSINFO(page);
 			pageComponent["properties"] = {};
 			return pageComponent;
 		} else 
@@ -77,12 +78,30 @@ var templateInstance = (function ($) {
 		var paginationSel = page.find(".uc-edit-components-selector.pagination-selector");
 		
 		compObj["containers"]={};
-		compObj["containers"]["selector"]=_collectSel(containerSel);
+		var containerCol = _collectSel(containerSel);
+		if(containerCol)
+			compObj["containers"]["selector"]=containerCol;
+		
 		compObj["containers"]["iterators"]={};
-		compObj["containers"]["iterators"]["selector"]=_collectSel(iteratorSel);
+		var iteratorCol = _collectSel(iteratorSel);
+		if(iteratorCol)
+			compObj["containers"]["iterators"]["selector"]=iteratorCol;
 		
 		compObj["containers"]["iterators"]["items"]={};
-		compObj["containers"]["iterators"]["items"]["selector"]=_collectSel(elementSel);
+		var elementKeySel = elementSel.children(".uc-edit-components-selector-elkey");
+		var elementValSel = elementSel.children(".uc-edit-components-selector-elval");
+		var elementKeyName = elementKeySel.find("input[name='txtLblName']").val();
+		if( !elementKeyName ) elementKeyName = "itemVal";
+		compObj["containers"]["iterators"]["items"]["label"] = {};
+		compObj["containers"]["iterators"]["items"]["value"] = {};
+		compObj["containers"]["iterators"]["items"]["label"]["name"] = elementKeyName;
+		var elementKeyCol = _collectSel(elementKeySel); 
+		if(elementKeyCol)
+			compObj["containers"]["iterators"]["items"]["label"]["selector"]=elementKeyCol;
+		var elementValCol = _collectSel(elementValSel); 
+		if(elementValCol)
+			compObj["containers"]["iterators"]["items"]["value"]["selector"]=elementValCol;
+		
 		if( elementSel.find("#in_element_hyperlink").hasClass("switch-on") ){
 			compObj["containers"]["iterators"]["items"]["link"] = 1;
 		} else
@@ -99,7 +118,9 @@ var templateInstance = (function ($) {
 			compObj["containers"]["iterators"]["items"]["img"] = 0;
 		
 		compObj["pagination"]={};
-		compObj["pagination"]["selector"]=_collectSel(paginationSel);
+		var paginationCol = _collectSel(paginationSel);
+		if(paginationCol)
+			compObj["pagination"]["selector"]=paginationCol;
 //		if(containerSel.length>0){
 //			for(var i=0;i<containerSel.length;i++){
 //				var consel=containerSel[i];
@@ -114,63 +135,68 @@ var templateInstance = (function ($) {
 	}
 	
 	var _collectSel = function( selector ) {
-		var nameInput = selector.children(".input_text_hint[name='txtName']");
+		var nameInput = selector.find(".input_text_hint[name='txtName']");
 		var nameVal = null;
-		if( nameInput.length>0 )
+		if( nameInput.length>0 && nameInput.val())
 			nameVal = nameInput.val();
 		
-		var tagInput = selector.children(".input_text_hint[name='txtTag']");
+		var tagInput = selector.find(".input_text_hint[name='txtTag']");
 		var tagVal = null;
-		if( tagInput.length>0 )
+		if( tagInput.length>0 && tagInput.val())
 			tagVal = tagInput.val();
 		
-		var classInput = selector.children(".input_text_hint[name='txtClass']");
+		var classInput = selector.find(".input_text_hint[name='txtClass']");
 		var classVal = null;
-		if( classInput.length>0 )
+		if( classInput.length>0 && classInput.val() )
 			classVal = classInput.val();
 		
-		var idInput = selector.children(".input_text_hint[name='txtID']");
+		var idInput = selector.find(".input_text_hint[name='txtID']");
 		var idVal = null;
-		if( idInput.length>0 )
+		if( idInput.length>0 && idInput.val() )
 			idVal = idInput.val();
 		
-		var xpathInput = selector.children(".input_text_hint[name='txtXPath']");
-		var xpathVal = null;
-		if( xpathInput.length>0 )
+		var xpathInput = selector.find(".input_text_hint[name='txtXPath']");
+		var xpathVal = null; 
+		if( xpathInput.length>0 && xpathInput.val() )
 			xpathVal = xpathInput.val();
 		
-		var indexInput = selector.children(".input_text_hint[name='txtIndex']");
+		var indexInput = selector.find(".input_text_hint[name='txtIndex']");
 		var indexVal = null;
-		if( indexInput.length>0 )
+		if( indexInput.length>0 && indexInput.val() )
 			indexVal = indexInput.val();
 		
-		var selector = {};
+		var domObject = {};
 		var attributes = {};
 		if(nameVal!=null)
-			selector["name"]=nameVal;
+			domObject["name"]=nameVal;
 		if(tagVal!=null)
-			selector["tag"]=tagVal;
+			domObject["tag"]=tagVal;
 		if(classVal!=null)
-			selector["clazz"]=classVal;
+			domObject["clazz"]=classVal;
 		if(idVal!=null)
-			selector["id"]=idVal;
+			domObject["id"]=idVal;
 		if(xpathVal!=null)
-			selector["xpath"]=xpathVal;
+			domObject["xpath"]=xpathVal;
 		if(indexVal!=null)
-			selector["index"]=indexVal;
+			domObject["index"]=indexVal;
 		
-		var attrs = selector.children(".custom-attrs");
+		var attrs = selector.find(".custom-attrs");
 		if( attrs.length > 0 ) {
+			var attributes = [];
 			var inputs = attrs.children(".uc-edit-comp-r-editor-input-block");
 			for(var i=0; i<inputs.length; i++) {
-				var name=inputs[i].children("input[name='attrName']");
-				var val=inputs[i].children("input[name='attrValue']");
-				attributes[name.val()] = val.val();
+				var name=$(inputs[i]).children("input[name='attrName']");
+				var val=$(inputs[i]).children("input[name='attrValue']");
+				if( name.val() && val.val())
+					attributes[name.val()] = val.val();
 			}
-			if( inputs.length > 0 )
-				selector["attributes"] = attributes;
+			if( attributes.length > 0 )
+				domObject["attributes"] = attributes;
 		}
-		return selector;
+		if(Object.keys(domObject).length<=0)
+			return null;
+		
+		return domObject;
 	}
 	
 	var _COMMONINFO = function(target){
@@ -226,15 +252,15 @@ var templateInstance = (function ($) {
 			
 			var bgColorPicker = colorInfo.find("#in_bgcolor_box");
 			var fgColorPicker = colorInfo.find("#in_fgcolor_box");
-			layoutInfoObj["backgroundColor"] = bgColorPicker.val();
-			layoutInfoObj["foregroundColor"] = fgColorPicker.val();
+			layoutInfoObj["backgroundColor"] = bgColorPicker.spectrum("get").toRgbString();
+			layoutInfoObj["foregroundColor"] = fgColorPicker.spectrum("get").toRgbString();
 			
 			var borders = borderInfo.find("#border-style");
 			if(borders.length>0){
-				layoutInfoObj["borderTop"] = borders.children("#in-border-top-style");
-				layoutInfoObj["borderRight"] = borders.children("#in-border-right-style");
-				layoutInfoObj["borderBottom"] = borders.children("#in-border-bottom-style");
-				layoutInfoObj["borderLeft"] = borders.children("#in-border-left-style");
+				layoutInfoObj["borderTop"] = borders.children("#in-border-top-style").css("borderTop");
+				layoutInfoObj["borderRight"] = borders.children("#in-border-right-style").css("borderRight");
+				layoutInfoObj["borderBottom"] = borders.children("#in-border-bottom-style").css("borderBottom");
+				layoutInfoObj["borderLeft"] = borders.children("#in-border-left-style").css("borderLeft");
 				
 			}
 			
@@ -253,7 +279,7 @@ var templateInstance = (function ($) {
 			layoutInfoObj["paddingRight"] = paddingInfo.find("#sp-padding-right-val").val();
 
 				
-			scheduleInfoObj["interval"] = scheduleInfo.find("div[id^='in_delay'] [selected='selected']").attr("value");
+			scheduleInfoObj["interval"] = scheduleInfo.find("div[id^='in_delay'][selected='selected']").attr("value");
 			scheduleInfoObj["unit"]="SECONDS";
 			
 			//baseInfoObj["sharing"]=sharingInfoObj;

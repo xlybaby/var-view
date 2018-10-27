@@ -8,16 +8,16 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=b556" />
-		<script type="text/javascript" src="/var/js/uc.js?v=v789"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=9087"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=1112" />
+		<script type="text/javascript" src="/var/js/uc.js?v=33312"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=908"></script>
 		<link rel="stylesheet" type="text/css" href="/var/css/honeyswitch.css" />
 		
 <link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=45hu" />
 <script type="text/javascript" src="/var/js/jscolor.js" ></script>
 <script type="text/javascript" src="/var/js/nouislider.js" ></script>
 
- 		<link rel="stylesheet" type="text/css" href="/var/css/customDropdownList.css?v=007" />	
+ 		<link rel="stylesheet" type="text/css" href="/var/css/customDropdownList.css?v=009" />	
 		
 		<style>
 			.slider {
@@ -70,7 +70,39 @@
 				    				<use xlink:href="#icon-beijing2"></use>
 									</svg>
 								 </div>
-								  -->
+								  
+								  <option value="4">icon-paiming1</option>
+						<option value="3">icon-paiming</option>
+						<option value="2">icon-dingyue</option>
+						<option value="1">icon-banner</option>
+						<option value="5">icon-yemianzujian</option>
+						-->
+								  <div class="uc-float-menu-type icon-paiming1">
+								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+				    				<use xlink:href="#icon-paiming1"></use>
+									</svg>
+								 </div>
+								 <div class="uc-float-menu-type icon-paiming">
+								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+				    				<use xlink:href="#icon-paiming"></use>
+									</svg>
+								 </div>
+								 <div class="uc-float-menu-type icon-dingyue">
+								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+				    				<use xlink:href="#icon-dingyue"></use>
+									</svg>
+								 </div>
+								 <div class="uc-float-menu-type icon-banner">
+								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+				    				<use xlink:href="#icon-banner"></use>
+									</svg>
+								 </div>
+								 <div class="uc-float-menu-type icon-yemianzujian">
+								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+				    				<use xlink:href="#icon-yemianzujian"></use>
+									</svg>
+								 </div>
+								 
 							 	<div class="uc-float-menu-one icon-iconwangyesheji">
 								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 				    				<use xlink:href="#icon-iconwangyesheji"></use>
@@ -258,7 +290,7 @@
 		<div class="uc-input-area">
 			<div class="uc-input-block">
 				<div id="border-style" style="margin-top: 3px; display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
-					<div id="in-border-style" style="width: 23px; height: 23px; border-top:1px dashed #888888;border-right:1px dashed #888888;border-bottom:1px dashed #888888;border-left:1px dashed #888888; border-radius: 5px;"></div>
+					<div id="in-border-style" style="width: 23px; height: 23px; border-top:0px solid #888888;border-right:0px solid #888888;border-bottom:0px solid #888888;border-left:0px solid #888888; border-radius: 5px;"></div>
 					<input type="hidden" id="in-border-top-style" value="0px solid #ffffff" />
 					<input type="hidden" id="in-border-right-style" value="0px solid #ffffff" />
 					<input type="hidden" id="in-border-bottom-style" value="0px solid #ffffff" />
@@ -673,7 +705,88 @@
 	</div>
 			</div>
 			
+			<div class="uc_addnew_box">
+		
+			<div class="uc_submit_box_title">
+				Add a new Scenario!
+			</div>
+			<div class="uc_submit_box_con">
+				<div class="uc-edit-panel-block basic-info">
+		
+		
+		<span class="uc-input-title en_block_title">Basic 
+			Information</span> 
+		<div class="uc-input-area">
+			<div class="uc-input-block">
+				<span class="uc-input-label en_input_label">Link address</span>
+				<div class="uc-input">
+					<div name="in_addr_box" class="uc-input-text">
+						<input id="in_addr" type="text" placeholder="Input web address here"
+							style="width: 100%; height: 100%; border: 0px solid #ffffff;" />
+						<img name="in_title_alert" src="/var/images/uc/uc_input_alert.svg"
+							class="uc-input-hint-icon" />
+					</div>
+					
+				</div>
+				<div name="in_title_hint" class="uc-input-hint-text en_input_hint">
+						<span>some hints here</span>
+					</div>
+			</div>
+			<div class="empty_block_10"></div>
+			<div class="uc-input-block">
+				<span class="uc-input-label en_input_label">Scenario Type</span>
+				<div class="uc-input">
+					
+						<select id="uc_addnew_type_select">
+						<option value="hide">icon-tool</option>
+						<option value="4">icon-paiming1</option>
+						<option value="3">icon-paiming</option>
+						<option value="2">icon-dingyue</option>
+						<option value="1">icon-banner</option>
+						<option value="5">icon-yemianzujian</option>
+					</select>&nbsp;
+						<img src="/var/images/uc/uc_input_alert.svg"
+							class="uc-input-hint-icon" />
+					
+					
+				</div>
+				<div style="display:none;" class="en_input_hint">
+						<span>Please select a type!</span>
+					</div>
+			</div>
+			<div class="empty_block_10"></div>
 			
+			<div class="uc-input-block">
+				<span class="uc-input-label en_input_label">Scenario size</span>
+				<div class="uc-input">
+						<input type="text" id="in_keywords" placeholder="w:430px"
+							style="width: 20%; height: 90%; border: 1px solid #888888;border-radius:5px;" />
+						
+					
+					<span class="uc-input-label en_input_label">&nbsp;X&nbsp;</span>
+					
+						<input type="text" id="in_keywords" placeholder="h:260px"
+							style="width: 20%; height: 90%; border: 1px solid #888888;border-radius:5px;" />
+						
+						<img src="/var/images/uc/uc_input_alert.svg"
+							class="uc-input-hint-icon" />
+					
+					
+				</div>
+				<div class="uc-input-hint-text en_input_hint">
+						<span>some hints here</span>
+					</div>
+			</div>
+			
+			
+		</div>
+	</div>
+	<div style="width: 100%; height: 55px; display: flex; align-items: center; justify-content: space-around;">
+		<input type="button" name="uc_addnew_ok" value="OK" style="font-family: Sansation_Regular;font-size: 13px;color: #ffffff;width: 95px; height: 65%; background-color: rgb(42,199,51,1.0);border: 0px solid #333333;border-radius:5px;" />
+		<input type="button" name="uc_addnew_cancel" value="Cancel" style="font-family: Sansation_Regular;font-size: 13px;color: #ffffff;width: 95px; height: 65%; background-color: rgb(42,199,51,1.0);border: 0px solid #333333;border-radius:5px;" />
+	</div>
+	</div>
+			</div>
 
 		</div>	
 		<div class="uc-edit-components" id="_temp">
@@ -707,6 +820,10 @@
 				<svg class="icon-title-bar-btn" style="margin-right: 10px;"
 					aria-hidden="true">
 	    							<use xlink:href="#icon-web"></use>
+									</svg>
+									<svg class="icon-title-bar-btn uc_edit_components_cancel" style="margin-right: 10px;"
+					aria-hidden="true">
+	    							<use xlink:href="#icon-shanchudelete30"></use>
 									</svg>
 			</div>
 
@@ -885,10 +1002,10 @@
 											<div style="display: flex; width: 90%; height: 100%;">
 												<div class="uc-edit-comp-r-editor-input-title"
 													style="width: 85px;">
-													<input type="text" placeholder="Attr Name" class="input_text_hint" />
+													<input type="text" name="attrName" placeholder="Attr Name" class="input_text_hint" />
 												</div>
 												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input value here"
+													<input type="text" name="attrValue" placeholder="    input value here"
 														class="input_text_hint" />
 												</div>
 												<div class="uc-edit-comp-r-editor-input-opr">
@@ -1014,134 +1131,6 @@
 											<div style="display: flex; width: 90%; height: 100%;">
 												<div class="uc-edit-comp-r-editor-input-title"
 													style="width: 85px;">
-													<input type="text" placeholder="Attr Name" class="input_text_hint" />
-												</div>
-												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input value here"
-														class="input_text_hint" />
-												</div>
-												<div class="uc-edit-comp-r-editor-input-opr">
-													
-													<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;"
-														aria-hidden="true">
-		    															<use xlink:href="#icon-jianhao"></use>
-																		</svg>
-
-													<!--  <img src="/var/images/common_minus_icon.svg" style="height: 20px; width: 20px;" />
-																		<img src="/var/images/common_plus_icon.svg" style="height: 20px; width: 20px;" />-->
-												</div>
-											</div>
-										</div>
-
-									</div>
-								</div>
-
-							</div>
-							<div class="uc-edit-components-selector element-selector" index="2" id="">
-								<div class="uc-edit-comp-r-editor-input-area">
-									<div class="uc-edit-comp-r-editor-input-head">
-										<div
-											style="display: flex; width: 90%; height: 100%; align-items: center;">
-											&nbsp;<span class="en_block_title" style="color: #111111;">Element
-												Info</span>
-										</div>
-
-									</div>
-									<div class="uc-edit-comp-r-editor-input-body">
-
-										<div class="uc-edit-comp-r-editor-input-block">
-											<div style="display: flex; width: 90%; height: 100%;">
-												<div class="uc-edit-comp-r-editor-input-title">
-													<span class="en_input_hint">Tag</span>
-												</div>
-												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input element's tag" name="txtTag" class="input_text_hint" />
-												</div>
-											</div>
-										</div>
-										<div
-											style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
-											<div style="display: flex; width: 90%; height: 100%;">
-												<div class="uc-edit-comp-r-editor-input-title">
-													<span class="en_input_hint">ID</span>
-												</div>
-												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input element's id"
-														class="input_text_hint" />
-												</div>
-											</div>
-										</div>
-										<div
-											style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
-											<div style="display: flex; width: 90%; height: 100%;">
-												<div class="uc-edit-comp-r-editor-input-title">
-													<span class="en_input_hint">Class</span>
-												</div>
-												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input element's class" name="txtID"
-														class="input_text_hint" />
-												</div>
-											</div>
-										</div>
-										<div
-											style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
-											<div style="display: flex; width: 90%; height: 100%;">
-												<div class="uc-edit-comp-r-editor-input-title">
-													<span class="en_input_hint">Name</span>
-												</div>
-												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input element's name" name="txtName"
-														class="input_text_hint" />
-												</div>
-											</div>
-										</div>
-										<div
-											style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
-											<div style="display: flex; width: 90%; height: 100%;">
-												<div class="uc-edit-comp-r-editor-input-title">
-													<span class="en_input_hint">XPath</span>
-												</div>
-												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input element's xpath" name="txtXPath"
-														class="input_text_hint" />
-												</div>
-											</div>
-										</div>
-										<div
-											style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
-											<div style="display: flex; width: 90%; height: 100%;">
-												<div class="uc-edit-comp-r-editor-input-title">
-													<span class="en_input_hint">Index</span>
-												</div>
-												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input element's index" name="txtIndex"
-														class="input_text_hint" />
-												</div>
-											</div>
-										</div>
-										<div style="height: 25px;"></div>
-									</div>
-								</div>
-								<br/>
-								<div class="uc-edit-comp-r-editor-input-area uc-edit-comp-add-attr-area">
-									<div class="uc-edit-comp-r-editor-input-head">
-										<div
-											style="display: flex; width: 90%; height: 100%; align-items: center;">
-											&nbsp;<span class="en_block_title" style="color: #111111;">Custom
-												Attributes</span>
-												<svg class="icon uc-edit-comp-add-attr" style="font-size: 20px; color: #000000;"
-														aria-hidden="true">
-		    															<use xlink:href="#icon-jiahao4"></use>
-																		</svg>
-										</div>
-
-									</div>
-									<div class="uc-edit-comp-r-editor-input-body custom-attrs" style="padding-bottom: 15px;">
-
-										<div class="uc-edit-comp-r-editor-input-block">
-											<div style="display: flex; width: 90%; height: 100%;">
-												<div class="uc-edit-comp-r-editor-input-title"
-													style="width: 85px;">
 													<input type="text" name="attrName" placeholder="Attr Name" class="input_text_hint" />
 												</div>
 												<div class="uc-edit-comp-r-editor-input">
@@ -1163,8 +1152,297 @@
 
 									</div>
 								</div>
-								<br />
-								<div class="uc-edit-comp-r-editor-input-area">
+
+							</div>
+							<div class="uc-edit-components-selector element-selector" index="2" id="">
+								<div style="width: 100%; align-items: center; justify-content: flex-start;height: 35px;">
+									<button class="labelon uc-edit-components-selector-optoff">Label</button>
+									<button class="valueon uc-edit-components-selector-opton">Value</button>
+								</div>
+								<div class="uc-edit-components-selector-elkey">
+									<div class="uc-edit-comp-r-editor-input-area">
+										<div class="uc-edit-comp-r-editor-input-head">
+											<div
+												style="display: flex; width: 90%; height: 100%; align-items: center;">
+												&nbsp;<span class="en_block_title" style="color: #111111;">Element Label</span>
+											</div>
+								
+										</div>
+										<div class="uc-edit-comp-r-editor-input-body">
+											<div class="uc-edit-comp-r-editor-input-block">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Label</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="" name="txtLblName" class="input_text_hint" />
+													</div>
+												</div>
+												
+											</div>
+											<div style="height: 10px;"></div>
+										</div>
+									</div>
+									<div style="display: flex; width: 100%; height: 35px;">
+										<hr style="width:80%;height:2px;border:none;border-top:2px dotted #333333;"/>
+										<button id="btn_elmtLabel_detail" status="up" style="display:flex;align-items: center;justify-content:center;height: 80%;padding:0px;width: 25px;border:none;font-family:Sansation_Light;color:#444444;font-size: 28px;background-color:rgb(255,255,255,0.0);outline: none !important;">+</button>
+										<hr style="width:20%;height:2px;border:none;border-top:2px dotted #333333;"/>
+									</div>									
+									<div class="uc-edit-comp-r-editor-input-area" style="display:none;">
+										<div class="uc-edit-comp-r-editor-input-head">
+											<div
+												style="display: flex; width: 90%; height: 100%; align-items: center;">
+												&nbsp;<span class="en_block_title" style="color: #111111;">Element
+													Info</span>
+											</div>
+	
+										</div>
+										<div class="uc-edit-comp-r-editor-input-body">
+	
+											<div class="uc-edit-comp-r-editor-input-block">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Tag</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's tag" name="txtTag" class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">ID</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's id"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Class</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's class" name="txtID"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Name</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's name" name="txtName"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">XPath</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's xpath" name="txtXPath"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Index</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's index" name="txtIndex"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div style="height: 25px;"></div>
+										</div>
+									</div>
+									<br/>
+									<div class="uc-edit-comp-r-editor-input-area uc-edit-comp-add-attr-area" style="display:none;">
+										<div class="uc-edit-comp-r-editor-input-head">
+											<div
+												style="display: flex; width: 90%; height: 100%; align-items: center;">
+												&nbsp;<span class="en_block_title" style="color: #111111;">Custom
+													Attributes</span>
+													<svg class="icon uc-edit-comp-add-attr" style="font-size: 20px; color: #000000;"
+															aria-hidden="true">
+			    															<use xlink:href="#icon-jiahao4"></use>
+																			</svg>
+											</div>
+	
+										</div>
+										<div class="uc-edit-comp-r-editor-input-body custom-attrs" style="padding-bottom: 15px;">
+	
+											<div class="uc-edit-comp-r-editor-input-block">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title"
+														style="width: 85px;">
+														<input type="text" name="attrName" placeholder="Attr Name" class="input_text_hint" />
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" name="attrValue" placeholder="    input value here"
+															class="input_text_hint" />
+													</div>
+													<div class="uc-edit-comp-r-editor-input-opr">
+														
+														<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;"
+															aria-hidden="true">
+			    															<use xlink:href="#icon-jianhao"></use>
+																			</svg>
+	
+														<!--  <img src="/var/images/common_minus_icon.svg" style="height: 20px; width: 20px;" />
+																			<img src="/var/images/common_plus_icon.svg" style="height: 20px; width: 20px;" />-->
+													</div>
+												</div>
+											</div>
+	
+										</div>
+									</div>
+									
+								</div>
+								<div class="uc-edit-components-selector-elval">
+									<div class="uc-edit-comp-r-editor-input-area">
+										<div class="uc-edit-comp-r-editor-input-head">
+											<div
+												style="display: flex; width: 90%; height: 100%; align-items: center;">
+												&nbsp;<span class="en_block_title" style="color: #111111;">Element
+													Info</span>
+											</div>
+	
+										</div>
+										<div class="uc-edit-comp-r-editor-input-body">
+	
+											<div class="uc-edit-comp-r-editor-input-block">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Tag</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's tag" name="txtTag" class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">ID</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's id"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Class</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's class" name="txtID"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Name</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's name" name="txtName"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">XPath</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's xpath" name="txtXPath"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div
+												style="margin-top: 10px; width: 100%; height: 25px; display: flex; justify-content: center; align-items: center;">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title">
+														<span class="en_input_hint">Index</span>
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" placeholder="    input element's index" name="txtIndex"
+															class="input_text_hint" />
+													</div>
+												</div>
+											</div>
+											<div style="height: 25px;"></div>
+										</div>
+									</div>
+									<br/>
+									<div class="uc-edit-comp-r-editor-input-area uc-edit-comp-add-attr-area">
+										<div class="uc-edit-comp-r-editor-input-head">
+											<div
+												style="display: flex; width: 90%; height: 100%; align-items: center;">
+												&nbsp;<span class="en_block_title" style="color: #111111;">Custom
+													Attributes</span>
+													<svg class="icon uc-edit-comp-add-attr" style="font-size: 20px; color: #000000;"
+															aria-hidden="true">
+			    															<use xlink:href="#icon-jiahao4"></use>
+																			</svg>
+											</div>
+	
+										</div>
+										<div class="uc-edit-comp-r-editor-input-body custom-attrs" style="padding-bottom: 15px;">
+	
+											<div class="uc-edit-comp-r-editor-input-block">
+												<div style="display: flex; width: 90%; height: 100%;">
+													<div class="uc-edit-comp-r-editor-input-title"
+														style="width: 85px;">
+														<input type="text" name="attrName" placeholder="Attr Name" class="input_text_hint" />
+													</div>
+													<div class="uc-edit-comp-r-editor-input">
+														<input type="text" name="attrValue" placeholder="    input value here"
+															class="input_text_hint" />
+													</div>
+													<div class="uc-edit-comp-r-editor-input-opr">
+														
+														<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;"
+															aria-hidden="true">
+			    															<use xlink:href="#icon-jianhao"></use>
+																			</svg>
+	
+														<!--  <img src="/var/images/common_minus_icon.svg" style="height: 20px; width: 20px;" />
+																			<img src="/var/images/common_plus_icon.svg" style="height: 20px; width: 20px;" />-->
+													</div>
+												</div>
+											</div>
+	
+										</div>
+									</div>
+									<br />
+									<div class="uc-edit-comp-r-editor-input-area">
 									<div class="uc-edit-comp-r-editor-input-head">
 										<div
 											style="display: flex; width: 90%; height: 100%; align-items: center;">
@@ -1217,6 +1495,7 @@
 										</div>
 										<div style="height: 25px;"></div>
 									</div>
+								</div>
 								</div>
 							</div>
 							<div class="uc-edit-components-selector pagination-selector" index="3" id="">
@@ -1325,10 +1604,10 @@
 											<div style="display: flex; width: 90%; height: 100%;">
 												<div class="uc-edit-comp-r-editor-input-title"
 													style="width: 85px;">
-													<input type="text" placeholder="Attr Name" class="input_text_hint" />
+													<input type="text" name="attrName" placeholder="Attr Name" class="input_text_hint" />
 												</div>
 												<div class="uc-edit-comp-r-editor-input">
-													<input type="text" placeholder="    input value here"
+													<input type="text" name="attrValue" placeholder="    input value here"
 														class="input_text_hint" />
 												</div>
 												<div class="uc-edit-comp-r-editor-input-opr">
