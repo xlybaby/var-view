@@ -927,11 +927,15 @@ $(document).ready(function(){
 	$(".uc-float-menu-one.icon-iconwangyesheji").on({
 		click: function(event){
 			$(".overlay").css("display","block");
-			$(".uc_addnew_box").css("display","flex");
+			//$(".uc_addnew_box").css("display","flex");
 			var div=$(".page-main-div");
-			$(".uc_addnew_box").css("left", (($(window).width()-$(".uc_addnew_box").width())/2)+"px");
-			$(".uc_addnew_box").css("top", (($(window).height()-$(".uc_addnew_box").height())/2)+"px");
-
+			//$(".uc_addnew_box").css("left", (($(window).width()-$(".uc_addnew_box").width())/2)+"px");
+			//$(".uc_addnew_box").css("top", (($(window).height()-$(".uc_addnew_box").height())/2)+"px");
+			var newbox = $(".uc_addnew_box").clone(true);
+			newbox.css("left", (($(window).width()-$(".uc_addnew_box").width())/2)+"px");
+			newbox.css("top", (($(window).height()-$(".uc_addnew_box").height())/2)+"px");
+			div.append(newbox);
+			newbox.show();
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
@@ -1005,7 +1009,9 @@ $(document).ready(function(){
 	$("input[name='uc_addnew_cancel']").on({
 		click: function(event){
 			$(".overlay").css("display","none");
-			$(".uc_addnew_box").css("display","none");
+			//$(".uc_addnew_box").css("display","none");
+			var box = $(event.target).parents(".uc_addnew_box");
+			box.remove();
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
@@ -1227,9 +1233,9 @@ $(document).ready(function(){
 
 	    var $styledSelect = $this.next('div.select-styled');
 	    //$styledSelect.text($this.children('option').eq(0).text());
-	    $styledSelect.html('<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
+	    $styledSelect.html('<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #888888;" aria-hidden="true">'
 				+'<use xlink:href="#'+$this.children('option').eq(0).text()+'"></use>'+
-				'</svg>');
+				'</svg>&nbsp;<span class="en_input_label" style="color:#666666;font-size:10px;">'+$this.children('option').eq(0).attr("label")+'</span>');
 	    var $list = $('<ul />', {
 	        'class': 'select-options'
 	    }).insertAfter($styledSelect);
@@ -1237,11 +1243,12 @@ $(document).ready(function(){
 	    for (var i = 0; i < numberOfOptions; i++) {
 	        $('<li />', {
 	            //text: $this.children('option').eq(i).text(),
-	        	html: '<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
+	        	html: '<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #888888;" aria-hidden="true">'
 				+'<use xlink:href="#'+$this.children('option').eq(i).text()+'"></use>'+
-				'</svg>',
+				'</svg>&nbsp;<span class="en_input_label" style="color:#666666;font-size:10px;">'+$this.children('option').eq(i).attr("label")+'</span>',
 	            rel: $this.children('option').eq(i).val(),
-	            icon: $this.children('option').eq(i).text()
+	            icon: $this.children('option').eq(i).text(),
+	            label: $this.children('option').eq(i).attr("label")
 	        }).appendTo($list);
 	    }
 	  
@@ -1259,9 +1266,9 @@ $(document).ready(function(){
 	        e.stopPropagation();
 	        //$styledSelect.text($(this).text()).removeClass('active');
 	        //c.find(".select-styled").text($(this).text()).removeClass('active');
-	        $(".uc_addnew_box").find(".select-styled").html('<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #efefef;" aria-hidden="true">'
+	        $(".uc_addnew_box").find(".select-styled").html('<svg class="uc-float-icon" style="font-size: 14px; font-weight: 400;color: #888888;" aria-hidden="true">'
 					+'<use xlink:href="#'+$(this).attr('icon')+'"></use>'+
-					'</svg>').removeClass('active');
+					'</svg>&nbsp;<span class="en_input_label" style="color:#666666;font-size:10px;">'+$(this).attr('label')+'</span>').removeClass('active');
 	        
 	        //$this.val($(this).attr('rel'));
 	        $(".uc_addnew_box").find("#uc_addnew_type_select").val($(this).attr('rel'));

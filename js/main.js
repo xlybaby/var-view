@@ -1,3 +1,20 @@
+var StringUtil = (function ($) {
+	
+	var pub = {
+		isEmpty: function (str) {
+			if(typeof(str)=="undefined" || ""+str =="undefined"  || str == null) {
+				return true;
+			}
+			var t = $.trim(str);
+			if(t == "" || t == "null" || t == "undefined") {
+				return true; 
+			}
+			return false;
+        }
+    } 
+    return pub;    
+})(window.jQuery);
+
 function changPointer(obj) {
 	obj.style.cursor="pointer";
 }

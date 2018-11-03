@@ -1,0 +1,105 @@
+/************ Corpus component style definition ***********/
+.wrapper_corpus{
+	display: flex;
+	position: absolute;
+	left: 30%;
+	top: 73%;
+	width: 65%;
+	height: 22%;
+	
+	background-color: rgb(33,33,33,1.0);
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	border: 0px solid #efefef;
+	border-radius: 0px;
+}
+
+.comp_corpus{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	
+	background-color: rgb(255,255,255,1.0);
+}
+
+.corpus_head{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-left: 5px;
+	overflow: hidden;
+	height: 0px;
+	width: 100%;
+}
+
+.corpus_body{
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: space-around;
+	align-items: center;*/
+	overflow: auto;
+	height: 100%;
+	width: 100%;
+}
+
+.corpus_item{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+	width: 15%;
+	min-width: 115px;
+	background-color: rgb(255,255,255,1.0);
+	border: 1px solid rgb(235,235,235,1.0);
+	border-radius: 5px;
+	margin-top: 12px;
+	margin-left: 12px;
+	padding-left: 3px;
+}
+
+.corpus_item_label{
+	 font-size: 15px !important;
+   color: #333;
+   font-family: Sansation_Regular;
+   overflow:hidden;
+   text-overflow:ellipsis;
+}
+
+.corpus_foot{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	overflow: hidden;
+	height: 35px;
+	width: 100%;
+}
+
+.corpus_foot_zoom{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-right: 5px;
+	overflow: hidden;
+	height: 90%;
+	width: 30%;
+}
+
+.corpus_foot_pagination{
+	
+}
+
+.corpus_foot_zoom_in, .corpus_foot_zoom_out {
+	border-top: 1px solid #888888;
+	border-left: 1px solid #888888;
+	box-shadow: 1px 1px 3px #333333;
+	background-color: #fff;
+	height: 15px;
+	width: 15px;
+	padding: 0px 0px;
+}
+/************ End corpus component style definition ***********/
