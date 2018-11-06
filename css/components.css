@@ -2,10 +2,10 @@
 .wrapper_corpus{
 	display: flex;
 	position: absolute;
-	left: 30%;
+	/*left: 30%;
 	top: 73%;
 	width: 65%;
-	height: 22%;
+	height: 22%;*/
 	
 	background-color: rgb(33,33,33,1.0);
 	padding-left: 0px;

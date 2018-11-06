@@ -414,8 +414,10 @@ function calcPosition(container, target) {
 	var w = (parseFloat(target.width()) || 430);
 	var h = (parseFloat(target.height()) || 260);
 		
-	position["x"] = Math.round(parseFloat(x/container.width())*10000) / 100;
-	position["y"] = Math.round(parseFloat(y/container.height())*10000) / 100;
+	//position["x"] = Math.round(parseFloat(x/container.width())*10000) / 100;
+	//position["y"] = Math.round(parseFloat(y/container.height())*10000) / 100;
+	position["x"] = parseFloat(x/container.width());
+	position["y"] = parseFloat(y/container.height());
 	position["width"] = parseFloat(w/container.width());
 	position["height"] = parseFloat(h/container.height());
 	//position["z-index"] = "10"+index;
@@ -455,7 +457,7 @@ function collectAndSubmit(target) {
 			template["shareContent"] = false;
 		
 		template["scenarios"] = scenarios;
-		console.log(template);
+		console.log(JSON.stringify(template));
 		//request("post", "/datacenter/", template, callback)
 	}
 }

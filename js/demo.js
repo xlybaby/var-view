@@ -1,3 +1,8 @@
+function drawCorpusComp() {
+	var root = $(".demo_bg");
+	
+}
+
 $(document).ready(function(){ 
 	mainInit();
 	$('.bxslider').bxSlider({
