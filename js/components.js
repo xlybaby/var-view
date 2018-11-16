@@ -4,13 +4,79 @@ var Corpus = (function ($) {
 		expand: function(event){
 			
 		},
-		load: function(scenarioId, data){
-			if(data) {
+		load: function(scenarioId, offset, limit, level, pData){
+			if(!pData) {
+				var l = 1;
+				if(level) l = level;
 				
+				 exchange("datacenter", "authorized/uc/s/data", {"scenarioId":scenarioId,"offset":offset,"limit":limit,"level":l}, function(data){
+					console.log("Corpus scenario fetch data:");
+					console.log(data);
+				});
+			} else {
+				//draw data
 			}
+				
+			
 		},
 		draw: function(scenario){
+			var scenarioId = scenario["scenarioId"];
+			console.log(scenario);
+			var bg = $(".demo_bg");
+			var position = scenario["position"];
+			var conf = scenario["configuration"];
+			var layout = conf["layout"];
+			var sBgcolor = layout["backgroundColor"];
+			var sFgcolor = layout["foregroundColor"];
+			var sPaddingTop = layout["paddingTop"];
+			var sPaddingRight = layout["paddingRight"];
+			var sPaddingLeft = layout["paddingLeft"];
+			var sPaddingBottom = layout["paddingBottom"];
+			var sBorderTop = layout["borderTop"];
+			var sBorderLeft = layout["borderLeft"];
+			var sBorderRight = layout["borderRight"];
+			var sBorderBottom = layout["borderBottom"];
+			var sBorderRadius = layout["borderRadius"];
+			var sBorderShadow = layout["borderShadow"];
 			
+			var comp = $('<div class="wrapper_corpus" scenarioId="'+scenarioId+'">'+
+										'<div class="comp_corpus">'+
+											'<div class="corpus_head"></div>'+
+											'<div class="corpus_body">'+
+												
+											'</div>'+
+											'<div class="corpus_foot">'+
+												'<div class="corpus_foot_zoom">'+
+													'<button class="corpus_foot_zoom_in"><div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:15px;color: #000;">+</div></button>&nbsp;&nbsp;'+
+													'<button class="corpus_foot_zoom_out"><div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:15px;color: #000;">-</div></button>&nbsp;&nbsp;'+
+												'</div>'+
+												'<div class="corpus_foot_pagination" style="display: none;"></div>'+
+											'</div>'+
+									'</div>'+
+								'</div>');
+			comp.css("width", (position["width"]*100)+"%");
+			comp.css("height", (position["height"]*100)+"%");
+			comp.css("left", (position["x"]*100)+"%");
+			comp.css("top", (position["y"]*100)+"%");
+			
+			comp.css("backgroundColor",sBgcolor);
+			
+			comp.css("paddingTop", sPaddingTop);
+			comp.css("paddingLeft", sPaddingLeft);
+			comp.css("paddingRight", sPaddingRight);
+			comp.css("paddingBottom", sPaddingBottom);
+			
+			comp.css("borderTop", sBorderTop);
+			comp.css("borderLeft", sBorderLeft);
+			comp.css("borderRight", sBorderRight);
+			comp.css("borderBottom", sBorderBottom);
+			
+			comp.css("boxShadow", sBorderShadow);
+			
+			var corpus = comp.children(".comp_corpus");
+			corpus.css("backgroundColor", sFgcolor);
+			
+			bg.append(comp);
 		}
     	
     } 
@@ -121,7 +187,7 @@ var DrawComponent = (function ($) {
 	        	Corpus.draw(scenario);
 	        	
 	        	//load
-	        	setTimeout( Corpus.load(scenario["scenarioId"]), 500 );
+	        	setTimeout( Corpus.load(scenario["scenarioId"], 0, 0), 500 );
         }
     	
     } 

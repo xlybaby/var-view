@@ -271,7 +271,8 @@ var templateInstance = (function ($) {
 			var shadow = borderInfo.find("#shadow-style").children("div[id^='shadow-style'] [selected='selected']");
 			if(shadow.length>0){
 				layoutInfoObj["borderShadow"] = shadow.css("box-shadow");
-			}
+			} else
+				layoutInfoObj["borderShadow"] = "0px";
 			
 			layoutInfoObj["paddingTop"] = paddingInfo.find("#sp-padding-top-val").val();
 			layoutInfoObj["paddingLeft"] = paddingInfo.find("#sp-padding-left-val").val();

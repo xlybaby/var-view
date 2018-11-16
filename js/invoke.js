@@ -1,14 +1,32 @@
-function invokeRrequest(method, uri, entity, callback) {
+var SERVICE_LOCATION_PREFIX = {"datacenter":"http://localhost:40001/datacenter", "platform":"http://localhost:7001/var"};
+
+function invokeRrequest(method, contentType, dt, uri, entity, callback) {
 	$.ajax({
         type: method,
         url: uri,
         data: JSON.stringify(entity),
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
+        dataType: dt,
+        contentType: contentType,
         success: function(data){
-        	callback(data);
+        	var msg = data["message"];
+        	if( !StringUtil.isEmpty(msg) ) {
+        		alert(msg);
+        		return;
+        	}
+        	var result = data["data"];
+        	callback(result);
         }
     });
+}
+
+function exchange(service, uri, entity, callback) {
+	var url = SERVICE_LOCATION_PREFIX[service];
+	if(uri.substr(0,'/'.length) !== '/')
+		url += "/"+uri;
+	else
+		url += uri;
+	console.log("exchange: " + url);
+	invokeRrequest("POST", "application/json; charset=utf-8", "json", url, entity, callback);
 }
 
 function invokeGet(uri, callback) {
