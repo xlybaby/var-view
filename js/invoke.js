@@ -1,4 +1,4 @@
-var SERVICE_LOCATION_PREFIX = {"datacenter":"http://localhost:40001/datacenter", "platform":"http://localhost:7001/var"};
+var SERVICE_LOCATION_PREFIX = {"datacenter":"http://localhost/datacenter", "platform":"http://localhost/platform"};
 
 function invokeRrequest(method, contentType, dt, uri, entity, callback) {
 	$.ajax({

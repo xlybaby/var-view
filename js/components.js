@@ -10,8 +10,25 @@ var Corpus = (function ($) {
 				if(level) l = level;
 				
 				 exchange("datacenter", "authorized/uc/s/data", {"scenarioId":scenarioId,"offset":offset,"limit":limit,"level":l}, function(data){
-					console.log("Corpus scenario fetch data:");
-					console.log(data);
+					//console.log("Corpus scenario fetch data:");
+					//console.log(JSON.parse(data));
+					var items = JSON.parse(data);
+					if(items.length>0) {
+						var corpus = $(".wrapper_corpus[scenarioId='"+scenarioId+"']");
+						var corpusBody  = corpus.children(".comp_corpus").children(".corpus_body");
+						for(var i=0; i<items.length; i++) {
+							var item = items[i];
+							var key="";
+							var value="";
+							if(item["key"])
+								key=item["key"]+': ';
+							if(item["value"])
+								value=item["value"];
+							
+							corpusBody.append($('<div class="corpus_item" expand="cascade" level="'+item["level"]+'"><span class="corpus_item_label">'+key+value+'</span></div>'))
+						}
+					}
+					
 				});
 			} else {
 				//draw data
