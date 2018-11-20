@@ -1078,9 +1078,9 @@ $(document).ready(function(){
 	$(".uc-edit-comp-add-attr").on({
 		click: function(event){
 			var clicktag = event.target.tagName;
-			if(clicktag==="svg")
+			if(clicktag.toLowerCase()==="svg")
 				var target = $(event.target).children("use");
-			else if(clicktag==="use")
+			else if(clicktag.toLowerCase()==="use")
 				var target = $(event.target);
 			else
 				return false;

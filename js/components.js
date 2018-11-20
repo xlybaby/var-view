@@ -1,6 +1,32 @@
 var Corpus = (function ($) {
 	
 	var pub = {
+		addItemListener: function(item) {
+			item.on({
+				click: function(event){
+					event.stopPropagation(); 
+					var clicktag = event.target.tagName;
+					if(clicktag.toLowerCase()==="span")
+						var target = $(event.target).parent("div");
+					else if(clicktag.toLowerCase()==="div")
+						var target = $(event.target);
+					else
+						return false;
+					
+					var wrapper = target.parents(".wrapper_corpus");
+					var level = parseInt(target.attr("level")) + 1;
+					Corpus.load(wrapper.attr("scenarioId"),0,0,level);
+					
+					var head = wrapper.children(".comp_corpus").children(".corpus_head");
+					head.css("display","flex");
+					var navItem = $("<a>"+target.text()+"</a>");
+					head.append(navItem);
+				},
+				mouseover: function(event){
+					event.target.style.cursor="pointer";
+				}
+			});
+		},
 		expand: function(event){
 			
 		},
@@ -9,13 +35,15 @@ var Corpus = (function ($) {
 				var l = 1;
 				if(level) l = level;
 				
-				 exchange("datacenter", "authorized/uc/s/data", {"scenarioId":scenarioId,"offset":offset,"limit":limit,"level":l}, function(data){
+				 exchange("datacenter", "authorized/uc/s/data/corpus", {"scenarioId":scenarioId,"offset":offset,"limit":limit,"level":l}, function(data){
 					//console.log("Corpus scenario fetch data:");
 					//console.log(JSON.parse(data));
 					var items = JSON.parse(data);
+					var corpusBody  = corpus.children(".comp_corpus").children(".corpus_body");
+					corpusBody.empty();
+					
 					if(items.length>0) {
-						var corpus = $(".wrapper_corpus[scenarioId='"+scenarioId+"']");
-						var corpusBody  = corpus.children(".comp_corpus").children(".corpus_body");
+						var corpus = $(".wrapper_corpus[scenarioId='"+scenarioId+"']");	
 						for(var i=0; i<items.length; i++) {
 							var item = items[i];
 							var key="";
@@ -24,8 +52,9 @@ var Corpus = (function ($) {
 								key=item["key"]+': ';
 							if(item["value"])
 								value=item["value"];
-							
-							corpusBody.append($('<div class="corpus_item" expand="cascade" level="'+item["level"]+'"><span class="corpus_item_label">'+key+value+'</span></div>'))
+							var oItem = $('<div class="corpus_item" expand="cascade" level="'+item["level"]+'"><span class="corpus_item_label">'+key+value+'</span></div>');
+							corpusBody.append(oItem);
+							Corpus.addItemListener(oItem);
 						}
 					}
 					
