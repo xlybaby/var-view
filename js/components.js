@@ -1,6 +1,33 @@
 var Corpus = (function ($) {
 	
 	var pub = {
+		addNavListener: function(item) {
+			item.on({
+				click: function(event) {
+					event.stopPropagation(); 
+					var clicktag = event.target.tagName;
+					if(clicktag.toLowerCase()==="span")
+						var target = $(event.target).parent("a");
+					else if(clicktag.toLowerCase()==="a")
+						var target = $(event.target);
+					else
+						return false;
+					var wrapper = target.parents(".wrapper_corpus");
+					var header = target.parent(".corpus_head");
+					var nextNav = target.nextAll();
+					if( nextNav.length == 0 )
+						return;
+					for(var i=0;i<nextNav.length;i++){
+						$(nextNav[i]).remove();
+					}
+					var level = parseInt(target.attr("level"));
+					Corpus.load(wrapper.attr("scenarioId"),0,0,level);
+				},
+				mouseover: function(event) {
+					event.target.style.cursor="pointer";
+				}
+			});
+		},
 		addItemListener: function(item) {
 			item.on({
 				click: function(event){
@@ -14,12 +41,16 @@ var Corpus = (function ($) {
 						return false;
 					
 					var wrapper = target.parents(".wrapper_corpus");
-					var level = parseInt(target.attr("level")) + 1;
-					Corpus.load(wrapper.attr("scenarioId"),0,0,level);
+					var level = parseInt(target.attr("level"));
+					var parentId = target.attr("id");
+					Corpus.load(wrapper.attr("scenarioId"),0,0,parentId,level+1);
 					
 					var head = wrapper.children(".comp_corpus").children(".corpus_head");
 					head.css("display","flex");
-					var navItem = $("<a>"+target.text()+"</a>");
+					if( head.children().length > 0 )
+						head.append($("<span>&nbsp;>&nbsp;</span>"));
+					var navItem = $("<a level='"+level+"'>"+target.text()+"</a>");
+					Corpus.addNavListener(navItem);
 					head.append(navItem);
 				},
 				mouseover: function(event){
@@ -30,20 +61,22 @@ var Corpus = (function ($) {
 		expand: function(event){
 			
 		},
-		load: function(scenarioId, offset, limit, level, pData){
+		load: function(scenarioId, offset, limit, parentId, level, pData){
 			if(!pData) {
 				var l = 1;
 				if(level) l = level;
 				
-				 exchange("datacenter", "authorized/uc/s/data/corpus", {"scenarioId":scenarioId,"offset":offset,"limit":limit,"level":l}, function(data){
+				 exchange("datacenter", "authorized/uc/s/data/corpus", {"scenarioId":scenarioId,"offset":offset,"limit":limit,"level":l, "parentId":parentId}, function(data){
 					//console.log("Corpus scenario fetch data:");
 					//console.log(JSON.parse(data));
-					var items = JSON.parse(data);
+					
+					var corpus = $(".wrapper_corpus[scenarioId='"+scenarioId+"']");	
 					var corpusBody  = corpus.children(".comp_corpus").children(".corpus_body");
 					corpusBody.empty();
 					
+					if( !data ) return false;
+					var items = JSON.parse(data);
 					if(items.length>0) {
-						var corpus = $(".wrapper_corpus[scenarioId='"+scenarioId+"']");	
 						for(var i=0; i<items.length; i++) {
 							var item = items[i];
 							var key="";
@@ -52,7 +85,7 @@ var Corpus = (function ($) {
 								key=item["key"]+': ';
 							if(item["value"])
 								value=item["value"];
-							var oItem = $('<div class="corpus_item" expand="cascade" level="'+item["level"]+'"><span class="corpus_item_label">'+key+value+'</span></div>');
+							var oItem = $('<div class="corpus_item" expand="cascade" id="'+item["id"]+'" level="'+item["level"]+'"><span class="corpus_item_label">'+key+value+'</span></div>');
 							corpusBody.append(oItem);
 							Corpus.addItemListener(oItem);
 						}
@@ -233,7 +266,7 @@ var DrawComponent = (function ($) {
 	        	Corpus.draw(scenario);
 	        	
 	        	//load
-	        	setTimeout( Corpus.load(scenario["scenarioId"], 0, 0), 500 );
+	        	setTimeout( Corpus.load(scenario["scenarioId"], 0, 0, "root"), 500 );
         }
     	
     } 
