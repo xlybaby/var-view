@@ -1,6 +1,19 @@
 var Corpus = (function ($) {
 	
 	var pub = {
+		addBodyScrollListener: function(body) {
+			body.scroll(function (event) {
+				var target = $(event.target);
+				console.log(target);
+                var addMore = body.children("#addMore").offset().top;
+                console.log(a);
+                console.log(body.scrollTop());
+                console.log(body.height());
+                if (addMore >= body.scrollTop() && addMore < (body.scrollTop() + body.height())) {
+                    console.log("addMore在可视范围");
+                }
+            });
+		},
 		addNavListener: function(item) {
 			item.on({
 				click: function(event) {
@@ -12,16 +25,22 @@ var Corpus = (function ($) {
 						var target = $(event.target);
 					else
 						return false;
+					
 					var wrapper = target.parents(".wrapper_corpus");
 					var header = target.parent(".corpus_head");
+					var parentId = target.attr("id");
+					
 					var nextNav = target.nextAll();
 					if( nextNav.length == 0 )
 						return;
 					for(var i=0;i<nextNav.length;i++){
 						$(nextNav[i]).remove();
 					}
-					var level = parseInt(target.attr("level"));
-					Corpus.load(wrapper.attr("scenarioId"),0,0,level);
+					Corpus.load(wrapper.attr("scenarioId"),0,10,parentId);
+					var head = target.parent(".corpus_head");
+					if( target.attr("id").toLowerCase()==="root" ){
+						head.animate({ height:"0px"}, 500,"linear");
+					}
 				},
 				mouseover: function(event) {
 					event.target.style.cursor="pointer";
@@ -41,15 +60,17 @@ var Corpus = (function ($) {
 						return false;
 					
 					var wrapper = target.parents(".wrapper_corpus");
-					var level = parseInt(target.attr("level"));
 					var parentId = target.attr("id");
-					Corpus.load(wrapper.attr("scenarioId"),0,0,parentId,level+1);
+					Corpus.load(wrapper.attr("scenarioId"),0,10,parentId);
 					
 					var head = wrapper.children(".comp_corpus").children(".corpus_head");
-					head.css("display","flex");
+					if( head.height() == 0 ){
+						head.animate({ height:"35px"}, 500,"linear");
+					}
+					
 					if( head.children().length > 0 )
 						head.append($("<span>&nbsp;>&nbsp;</span>"));
-					var navItem = $("<a level='"+level+"'>"+target.text()+"</a>");
+					var navItem = $("<a id='"+target.attr("id")+"'>"+target.text()+"</a>");
 					Corpus.addNavListener(navItem);
 					head.append(navItem);
 				},
@@ -61,19 +82,14 @@ var Corpus = (function ($) {
 		expand: function(event){
 			
 		},
-		load: function(scenarioId, offset, limit, parentId, level, pData){
+		load: function(scenarioId, offset, limit, parentId, pData){
 			if(!pData) {
-				var l = 1;
-				if(level) l = level;
+				var corpus = $(".wrapper_corpus[scenarioId='"+scenarioId+"']");	
+				var corpusBody  = corpus.children(".comp_corpus").children(".corpus_body");
+				var addMore = corpusBody.children("#addMore");
+				corpusBody.empty();
 				
-				 exchange("datacenter", "authorized/uc/s/data/corpus", {"scenarioId":scenarioId,"offset":offset,"limit":limit,"level":l, "parentId":parentId}, function(data){
-					//console.log("Corpus scenario fetch data:");
-					//console.log(JSON.parse(data));
-					
-					var corpus = $(".wrapper_corpus[scenarioId='"+scenarioId+"']");	
-					var corpusBody  = corpus.children(".comp_corpus").children(".corpus_body");
-					corpusBody.empty();
-					
+				 exchange("datacenter", "authorized/uc/s/data/corpus", {"scenarioId":scenarioId,"offset":offset,"limit":limit, "parentId":parentId}, function(data){	
 					if( !data ) return false;
 					var items = JSON.parse(data);
 					if(items.length>0) {
@@ -85,8 +101,9 @@ var Corpus = (function ($) {
 								key=item["key"]+': ';
 							if(item["value"])
 								value=item["value"];
-							var oItem = $('<div class="corpus_item" expand="cascade" id="'+item["id"]+'" level="'+item["level"]+'"><span class="corpus_item_label">'+key+value+'</span></div>');
-							corpusBody.append(oItem);
+							var oItem = $('<div class="corpus_item" expand="cascade" id="'+item["id"]+'"><span class="corpus_item_label" title="'+value+'">'+key+value+'</span></div>');
+							//corpusBody.append(oItem);
+							addMore.before(oItem);
 							Corpus.addItemListener(oItem);
 						}
 					}
@@ -120,9 +137,11 @@ var Corpus = (function ($) {
 			
 			var comp = $('<div class="wrapper_corpus" scenarioId="'+scenarioId+'">'+
 										'<div class="comp_corpus">'+
-											'<div class="corpus_head"></div>'+
+											'<div class="corpus_head">'+
+												'<a id="root" style="cursor: pointer;">Home</a>'+
+										    '</div>'+
 											'<div class="corpus_body">'+
-												
+											 '<div id="addMore" class="corpus_item" style="visible: hidden;"></div>'+
 											'</div>'+
 											'<div class="corpus_foot">'+
 												'<div class="corpus_foot_zoom">'+
@@ -154,6 +173,10 @@ var Corpus = (function ($) {
 			
 			var corpus = comp.children(".comp_corpus");
 			corpus.css("backgroundColor", sFgcolor);
+			var homeNav = corpus.children(".corpus_head").children("#root");
+			var addMore =  corpus.children(".corpus_body").children("#addMore");
+			Corpus.addNavListener(homeNav);
+			Corpus.addBodyScrollListener(addMore);
 			
 			bg.append(comp);
 		}
@@ -266,7 +289,7 @@ var DrawComponent = (function ($) {
 	        	Corpus.draw(scenario);
 	        	
 	        	//load
-	        	setTimeout( Corpus.load(scenario["scenarioId"], 0, 0, "root"), 500 );
+	        	setTimeout( Corpus.load(scenario["scenarioId"], 0, 10, "root"), 500 );
         }
     	
     } 
