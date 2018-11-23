@@ -1,6 +1,58 @@
 var Corpus = (function ($) {
 	
 	var pub = {
+		addZoomInOutListener: function(obj){
+			obj.on({
+				click: function(event) {
+					event.stopPropagation(); 
+					var clicktag = event.target.tagName;
+					if(clicktag.toLowerCase()==="div")
+						var target = $(event.target).parent("button");
+					else if(clicktag.toLowerCase()==="button")
+						var target = $(event.target);
+					else
+						return false;
+					
+					var foot =  target.parents(".corpus_foot");
+					var corpusbody = foot.siblings(".corpus_body");
+					var elements = corpusbody.children(":not(#addMore)");
+					if( target.hasClass("corpus_foot_zoom_in") ) {
+						if( (elements.width() + elements.width()*0.5) < corpusbody.width() * 0.5 ) {
+							elements.css("width", (elements.width() + elements.width()*0.5) + "px");
+						}
+					} else if( target.hasClass("corpus_foot_zoom_out") ) {
+						var width = parseInt(elements.css("width"));
+						if( (elements.width() - elements.width()*0.5) >= corpusbody.width() * 0.05 ) {
+							elements.css("width", (elements.width() - elements.width()*0.5) + "px");
+						}
+					}
+				}
+			});
+			
+		},
+		addMoreListener: function(obj) {
+			obj.on({
+				click: function(event) {
+					event.stopPropagation(); 
+					var clicktag = event.target.tagName;
+					if(clicktag.toLowerCase()==="span")
+						var target = $(event.target).parent("div");
+					else if(clicktag.toLowerCase()==="div")
+						var target = $(event.target);
+					else
+						return false;
+					
+					var curOffset = target.attr("offset");
+					var curLimit = target.attr("limit");
+					var wrapper = target.parents(".wrapper_corpus");
+					Corpus.load(wrapper.attr("scenarioId"),curOffset+curLimit,curLimit,parentId);
+					
+				}, 
+				mouseover: function(event) {
+					event.target.style.cursor="pointer";
+				}
+			});
+		},
 		addBodyScrollListener: function(body) {
 			body.scroll(function (event) {
 				var target = $(event.target);
@@ -87,7 +139,10 @@ var Corpus = (function ($) {
 				var corpus = $(".wrapper_corpus[scenarioId='"+scenarioId+"']");	
 				var corpusBody  = corpus.children(".comp_corpus").children(".corpus_body");
 				var addMore = corpusBody.children("#addMore");
-				corpusBody.empty();
+				//corpusBody.empty();
+				var elements = corpusBody.children(":not(#addMore)");
+				if(elements.length>0)
+					elements.remove();
 				
 				 exchange("datacenter", "authorized/uc/s/data/corpus", {"scenarioId":scenarioId,"offset":offset,"limit":limit, "parentId":parentId}, function(data){	
 					if( !data ) return false;
@@ -106,6 +161,8 @@ var Corpus = (function ($) {
 							addMore.before(oItem);
 							Corpus.addItemListener(oItem);
 						}
+						addMore.attr( "offset", offset );
+						addMore.attr( "limit", limit );
 					}
 					
 				});
@@ -141,7 +198,7 @@ var Corpus = (function ($) {
 												'<a id="root" style="cursor: pointer;">Home</a>'+
 										    '</div>'+
 											'<div class="corpus_body">'+
-											 '<div id="addMore" class="corpus_item" style="visible: hidden;"></div>'+
+											 '<div id="addMore" class="corpus_item"><span class="corpus_item_label">+</span></div>'+
 											'</div>'+
 											'<div class="corpus_foot">'+
 												'<div class="corpus_foot_zoom">'+
@@ -176,8 +233,10 @@ var Corpus = (function ($) {
 			var homeNav = corpus.children(".corpus_head").children("#root");
 			var addMore =  corpus.children(".corpus_body").children("#addMore");
 			Corpus.addNavListener(homeNav);
-			Corpus.addBodyScrollListener(addMore);
-			
+			//Corpus.addBodyScrollListener(addMore);
+			Corpus.addZoomInOutListener(corpus.children(".corpus_foot").children(".corpus_foot_zoom").children(".corpus_foot_zoom_in"));
+			Corpus.addZoomInOutListener(corpus.children(".corpus_foot").children(".corpus_foot_zoom").children(".corpus_foot_zoom_out"));
+
 			bg.append(comp);
 		}
     	
