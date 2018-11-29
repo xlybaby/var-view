@@ -263,6 +263,66 @@ var Ranklist = (function ($) {
 var Subscribe = (function ($) {
 	
 	var pub = {
+		addFooterMouseover: function(footer) {
+			footer.on({
+				mouseover: function(event) {
+					event.stopPropagation(); 
+					console.log("footer on mouseover");
+					var target = $(event.target);
+					var body = target.siblings(".subscribe_body");
+					var items = body.children(".subscribe_item");
+					var bodyHeight = body.height();
+					var allheight = items.outerHeight(true) * items.length;
+					console.log("footer move top: "+(bodyHeight-allheight)+"px");
+					body.animate({ top: (bodyHeight-allheight)+"px"}, 2000,"linear");
+				},
+				mouseout: function(event) {
+					event.stopPropagation(); 
+					var target = $(event.target);
+					target.hide();
+				}
+			})
+		},
+		addCompMouseover: function(comp) {
+			comp.on({
+				mousemove: function(event) {
+					//event.stopPropagation(); 
+					var target = $(event.target);
+					if( target.hasClass("subscribe_footer") ) {
+						event.stopPropagation(); 
+						return false;
+					}
+						
+					if( !target.hasClass("comp_subscribe") ){
+						event.stopPropagation(); 
+						target =  $(event.target).parents(".comp_subscribe");
+					}
+
+					var compHeight = target.height();
+					var body = target.children(".subscribe_body");
+					var bodyHeight = body.height();
+					var bodyoffsetHeight = bodyHeight+Math.abs(body.position().top);
+					//var offsetX = event.clientX - target.offset().left;
+					var offsetY = event.clientY - target.offset().top;
+					//console.log(offsetX,offsetY);
+					if( (compHeight-offsetY) < 7 ) {
+						//console.log("body goes down");
+						var items = body.children(".subscribe_item");
+						var allheight = items.outerHeight(true) * items.length;
+						//console.log("all items' height: " + allheight);
+						//console.log("body Height: " + bodyHeight);
+						if( allheight > bodyoffsetHeight ) {
+							var footer = body.siblings(".subscribe_footer");
+							footer.css("top", (compHeight-footer.height())+"px");
+							footer.show();
+						} else {
+							console.log("body already goes down");
+						}
+					}
+					
+				}
+			});
+		},	
 		load: function(scenarioId, pdata){
 			var data = pdata;
 			if(!data) {
@@ -274,7 +334,7 @@ var Subscribe = (function ($) {
 				for( var i = 0; i < data.length; i++ ) {
 					var isnew = data[i]["isNew"];
 					if( isnew ) {
-						var item = $('<div class="subscribe_item" sign-id="" style="left: 100%;">'+
+						var item = $('<div class="subscribe_item bounce animated faster" sign-id="" style="-webkit-animation-delay: '+(i*0.1)+'s; animation-delay: '+(i*0.1)+'s;">'+
 								'	<div class="subscribe_new_left">'+
 								'	<span class="subscribe_label" title="'+data[i]["subject"]+'"><a>'+data[i]["subject"]+'</a></span>'+
 								'</div>'+
@@ -284,12 +344,12 @@ var Subscribe = (function ($) {
 							'</div>');
 						body.append(item);
 					} else {
-						var item = $('<div class="subscribe_item" sign-id="" style="left: 100%;">'+
+						var item = $('<div class="subscribe_item bounce animated faster" sign-id="" style="-webkit-animation-delay: '+(i*0.1)+'s; animation-delay: '+(i*0.1)+'s;">'+
 								'	<span class="subscribe_label" title="'+data[i]["subject"]+'"><a>'+data[i]["subject"]+'</a></span>'+
 						'</div>');
 						body.append(item);
 					}
-					item.delay(i*350).animate({ left: "0px"}, 400,"linear");
+					//item.delay(i*350).animate({ left: "0px"}, 400,"linear");
 				}
 			}
 		},
@@ -317,6 +377,8 @@ var Subscribe = (function ($) {
 											'<div class="comp_subscribe">'+
 											'<div class="subscribe_body" list-size="">'+			
 											'</div>'+
+											'<div class="subscribe_footer">'+			
+											'</div>'+
 										'</div>'+
 									'</div>');
 			comp.css("width", (position["width"]*100)+"%");
@@ -337,8 +399,13 @@ var Subscribe = (function ($) {
 			comp.css("borderBottom", sBorderBottom);
 			
 			comp.css("boxShadow", sBorderShadow);
-			
 			bg.append(comp);
+			
+			var compsub = comp.children(".comp_subscribe");
+			Subscribe.addCompMouseover(compsub);
+			
+			var footer = comp.children(".comp_subscribe").children(".subscribe_footer");
+			Subscribe.addFooterMouseover(footer);
 		}
     	
     } 
@@ -388,11 +455,17 @@ var Banner = (function ($) {
 					if( lastimg.length > 0 ) {
 						lastimg.attr("display","");
 						//lastimg.animate({ opacity:0, filter:"alpha(opacity=0)"}, 400,"linear");
-						lastimg.fadeOut(400);
+						//lastimg.fadeOut(700);
+						//lastimg.hide(1000);
+						lastimg.removeClass("fadeIn animated");
+						lastimg.addClass("fadeOut animated");
 					}
 					img.attr("display","display");
-					//img.animate({ { opacity:100, filter:"alpha(opacity=100)"}}, 400,"linear");
-					img.fadeIn(400);
+					img.removeClass("fadeOut animated");
+					img.addClass("fadeIn animated");
+					//img.animate({ opacity:100, filter:"alpha(opacity=100)"}, 400,"linear");
+					//img.fadeIn(700);
+					//img.show(1000);
 				},
 				mouseover: function(event){
 					event.target.style.cursor="pointer";
@@ -405,13 +478,16 @@ var Banner = (function ($) {
 			var footer = banner.children(".comp_banner").children(".banner_footer");
 			var bgs = body.children(".banner_bg");
 			for(var i=0; i<bgs.length; i++) {
-				var nav = $('<div class="banner_nav" style="background-color: rgb(1.0);"></div>');
+				var nav = $('<div class="banner_nav" style="background-color: rgb('+randomize(1, 255)+','+randomize(1, 255)+','+randomize(1, 255)+',1.0);"></div>');
 				footer.append(nav);
 				Banner.addNavClickListener(nav);
 			}
+			var first = footer.children(".banner_nav:eq(0)");
+			first.trigger("click");
+			
 			var loop = setInterval(function(scenarioId){
-				var banner = $(".wrapper_banner[scenarioId='"+scenarioId+"']");
-				var footer = banner.children(".comp_banner").children(".banner_footer");
+				//var banner = $(".wrapper_banner[scenarioId='"+scenarioId+"']");
+				//var footer = banner.children(".comp_banner").children(".banner_footer");
 				var clickedNav =  footer.children(".banner_nav[clicked='clicked']");
 				var next;
 				if(clickedNav.length>0){
@@ -422,7 +498,7 @@ var Banner = (function ($) {
 				} 
 				next.trigger("click");
 				
-			}, 2000);
+			}, 3500);
 		},
 		load: function(scenarioId, data){
 			if(data) {
@@ -539,7 +615,7 @@ $(document).ready(function(){
 	var templateTest = {"title":"test020","keywords":"","shareTemplate":true,"shareContent":true,"scenarios":[{"position":{"x":0.3,"y":0.73,"width":0.65,"height":0.22},"scenarioId":"uc_sce__bf6be19f-59fe-7958-57ac-fe4c5f83f505","scenarioType":"5","scenarioTypeName":"CORPUSCOLLECT","href":"http://drugs.dxy.cn/","configuration":{"automation":0,"maxDuration":7200,"maxThreadNum":1,"layout":{"backgroundColor":"#ffffff","foregroundColor":"#ffffff","borderTop":"0px solid #ffffff","borderRight":"0px solid #ffffff","borderBottom":"0px solid #ffffff","borderLeft":"0px solid #ffffff","borderRadius":"0px","paddingTop":"0px","paddingLeft":"0px","paddingBottom":"0px","paddingRight":"0px"},"schedule":{"interval":3600,"unit":"SECONDS"}},"actors":{"pages":[{"pageId":"uc_sce__bf6be19f-59fe-7958-57ac-fe4c5f83f505_page0","no":0,"pageComponent":{"containers":{"selector":{"tag":"div","id":"common_main"},"iterators":{"selector":{"tag":"li"},"items":{"label":{"name":"itemVal"},"value":{"selector":{"tag":"a","index":"1"}},"link":0,"extract":0,"img":0}}},"pagination":{}}}],"properties":{}}},{"position":{"x":0.05,"y":0.5,"width":0.2,"height":0.45},"scenarioId":"uc_sce__bf6be19f-59fe-7958-57ac-fe4c45jf8505","scenarioType":"2","scenarioTypeName":"REFRESHBLOCK","href":"https://www.libaclub.com/","configuration":{"automation":0,"maxDuration":7200,"maxThreadNum":1,"layout":{"backgroundColor":"#ffffff","foregroundColor":"#ffffff","borderTop":"0px solid #ffffff","borderRight":"0px solid #ffffff","borderBottom":"0px solid #ffffff","borderLeft":"0px solid #ffffff","borderRadius":"0px","paddingTop":"0px","paddingLeft":"0px","paddingBottom":"0px","paddingRight":"0px"},"schedule":{"interval":3600,"unit":"SECONDS"}},"actors":{"pages":[{"pageId":"uc_sce__bf6be19f-59fe-7958-57ac-fe4c45jf8505_page0","no":0,"pageComponent":{"containers":{"selector":{"tag":"ul","clazz":"ui-list"},"iterators":{"selector":{"xpath":"//li[@class='ui-list-item']/div[@class='ui-list-item-title']"},"items":{"label":{"name":"subject"},"value":{"selector":{"tag":"a","index":"2"}},"link":1,"extract":0,"img":0}}},"pagination":{}}}],"properties":{"listSize": 10}}}]};
 	PopulateTemplate.populate(templateTest);
 	
-	var testsub = [{"subject":"昨晚收到请帖，八年抗战的小情侣还是被丈母娘拆散了，寒门难出贵子", "isNew":true, "href":"https://www.libaclub.com/t_13_10154528_1.htm"},
+	var testsub = [{"subject":"testtesttesttest", "isNew":true, "href":"https://www.libaclub.com/t_13_10154528_1.htm"},
 		{"subject":"听说某三也混篱笆，那你知道男人住的所谓的豪宅是女方家买的女方家名字吗？", "isNew":true, "href":"https://www.libaclub.com/t_13_10154805_1.htm"},
 		{"subject":"大班英语读什么，请各位指点一下", "isNew":false, "href":"https://www.libaclub.com/t_302_9841909_1.htm"},
 		{"subject":"现在的阿姨真的看不懂， 吃顿饭气死人", "isNew":false, "href":"https://www.libaclub.com/t_13_10149659_1.htm"},
@@ -548,11 +624,16 @@ $(document).ready(function(){
 		{"subject":"朋友，婚后的你幸福吗？", "isNew":false, "href":"https://www.libaclub.com/t_49_7395685_1.htm"},
 		{"subject":"图中阳台上的空调管如何遮挡，求教各路大神", "isNew":false, "href":"https://www.libaclub.com/t_4_10024694_1.htm"},
 		{"subject":"流感疫苗来了，有人带娃去打了吗？华兰生物疫苗有限公司的", "isNew":false, "href":"https://www.libaclub.com/t_13_10154718_1.htm"},
-		];
-	//Subscribe.load("test-subscribe-001", testsub);
+		{"subject":"我一定是进了假的欧美外企，根本不像电视上演的…", "isNew":false, "href":"https://www.libaclub.com/t_13_10156298_1.htm"},
+		{"subject":"在市重点以上名校高中或者鸡血初中里面，真的那么多人抑郁症吗？", "isNew":false, "href":"https://www.libaclub.com/t_13_10155454_1.htm"},
+		{"subject":"最近的空气质量，我快抑郁了", "isNew":false, "href":"https://www.libaclub.com/t_13_10155516_1.htm"},
+		{"subject":"胡歌发声蒋劲夫家暴事件。娜扎孙艺洲紧跟节奏。", "isNew":false, "href":"https://www.libaclub.com/t_13_10156161_1.htm"},
+		{"subject":"呵呵，本人硕士，今天正式开启全职生活", "isNew":false, "href":"https://www.libaclub.com/t_13_10156156_1.htm"}
+];
+	Subscribe.load("test-subscribe-001", testsub);
 	//$('.comp_banner').bxSlider({
 	//   mode: 'fade',
 	//    captions: true
 	//  });
-	
+	Banner.populateNavigation("test-banner-001");
 });

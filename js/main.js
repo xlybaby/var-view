@@ -1,3 +1,8 @@
+function randomize(from, end){   
+    if(!from && from!=0 || !end){return null;}   
+    return Math.floor( ( Math.random() * end ) + from );   
+} 
+
 var StringUtil = (function ($) {
 	
 	var pub = {

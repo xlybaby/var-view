@@ -257,7 +257,26 @@
 	font-family: akbar;
 	src: url('../fonts/akbar.ttf'),url('../fonts/akbar.eot'); /* IE9 */
 }
-
+@font-face{
+	font-family: cy_jlis;
+	src: url('../fonts/cn/CY_JLIS.TTF'),url('../fonts/cn/CY_JLIS.eot'); /* IE9 */
+}
+@font-face{
+	font-family: hk_ttt;
+	src: url('../fonts/cn/HK_TTT.ttc'),url('../fonts/cn/HK_TTT.eot'); /* IE9 */
+}
+@font-face{
+	font-family: luoxigangbi_xingkai;
+	src: url('../fonts/cn/luoxigangbi_xingkai.ttf'),url('../fonts/cn/luoxigangbi_xingkai.eot'); /* IE9 */
+}
+@font-face{
+	font-family: qingdaohuaguang_jianli_bian;
+	src: url('../fonts/cn/qingdaohuaguang_jianli_bian.ttf'),url('../fonts/cn/qingdaohuaguang_jianli_bian.eot'); /* IE9 */
+}
+@font-face{
+	font-family: xihei001;
+	src: url('../fonts/cn/xihei001.ttf'),url('../fonts/cn/xihei001.eot'); /* IE9 */
+}
 
 .en_block_title{
 	font-family: Sansation_Bold;
