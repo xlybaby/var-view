@@ -247,12 +247,191 @@ var Corpus = (function ($) {
 var Ranklist = (function ($) {
 	
 	var pub = {
-		load: function(scenarioId, data){
-			if(data) {
-				
+		load: function(scenarioId, pdata){
+			var data = pdata;
+			if(!data) {
+				//retrieve data from backend
 			}
+			var body = $(".wrapper_ranklist[scenarioId='"+scenarioId+"']").children(".comp_ranklist").children(".ranklist_body");
+			var ranklist = echarts.init(body[0]);
+			
+			var dataProduct1=[[4.50,30,5]];
+			var dataProduct2=[[4.45,270,5]];
+			var dataProduct3=[[4.40,90,5]];
+			var dataProduct4=[[4.30,63,5]];
+			var dataProduct5=[[4.30,14,5]];
+			var dataProduct6=[[4.25,60,5]];
+			var dataProduct7=[[4.20,7,5]];
+			var dataProduct8=[[4.15,30,5]];
+			var dataProduct9=[[4.35,60,20]];
+			var dataProduct10=[[4.25,30,20]];
+			
+			
+			var schema = [
+			    {name: 'rate', index: 0, text: '收益率'},
+			    {name: 'investment', index: 1, text: '期限'},
+			    {name: 'purchase ', index: 2, text: '起购额'}
+			];
+
+			var lineStyle = {
+			    normal: {
+			        width: 1,
+			        opacity: 0.5
+			    }
+			};
+
+			option = {
+			    //backgroundColor: '#333',
+			    legend: {
+			    	type: 'scroll',
+			        bottom: 30,
+			        data: ['月成长（净值型）2014年1期', '和盈滚滚添利270天', '和盈滚滚添利90天','和盈63天','双周成长（净值型）2015年1期','和盈滚滚添利60天','周成长（净值型）','和盈滚滚添利30天','智慧滚滚添利60天','智慧滚滚添利30天'],
+			        itemGap: 10,
+			        textStyle: {
+			            color: '#333',
+			            fontSize: 10
+			        }
+			    },
+//			    tooltip: {
+//			        padding: 10,
+//			        backgroundColor: '#222',
+//			        borderColor: '#777',
+//			        borderWidth: 1,
+//			        formatter: function (obj) {
+//			            var value = obj[0].value;
+//			            return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+//			                + obj[0].seriesName + ' ' + value[0] + '日期：'
+//			                + value[7]
+//			                + '</div>'
+//			                + schema[1].text + '：' + value[1] + '<br>'
+//			                + schema[2].text + '：' + value[2] + '<br>'
+//			                + schema[3].text + '：' + value[3] + '<br>'
+//			                + schema[4].text + '：' + value[4] + '<br>'
+//			                + schema[5].text + '：' + value[5] + '<br>'
+//			                + schema[6].text + '：' + value[6] + '<br>';
+//			        }
+//			    },
+			    // dataZoom: {
+			    //     show: true,
+			    //     orient: 'vertical',
+			    //     parallelAxisIndex: [0]
+			    // },
+			    parallelAxis: [
+			        {dim: 0, name: schema[0].text},
+			        {dim: 1, name: schema[1].text},
+			        {dim: 2, name: schema[2].text}
+			    ],
+			    visualMap: {
+			        show: true,
+			        min: 0,
+			        max: 6,
+			        dimension: 0,
+			        inRange: {
+			            color: ['#d94e5d','#eac736','#50a3ba'].reverse(),
+			            // colorAlpha: [0, 1]
+			        }
+			    },
+			    parallel: {
+			        left: '5%',
+			        right: '18%',
+			        //bottom: 100,
+			        parallelAxisDefault: {
+			            type: 'value',
+			            name: 'Pingan Product',
+			            nameLocation: 'end',
+			            nameGap: 20,
+			            nameTextStyle: {
+			                color: '#333',
+			                fontSize: 12
+			            },
+			            axisLine: {
+			                lineStyle: {
+			                    color: '#aaa'
+			                }
+			            },
+			            axisTick: {
+			                lineStyle: {
+			                    color: '#777'
+			                }
+			            },
+			            splitLine: {
+			                show: false
+			            },
+			            axisLabel: {
+			                textStyle: {
+			                    color: '#333'
+			                }
+			            }
+			        }
+			    },
+			    series: [
+			        {
+			            name: '月成长（净值型）2014年1期',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct1
+			        },
+			        {
+			            name: '和盈滚滚添利270天',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct2
+			        },
+			        {
+			            name:  '和盈滚滚添利90天',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct3
+			        },
+			        {
+			            name: '和盈63天',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct4
+			        },
+			        {
+			            name: '双周成长（净值型）2015年1期',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct5
+			        },
+			        {
+			            name: '和盈滚滚添利60天',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct6
+			        },
+			        {
+			            name: '周成长（净值型）',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct7
+			        },
+			        {
+			            name: '和盈滚滚添利30天',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct8
+			        },
+			        {
+			            name: '智慧滚滚添利60天',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct9
+			        },
+			        {
+			            name: '智慧滚滚添利30天',
+			            type: 'parallel',
+			            lineStyle: lineStyle,
+			            data: dataProduct10
+			        }
+			    ]
+			};
+			ranklist.setOption(option);
+			
 		},
 		draw: function(scenario){
+			var scenarioId = scenario["scenarioId"];
 			
 		}
     	
@@ -415,10 +594,60 @@ var Subscribe = (function ($) {
 var Timeseries = (function ($) {
 	
 	var pub = {
-		load: function(scenarioId, data){
-			if(data) {
-				
+		load: function(scenarioId, pdata){
+			var data = pdata;
+			if(!data) {
+				//retrieve data from backend
 			}
+			var body = $(".wrapper_timeseries[scenarioId='"+scenarioId+"']").children(".comp_timeseries").children(".timeseries_body");
+			var timeseries = echarts.init(body[0]);
+			
+			var dateList = data.map(function (item) {
+			    return item[0];
+			});
+			var valueList = data.map(function (item) {
+			    return item[1];
+			});
+
+			option = {
+
+			    // Make gradient line here
+			    visualMap: [{
+			        show: false,
+			        type: 'continuous',
+			        seriesIndex: 0,
+			        min: 0,
+			        max: 35
+			    }],
+
+
+			    title: [{
+			        left: 'center',
+			        text: '华夏幸福(600340)'
+			    }],
+			    tooltip: {
+			        trigger: 'axis'
+			    },
+			    xAxis: [{
+			        data: dateList
+			    }],
+			    yAxis: [{
+			    	min: 25,
+			    	max: 26,
+			        splitLine: {show: false}
+			    }],
+			    grid: [{
+			        bottom: '20%',
+			        left: '10%'
+			    }],
+			    series: [{
+			        type: 'line',
+			        showSymbol: false,
+			        data: valueList
+			    }]
+			};
+			
+			timeseries.setOption(option);
 		},
 		draw: function(scenario){
 			
@@ -613,7 +842,7 @@ $(document).ready(function(){
 	
 	//test 
 	var templateTest = {"title":"test020","keywords":"","shareTemplate":true,"shareContent":true,"scenarios":[{"position":{"x":0.3,"y":0.73,"width":0.65,"height":0.22},"scenarioId":"uc_sce__bf6be19f-59fe-7958-57ac-fe4c5f83f505","scenarioType":"5","scenarioTypeName":"CORPUSCOLLECT","href":"http://drugs.dxy.cn/","configuration":{"automation":0,"maxDuration":7200,"maxThreadNum":1,"layout":{"backgroundColor":"#ffffff","foregroundColor":"#ffffff","borderTop":"0px solid #ffffff","borderRight":"0px solid #ffffff","borderBottom":"0px solid #ffffff","borderLeft":"0px solid #ffffff","borderRadius":"0px","paddingTop":"0px","paddingLeft":"0px","paddingBottom":"0px","paddingRight":"0px"},"schedule":{"interval":3600,"unit":"SECONDS"}},"actors":{"pages":[{"pageId":"uc_sce__bf6be19f-59fe-7958-57ac-fe4c5f83f505_page0","no":0,"pageComponent":{"containers":{"selector":{"tag":"div","id":"common_main"},"iterators":{"selector":{"tag":"li"},"items":{"label":{"name":"itemVal"},"value":{"selector":{"tag":"a","index":"1"}},"link":0,"extract":0,"img":0}}},"pagination":{}}}],"properties":{}}},{"position":{"x":0.05,"y":0.5,"width":0.2,"height":0.45},"scenarioId":"uc_sce__bf6be19f-59fe-7958-57ac-fe4c45jf8505","scenarioType":"2","scenarioTypeName":"REFRESHBLOCK","href":"https://www.libaclub.com/","configuration":{"automation":0,"maxDuration":7200,"maxThreadNum":1,"layout":{"backgroundColor":"#ffffff","foregroundColor":"#ffffff","borderTop":"0px solid #ffffff","borderRight":"0px solid #ffffff","borderBottom":"0px solid #ffffff","borderLeft":"0px solid #ffffff","borderRadius":"0px","paddingTop":"0px","paddingLeft":"0px","paddingBottom":"0px","paddingRight":"0px"},"schedule":{"interval":3600,"unit":"SECONDS"}},"actors":{"pages":[{"pageId":"uc_sce__bf6be19f-59fe-7958-57ac-fe4c45jf8505_page0","no":0,"pageComponent":{"containers":{"selector":{"tag":"ul","clazz":"ui-list"},"iterators":{"selector":{"xpath":"//li[@class='ui-list-item']/div[@class='ui-list-item-title']"},"items":{"label":{"name":"subject"},"value":{"selector":{"tag":"a","index":"2"}},"link":1,"extract":0,"img":0}}},"pagination":{}}}],"properties":{"listSize": 10}}}]};
-	PopulateTemplate.populate(templateTest);
+	//PopulateTemplate.populate(templateTest);
 	
 	var testsub = [{"subject":"testtesttesttest", "isNew":true, "href":"https://www.libaclub.com/t_13_10154528_1.htm"},
 		{"subject":"听说某三也混篱笆，那你知道男人住的所谓的豪宅是女方家买的女方家名字吗？", "isNew":true, "href":"https://www.libaclub.com/t_13_10154805_1.htm"},
@@ -636,4 +865,69 @@ $(document).ready(function(){
 	//    captions: true
 	//  });
 	Banner.populateNavigation("test-banner-001");
+	var series = [["09:25:03",	25.43],
+	["09:30:02",	25.30],
+	["09:30:05",	25.36],
+	["09:30:08",	25.39],
+	["09:30:11",	25.36],
+	["09:30:14",	25.28],
+	["09:30:17",	25.30],
+	["09:30:20",	25.29],
+	["09:30:23",	25.29],
+	["09:30:26",	25.26],
+	["09:30:29",	25.29],
+	["09:30:32",	25.29],
+	["09:30:35",	25.27],
+	["09:30:38",	25.29],
+	["09:30:41",	25.30],
+	["09:30:44",	25.36],
+	["09:30:47",	25.30],
+	["09:30:50",	25.36],
+	["09:30:53",	25.30],
+	["09:30:56",	25.36],
+	["09:30:59",	25.30],
+	["09:31:02",	25.30],
+	["09:31:05",	25.30],
+	["09:31:08",	25.30],
+	["09:31:11",	25.30],
+	["09:31:14",	25.30],
+	["09:31:20",	25.30],
+	["09:31:26",	25.29],
+	["09:31:29",	25.28],
+	["09:31:32",	25.29],
+	["09:31:35",	25.26],
+	["09:31:38",	25.27],
+	["09:31:41",	25.26],
+	["09:31:44",	25.27],
+	["09:31:47",	25.26],
+	["09:31:50",	25.26],
+	["09:31:53",	25.26],
+	["09:31:56",	25.26],
+	["09:31:59",	25.25],
+	["09:32:02",	25.24],
+	["09:32:05",	25.22],
+	["09:32:08",	25.22],
+	["09:32:11",	25.24],
+	["09:32:14",	25.22],
+	["09:32:17",	25.23],
+	["09:32:20",	25.22],
+	["09:32:23",	25.20],
+	["09:32:26",	25.20],
+	["09:32:29",	25.18],
+	["09:32:32",	25.22],
+	["09:32:35",	25.22],
+	["09:32:38",	25.20],
+	["09:32:41",	25.20],
+	["09:32:44",	25.20],
+	["09:32:47",	25.22],
+	["09:32:50",	25.22],
+	["09:32:53",	25.18],
+	["09:32:56",	25.19],
+	["09:32:59",	25.22],
+	["09:33:05",	25.23],
+	["09:33:08",	25.22]];
+	
+	Timeseries.load("test-timeseries-001", series);
+	
+	Ranklist.load("test-ranklist-001");
 });
