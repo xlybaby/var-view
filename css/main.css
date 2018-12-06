@@ -281,7 +281,14 @@
 .en_block_title{
 	font-family: Sansation_Bold;
 	font-weight: 700;
+	font-size: 1em;
 }
+.cn_block_title{
+	font-family: xihei001;
+	font-weight: 700;
+	font-size: 1em;
+}
+
 .en_input_label{
 	font-family: Sansation_Light;
 	font-weight: 900;

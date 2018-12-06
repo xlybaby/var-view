@@ -142,15 +142,16 @@
 
 .uc-input-title{
 	position: relative;
-	color: rgb(44,128,252);
+	color: rgb(33,33,33,1.0);
 }
 .uc-input-area{
 	position: relative;
-	background-color: #f1f4f2;
+	background-color: rgb(232,232,232,0.75);
 	border-radius: 10px;
 	width: 100%;
 	height: 100%;
-	/*margin: 15px 0px 0px 0px;*/
+	/*background-color: #f1f4f2;
+	margin: 15px 0px 0px 0px;*/
 	margin-top: 7px;
 	padding: 6px 0px 6px 0px;
 }
@@ -681,23 +682,107 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 .uc-edit-panel{
 	position: relative;
 	flex-direction: column;
-	display: none;
+	display: flex;
 	/*
 	background-color: #ffffff;*/
-  height: 90%;
-  width: 0px;
-  margin-right: 10px;	
+  height: 100%;
+  width: 0;
+  max-width: 580px;
+  min-width: 0px;
+  /*margin-right: 10px;	*/
   padding: 0px;
   
-  background-color: rgba(255,255,255,0.85);
-	border:1px solid #eee;
-  border-radius: 10px;
+  background-color: rgb(213,213,213,1.0);
+  border-left: 	2px solid rgba(255,255,255,1.0);
+  /*
+  border:1px solid #eee;
+  border-radius: 10px;*/
   overflow: hidden;
+}
+.uc-edit-panel-layout-bg {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
+	padding-right: 12px;	
+}
+.uc-edit-panel-layout {
+	position: absolute;
+	align-items: center;
+	justify-content: space-around;
+	display: none;
+	height: 25px;	
+	width: 40%;
+	top: 100%;
+	left: 60%;
+	background-color: rgb(255,255,255,1.0 );
+}
+.uc-edit-panel-layout-l{
+	transform:rotate(180deg);
+-ms-transform:rotate(180deg); 	/* IE 9 */
+-moz-transform:rotate(180deg); 	/* Firefox */
+-webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+-o-transform:rotate(180deg); 	/* Opera */
+}
+.uc-edit-panel-layout-r{
+	
+}
+.uc-edit-panel-layout-t{
+	transform:rotate(90deg);
+-ms-transform:rotate(90deg); 	/* IE 9 */
+-moz-transform:rotate(90deg); 	/* Firefox */
+-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+-o-transform:rotate(90deg); 	/* Opera */
+}
+.uc-edit-panel-layout-b{
+	transform:rotate(-90deg);
+-ms-transform:rotate(-90deg); 	/* IE 9 */
+-moz-transform:rotate(-90deg); 	/* Firefox */
+-webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+-o-transform:rotate(-90deg); 	/* Opera */
+}
+.uc-edit-panel-tag-bg {
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: 35px;
+	background-color: rgb(203,203,203,1.0);
+	padding-left: 12px;	
+}
+.uc-edit-panel-tag-sel {
+	display: flex;
+	width: 65px;
+	height: 100%;
+	align-items: center;
+	overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   
+   border-top: 1px solid rgb(255,255,255,1.0);
+   border-left: 1px solid rgb(255,255,255,1.0);
+   border-right: 1px solid rgb(255,255,255,1.0);
+   border-radius: 5px;
+   background-color: rgb(213,213,213,1.0);
+}
+.uc-edit-panel-tag {
+	position: relative;
+	display: flex;
+	width: 65px;
+	min-width: 55px;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+	overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
 }
 .uc-edit-panel-top{
 	position: relative;
 	
-	display: flex;
+	display: none;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -726,7 +811,7 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 .uc-edit-panel-bot{
 	position: relative;
 	
-	display: flex;
+	display: none;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -770,6 +855,12 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
   height: 100%;
   margin: 0px;	
   padding: 0px;
+  
+  filter:alpha(opacity:0);
+	opacity:0; 
+	-moz-opacity:0;
+	-khtml-opacity: 0;
+	
   overflow: hidden;
 }
 .uc-edit-panel-block{
@@ -1132,7 +1223,22 @@ padding: 0px;
   
   z-index: 6;
 }
-
+.uc_new_box{
+	display: flex;
+	position: absolute;
+	
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+  width: 450px;
+  /*height: 400px;*/
+  margin: 0px;	
+  padding: 0px;
+  overflow: hidden;
+  background-color: rgb(213,213,213,1.0);
+  z-index: 6;
+}
 .uc_addnew_box{
 	display: none;
 	position: absolute;
@@ -1288,4 +1394,71 @@ padding: 0px;
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
   /*animation-timing-function: cubic-bezier(.25,.01,.25,1)*/
+}
+
+@-webkit-keyframes uc-PanelInRight {
+  from {
+    opacity: 0;
+    width: 0;
+   min-width: 0;
+  }
+
+  to {
+    opacity: 1;
+    width: 30%;
+   min-width: 357px;
+  }
+}
+
+@keyframes uc-PanelInRight {
+  from {
+    opacity: 0;
+   width: 0;
+   min-width: 0;
+  }
+
+  to {
+    opacity: 1;
+   width: 30%;
+   min-width: 357px;
+  }
+}
+
+.uc-PanelInRight {
+  -webkit-animation-name: uc-PanelInRight;
+  animation-name: uc-PanelInRight;
+}
+
+@-webkit-keyframes uc-PanelOutRight {
+  from {
+    opacity: 1;
+    width: 30%;
+   min-width: 357px;
+   
+  }
+
+  to {
+    opacity: 0;
+    width: 0;
+   min-width: 0;
+  }
+}
+
+@keyframes uc-PanelOutRight {
+  from {
+    opacity: 1;
+    width: 30%;
+   min-width: 357px;
+  }
+
+  to {
+    opacity: 0;
+  width: 0;
+   min-width: 0;
+  }
+}
+
+.uc-PanelOutRight {
+  -webkit-animation-name: uc-PanelOutRight;
+  animation-name: uc-PanelOutRight;
 }

@@ -79,9 +79,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 .noUi-horizontal .noUi-handle {
   width: 34px;
-  height: 18px;
+  /*height: 18px;*/
+  height: 12px;
   left: -17px;
-  top: -6px;
+  /*top: -6px;*/
+  top: -2px;
 }
 .noUi-vertical {
   width: 18px;
