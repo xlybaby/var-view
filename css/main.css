@@ -283,14 +283,36 @@
 	font-weight: 700;
 	font-size: 1em;
 }
+
 .cn_block_title{
 	font-family: xihei001;
 	font-weight: 700;
 	font-size: 1em;
+	color: #000;
+}
+
+.cn_input_label{
+	font-family: xihei001;
+	font-size: 1em;
+	color: #000;
+}
+.cn_link_label{
+	font-family: xihei001;
+	font-size: 1em;
+	color: #000;
+}
+.cn_link_label a{
+	text-decoration:none;
+	color: #333;
+}
+.cn_link_label a:hover{
+	text-decoration: none;
+	cursor: pointer;
+	color: #CC3300;
 }
 
 .en_input_label{
-	font-family: Sansation_Light;
+	font-family: xihei001;
 	font-weight: 900;
 }
 .en_input_hint{
