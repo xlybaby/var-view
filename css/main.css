@@ -293,7 +293,7 @@
 
 .cn_input_label{
 	font-family: xihei001;
-	font-size: 1em;
+	font-size: 0.9em;
 	color: #000;
 }
 .cn_link_label{
@@ -312,7 +312,9 @@
 }
 
 .en_input_label{
-	font-family: xihei001;
+	font-family: Sansation_Regular;
+	font-size: 0.9em;
+	color: #000;
 	font-weight: 900;
 }
 .en_input_hint{

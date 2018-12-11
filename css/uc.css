@@ -164,6 +164,17 @@
 	/*
 	margin: 5px 0px 5px 0px;*/
 }
+.uc-input-block-table{
+	display: flex;
+	flex-direction: column;
+	
+	width: 100%;
+}
+.uc-input-block-table-row{
+	display: flex;
+	
+	width: 100%;
+}
 .uc-input{
 	/*background-color: #ffffff*/;
 	position: relative;
@@ -841,7 +852,7 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 	font-size: 25px; 
 	color: #efefef;
 }
-.uc-edit-panel-main{
+.uc-edit-panel-main, .uc-edit-panel-layouts{
 	position: absolute;
 	left: 0px; 
 	top: 0px;

@@ -640,12 +640,12 @@ $(document).ready(function(){
 			
 			var box = tag.parents(".uc_t_box");
 			var scenarioId = box.attr("scenarioId");
-			var editPanel = $(".uc-edit-panel-main[scenarioId='"+scenarioId+"']");
+			var editPanel = $(".uc-edit-panel-layouts[scenarioId='"+scenarioId+"']");
 			if( editPanel.length <= 0 ) {
 				//invokeGet( "/var/subview/uc/scenarioEditPanel", function(data){
 				//	console.log(data);
 				//});
-				var panelMain = $(".uc-edit-panel-main[id='temp']").clone(true);
+				var panelMain = $(".uc-edit-panel-layouts[id='temp']").clone(true);
 				panelMain.attr("scenarioId", scenarioId);
 				panelMain.css("display","flex");
 				//panelMain.hide();
@@ -799,7 +799,7 @@ $(document).ready(function(){
 			
 			//var blocks = $(".uc-edit-panel-main");
 			if (panel.hasClass("uc-PanelInRight")){
-				var panelMain = panel.children(".uc-edit-panel-mid").children(".uc-edit-panel-main");
+				var panelMain = panel.children(".uc-edit-panel-mid").children(".uc-edit-panel-layouts");
 				panelMain.removeClass("fadeInRight animated delay-1s");
 				panelMain.addClass("fadeOutRight animated");
 				
@@ -812,7 +812,7 @@ $(document).ready(function(){
 				//blocks.css("display","none");
 				//panel.css("display","none");
 			} else if(panel.hasClass("uc-PanelOutRight")) {
-				var panelMain = panel.children(".uc-edit-panel-mid").children(".uc-edit-panel-main");
+				var panelMain = panel.children(".uc-edit-panel-mid").children(".uc-edit-panel-layouts");
 				panelMain.removeClass("fadeOutRight animated delay-1s");
 				panelMain.addClass("fadeInRight animated delay-1s");
 				
@@ -826,7 +826,7 @@ $(document).ready(function(){
 				//panel.css("display","flex");
 			} else {
 				panel.addClass("uc-PanelInRight animated");
-				var panelMain = panel.children(".uc-edit-panel-mid").children(".uc-edit-panel-main");
+				var panelMain = panel.children(".uc-edit-panel-mid").children(".uc-edit-panel-layouts");
 				panelMain.addClass("fadeInRight animated delay-1s");
 				//panel.css("min-width","350px");
 				//panel.animate({width:"350px"},500,"linear",function(){
