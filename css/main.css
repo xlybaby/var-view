@@ -323,6 +323,12 @@
 	font-size: 13px;
 	color: rgb(230,28,100,1.0);
 }
+.cn_input_hint{
+	font-family: xihei001;
+	font-size: 0.87em;
+	color: #000;
+}
+
 .en_label_small{
 	font-family: Sansation_Regular;
 	font-weight: 100;

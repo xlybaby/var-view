@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=040" />
-		<script type="text/javascript" src="/var/js/uc.js?v=040"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=045" />
+		<script type="text/javascript" src="/var/js/uc.js?v=045"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=035"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=003" />
@@ -24,7 +24,7 @@
 			}
 			.sp-preview{
 			height: 10px;
-			width: 55px;
+			width: 25px;
 			}
 			.sp-dd{
 			height: 6px;
@@ -138,7 +138,174 @@
 							</div>
 						</div>
 						
-						<div class="uc-edit-panel-mid"></div>
+						<div class="uc-edit-panel-mid">
+							<div class="uc-edit-scenario-template">	
+								<div class="uc-edit-panel-block bgRect-info">
+									<span class="uc-text cn_block_title">背景</span> <img src="/var/images/icon_help.svg" />
+									<div class="uc-input-area">
+										<div class="uc-input-block">
+											<div class="uc-input-block-table">
+												<div class="uc-input-block-table-row">
+													<div>
+														<span class="uc-text cn_input_label">大小：</span>
+													</div>
+													<div>
+														<span class="uc-text cn_input_hint">铺满</span>
+														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-fuxuan1"></use>
+														</svg>
+														<span class="uc-text cn_input_hint">百分比</span>
+														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-fuxuan1"></use>
+														</svg>
+														<span class="uc-text cn_input_hint">绝对值</span>
+														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-fuxuan1"></use>
+														</svg>
+													</div>
+													
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="width: 50%; ">
+														<span class="uc-text cn_input_label">画布宽度：</span>
+														<span class="scenarioW en_input_label">100%</span>
+													</div>
+													<div style="width: 50%; ">
+														<span class="uc-text cn_input_label">画布高度：</span>
+														<span class="scenarioH en_input_label">100%</span>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div>
+														<span class="uc-text cn_input_label">左边距：</span>
+													</div>
+													<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+														<div id="in_tempMarginLeft" style="width: 80%; height: 10px;"></div>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="width: 50%; ">
+														<span class="uc-text cn_input_label">最大宽度：</span>
+														<span class="scenarioW en_input_label">100%</span>
+													</div>
+													<div style="width: 50%; ">
+														<span class="uc-text cn_input_label">最大高度：</span>
+														<span class="scenarioH en_input_label">100%</span>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="width: 50%; ">
+														<span class="uc-text cn_input_label">最小宽度：</span>
+														<span class="scenarioW en_input_label">100%</span>
+													</div>
+													<div style="width: 50%; ">
+														<span class="uc-text cn_input_label">最小高度：</span>
+														<span class="scenarioH en_input_label">100%</span>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div>
+														<span class="uc-text cn_input_label">背景色：</span>
+													</div>
+													<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
+														<div class="uc-bg-color-picker" style="background-color: #454545;"></div>
+														<div class="uc-bg-color-picker" style="background-color: #98764d;"></div>
+														<div class="uc-bg-color-picker" style="background-color: #d6f32e;"></div>
+														<div class="uc-bg-color-picker"  style="background-color: #a6e2d9;"></div>
+														<div class="uc-bg-color-picker" style="background-color: #aedfba;"></div>
+													</div>
+													<div style="width: 90px; padding-left: 5px;">
+														<input type="text" id="in_tempbgcolor_box" style="height: 80%;"/>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div>
+														<span class="uc-text cn_input_label">图画：</span>
+													</div>
+													<div style="width: 100%; display: flex;flex-wrap: wrap; align-items: center;justify-content: flex-start;">
+														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> 
+								<div class="uc-edit-panel-block layout-color-info">
+									<span class="uc-input-title en_block_title">Color</span> <img
+										src="/var/images/icon_help.svg" />
+									<div class="uc-input-area">
+										<div class="uc-input-block">
+											<div class="uc-input-block-table">
+												
+												<!-- 
+												<div class="uc-input-block-table-row">
+													<div>
+														<span class="uc-text cn_input_label">图画位置：</span>
+													</div>
+												</div> -->
+											</div>
+											
+										</div>	
+												 
+									</div>
+								</div>
+								<div class="uc-edit-panel-block share-info">
+									<span class="uc-input-title en_block_title">Canvas</span> <img src="/var/images/icon_help.svg" />
+									<div class="uc-input-area">
+										<div class="uc-input-block">
+											<div class="uc-input-block-table">
+												<div class="uc-input-block-table-row">
+													<div>
+														<span class="uc-text cn_input_label">网格线：</span>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div>
+														<span class="uc-text cn_input_label">网格间距：</span>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+								<div class="uc-edit-panel-block share-info">
+									<span class="uc-input-title en_block_title">Share</span> <img src="/var/images/icon_help.svg" />
+									<div class="uc-input-area">
+										<div class="uc-input-block">
+											<div class="uc-input-block-table">
+												<div class="uc-input-block-table-row">
+													<div style="width: 50%; display: flex; align-items: center;">
+														<div>
+															<span class="uc-text cn_input_label">舞美共享：</span>
+														</div>
+														<div style="display: flex;align-items: center;">
+															<span id="in_shareTemplate" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
+														</div>
+													</div>
+													<div style="width: 50%; display: flex; align-items: center;">
+														<div>
+															<span class="uc-text cn_input_label">整剧共享：</span>
+														</div>
+														<div style="display: flex;align-items: center;">
+															<span id="in_shareWhole" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+	
+							</div>
+						</div>
 						<div class="uc-edit-panel-bot" onmouseover="changPointer(this)">
 							<svg id="btn-panel-down"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 				    		<use xlink:href="#icon-jiantou"></use>
@@ -628,22 +795,49 @@
 			<div class="uc-input-block">
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
-						<div style="width: 90px;">
+						<div>
 							<span class="uc-text cn_input_label">背景：</span>
 						</div>
-						<div style="width: 90px;">
+						<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
+							<div class="uc-bg-color-picker" style="background-color: #454545;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #98764d;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #d6f32e;"></div>
+							<div class="uc-bg-color-picker"  style="background-color: #a6e2d9;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #aedfba;"></div>
+						</div>
+						<div style="width: 90px; padding-left: 5px;">
 							<input type="text" id="in_bgcolor_box" style="height: 80%;"/>
 						</div>
 					</div>
 					<div class="uc-input-block-table-row">
-						<div style="width: 90px;">
+						<div>
 							<span class="uc-text cn_input_label">前景：</span>
 						</div>
-						<div style="width: 90px;">
+						<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
+							<div class="uc-bg-color-picker" style="background-color: #454545;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #98764d;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #d6f32e;"></div>
+							<div class="uc-bg-color-picker"  style="background-color: #a6e2d9;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #aedfba;"></div>
+						</div>
+						<div style="width: 90px; padding-left: 5px;">
 							<input type="text" id="in_fgcolor_box" style="height: 80%;"/>
 						</div>
 					</div>
 					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">文字：</span>
+						</div>
+						<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
+							<div class="uc-bg-color-picker" style="background-color: #454545;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #98764d;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #d6f32e;"></div>
+							<div class="uc-bg-color-picker"  style="background-color: #a6e2d9;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #aedfba;"></div>
+						</div>
+						<div style="width: 90px; padding-left: 5px;">
+							<input type="text" id="in_fntcolor_box" style="height: 80%;"/>
+						</div>
 					</div>
 				</div>
 				
@@ -657,98 +851,83 @@
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
 			<div class="uc-input-block">
-				<div id="border-style" style="margin-top: 3px; display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
-					<div id="in-border-style" style="width: 23px; height: 23px; border-top:0px solid #888888;border-right:0px solid #888888;border-bottom:0px solid #888888;border-left:0px solid #888888; border-radius: 5px;"></div>
-					<input type="hidden" id="in-border-top-style" value="0px solid #ffffff" />
-					<input type="hidden" id="in-border-right-style" value="0px solid #ffffff" />
-					<input type="hidden" id="in-border-bottom-style" value="0px solid #ffffff" />
-					<input type="hidden" id="in-border-left-style" value="0px solid #ffffff" />
-					
-					<!-- 
-					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-top: 2px solid #888888;" id="border-top"></div>
-					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-right: 2px solid #888888;" id="border-right"></div>
-					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-bottom: 2px solid #888888;" id="border-bottom"></div>
-					<div style="width: 23px; height: 23px; border: 1px dashed #888888; border-radius: 5px; border-left: 2px solid #888888;" id="border-left"></div>
-					 -->
-					<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				<div class="uc-input-block-table">
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">边框：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
+							<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 				    		<use xlink:href="#icon-border-top-solid"></use>
 							</svg>
-					<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-border-right-solid"></use>
+							<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-border-right-solid"></use>
 							</svg>
-					<svg id="border-style-bottom" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-border-top-solid-copy"></use>
+							<svg id="border-style-bottom" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-border-top-solid-copy"></use>
 							</svg>
-					<svg id="border-style-left" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-shadow-left"></use>
+							<svg id="border-style-left" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-shadow-left"></use>
 							</svg>		
-				</div>
-			</div>
-			<div class="uc-input-block">
-				<div style="width: 100%; display: flex;">
-					<div style="width: 90px;">
-						<span class="uc-input-label en_input_label" style="font-size: 13px;">Radius</span>
+						</div>
+						<div style="width: 90px; padding-left: 5px;">
+							<input type="text" id="in_bordercolor_box" style="height: 80%;"/>
+						</div>
 					</div>
-					<div style="width: 90px;display: flex; align-items:center;justify-content:center;">
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">粗细：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_borderWeight" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="border-weight-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
+					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">圆角：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_borderRadius" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="border-radius-val" style="width: 25px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
+					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">阴影：</span>
+						</div>
+						<div style="width: 110px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around;">
+							<div id="shadow-style3" onmouseover="changPointer(this)"
+									style="display:flex;align-items:center;justify-content: center;width: 13px; height: 13px; border: 1px solid #888888; border-radius: 2px; box-shadow: -2px -2px 3px #888888;">
+							</div>
+							<div id="shadow-style2" onmouseover="changPointer(this)"
+									style="display:flex;align-items:center;justify-content: center;width: 13px; height: 13px; border: 1px solid #888888; border-radius: 2px; box-shadow: 2px 2px 3px #888888;">
+							</div>
+							<div id="shadow-style1" onmouseover="changPointer(this)"
+							style="display:flex;align-items:center;justify-content: center;width: 13px; height: 13px; border: 1px solid #888888; border-radius: 2px; box-shadow: 0 0 3px #888888;">
+							</div>
+							<div id="shadow-style4" onmouseover="changPointer(this)"
+									style="display:flex;align-items:center;justify-content: center;width: 13px; height: 13px; border: 1px solid #888888; border-radius: 2px; box-shadow: 0 0 3px #888888 inset;">
+							</div>
+							<div id="shadow-style5" onmouseover="changPointer(this)"
+									style="display:flex;align-items:center;justify-content: center;width: 13px; height: 13px; border: 1px solid #888888; border-radius: 2px; box-shadow: 2px 2px 3px #888888 inset;">
+							</div>
+							<div id="shadow-style6" onmouseover="changPointer(this)"
+									style="display:flex;align-items:center;justify-content: center;width: 13px; height: 13px; border: 1px solid #888888; border-radius: 2px; box-shadow: -2px -2px 3px #888888 inset;">
+							</div>
+						</div>
+						<div style="width: 90px; padding-left: 5px;">
+							<input type="text" id="in_shadowcolor_box" style="height: 80%;"/>
+						</div>
 					</div>
 				</div>
-				<!-- 
-				<div id="border-radius" style="margin-top: 3px; display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
-					<div id="border-radius-range"></div>
-					<div id="border-radius-value"></div>
-				</div> 
 				
-				-->
-				<div id="border-radius" style="display: flex; align-items:center;justify-content:center; width: 100%;">
-					<div id="border-radius-val" style="display: flex; align-items:center;justify-content:center; width: 40%; height: 30px; border: 1px solid #888;"></div>
-				</div>
-				
-				<div id="border-radius" style="margin-top: 6px; display: flex; align-items:center;justify-content:center; width: 100%;">
-					<div id="in_borderRadius" style="width: 80%; height: 10px;"></div>
-				</div>
 			</div>
-			<div class="uc-input-block">
-				<span class="uc-input-label en_input_label" style="font-size: 13px;">Shadow</span>
-				<div id="shadow-style" style="margin-top: 3px;display: flex; align-items: center; justify-content: space-around; height: 25px; width: 100%;">
-					<div id="shadow-style1" onmouseover="changPointer(this)"
-							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 3px #888888;">
-							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-submit"></use>
-							</svg>
-					</div>
-					<div id="shadow-style2" onmouseover="changPointer(this)"
-							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 3px #888888;">
-							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-submit"></use>
-							</svg>
-					</div>
-					<div id="shadow-style3" onmouseover="changPointer(this)"
-							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 3px #888888;">
-							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-submit"></use>
-							</svg>
-							</div>
-					<div id="shadow-style4" onmouseover="changPointer(this)"
-							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 0 0 3px #888888 inset;">
-							<svg class="uc-float-icon" style="display: none; font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-submit"></use>
-							</svg>
-							</div>
-					<div id="shadow-style5" onmouseover="changPointer(this)"
-							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: 2px 2px 3px #888888 inset;">
-							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-submit"></use>
-							</svg>
-							</div>
-					<div id="shadow-style6" onmouseover="changPointer(this)"
-							style="display:flex;align-items:center;justify-content: center;width: 23px; height: 23px; border: 1px solid #888888; border-radius: 5px; box-shadow: -2px -2px 3px #888888 inset;">
-							<svg class="uc-float-icon" style="display: none;font-size: 17px; font-weight: 400;color: #2ccf8c;" aria-hidden="true">				    				
-				    		<use xlink:href="#icon-submit"></use>
-							</svg>
-							</div>
-				</div>
 			</div>
-		</div>
 	</div>
 	
 	<div class="uc-edit-panel-block layout-padding-info">
@@ -756,72 +935,50 @@
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
 			<div class="uc-input-block">
-				<div style="display: flex; align-items: center; justify-content: center; position: relative; width: 100%;">
-					<div style="display: flex; ">
-						<div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;" id="sp-padding-left">
-							<input type="text" value="0" style="text-align:right; width: 24px; background-color: rgb(255,255,255,0.0); border: 0px solid #fff;" data-ruler="quantity" />
-							<input type="hidden" id="sp-padding-left-val" value="0" />
-							<svg id="sp-padding-left-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="up" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-				    				<use xlink:href="#icon-arrow-left-copy-copy-copy"></use>
-							</svg>
-							<svg id="sp-padding-left-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="down" class="uc-float-icon"  style="margin-right: 5px; font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    				<use xlink:href="#icon-jiantou-right"></use>
-							</svg>
+				<div class="uc-input-block-table">
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">左填充：</span>
 						</div>
-						<div style="width: 100%; display: flex; flex-direction: column;">
-							<div style="width: 100%; display: flex; flex-direction: column;"  id="sp-padding-top">
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<input type="text" value="0" style="text-align:center; width: 24px; background-color: rgb(255,255,255,0.0); border: 0px solid #fff;" data-ruler="quantity" />
-								<input type="hidden" id="sp-padding-top-val" value="0" />
-							</div>
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<svg id="sp-padding-top-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="up" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    					<use xlink:href="#icon-jiantou11"></use>
-								</svg>
-							</div>
-							<div style="margin-bottom: 5px; display: flex; align-items: center; justify-content: center; width: 100%">
-								<svg id="sp-padding-top-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="down" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    					<use xlink:href="#icon-jiantou"></use>
-								</svg>
-							</div>
-							</div>
-							
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<!-- <div style="margin-top:3px; margin-bottom: 3px;margin-left:3px; margin-right: 3px;border-radius:5px; border: 2px solid #888888; width: 22px; height: 22px;"></div>
-								 -->
-								 <svg class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    				<use xlink:href="#icon-biankuang1"></use>
-								 </svg>
-							</div>
-							<div style="width: 100%; display: flex; flex-direction: column;"  id="sp-padding-down">
-							
-							<div style="margin-top: 5px; display: flex; align-items: center; justify-content: center; width: 100%">
-								<svg id="sp-padding-down-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="down" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    					<use xlink:href="#icon-jiantou11"></use>
-								</svg>
-							</div>
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<svg id="sp-padding-down-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="up" class="uc-float-icon" style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    					<use xlink:href="#icon-jiantou"></use>
-								</svg>
-							</div>
-							<div style="display: flex; align-items: center; justify-content: center; width: 100%">
-								<input type="text" value="0" style="text-align:center; width: 24px; background-color: rgb(255,255,255,0.0); border: 0px solid #fff;" data-ruler="quantity" />
-								<input type="hidden" id="sp-padding-down-val" value="0" />
-							</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_paddingLeft" style="width: 80%; height: 10px;"></div>
 						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="paddingLeft-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 						</div>
-						<div style="width: 100%; display: flex; align-items: center; justify-content: flex-end;" id="sp-padding-right">
-							<input type="hidden" id="sp-padding-right-val" value="0" />
-							<svg id="sp-padding-right-up"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';"  data-spin="down" class="uc-float-icon" style="margin-left: 5px; font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-				    				<use xlink:href="#icon-arrow-left-copy-copy-copy"></use>
-							</svg>
-							<svg id="sp-padding-right-down"  onmouseover="changPointer(this);this.style.color='#2b98f0';" onmouseout="this.style.color='#888888';" data-spin="up" class="uc-float-icon"  style="font-size: 11px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    				<use xlink:href="#icon-jiantou-right"></use>
-							</svg>
-							<input type="text" value="0" style="width: 24px; background-color: rgb(255,255,255,0.0); border: 0px solid #fff;" data-ruler="quantity" />
+					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">右填充：</span>
 						</div>
-						
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_paddingRight" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="paddingRight-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
+					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">上填充：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_paddingTop" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="paddingTop-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
+					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">下填充：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_paddingBottom" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="paddingBottom-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
 					</div>
 				</div>
 			</div>	
@@ -831,67 +988,39 @@
 	<div class="uc-edit-panel-block schedule-info">
 		<input type="hidden" id="in_schedule" value=""/>
 	
-		<span class="uc-input-title en_block_title">Schedule</span> <img
+		<span class="uc-text cn_block_title">幕间休息</span> <img
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
 			<div class="uc-input-block">
-			<!--  
-				<span class="uc-input-label en_input_label" style="font-size: 15px;">分钟级</span>
-				<div style="display: flex; align-items: center; justify-content: space-around; padding: 4px 0px 2px 0px; height: 25px; width: 100%;">
-					<img src="/var/images/uc/uc_sche_1m.png" style="height: 100%;"/>
-					<img src="/var/images/uc/uc_sche_5m.png" style="height: 100%;"/>
-					<img src="/var/images/uc/uc_sche_10m.png" style="height: 100%;"/>
-					<img src="/var/images/uc/uc_sche_25m.png" style="height: 100%;"/>
-					
-				</div>-->
-				<div style="width: 100%; display: flex; align-items: flex-end; justify-content: space-around;">
-					
-					<div id="in_delay_1m" onmouseover="changPointer(this);" value="60">
-						<span class="uc-input-label en_input_label" style="font-size: 13px;">1m</span>
+				<div class="uc-input-block-table">
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">单位：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;">
+							<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-danxuanweixuanzhong"></use>
+							</svg>&nbsp;<span class="uc-text cn_input_hint">分</span>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+							</svg>&nbsp;<span class="uc-text cn_input_hint">时</span>
+						</div>
 					</div>
-					<div id="in_delay_5m" onmouseover="changPointer(this);" value="300">
-						<span class="uc-input-label en_input_label" style="font-size: 13px;">5m</span>
-					</div>
-					<svg class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">
-			    	<use xlink:href="#icon-dingshi1"></use>
-					</svg>
-					<div id="in_delay_10m" onmouseover="changPointer(this);" value="600">
-						<span class="uc-input-label en_input_label" style="font-size: 13px;">10m</span>
-					</div>
-					<div id="in_delay_25m" onmouseover="changPointer(this);" value="1500">
-						<span class="uc-input-label en_input_label" style="font-size: 13px;">25m</span>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">间歇：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_scheduleInterval" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="scheduleInterval-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="uc-input-block" style="margin-top: 15px;">
-				<!--  <span class="uc-input-label en_input_label" style="font-size: 15px;">小时级</span>
-				<div style="display: flex; align-items: center; justify-content: space-around; padding: 4px 0px 2px 0px; height: 25px; width: 100%;">
-					<img src="/var/images/uc/uc_sche_1h.png" style="height: 100%;"/>
-					<img src="/var/images/uc/uc_sche_6h.png" style="height: 100%;"/>
-					<img src="/var/images/uc/uc_sche_12h.png" style="height: 100%;"/>
-					<img src="/var/images/uc/uc_sche_24h.png" style="height: 100%;"/>
-					
-				</div>-->
-				<div style="width: 100%; display: flex; align-items: flex-end; justify-content: space-around;">
-				
-					
-						<div id="in_delay_1h" onmouseover="changPointer(this);" selected="selected" value="3600" style="cursor: pointer; border: 1px solid rgb(136, 136, 136);">
-							<span class="uc-input-label en_input_label" style="font-size: 13px;">1h</span>
-						</div>
-						<div id="in_delay_6h" onmouseover="changPointer(this);" value="21600">
-							<span class="uc-input-label en_input_label" style="font-size: 13px;">6h</span>
-						</div>
-						<svg class="uc-float-icon" style="font-size: 27px; font-weight: 400;color: #888888;" aria-hidden="true">
-				    	<use xlink:href="#icon-dingshi"></use>
-						</svg>
-						<div id="in_delay_12h" onmouseover="changPointer(this);" value="43200">
-							<span class="uc-input-label en_input_label" style="font-size: 13px;">12h</span>
-						</div>
-						<div id="in_delay_24h" onmouseover="changPointer(this);" value="86400">
-							<span class="uc-input-label en_input_label" style="font-size: 13px;">24h</span>
-						</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	<div class="uc-edit-panel-block mode-info">
@@ -899,29 +1028,34 @@
 		<span class="uc-input-title en_block_title">Scenario Mode</span> <img
 			src="/var/images/icon_help.svg" />
 		<div class="uc-input-area">
-			
 			<div class="uc-input-block">
-				<div style="width: 100%; display: flex; align-items: center; justify-content: space-around;">		
-					<span class="en_input_hint" style="color: #888888;">Headless</span>&nbsp;&nbsp;&nbsp;
-					<span id="in_headless" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
-				</div>	
-			</div>
-			<div class="uc-input-block">
-				<div style="width: 100%; display: flex; align-items: center; justify-content: space-around;">
-			
-					<span class="en_input_hint" style="color: #888888;">Delay</span>&nbsp;&nbsp;&nbsp;
-					<div id="in_auto_delay" style="display: flex; align-items: center; padding: 0px; width: 45px;">
-						<button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
-						<input type="text" id="in_auto_delay_val" value="0" style="width: 20px;" data-ruler="quantity">
-						<button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
+				<div class="uc-input-block-table">
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">盲浏操作：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;">
+							<span id="in_headless" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
+						</div>
+					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">延迟等待：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;">
+							<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
+							<input type="text" id="in_auto_delay_val" value="0" style="text-align: center; width: 20px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" data-ruler="quantity">
+							<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
+							&nbsp;<span class="uc-text cn_input_hint">秒</span>
+						</div>
 					</div>
 				</div>
+				
 			</div>
+			
 		</div>
 	</div>
-	<div class="uc-edit-panel-block">
-		
-	</div>
+	
 	
 </div>
 

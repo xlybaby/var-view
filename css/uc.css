@@ -852,7 +852,10 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 	font-size: 25px; 
 	color: #efefef;
 }
-.uc-edit-panel-main, .uc-edit-panel-layouts{
+.uc-bg-color-picker{
+	width: 12px; height: 12px; border: 2px solid #fff; 
+}
+.uc-edit-panel-main, .uc-edit-panel-layouts, .uc-edit-scenario-template{
 	position: absolute;
 	left: 0px; 
 	top: 0px;

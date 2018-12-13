@@ -655,7 +655,19 @@ $(document).ready(function(){
 				
 				var bgColorPicker = panelMain.find("#in_bgcolor_box");
 				var fgColorPicker = panelMain.find("#in_fgcolor_box");
+				var fntColorPicker = panelMain.find("#in_fntcolor_box");
+				var borderColorPicker = panelMain.find("#in_bordercolor_box");
+				var shadowColorPicker = panelMain.find("#in_shadowcolor_box");
+				var templateBgColorPicker = panelMain.find("#in_tempbgcolor_box");
+				
 				var rangeSlider = panelMain.find("#in_borderRadius");
+				var weightRangeSlider = panelMain.find("#in_borderWeight");
+				var paddingLeftSlider = panelMain.find("#in_paddingLeft");
+				var paddingRightSlider = panelMain.find("#in_paddingRight");
+				var paddingTopSlider = panelMain.find("#in_paddingTop");
+				var paddingBottomSlider = panelMain.find("#in_paddingBottom");
+				var scheduleIntervalSlider = panelMain.find("#in_scheduleInterval");
+				
 				var delaySpinner = panelMain.find("#in_auto_delay");
 				
 				var shadowBox = panelMain.find("div[id^='shadow-style']");
@@ -739,6 +751,18 @@ $(document).ready(function(){
 				fgColorPicker.spectrum({
 				    color: "#ffffff"
 				});
+				fntColorPicker.spectrum({
+				    color: "#ffffff"
+				});
+				borderColorPicker.spectrum({
+				    color: "#ffffff"
+				});
+				shadowColorPicker.spectrum({
+				    color: "#ffffff"
+				});
+				templateBgColorPicker.spectrum({
+				    color: "#ffffff"
+				});
 				
 				console.log(rangeSlider);
 				noUiSlider.create(rangeSlider[0], {
@@ -752,12 +776,117 @@ $(document).ready(function(){
 						function (values, handle, unencoded, tap, positions) {
 					if (handle === 0) {
 						var rv = panelMain.find("#border-radius-val");
-						rv.css("border-radius",parseInt(values[handle])+"px");
-						rv.html(parseInt(values[handle]));
-						console.log(values[handle]);
+						rv.val(parseInt(values[handle]));
+//						rv.css("border-radius",parseInt(values[handle])+"px");
+//						rv.html(parseInt(values[handle]));
+//						console.log(values[handle]);
 					}
 				});
 				
+				noUiSlider.create(scheduleIntervalSlider[0], {
+				    start: [0],
+				    range: {
+				        'min': [0],
+				        'max': [20]
+				    }
+				});
+				scheduleIntervalSlider[0].noUiSlider.on("update", 
+						function (values, handle, unencoded, tap, positions) {
+					if (handle === 0) {
+						var rv = panelMain.find("#scheduleInterval-val");
+						rv.val(parseInt(values[handle]));
+//						rv.css("border-radius",parseInt(values[handle])+"px");
+//						rv.html(parseInt(values[handle]));
+//						console.log(values[handle]);
+					}
+				});
+				
+				noUiSlider.create(weightRangeSlider[0], {
+				    start: [0],
+				    range: {
+				        'min': [0],
+				        'max': [20]
+				    }
+				});
+				weightRangeSlider[0].noUiSlider.on("update", 
+						function (values, handle, unencoded, tap, positions) {
+					if (handle === 0) {
+						var rv = panelMain.find("#border-weight-val");
+						rv.val(parseInt(values[handle]));
+						//rv.css("border-radius",parseInt(values[handle])+"px");
+						//rv.html(parseInt(values[handle]));
+						//console.log(values[handle]);
+					}
+				});
+				
+				noUiSlider.create(paddingLeftSlider[0], {
+				    start: [0],
+				    range: {
+				        'min': [0],
+				        'max': [20]
+				    }
+				});
+				paddingLeftSlider[0].noUiSlider.on("update", 
+						function (values, handle, unencoded, tap, positions) {
+					if (handle === 0) {
+						var rv = panelMain.find("#paddingLeft-val");
+						rv.val(parseInt(values[handle]));
+						//rv.css("border-radius",parseInt(values[handle])+"px");
+						//rv.html(parseInt(values[handle]));
+						//console.log(values[handle]);
+					}
+				});
+				noUiSlider.create(paddingRightSlider[0], {
+				    start: [0],
+				    range: {
+				        'min': [0],
+				        'max': [20]
+				    }
+				});
+				paddingRightSlider[0].noUiSlider.on("update", 
+						function (values, handle, unencoded, tap, positions) {
+					if (handle === 0) {
+						var rv = panelMain.find("#paddingRight-val");
+						rv.val(parseInt(values[handle]));
+						//rv.css("border-radius",parseInt(values[handle])+"px");
+						//rv.html(parseInt(values[handle]));
+						//console.log(values[handle]);
+					}
+				});
+				noUiSlider.create(paddingTopSlider[0], {
+				    start: [0],
+				    range: {
+				        'min': [0],
+				        'max': [20]
+				    }
+				});
+				paddingTopSlider[0].noUiSlider.on("update", 
+						function (values, handle, unencoded, tap, positions) {
+					if (handle === 0) {
+						var rv = panelMain.find("#paddingTop-val");
+						rv.val(parseInt(values[handle]));
+						//rv.css("border-radius",parseInt(values[handle])+"px");
+						//rv.html(parseInt(values[handle]));
+						//console.log(values[handle]);
+					}
+				});
+				noUiSlider.create(paddingBottomSlider[0], {
+				    start: [0],
+				    range: {
+				        'min': [0],
+				        'max': [20]
+				    }
+				});
+				paddingBottomSlider[0].noUiSlider.on("update", 
+						function (values, handle, unencoded, tap, positions) {
+					if (handle === 0) {
+						var rv = panelMain.find("#paddingBottom-val");
+						rv.val(parseInt(values[handle]));
+						//rv.css("border-radius",parseInt(values[handle])+"px");
+						//rv.html(parseInt(values[handle]));
+						//console.log(values[handle]);
+					}
+				});
 				
 				console.log(delaySpinner);
 				delaySpinner.spinner();
