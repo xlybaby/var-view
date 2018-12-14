@@ -266,8 +266,39 @@ function discardPageComponents(pageCon) {
 	
 }
 
+function initTempalePanel() {
+		var panel = $(".uc-edit-panel-mid").children(".uc-edit-scenario-template");
+		var templateBgColorPicker = panel.find("#in_tempbgcolor_box");
+		var tempGridPaddingSlider = panel.find("#in_tempGridPadding");
+		
+		templateBgColorPicker.spectrum({
+		    color: "#ffffff"
+		});
+		
+		noUiSlider.create(tempGridPaddingSlider[0], {
+		    start: [0],
+		    range: {
+		        'min': [0],
+		        'max': [20]
+		    }
+		});
+		tempGridPaddingSlider[0].noUiSlider.on("update", 
+				function (values, handle, unencoded, tap, positions) {
+			if (handle === 0) {
+				var rv = panel.find("#tempGridPadding-val");
+				rv.val(parseInt(values[handle]));
+				//rv.css("border-radius",parseInt(values[handle])+"px");
+				//rv.html(parseInt(values[handle]));
+				//console.log(values[handle]);
+			}
+		});
+		
+		panel.css("display","flex");
+}
+
 $(document).ready(function(){ 
 	mainInit();
+	initTempalePanel();
 	
 	$(".uc-sample-template-icon").on("click",function(){
 		temp = $(".uc-template-sample");
@@ -651,14 +682,14 @@ $(document).ready(function(){
 				//panelMain.hide();
 				//panel.append(panelMain);
 				//panelMain.addClass("fadeInRight animated delay-1s");
-				panelMid.append(panelMain);
+				
+				//panelMid.append(panelMain);//for test
 				
 				var bgColorPicker = panelMain.find("#in_bgcolor_box");
 				var fgColorPicker = panelMain.find("#in_fgcolor_box");
 				var fntColorPicker = panelMain.find("#in_fntcolor_box");
 				var borderColorPicker = panelMain.find("#in_bordercolor_box");
 				var shadowColorPicker = panelMain.find("#in_shadowcolor_box");
-				var templateBgColorPicker = panelMain.find("#in_tempbgcolor_box");
 				
 				var rangeSlider = panelMain.find("#in_borderRadius");
 				var weightRangeSlider = panelMain.find("#in_borderWeight");
@@ -760,9 +791,6 @@ $(document).ready(function(){
 				shadowColorPicker.spectrum({
 				    color: "#ffffff"
 				});
-				templateBgColorPicker.spectrum({
-				    color: "#ffffff"
-				});
 				
 				console.log(rangeSlider);
 				noUiSlider.create(rangeSlider[0], {
@@ -818,6 +846,8 @@ $(document).ready(function(){
 						//console.log(values[handle]);
 					}
 				});
+				
+				
 				
 				noUiSlider.create(paddingLeftSlider[0], {
 				    start: [0],
@@ -955,8 +985,9 @@ $(document).ready(function(){
 				//panel.css("display","flex");
 			} else {
 				panel.addClass("uc-PanelInRight animated");
-				var panelMain = panel.children(".uc-edit-panel-mid").children(".uc-edit-panel-layouts");
-				panelMain.addClass("fadeInRight animated delay-1s");
+				//var panelMain = panel.children(".uc-edit-panel-mid").children(".uc-edit-panel-layouts");
+				//panelMain.addClass("fadeInRight animated delay-1s");
+				
 				//panel.css("min-width","350px");
 				//panel.animate({width:"350px"},500,"linear",function(){
 					//blocks.css("display","flex");

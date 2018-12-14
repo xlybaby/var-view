@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=045" />
-		<script type="text/javascript" src="/var/js/uc.js?v=045"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=046" />
+		<script type="text/javascript" src="/var/js/uc.js?v=046"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=035"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=003" />
@@ -112,10 +112,13 @@
 						
 						<div class="uc-edit-panel-tag-bg" >
 							<div class="uc-edit-panel-tag">
-								<span class="uc-text cn_block_title">舞美</span>
+								<span class="uc-text cn_block_title">剧本</span>
 							</div>
 							<div class="uc-edit-panel-tag">
 								<span class="uc-text cn_block_title">分镜头</span>
+							</div>
+							<div class="uc-edit-panel-tag">
+								<span class="uc-text cn_block_title">素材</span>
 							</div>
 							<div class="uc-edit-panel-layout-bg">
 								<svg onmouseover="changPointer(this)" title="Customize dock side" style="color: #888; font-size: 1em;" class="uc-float-icon" aria-hidden="true">				    				
@@ -141,7 +144,7 @@
 						<div class="uc-edit-panel-mid">
 							<div class="uc-edit-scenario-template">	
 								<div class="uc-edit-panel-block bgRect-info">
-									<span class="uc-text cn_block_title">背景</span> <img src="/var/images/icon_help.svg" />
+									<span class="uc-text cn_block_title">舞台背景</span> <img src="/var/images/icon_help.svg" />
 									<div class="uc-input-area">
 										<div class="uc-input-block">
 											<div class="uc-input-block-table">
@@ -151,56 +154,57 @@
 													</div>
 													<div>
 														<span class="uc-text cn_input_hint">铺满</span>
-														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-												    		<use xlink:href="#icon-fuxuan1"></use>
-														</svg>
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+															</svg>
+														<!-- 
 														<span class="uc-text cn_input_hint">百分比</span>
 														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 												    		<use xlink:href="#icon-fuxuan1"></use>
-														</svg>
+														</svg> -->
 														<span class="uc-text cn_input_hint">绝对值</span>
-														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-												    		<use xlink:href="#icon-fuxuan1"></use>
-														</svg>
+															<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+												    			<use xlink:href="#icon-danxuanweixuanzhong"></use>
+															</svg>
 													</div>
 													
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 50%; ">
-														<span class="uc-text cn_input_label">画布宽度：</span>
-														<span class="scenarioW en_input_label">100%</span>
+														<span class="uc-text cn_input_label">宽度：</span>
+														<input type="text" id="tempWidth-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<div style="width: 50%; ">
-														<span class="uc-text cn_input_label">画布高度：</span>
-														<span class="scenarioH en_input_label">100%</span>
+														<span class="uc-text cn_input_label">高度：</span>
+														<input type="text" id="tempHeight-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
-												<div class="uc-input-block-table-row">
+												<!--  <div class="uc-input-block-table-row">
 													<div>
 														<span class="uc-text cn_input_label">左边距：</span>
 													</div>
 													<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 														<div id="in_tempMarginLeft" style="width: 80%; height: 10px;"></div>
 													</div>
-												</div>
+												</div>-->
 												<div class="uc-input-block-table-row">
 													<div style="width: 50%; ">
 														<span class="uc-text cn_input_label">最大宽度：</span>
-														<span class="scenarioW en_input_label">100%</span>
+														<input type="text" id="tempWidthMax-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<div style="width: 50%; ">
 														<span class="uc-text cn_input_label">最大高度：</span>
-														<span class="scenarioH en_input_label">100%</span>
+														<input type="text" id="tempHeightMax-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 50%; ">
 														<span class="uc-text cn_input_label">最小宽度：</span>
-														<span class="scenarioW en_input_label">100%</span>
+														<input type="text" id="tempWidthMin-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<div style="width: 50%; ">
 														<span class="uc-text cn_input_label">最小高度：</span>
-														<span class="scenarioH en_input_label">100%</span>
+														<input type="text" id="tempHeightMin-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -220,39 +224,21 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div>
-														<span class="uc-text cn_input_label">图画：</span>
+														<span class="uc-text cn_input_label">背景画：</span>
 													</div>
 													<div style="width: 100%; display: flex;flex-wrap: wrap; align-items: center;justify-content: flex-start;">
-														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
-														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
-														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
-														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
-														<div style="width: 120px; height: 90px; border: 3px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 65px; height: 45px; border: 2px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 65px; height: 45px; border: 2px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 65px; height: 45px; border: 2px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 65px; height: 45px; border: 2px solid #fff; margin-left: 5px;"></div>
+														<div style="width: 65px; height: 45px; border: 2px solid #fff; margin-left: 5px;"></div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div> 
-								<div class="uc-edit-panel-block layout-color-info">
-									<span class="uc-input-title en_block_title">Color</span> <img
-										src="/var/images/icon_help.svg" />
-									<div class="uc-input-area">
-										<div class="uc-input-block">
-											<div class="uc-input-block-table">
-												
-												<!-- 
-												<div class="uc-input-block-table-row">
-													<div>
-														<span class="uc-text cn_input_label">图画位置：</span>
-													</div>
-												</div> -->
-											</div>
-											
-										</div>	
-												 
-									</div>
-								</div>
+								
 								<div class="uc-edit-panel-block share-info">
 									<span class="uc-input-title en_block_title">Canvas</span> <img src="/var/images/icon_help.svg" />
 									<div class="uc-input-area">
@@ -262,10 +248,24 @@
 													<div>
 														<span class="uc-text cn_input_label">网格线：</span>
 													</div>
+													<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
+														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-fuxuan1"></use>
+														</svg>
+														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-2"></use>
+														</svg>
+													</div>
 												</div>
 												<div class="uc-input-block-table-row">
 													<div>
 														<span class="uc-text cn_input_label">网格间距：</span>
+													</div>
+													<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+														<div id="in_tempGridPadding" style="width: 80%; height: 10px;"></div>
+													</div>
+													<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+														<input type="text" id="tempGridPadding-val" style="width: 25px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 											</div>
