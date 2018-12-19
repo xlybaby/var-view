@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=049" />
-		<script type="text/javascript" src="/var/js/uc.js?v=049"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=052" />
+		<script type="text/javascript" src="/var/js/uc.js?v=052"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=035"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=003" />
@@ -102,7 +102,7 @@
 						</div>
 						  -->
 					</div>
-					<div class="uc-edit-panel uc-PanelOutRight">
+					<div class="uc-edit-panel uc-PanelOutRight animated delay-1s">
 						<div class="uc-edit-panel-top" onmouseover="changPointer(this)">
 							<svg id="btn-panel-up"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 				    		<use xlink:href="#icon-jiantou11"></use>
@@ -142,96 +142,160 @@
 						</div>
 						
 						<div class="uc-edit-panel-mid">
-							<div class="uc-edit-scenario-template">	
+							<div class="uc-edit-panel-template">	
 								<div class="uc-edit-panel-block bgRect-info">
-									<span class="uc-text cn_block_title">舞台大小</span> <img src="/var/images/icon_help.svg" />
+									<span class="uc-text cn_block_title">舞台规格</span> <img src="/var/images/icon_help.svg" />
 									<div class="uc-input-area">
 										<div class="uc-input-block">
 											<div class="uc-input-block-table">
 												<div class="uc-input-block-table-row">
 													<div>
-														<span class="uc-text cn_input_label">大小：</span>
+														<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span>
 													</div>
-													<div>
-														<span class="uc-text cn_input_hint">铺满</span>
-															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.95em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+													<div style="margin-left:2px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">自适应</span>
+													</div>
+													<div style="margin-left:2px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
 															</svg>
-														<!-- 
-														<span class="uc-text cn_input_hint">百分比</span>
-														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-												    		<use xlink:href="#icon-fuxuan1"></use>
-														</svg> -->
-														<span class="uc-text cn_input_hint">绝对值</span>
-															<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.95em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
-												    			<use xlink:href="#icon-danxuanweixuanzhong"></use>
+															<span class="uc-text cn_input_hint">百分比</span>
+															<input type="text" value="100" id="tempPercentWidth-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;font-family: xihei001;font-size: 0.87em;" />
+															<span class="uc-text cn_input_hint">%</span>
+															
+													</div>
+													<div style="margin-left:2px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 															</svg>
+															<span class="uc-text cn_input_hint">固定值</span>
+															<input type="text" id="tempFixedWidth-val" style="width: 30px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+															<span class="uc-text cn_input_hint">px</span>
+															
 													</div>
-													
 												</div>
 												<div class="uc-input-block-table-row">
-													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">宽度：</span>
-													</div>
-													<div style="width: 25%; ">
-														<input type="text" id="tempWidth-val" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
-													
-													</div>
-													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">高度：</span>
-													</div>
-													<div style="width: 25%; ">
-														<input type="text" id="tempHeight-val" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
-														
-													</div>
-												</div>
-												<!--  <div class="uc-input-block-table-row">
 													<div>
-														<span class="uc-text cn_input_label">左边距：</span>
+														<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
 													</div>
-													<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
-														<div id="in_tempMarginLeft" style="width: 80%; height: 10px;"></div>
+													<div style="white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">自适应</span>
 													</div>
-												</div>-->
-												<div class="uc-input-block-table-row">
-													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">最大宽度：</span>
+													<div style="margin-left:2px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">百分比</span>
+															<input type="text"  value="100" id="tempPercentHeight-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;font-family: xihei001;font-size: 0.87em;" />
+															<span class="uc-text cn_input_hint">%</span>
+															
 													</div>
-													<div style="width: 25%; ">
-														<input type="text" id="tempWidthMax-val" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
-													
-													</div>
-													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">最大高度：</span>
-													</div>
-													<div style="width: 25%; ">
-														<input type="text" id="tempHeightMax-val" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
-													
-													</div>
-												</div>
-												<div class="uc-input-block-table-row">
-													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">最小宽度：</span>
-													</div>
-													<div style="width: 25%; ">
-														<input type="text" id="tempWidthMin-val" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
-													
-													</div>
-													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">最小高度：</span>
-													</div>
-													<div style="width: 25%; ">
-														<input type="text" id="tempHeightMin-val" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
-													
+													<div style="margin-left:2px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">固定值</span>
+															<input type="text" id="tempFixedHeight-val" style="width: 30px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+															<span class="uc-text cn_input_hint">px</span>
+															
 													</div>
 												</div>
-												
-												
 											</div>
 										</div>
 									</div>
 								</div> 
 								<div class="uc-edit-panel-block bgRect-info">
+									<span class="uc-text cn_block_title">大小限制</span> <img src="/var/images/icon_help.svg" />
+									<div class="uc-input-area">
+										<div class="uc-input-block">
+											<div class="uc-input-block-table">
+												<div class="uc-input-block-table-row">
+													<div style="width: 25%;  white-space : nowrap;">
+														<span class="uc-text cn_input_label">最大宽度</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 25%;  white-space : nowrap; ">
+														<input type="text" id="tempWidthMax-val" style="width: 30px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<span class="uc-text cn_input_label">px</span>
+													</div>
+													<div style="width: 25%;  white-space : nowrap; ">
+														<span class="uc-text cn_input_label">最大高度</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 25%;  white-space : nowrap; ">
+														<input type="text" id="tempHeightMax-val" style="width: 30px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<span class="uc-text cn_input_label">px</span>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="width: 25%;   white-space : nowrap;">
+														<span class="uc-text cn_input_label">最小宽度</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 25%;  white-space : nowrap; ">
+														<input type="text" id="tempWidthMin-val" style="width: 30px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<span class="uc-text cn_input_label">px</span>
+													</div>
+													<div style="width: 25%;   white-space : nowrap;">
+														<span class="uc-text cn_input_label">最小高度</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 25%;  white-space : nowrap; ">
+														<input type="text" id="tempHeightMin-val" style="width: 30px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<span class="uc-text cn_input_label">px</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> 
+								<div class="uc-edit-panel-block bgAlign-info">
+									<span class="uc-text cn_block_title">对齐</span> <img src="/var/images/icon_help.svg" />
+									<div class="uc-input-area">
+										<div class="uc-input-block">
+											<div class="uc-input-block-table">
+												
+												<div class="uc-input-block-table-row">
+													<div >
+														<span class="uc-text cn_input_label">水平对齐</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
+														<svg onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1em; font-weight: 400;color: #888888;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg); " aria-hidden="true">				    				
+														    <use xlink:href="#icon-xiaduiqi1"></use>
+														</svg>
+														<svg onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1em; font-weight: 400;color: #888888;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
+														    <use xlink:href="#icon-chuizhijuzhong1"></use>
+														</svg>
+														<svg onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1em; font-weight: 400;color: #888888;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
+														    <use xlink:href="#icon-shangduiqi1"></use>
+														</svg>
+															
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div>
+														<span class="uc-text cn_input_label">垂直对齐</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
+														<svg onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.95em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    <use xlink:href="#icon-xiaduiqi1"></use>
+														</svg>
+														<svg onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.95em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    <use xlink:href="#icon-chuizhijuzhong1"></use>
+														</svg>
+														<svg onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.95em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    <use xlink:href="#icon-shangduiqi1"></use>
+														</svg>
+															
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> 
+								<div class="uc-edit-panel-block bgWall-info">
 									<span class="uc-text cn_block_title">舞台背景</span> <img src="/var/images/icon_help.svg" />
 									<div class="uc-input-area">
 										<div class="uc-input-block">
@@ -239,7 +303,7 @@
 												
 												<div class="uc-input-block-table-row">
 													<div>
-														<span class="uc-text cn_input_label">背景色：</span>
+														<span class="uc-text cn_input_label">背景色</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
 														<div class="uc-bg-color-picker" style="background-color: #454545;"></div>
@@ -254,7 +318,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div>
-														<span class="uc-text cn_input_label">背景画：</span>
+														<span class="uc-text cn_input_label">背景画</span><span class="uc-text cn_input_label">：</span>
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -270,27 +334,92 @@
 										</div>
 									</div>
 								</div> 
-								<div class="uc-edit-panel-block share-info">
+								<div class="uc-edit-panel-block bgDrawComp-info">
+									<span class="uc-text cn_block_title">组件渲染</span> <img src="/var/images/icon_help.svg" />
+									<div class="uc-input-area">
+										<div class="uc-input-block">
+											<div class="uc-input-block-table">
+												<div class="uc-input-block-table-row">
+													<div style="width:15%;">
+														<span class="uc-text cn_input_label">定位</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width:25%;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.95em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">相对</span>
+															
+													</div>
+													<div style="width:25%;">
+														<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.95em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">绝对</span>
+													</div>
+															
+													
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="width:15%;">
+														<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width:25%;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">固定值</span>
+															
+													</div>
+													<div style="width:25%;">
+														<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">百分比</span>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="width:15%;">
+														<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width:25%;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">固定值</span>
+															
+													</div>
+													<div style="width:25%;">
+														<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">百分比</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> 
+								<div class="uc-edit-panel-block bgCanvas-info">
 									<span class="uc-input-title en_block_title">Canvas</span> <img src="/var/images/icon_help.svg" />
 									<div class="uc-input-area">
 										<div class="uc-input-block">
 											<div class="uc-input-block-table">
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; white-space : nowrap;">
-														<span class="uc-text cn_input_label">网格线：</span>
+														<span class="uc-text cn_input_label">网格线</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 110px; display: flex;align-items: center;justify-content: flex-start;">
 														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
-												    		<use xlink:href="#icon-fuxuan1"></use>
+												    		<use xlink:href="#icon-icon-test"></use>
 														</svg>
-														<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+														<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.87em; color: #888888;" aria-hidden="true">				    				
 												    		<use xlink:href="#icon-2"></use>
 														</svg>
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; white-space : nowrap;">
-														<span class="uc-text cn_input_label">网格间距：</span>
+														<span class="uc-text cn_input_label">网格间距</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 														<div id="in_tempGridPadding" style="width: 80%; height: 10px;"></div>
@@ -313,19 +442,27 @@
 												<div class="uc-input-block-table-row">
 													<div style="width: 50%; display: flex; align-items: center;">
 														<div>
-															<span class="uc-text cn_input_label">舞美共享：</span>
+															<span class="uc-text cn_input_label">舞美共享</span><span class="uc-text cn_input_label">：</span>
+															<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-icon-test"></use>
+														</svg>
+														<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.87em; color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-2"></use>
+														</svg>
 														</div>
-														<div style="display: flex;align-items: center;">
-															<span id="in_shareTemplate" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
-														</div>
+														
 													</div>
 													<div style="width: 50%; display: flex; align-items: center;">
 														<div>
-															<span class="uc-text cn_input_label">整剧共享：</span>
+															<span class="uc-text cn_input_label">整剧共享</span><span class="uc-text cn_input_label">：</span>
+															<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-icon-test"></use>
+															</svg>
+															<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.87em; color: #888888;" aria-hidden="true">				    				
+													    		<use xlink:href="#icon-2"></use>
+															</svg>
 														</div>
-														<div style="display: flex;align-items: center;">
-															<span id="in_shareWhole" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
-														</div>
+														
 													</div>
 												</div>
 											</div>
@@ -782,21 +919,21 @@
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
 						<div style="width: 50%; ">
-							<span class="uc-text cn_input_label">X轴坐标：</span>
+							<span class="uc-text cn_input_label">X轴坐标</span><span class="uc-text cn_input_label">：</span>
 							<span class="scenarioX en_input_label"></span>
 						</div>
 						<div style="width: 50%; ">
-							<span class="uc-text cn_input_label">Y轴坐标：</span>
+							<span class="uc-text cn_input_label">Y轴坐标</span><span class="uc-text cn_input_label">：</span>
 							<span class="scenarioY en_input_label"></span>
 						</div>
 					</div>
 					<div class="uc-input-block-table-row">
 						<div style="width: 50%; ">
-							<span class="uc-text cn_input_label">视窗宽度：</span>
+							<span class="uc-text cn_input_label">视窗宽度</span><span class="uc-text cn_input_label">：</span>
 							<span class="scenarioW en_input_label"></span>
 						</div>
 						<div style="width: 50%; ">
-							<span class="uc-text cn_input_label">视窗高度：</span>
+							<span class="uc-text cn_input_label">视窗高度</span><span class="uc-text cn_input_label">：</span>
 							<span class="scenarioH en_input_label"></span>
 						</div>
 					</div>
@@ -827,7 +964,7 @@
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">背景：</span>
+							<span class="uc-text cn_input_label">背景</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
 							<div class="uc-bg-color-picker" style="background-color: #454545;"></div>
@@ -842,7 +979,7 @@
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">前景：</span>
+							<span class="uc-text cn_input_label">前景</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
 							<div class="uc-bg-color-picker" style="background-color: #454545;"></div>
@@ -857,7 +994,7 @@
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">文字：</span>
+							<span class="uc-text cn_input_label">文字</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 95px; display: flex;align-items: center;justify-content: space-around;">
 							<div class="uc-bg-color-picker" style="background-color: #454545;"></div>
@@ -885,7 +1022,7 @@
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">边框：</span>
+							<span class="uc-text cn_input_label">边框</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
 							<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
@@ -907,7 +1044,7 @@
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">粗细：</span>
+							<span class="uc-text cn_input_label">粗细</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 							<div id="in_borderWeight" style="width: 80%; height: 10px;"></div>
@@ -918,7 +1055,7 @@
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">圆角：</span>
+							<span class="uc-text cn_input_label">圆角</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 							<div id="in_borderRadius" style="width: 80%; height: 10px;"></div>
@@ -927,9 +1064,19 @@
 							<input type="text" id="border-radius-val" style="width: 25px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 						</div>
 					</div>
+				</div>
+			</div>
+			</div>
+	</div>
+	<div class="uc-edit-panel-block layout-shadow-info">
+		<span class="uc-input-title en_block_title">Shadow</span> <img
+			src="/var/images/icon_help.svg" />
+		<div class="uc-input-area">
+			<div class="uc-input-block">
+				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">阴影：</span>
+							<span class="uc-text cn_input_label">阴影</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around;">
 							<div id="shadow-style3" onmouseover="changPointer(this)"
@@ -955,12 +1102,22 @@
 							<input type="text" id="in_shadowcolor_box" style="height: 80%;"/>
 						</div>
 					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">投影</span><span class="uc-text cn_input_label">：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_shadowWeight" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="border-shadow-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
+					</div>
 				</div>
 				
 			</div>
 			</div>
 	</div>
-	
 	<div class="uc-edit-panel-block layout-padding-info">
 		<span class="uc-input-title en_block_title">Padding</span> <img
 			src="/var/images/icon_help.svg" />
@@ -969,7 +1126,7 @@
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">左填充：</span>
+							<span class="uc-text cn_input_label">左填充</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 							<div id="in_paddingLeft" style="width: 80%; height: 10px;"></div>
@@ -980,7 +1137,7 @@
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">右填充：</span>
+							<span class="uc-text cn_input_label">右填充</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 							<div id="in_paddingRight" style="width: 80%; height: 10px;"></div>
@@ -991,7 +1148,7 @@
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">上填充：</span>
+							<span class="uc-text cn_input_label">上填充</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 							<div id="in_paddingTop" style="width: 80%; height: 10px;"></div>
@@ -1002,7 +1159,7 @@
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">下填充：</span>
+							<span class="uc-text cn_input_label">下填充</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 							<div id="in_paddingBottom" style="width: 80%; height: 10px;"></div>
@@ -1026,7 +1183,7 @@
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">单位：</span>
+							<span class="uc-text cn_input_label">单位</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;">
 							<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
@@ -1040,7 +1197,7 @@
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">间歇：</span>
+							<span class="uc-text cn_input_label">间歇</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
 							<div id="in_scheduleInterval" style="width: 80%; height: 10px;"></div>
@@ -1063,15 +1220,19 @@
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">盲浏操作：</span>
+							<span class="uc-text cn_input_label">盲浏操作</span><span class="uc-text cn_input_label">：</span>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-icon-test"></use>
+							</svg>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.87em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-2"></use>
+							</svg>
 						</div>
-						<div style="width: 110px; display: flex;align-items: center;">
-							<span id="in_headless" style="height: 25px; width: 45px;" class="switch-off" themeColor="gold"></span>
-						</div>
+						
 					</div>
 					<div class="uc-input-block-table-row">
 						<div>
-							<span class="uc-text cn_input_label">延迟等待：</span>
+							<span class="uc-text cn_input_label">延迟等待</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;">
 							<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
@@ -1154,7 +1315,7 @@
 							</div>	 
 							<div style="width: 100%; display:flex;justify-content: center; align-items: center;">
 								<div style="width: 80%; ">
-									<span class="uc-text cn_input_label" style="font-size: 0.9em;">常用关键字：</span><a class="uc-text cn_link_label" style="font-size: 0.9em;" href="#">娱乐</a>
+									<span class="uc-text cn_input_label" style="font-size: 0.9em;">常用关键字</span><span class="uc-text cn_input_label">：</span><a class="uc-text cn_link_label" style="font-size: 0.9em;" href="#">娱乐</a>
 								</div>
 							</div>	 
 							
@@ -1326,11 +1487,11 @@
 						<div class="uc-input-block">
 							<div style="width: 100%; height: 100%; display:flex;justify-content: space-around;">
 							<div style="width: 40%; display: flex; justify-content: center; align-items: center;">
-									<span class="uc-text cn_input_label">长：</span><input type="text" value="430" style="width: 80%;height: 100%;background-color: rgb(255,255,255,0.0);border-bottom: 1px solid rgb(204,188,138,1.0);border-top:0px;border-right:0px;border-left:0px;" />
+									<span class="uc-text cn_input_label">长</span><span class="uc-text cn_input_label">：</span><input type="text" value="430" style="width: 80%;height: 100%;background-color: rgb(255,255,255,0.0);border-bottom: 1px solid rgb(204,188,138,1.0);border-top:0px;border-right:0px;border-left:0px;" />
 								
 							</div>
 							<div style="width: 40%; display: flex;">
-									<span class="uc-text cn_input_label">宽：</span><input type="text" value="260" style="width: 80%;height: 100%;background-color: rgb(255,255,255,0.0);border-bottom: 1px solid rgb(204,188,138,1.0);border-top:0px;border-right:0px;border-left:0px;" />
+									<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span><input type="text" value="260" style="width: 80%;height: 100%;background-color: rgb(255,255,255,0.0);border-bottom: 1px solid rgb(204,188,138,1.0);border-top:0px;border-right:0px;border-left:0px;" />
 								
 							</div>
 							</div>
@@ -1473,7 +1634,15 @@
 									</svg>
 			</div>
 			
-			<div class="uc-edit-comp-r-container">
+			
+			<div class="uc-edit-comp-r-bottom">
+				<button class="uc-edit-comp-discard-btn" style="background-color:rgb(255,255,255,0.0);border:0px solid #fff;width:100%;height:100%;color:#fff;font-family:Sansation_Bold;font-size:21px;">Discard</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="uc-edit-panel-material" id="temp">
+<div style="display: flex; width: 100%;  height: 100%;">
 				<div class="uc-edit-comp-r-list">
 					<div class="uc-edit-comp-r-list-con">
 						<!-- <svg class="icon" style="font-size: 28px; color: #888888;"
@@ -1512,34 +1681,34 @@
 								style="width: 25%; height: 100%; display: flex; justify-content: center; align-items: center; border-right: 1px solid #bfbfbf;">
 								<div
 									style="width: 90%; height: 100%; display: flex; justify-content: center; align-items: center; border-bottom: 0px solid rgb(40, 108, 255);">
-									<span class="en_input_label" style="font-size: 14px; color: #888888;">Container</span>
+									<span class="uc-text cn_input_label" style="font-size: 1em; color: #333;">容器</span>
 								</div>
 							</div>
 							<div class="uc-edit-comp-nav-bar" index="1"
 								style="width: 25%; height: 100%; display: flex; justify-content: center; align-items: center; border-right: 1px solid #bfbfbf;">
 								<div
 									style="width: 90%; height: 100%; display: flex; justify-content: center; align-items: center; border-bottom: 0px solid rgb(40, 108, 255);">
-									<span class="en_input_label" style="font-size: 14px; color: #cfcfcf;">Iterator</span>
+									<span class="uc-text cn_input_label" style="color: #888;">迭代</span>
 								</div>
 							</div>
 							<div class="uc-edit-comp-nav-bar" index="2"
 								style="width: 25%; height: 100%; display: flex; justify-content: center; align-items: center; border-right: 1px solid #bfbfbf;">
 								<div
 									style="width: 90%; height: 100%; display: flex; justify-content: center; align-items: center; border-bottom: 0px solid rgb(40, 108, 255);">
-									<span class="en_input_label" style="font-size: 14px; color: #cfcfcf;">Element</span>
+									<span class="uc-text cn_input_label" style="color: #888;">元素</span>
 								</div>
 							</div>
 							<div class="uc-edit-comp-nav-bar" index="3"
 								style="width: 25%; height: 100%; display: flex; justify-content: center; align-items: center; border-right: 0px solid #bfbfbf;">
 								<div
 									style="width: 90%; height: 100%; display: flex; justify-content: center; align-items: center; border-bottom: 0px solid rgb(40, 108, 255);">
-									<span class="en_input_label" style="font-size: 14px; color: #cfcfcf;">Pagination</span>
+									<span class="uc-text cn_input_label" style="color: #888;">页码</span>
 								</div>
 							</div>
 
 						</div>
 						<div id="uc-edit-comp-nav-bar-mask" index="0" style="left: 0px; top: 0px; position: absolute; margin: 0px; width: 25%; height: 35px; display: flex; justify-content: center; align-items: center;">
-							<div style="width: 80%; height: 100%; border-bottom: 2px solid rgb(149, 69, 138);"></div>
+							<div style="width: 80%; height: 100%; border-bottom: 2px solid rgb(203, 203, 203);"></div>
 						</div>
 						<div class="uc-edit-comp-r-editor-content">
 							<div class="uc-edit-components-selector container-selector" index="0" id="">
@@ -1550,7 +1719,7 @@
 											<div class="uc-input-block-table">
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">标签：</span>
+														<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" name="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1558,7 +1727,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">ID：</span>
+														<span class="uc-text cn_input_label">ID</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1566,7 +1735,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Class：</span>
+														<span class="uc-text cn_input_label">Class</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1574,7 +1743,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Name：</span>
+														<span class="uc-text cn_input_label">Name</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1582,7 +1751,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">XPath：</span>
+														<span class="uc-text cn_input_label">XPath</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1590,7 +1759,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">序号：</span>
+														<span class="uc-text cn_input_label">序号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1610,7 +1779,7 @@
 												<div class="uc-input-block-table-row">
 													<div>
 														<svg class="icon uc-edit-comp-add-attr" style="font-size: 0.95em; color: #888;" aria-hidden="true">
-		    												<use xlink:href="#&#xe651;"></use>
+		    												<use xlink:href="#icon-msnui-add-line"></use>
 														</svg>
 													</div>
 												</div>
@@ -1648,7 +1817,7 @@
 											<div class="uc-input-block-table">
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">标签：</span>
+														<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" name="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1656,7 +1825,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">ID：</span>
+														<span class="uc-text cn_input_label">ID</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1664,7 +1833,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Class：</span>
+														<span class="uc-text cn_input_label">Class</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1672,7 +1841,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Name：</span>
+														<span class="uc-text cn_input_label">Name</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1680,7 +1849,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">XPath：</span>
+														<span class="uc-text cn_input_label">XPath</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1688,7 +1857,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">序号：</span>
+														<span class="uc-text cn_input_label">序号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1708,7 +1877,7 @@
 												<div class="uc-input-block-table-row">
 													<div>
 														<svg class="icon uc-edit-comp-add-attr" style="font-size: 0.95em; color: #888;" aria-hidden="true">
-		    												<use xlink:href="#&#xe651;"></use>
+		    												<use xlink:href="#icon-msnui-add-line"></use>
 														</svg>
 													</div>
 												</div>
@@ -1749,7 +1918,7 @@
 											<div class="uc-input-block-table">
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">元素名：</span>
+														<span class="uc-text cn_input_label">元素名</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1766,7 +1935,7 @@
 											<div class="uc-input-block-table">
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">标签：</span>
+														<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" name="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1774,7 +1943,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">ID：</span>
+														<span class="uc-text cn_input_label">ID</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1782,7 +1951,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Class：</span>
+														<span class="uc-text cn_input_label">Class</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1790,7 +1959,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Name：</span>
+														<span class="uc-text cn_input_label">Name</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1798,7 +1967,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">XPath：</span>
+														<span class="uc-text cn_input_label">XPath</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1806,7 +1975,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">序号：</span>
+														<span class="uc-text cn_input_label">序号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1826,7 +1995,7 @@
 												<div class="uc-input-block-table-row">
 													<div>
 														<svg class="icon uc-edit-comp-add-attr" style="font-size: 0.95em; color: #888;" aria-hidden="true">
-		    												<use xlink:href="#&#xe651;"></use>
+		    												<use xlink:href="#icon-msnui-add-line"></use>
 														</svg>
 													</div>
 												</div>
@@ -1863,7 +2032,7 @@
 											<div class="uc-input-block-table">
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">标签：</span>
+														<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" name="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1871,7 +2040,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">ID：</span>
+														<span class="uc-text cn_input_label">ID</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1879,7 +2048,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Class：</span>
+														<span class="uc-text cn_input_label">Class</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1887,7 +2056,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Name：</span>
+														<span class="uc-text cn_input_label">Name</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1895,7 +2064,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">XPath：</span>
+														<span class="uc-text cn_input_label">XPath</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1903,7 +2072,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">序号：</span>
+														<span class="uc-text cn_input_label">序号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -1923,7 +2092,7 @@
 												<div class="uc-input-block-table-row">
 													<div>
 														<svg class="icon uc-edit-comp-add-attr" style="font-size: 0.95em; color: #888;" aria-hidden="true">
-		    												<use xlink:href="#&#xe651;"></use>
+		    												<use xlink:href="#icon-msnui-add-line"></use>
 														</svg>
 													</div>
 												</div>
@@ -2004,7 +2173,7 @@
 											<div class="uc-input-block-table">
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">标签：</span>
+														<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" name="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -2012,7 +2181,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">ID：</span>
+														<span class="uc-text cn_input_label">ID</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -2020,7 +2189,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Class：</span>
+														<span class="uc-text cn_input_label">Class</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -2028,7 +2197,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">Name：</span>
+														<span class="uc-text cn_input_label">Name</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -2036,7 +2205,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">XPath：</span>
+														<span class="uc-text cn_input_label">XPath</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -2044,7 +2213,7 @@
 												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%; ">
-														<span class="uc-text cn_input_label">序号：</span>
+														<span class="uc-text cn_input_label">序号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
 														<input type="text" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
@@ -2064,7 +2233,7 @@
 												<div class="uc-input-block-table-row">
 													<div>
 														<svg class="icon uc-edit-comp-add-attr" style="font-size: 0.95em; color: #888;" aria-hidden="true">
-		    												<use xlink:href="#&#xe651;"></use>
+		    												<use xlink:href="#icon-msnui-add-line"></use>
 														</svg>
 													</div>
 												</div>
@@ -2096,10 +2265,5 @@
 						</div>
 					</div>
 				</div>
+				</div>
 			</div>
-			<div class="uc-edit-comp-r-bottom">
-				<button class="uc-edit-comp-discard-btn" style="background-color:rgb(255,255,255,0.0);border:0px solid #fff;width:100%;height:100%;color:#fff;font-family:Sansation_Bold;font-size:21px;">Discard</button>
-			</div>
-		</div>
-	</div>
-</div>

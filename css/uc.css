@@ -157,8 +157,8 @@
 }
 .uc-input-block{
 	position: relative;
-	left: 10%;
-	width: 80%;
+	left: 6.5%;
+	width: 87%;
 	margin-top: 2px;
 	margin-bottom: 4px;
 	/*
@@ -304,31 +304,35 @@
 }
 
 .uc-edit-comp-r-list{
-	width: 35px;
+	margin-left: 5px;
+	width: 45px;
+	min-width: 40px;
 	height: 100%;
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	/*background-color: rgb(193,193,203,1.0);*/
+	border-right: 1px solid #fff;
 }
 .uc-edit-comp-r-list-con{
-	width: 90%;
-	height: 90%;
+	margin-top: 10px;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .uc-edit-comp-r-editor{
 	width: 100%;
 	height: 100%;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 }
 .uc-edit-comp-r-editor-con{
 	position: relative;
-	
+	margin-top: 10px;
 	width: 100%;
-	height: 90%;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 }
@@ -856,7 +860,7 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 .uc-bg-color-picker{
 	width: 12px; height: 12px; border: 2px solid #fff; 
 }
-.uc-edit-panel-main, .uc-edit-panel-layouts, .uc-edit-scenario-template{
+.uc-edit-panel-main, .uc-edit-panel-layouts, .uc-edit-panel-template, .uc-edit-panel-material{
 	position: absolute;
 	left: 0px; 
 	top: 0px;
@@ -870,12 +874,12 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
   height: 100%;
   margin: 0px;	
   padding: 0px;
-  /*
+ 
   filter:alpha(opacity:0);
 	opacity:0; 
 	-moz-opacity:0;
 	-khtml-opacity: 0;
-	*/
+	
   overflow: hidden;
 }
 .uc-edit-panel-block{

@@ -174,7 +174,7 @@ function populateFloatMenu() {
 
 function deleteInputBlock(event) {
 	var tag = $(event.target);
-	var block = tag.parents(".uc-edit-comp-r-editor-input-block");
+	var block = tag.parents(".uc-input-block-table-row");
 	block.remove();
 }
 
@@ -267,7 +267,7 @@ function discardPageComponents(pageCon) {
 }
 
 function initTempalePanel() {
-		var panel = $(".uc-edit-panel-mid").children(".uc-edit-scenario-template");
+		var panel = $(".uc-edit-panel-mid").children(".uc-edit-panel-template");
 		var templateBgColorPicker = panel.find("#in_tempbgcolor_box");
 		var tempGridPaddingSlider = panel.find("#in_tempGridPadding");
 		
@@ -298,7 +298,6 @@ function initTempalePanel() {
 
 $(document).ready(function(){ 
 	mainInit();
-	initTempalePanel();
 	
 	$(".uc-sample-template-icon").on("click",function(){
 		temp = $(".uc-template-sample");
@@ -623,7 +622,7 @@ $(document).ready(function(){
 			var panel = $(".uc-edit-panel");
 			var panelMid = panel.children(".uc-edit-panel-mid");
 			
-			if( !panel.find(".uc-edit-panel-tag").data("events")["click"] ){ 
+			if( !panel.find(".uc-edit-panel-tag").data("events") || !panel.find(".uc-edit-panel-tag").data("events")["click"] ){ 
 				panel.find(".uc-edit-panel-tag").on({
 					click: function(event) {
 						event.stopPropagation();
@@ -652,42 +651,56 @@ $(document).ready(function(){
 						target.attr("selected","selected");
 						var box = tag.parents(".uc_t_box");
 						var scenarioId = box.attr("scenarioId");
+						
+						var editPanel;
+						var lastdisplaypanel =  panel.find("div[class^='uc-edit-panel'][display='current']");
+						
+						
 						if( target.hasClass("template") ) {
+							editPanel = panel.find(".uc-edit-panel-template");
+							editPanel.css("display","flex");
+							editPanel.attr("display","current");
+							if( editPanel.attr("initiated") !== "initiated" ){
+								initTempalePanel();
+								editPanel.attr("initiated","initiated");
+							}
 							
 						} else if( target.hasClass("scenario") ) {
-							var editPanel = $(".uc-edit-panel-layouts[scenarioId='"+scenarioId+"']");
+							editPanel = panel.find(".uc-edit-panel-layouts[scenarioId='"+scenarioId+"']");
 							if( editPanel.length <= 0 ) {
 								//invokeGet( "/var/subview/uc/scenarioEditPanel", function(data){
 								//	console.log(data);
 								//});
-								var panelMain = $(".uc-edit-panel-layouts[id='temp']").clone(true);
-								panelMain.attr("scenarioId", scenarioId);
-								panelMain.css("display","flex");
-								//panelMain.hide();
-								//panel.append(panelMain);
-								//panelMain.addClass("fadeInRight animated delay-1s");
-								panelMid.append(panelMain);
+								editPanel = $(".uc-edit-panel-layouts[id='temp']").clone(true);
+								editPanel.attr("scenarioId", scenarioId);
+								editPanel.attr("display","current");
+								editPanel.css("display","flex");
+								//editPanel.hide();
+								//panel.append(editPanel);
+								//editPanel.addClass("fadeInRight animated delay-1s");
+								panelMid.append(editPanel);
 								
-								var bgColorPicker = panelMain.find("#in_bgcolor_box");
-								var fgColorPicker = panelMain.find("#in_fgcolor_box");
-								var fntColorPicker = panelMain.find("#in_fntcolor_box");
-								var borderColorPicker = panelMain.find("#in_bordercolor_box");
-								var shadowColorPicker = panelMain.find("#in_shadowcolor_box");
+								var bgColorPicker = editPanel.find("#in_bgcolor_box");
+								var fgColorPicker = editPanel.find("#in_fgcolor_box");
+								var fntColorPicker = editPanel.find("#in_fntcolor_box");
+								var borderColorPicker = editPanel.find("#in_bordercolor_box");
+								var shadowColorPicker = editPanel.find("#in_shadowcolor_box");
 								
-								var rangeSlider = panelMain.find("#in_borderRadius");
-								var weightRangeSlider = panelMain.find("#in_borderWeight");
-								var paddingLeftSlider = panelMain.find("#in_paddingLeft");
-								var paddingRightSlider = panelMain.find("#in_paddingRight");
-								var paddingTopSlider = panelMain.find("#in_paddingTop");
-								var paddingBottomSlider = panelMain.find("#in_paddingBottom");
-								var scheduleIntervalSlider = panelMain.find("#in_scheduleInterval");
+								var rangeSlider = editPanel.find("#in_borderRadius");
+								var weightRangeSlider = editPanel.find("#in_borderWeight");
+								var paddingLeftSlider = editPanel.find("#in_paddingLeft");
+								var paddingRightSlider = editPanel.find("#in_paddingRight");
+								var paddingTopSlider = editPanel.find("#in_paddingTop");
+								var paddingBottomSlider = editPanel.find("#in_paddingBottom");
+								var scheduleIntervalSlider = editPanel.find("#in_scheduleInterval");
+								var shadowWeightSlider = editPanel.find("#in_shadowWeight");
 								
-								var delaySpinner = panelMain.find("#in_auto_delay");
+								var delaySpinner = editPanel.find("#in_auto_delay");
 								
-								var shadowBox = panelMain.find("div[id^='shadow-style']");
+								var shadowBox = editPanel.find("div[id^='shadow-style']");
 								shadowBox.on({
 									click: function(event){
-										var lastSelected = panelMain.find("div[id^='shadow-style'] [selected='selected']");
+										var lastSelected = editPanel.find("div[id^='shadow-style'] [selected='selected']");
 										if(lastSelected.length>0) {
 											lastSelected.children("svg").css("display","none");
 											lastSelected.attr("selected","none");
@@ -698,7 +711,7 @@ $(document).ready(function(){
 										$(event.target).attr("selected","selected");
 									}
 								});
-								var delayBtn = panelMain.find("div[id^='in_delay_']");
+								var delayBtn = editPanel.find("div[id^='in_delay_']");
 								delayBtn.on({
 									click: function(event){
 										event.stopPropagation();
@@ -708,7 +721,7 @@ $(document).ready(function(){
 										else 
 											var tag = $(event.target);
 										
-										var lastSelected = panelMain.find("div[id^='in_delay_'][selected='selected']");
+										var lastSelected = editPanel.find("div[id^='in_delay_'][selected='selected']");
 										if(lastSelected.length>0) {
 											//lastSelected.children("svg").css("display","none");
 											lastSelected.css("border","0px solid #888888");
@@ -721,12 +734,12 @@ $(document).ready(function(){
 										tag.css("border","1px solid #888888");
 									}
 								});
-								var borderBox = panelMain.find("svg[id^='border-style']");
+								var borderBox = editPanel.find("svg[id^='border-style']");
 								borderBox.on({
 									click: function(event){
 										var id = $(event.target).attr("id");
 										if( id === "border-style-top" ) {
-											var borderstyle = panelMain.find("#in-border-style");
+											var borderstyle = editPanel.find("#in-border-style");
 											if( borderstyle.css("border-top").indexOf("dashed") >= 0 ){
 												borderstyle.css("border-top","2px solid #888888");
 												
@@ -734,21 +747,21 @@ $(document).ready(function(){
 												borderstyle.css("border-top","1px dashed #888888");
 											}
 										} else if( id === "border-style-right" ) {
-											var borderstyle = panelMain.find("#in-border-style");
+											var borderstyle = editPanel.find("#in-border-style");
 											if( borderstyle.css("border-right").indexOf("dashed") >= 0 ){
 												borderstyle.css("border-right","2px solid #888888");
 											} else {
 												borderstyle.css("border-right","1px dashed #888888");
 											}
 										} else if( id === "border-style-bottom" ) {
-											var borderstyle = panelMain.find("#in-border-style");
+											var borderstyle = editPanel.find("#in-border-style");
 											if( borderstyle.css("border-bottom").indexOf("dashed") >= 0 ){
 												borderstyle.css("border-bottom","2px solid #888888");
 											} else {
 												borderstyle.css("border-bottom","1px dashed #888888");
 											}
 										} else if( id === "border-style-left" ) {
-											var borderstyle = panelMain.find("#in-border-style");
+											var borderstyle = editPanel.find("#in-border-style");
 											if( borderstyle.css("border-left").indexOf("dashed") >= 0 ){
 												borderstyle.css("border-left","2px solid #888888");
 											} else {
@@ -786,7 +799,7 @@ $(document).ready(function(){
 								rangeSlider[0].noUiSlider.on("update", 
 										function (values, handle, unencoded, tap, positions) {
 									if (handle === 0) {
-										var rv = panelMain.find("#border-radius-val");
+										var rv = editPanel.find("#border-radius-val");
 										rv.val(parseInt(values[handle]));
 //										rv.css("border-radius",parseInt(values[handle])+"px");
 //										rv.html(parseInt(values[handle]));
@@ -804,7 +817,7 @@ $(document).ready(function(){
 								scheduleIntervalSlider[0].noUiSlider.on("update", 
 										function (values, handle, unencoded, tap, positions) {
 									if (handle === 0) {
-										var rv = panelMain.find("#scheduleInterval-val");
+										var rv = editPanel.find("#scheduleInterval-val");
 										rv.val(parseInt(values[handle]));
 //										rv.css("border-radius",parseInt(values[handle])+"px");
 //										rv.html(parseInt(values[handle]));
@@ -822,14 +835,30 @@ $(document).ready(function(){
 								weightRangeSlider[0].noUiSlider.on("update", 
 										function (values, handle, unencoded, tap, positions) {
 									if (handle === 0) {
-										var rv = panelMain.find("#border-weight-val");
+										var rv = editPanel.find("#border-weight-val");
 										rv.val(parseInt(values[handle]));
 										//rv.css("border-radius",parseInt(values[handle])+"px");
 										//rv.html(parseInt(values[handle]));
 										//console.log(values[handle]);
 									}
 								});
-								
+								noUiSlider.create(shadowWeightSlider[0], {
+								    start: [0],
+								    range: {
+								        'min': [0],
+								        'max': [20]
+								    }
+								});
+								shadowWeightSlider[0].noUiSlider.on("update", 
+										function (values, handle, unencoded, tap, positions) {
+									if (handle === 0) {
+										var rv = editPanel.find("#border-shadow-val");
+										rv.val(parseInt(values[handle]));
+										//rv.css("border-radius",parseInt(values[handle])+"px");
+										//rv.html(parseInt(values[handle]));
+										//console.log(values[handle]);
+									}
+								});
 								
 								
 								noUiSlider.create(paddingLeftSlider[0], {
@@ -842,7 +871,7 @@ $(document).ready(function(){
 								paddingLeftSlider[0].noUiSlider.on("update", 
 										function (values, handle, unencoded, tap, positions) {
 									if (handle === 0) {
-										var rv = panelMain.find("#paddingLeft-val");
+										var rv = editPanel.find("#paddingLeft-val");
 										rv.val(parseInt(values[handle]));
 										//rv.css("border-radius",parseInt(values[handle])+"px");
 										//rv.html(parseInt(values[handle]));
@@ -859,7 +888,7 @@ $(document).ready(function(){
 								paddingRightSlider[0].noUiSlider.on("update", 
 										function (values, handle, unencoded, tap, positions) {
 									if (handle === 0) {
-										var rv = panelMain.find("#paddingRight-val");
+										var rv = editPanel.find("#paddingRight-val");
 										rv.val(parseInt(values[handle]));
 										//rv.css("border-radius",parseInt(values[handle])+"px");
 										//rv.html(parseInt(values[handle]));
@@ -876,7 +905,7 @@ $(document).ready(function(){
 								paddingTopSlider[0].noUiSlider.on("update", 
 										function (values, handle, unencoded, tap, positions) {
 									if (handle === 0) {
-										var rv = panelMain.find("#paddingTop-val");
+										var rv = editPanel.find("#paddingTop-val");
 										rv.val(parseInt(values[handle]));
 										//rv.css("border-radius",parseInt(values[handle])+"px");
 										//rv.html(parseInt(values[handle]));
@@ -893,7 +922,7 @@ $(document).ready(function(){
 								paddingBottomSlider[0].noUiSlider.on("update", 
 										function (values, handle, unencoded, tap, positions) {
 									if (handle === 0) {
-										var rv = panelMain.find("#paddingBottom-val");
+										var rv = editPanel.find("#paddingBottom-val");
 										rv.val(parseInt(values[handle]));
 										//rv.css("border-radius",parseInt(values[handle])+"px");
 										//rv.html(parseInt(values[handle]));
@@ -904,30 +933,30 @@ $(document).ready(function(){
 								console.log(delaySpinner);
 								delaySpinner.spinner();
 								
-								var paddingLeft = panelMain.find("#sp-padding-left");
+								var paddingLeft = editPanel.find("#sp-padding-left");
 								paddingLeft.spinner();
-								var paddingLeftVal = panelMain.find("#sp-padding-left-val");
+								var paddingLeftVal = editPanel.find("#sp-padding-left-val");
 								paddingLeftVal.spinner("changing",function(e, newVal, oldVal){
 									paddingLeftVal.val(newVal);
 								});
 								
-								var paddingRight = panelMain.find("#sp-padding-right");
+								var paddingRight = editPanel.find("#sp-padding-right");
 								paddingRight.spinner();
-								var paddingRightVal = panelMain.find("#sp-padding-right-val");
+								var paddingRightVal = editPanel.find("#sp-padding-right-val");
 								paddingRightVal.spinner("changing",function(e, newVal, oldVal){
 									paddingRightVal.val(newVal);
 								});
 								
-								var paddingTop = panelMain.find("#sp-padding-top");
+								var paddingTop = editPanel.find("#sp-padding-top");
 								paddingTop.spinner();
-								var paddingTopVal = panelMain.find("#sp-padding-top-val");
+								var paddingTopVal = editPanel.find("#sp-padding-top-val");
 								paddingTopVal.spinner("changing",function(e, newVal, oldVal){
 									paddingTopVal.val(newVal);
 								});
 								
-								var paddingDown = panelMain.find("#sp-padding-down");
+								var paddingDown = editPanel.find("#sp-padding-down");
 								paddingDown.spinner();
-								var paddingDownVal = panelMain.find("#sp-padding-down-val");
+								var paddingDownVal = editPanel.find("#sp-padding-down-val");
 								paddingDownVal.spinner("changing",function(e, newVal, oldVal){
 									paddingDownVal.val(newVal);
 								});
@@ -941,50 +970,93 @@ $(document).ready(function(){
 							
 							//var blocks = $(".uc-edit-panel-main");
 							
-							if( !editPanel.hasClass("fadeInRight") )
-								editPanel.addClass("fadeInRight animated delay-1s");
-							
-							if( editPanel.hasClass("PanelOutRight") )
-								editPanel.removeClass("PanelOutRight");
-							
 						} else if( target.hasClass("material") ) {
-							
+							editPanel = panel.find(".uc-edit-panel-material[scenarioId='"+scenarioId+"']");
+							if( editPanel.length <= 0 ) {
+								//invokeGet( "/var/subview/uc/scenarioEditPanel", function(data){
+								//	console.log(data);
+								//});
+								editPanel = $(".uc-edit-panel-material[id='temp']").clone(true);
+								editPanel.attr("scenarioId", scenarioId);
+								editPanel.attr("display","current");
+								editPanel.css("display","flex");
+								//panelMain.hide();
+								//panel.append(panelMain);
+								//panelMain.addClass("fadeInRight animated delay-1s");
+								panelMid.append(editPanel);
+							}
 						} 
+						if( editPanel ) {
+							editPanel.removeClass("fadeInRight fadeOutRight animated delay-1s");
+							editPanel.addClass("fadeInRight animated delay-1s");
+							editPanel.attr("display", "current");
+						}
+						
+						if(lastdisplaypanel) {
+							lastdisplaypanel.removeClass("fadeInRight fadeOutRight animated delay-1s");
+							lastdisplaypanel.addClass("fadeOutRight animated");
+							lastdisplaypanel.attr("display", "");
+						}
+						
 					},
+					
 					mouseover:function(event){
 						event.target.style.cursor="pointer";
 					}
 				});
 			} 
+//			
+//			if (panel.hasClass("uc-PanelInRight")){
+//				
+//				var display = panel.finds(".uc-edit-panel-tag[display='current']");
+//				if( display.length > 0 ) {
+//					display.removeClass("fadeInRight animated delay-1s");
+//					display.addClass("fadeOutRight animated");
+//				}
+//				panel.removeClass("uc-PanelInRight animated delay-1s");
+//				panel.addClass("uc-PanelOutRight animated delay-1s");
+//				
+//				//panel.css("min-width","initial");
+//				//panel.animate({width:"55px",minWidth:"0px"},500,"linear");
+//				//blocks.animate({display: "none"},500,"linear");
+//				//blocks.css("display","none");
+//				//panel.css("display","none");
+//			} else if(panel.hasClass("uc-PanelOutRight")) {
+//				var display = panel.finds(".uc-edit-panel-tag[display='current']");
+//				if( display.length > 0 ) {
+//					display.removeClass("fadeOutRight animated delay-1s");
+//					display.addClass("fadeInRight animated delay-1s");
+//				} else {
+//					var tagpanel = panel.finds(".uc-edit-panel-tag.scenario");
+//					tagpanel.trigger("click");
+//				}
+//				
+//				panel.removeClass("uc-PanelOutRight animated delay-1s");
+//				panel.addClass("uc-PanelInRight animated");
+//			} 
+			panel.toggleClass("uc-PanelOutRight animated delay-1s");
+			panel.toggleClass("uc-PanelInRight animated");
 			
-			if (panel.hasClass("uc-PanelInRight")){
-				
-				var display = panel.finds(".uc-edit-panel-tag[display='current']");
-				if( display.length > 0 ) {
-					display.removeClass("fadeInRight animated delay-1s");
-					display.addClass("fadeOutRight animated");
-				}
-				panel.removeClass("uc-PanelInRight animated delay-1s");
-				panel.addClass("uc-PanelOutRight animated delay-1s");
-				
-				//panel.css("min-width","initial");
-				//panel.animate({width:"55px",minWidth:"0px"},500,"linear");
-				//blocks.animate({display: "none"},500,"linear");
-				//blocks.css("display","none");
-				//panel.css("display","none");
-			} else if(panel.hasClass("uc-PanelOutRight")) {
-				var display = panel.finds(".uc-edit-panel-tag[display='current']");
-				if( display.length > 0 ) {
-					display.removeClass("fadeOutRight animated delay-1s");
-					display.addClass("fadeInRight animated delay-1s");
+			if( panel.hasClass("uc-PanelInRight") ) {
+				var editPanel = panel.find("div[class^='uc-edit-panel'][display='current']");
+				if(editPanel.length>0){
+					editPanel.removeClass("fadeInRight fadeOutRight animated delay-1s");
+					editPanel.addClass("fadeInRight animated delay-1s");
+					
 				} else {
-					var tagpanel = panel.finds(".uc-edit-panel-tag.scenario");
-					tagpanel.trigger("click");
+					display = panel.find(".uc-edit-panel-tag.scenario");
+					display.trigger("click");
 				}
+			} else if( panel.hasClass("uc-PanelOutRight") ) {
+				var editPanel = panel.find("div[class^='uc-edit-panel'][display='current']");
 				
-				panel.removeClass("uc-PanelOutRight animated delay-1s");
-				panel.addClass("uc-PanelInRight animated");
-			} 
+					if(editPanel.length>0 ) {
+						editPanel.removeClass("fadeInRight fadeOutRight animated delay-1s");
+						editPanel.addClass("fadeOutRight animated");
+					}
+				
+			}
+			
 			
 			
 		},
@@ -1295,23 +1367,25 @@ $(document).ready(function(){
 				return false;
 			event.stopPropagation(); 
 			
-			var area = target.parents(".uc-edit-comp-add-attr-area");
-			var areaBody = area.children(".uc-edit-comp-r-editor-input-body");
-			areaBody.append($('<div class="uc-edit-comp-r-editor-input-block">'+
-											'<div style="display: flex; width: 90%; height: 100%;">'+
-											'	<div class="uc-edit-comp-r-editor-input-title" style="width: 85px;">'+
-											'		<input type="text" name="attrName" placeholder="Attr name" class="input_text_hint" />'+
-											'	</div>'+
-											'	<div class="uc-edit-comp-r-editor-input">'+
-											'		<input type="text" name="attrValue" placeholder="    input value here" class="input_text_hint" />'+
-											'	</div>'+
-											'	<div class="uc-edit-comp-r-editor-input-opr">'+	
-											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;" aria-hidden="true">'+
-		    								'			<use xlink:href="#icon-jianhao"></use>'+
-											'		</svg>'+
-											'	</div>'+
-										'	</div>'+
-										'</div>'));
+			//var area = target.parents(".uc-input-block-table");
+			var areaBody = target.parents(".uc-input-block-table");
+			areaBody.append($('<div class="uc-input-block-table-row">'+
+												'	<div style="width: 20%; ">'+
+												'	<span class="uc-text cn_input_label">属性</span>'+
+												'</div>'+
+												'<div style="width: 30%; ">'+
+												'	<input type="text" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+												'</div>'+
+												'<div style="width: 20%; ">'+
+												'	<span class="uc-text cn_input_label">值</span>'+
+												'</div>'+
+												'<div style="width: 30%; ">'+
+												'	<input type="text" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+												'</div>'+
+												'<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;" aria-hidden="true">'+
+												'					<use xlink:href="#icon-jianhao"></use>'+
+												'					</svg>'+
+												'</div>'));
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
