@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=052" />
-		<script type="text/javascript" src="/var/js/uc.js?v=052"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=053" />
+		<script type="text/javascript" src="/var/js/uc.js?v=053"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=035"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=003" />
@@ -56,7 +56,9 @@
 				
 					<div class="uc-canvas">
 						<div class="uc-canvasM">
-							<div class="uc-canvas-container"></div>
+							<div class="uc-canvas-container">
+								<div class="uc_t_box_mask"></div>
+							</div>
 						<!-- 
 							<img src="/var/images/mainbg/ride-on-yela-star-citizen-4k-m1.jpg" style="width: 2048px;height: 1152px; filter: blur(25px); "/>
 							 -->
@@ -1025,16 +1027,16 @@
 							<span class="uc-text cn_input_label">边框</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
-							<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+							<svg id="border-style-top" onmouseover="changPointer(this)" class="uc-float-icon uc_layouts_border_nosel" aria-hidden="true">				    				
 				    		<use xlink:href="#icon-border-top-solid"></use>
 							</svg>
-							<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+							<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc_layouts_border_nosel" aria-hidden="true">				    				
 						    		<use xlink:href="#icon-border-right-solid"></use>
 							</svg>
-							<svg id="border-style-bottom" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+							<svg id="border-style-bottom" onmouseover="changPointer(this)" class="uc-float-icon uc_layouts_border_nosel" aria-hidden="true">				    				
 						    		<use xlink:href="#icon-border-top-solid-copy"></use>
 							</svg>
-							<svg id="border-style-left" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 1.22em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+							<svg id="border-style-left" onmouseover="changPointer(this)" class="uc-float-icon uc_layouts_border_nosel" aria-hidden="true">				    				
 						    		<use xlink:href="#icon-shadow-left"></use>
 							</svg>		
 						</div>
@@ -1250,7 +1252,7 @@
 	
 	
 </div>
-
+			
 			<div class="uc_t_box" id="uc_box_temp">
 				<div class="uc_t_tool_addr">
 					<input type="text" placeholder="Input address here" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;" />
@@ -1288,7 +1290,7 @@
 					</svg>
 								
 			 	</div>
-				 	
+				<div class="uc_t_boxC"></div> 	
 	 			 <div class="uc_t_boxD"></div>
 	 			
 			</div>

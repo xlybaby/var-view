@@ -26,63 +26,68 @@ function cloneDiv(sDiv, type){
 		mousedown:function(event){showmask(event,true);},
 		//mouseup:function(event){toolbarclick(event,false);}
 	});
-	draggabilly("#"+cid,".uc-canvas-container", 
-				function (event) {
-					var target = $(event.target).children(".uc_t_boxD")[0],
-					// keep the dragged position in the data-x/data-y attributes
-					x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx, 
-					y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-					
-					// translate the element
-					target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-					
-					// update the posiion attributes
-					target.setAttribute('data-x', x);
-					target.setAttribute('data-y', y);
-				}, 
-				function(event){
-					var container = $(".uc-canvas-container");
-					var rect = figureRect(".uc-canvas-container");
-					
-					var target = event.target;
-					var targetId = $(target).attr("id");
-					var draggable = $(target).children(".uc_t_boxD")[0];
-					//var transformed= draggable.style.transform;
-					var datax= parseFloat($(draggable).attr("data-x") || 0);
-					var datay= parseFloat($(draggable).attr("data-y") || 0);
-					
-					var moveddatax=  (parseFloat(target.getAttribute('data-x')) || 0)+datax;
-					var moveddatay=  (parseFloat(target.getAttribute('data-y')) || 0)+datay;
-					
-					//console.log("target moved x:"+moveddatax+",target moved y:"+moveddatay+", target's whole width is "+(moveddatax+$(target).width()));
-					//console.log("container position x:"+rect["positionX"]+",container position y:"+rect["positionY"]);
-					//console.log("container width:"+rect["width"]+",container height:"+rect["height"]);
-					
-					if(moveddatax<0) {
-						moveddatax = 0;
-					}
-					if(moveddatay<0){
-						moveddatay=0;
-					}
-					
-					target.style.webkitTransform = target.style.transform = 'translate(' + moveddatax + 'px, ' + moveddatay + 'px)';
-					// update the posiion attributes
-					target.setAttribute('data-x', moveddatax);
-					target.setAttribute('data-y', moveddatay);
 
-					// restore draggable's position
-					draggable.style.webkitTransform = draggable.style.transform = 'translate(0px, 0px)';
-					draggable.setAttribute('data-x', 0);
-					draggable.setAttribute('data-y', 0);
-					
-				}, { "able": true, 
-					"edge-left": true,
-					"edge-right": true,
-					"edge-top": false,
-					"edge-bottom": true,
-					"min-width": 100,
-					"min-height": 50
-					}, null);
+	draggabilly("#"+cid,".uc-canvas-container", 
+			function (event) {
+				var target = $(".uc_t_box_mask")[0],
+				// keep the dragged position in the data-x/data-y attributes
+				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx, 
+				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+				
+				// translate the element
+				target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+				
+				// update the posiion attributes
+				target.setAttribute('data-x', x);
+				target.setAttribute('data-y', y);
+			}, 
+			function(event){
+				var container = $(".uc-canvas-container");
+				var rect = figureRect(".uc-canvas-container");
+				
+				var target = event.target;
+				if( !$(target).hasClass("uc_t_box"))
+					target = $(target).parent(".uc_t_box");
+				
+				var targetId = $(target).attr("id");
+				var draggable = $(".uc_t_box_mask")[0];
+				//var transformed= draggable.style.transform;
+				var datax= parseFloat($(draggable).attr("data-x") || 0);
+				var datay= parseFloat($(draggable).attr("data-y") || 0);
+				
+				var moveddatax=  (parseFloat(target.getAttribute('data-x')) || 0)+datax;
+				var moveddatay=  (parseFloat(target.getAttribute('data-y')) || 0)+datay;
+				
+				//console.log("target moved x:"+moveddatax+",target moved y:"+moveddatay+", target's whole width is "+(moveddatax+$(target).width()));
+				//console.log("container position x:"+rect["positionX"]+",container position y:"+rect["positionY"]);
+				//console.log("container width:"+rect["width"]+",container height:"+rect["height"]);
+				
+				if(moveddatax<0) {
+					moveddatax = 0;
+				}
+				if(moveddatay<0){
+					moveddatay=0;
+				}
+				
+				target.style.webkitTransform = target.style.transform = 'translate(' + moveddatax + 'px, ' + moveddatay + 'px)';
+				// update the posiion attributes
+				target.setAttribute('data-x', moveddatax);
+				target.setAttribute('data-y', moveddatay);
+
+				// restore draggable's position
+				draggable.style.webkitTransform = draggable.style.transform = 'translate(0px, 0px)';
+				draggable.setAttribute('data-x', 0);
+				draggable.setAttribute('data-y', 0);
+				
+			}, { "able": true, 
+				"edge-left": true,
+				"edge-right": true,
+				"edge-top": false,
+				"edge-bottom": true,
+				"min-width": 100,
+				"min-height": 50
+				}, null);
+	
 	//resize(sDiv, ".uc-canvasM");
 	$(".uc-canvas-container").append(c);
 	return c;
@@ -112,11 +117,22 @@ function addTemplate(aTemp) {
 }
 
 function showmask(event, down) {
-	var target = event.target;
-	var draggable = $(target).children(".uc_t_boxD");
+	event.stopPropagation();    //标准   
+    event.cancelBubble = true;  //IE  
+    
+	var target = $(event.target);
+	var draggable = $(".uc_t_box_mask");
+	
+	if( !target.hasClass("uc_t_box"))
+		target = target.parent(".uc_t_box");
+	draggable.attr("current_box_sid", target.attr("scenarioId"));
+	draggable.css("width", target.width()+"px");
+	draggable.css("height", target.height()+"px");
+	draggable.css("left", target.position().left+"px");
+	draggable.css("top", target.position().top+"px");
 	
 	if( down ){
-		draggable.css("display","flex");
+		draggable.css("display","block");
 		draggable.on({
 			mouseup:function(event){
 				this.style.display="none";
@@ -737,55 +753,67 @@ $(document).ready(function(){
 								var borderBox = editPanel.find("svg[id^='border-style']");
 								borderBox.on({
 									click: function(event){
-										var id = $(event.target).attr("id");
-										if( id === "border-style-top" ) {
-											var borderstyle = editPanel.find("#in-border-style");
-											if( borderstyle.css("border-top").indexOf("dashed") >= 0 ){
-												borderstyle.css("border-top","2px solid #888888");
-												
-											} else {
-												borderstyle.css("border-top","1px dashed #888888");
-											}
-										} else if( id === "border-style-right" ) {
-											var borderstyle = editPanel.find("#in-border-style");
-											if( borderstyle.css("border-right").indexOf("dashed") >= 0 ){
-												borderstyle.css("border-right","2px solid #888888");
-											} else {
-												borderstyle.css("border-right","1px dashed #888888");
-											}
-										} else if( id === "border-style-bottom" ) {
-											var borderstyle = editPanel.find("#in-border-style");
-											if( borderstyle.css("border-bottom").indexOf("dashed") >= 0 ){
-												borderstyle.css("border-bottom","2px solid #888888");
-											} else {
-												borderstyle.css("border-bottom","1px dashed #888888");
-											}
-										} else if( id === "border-style-left" ) {
-											var borderstyle = editPanel.find("#in-border-style");
-											if( borderstyle.css("border-left").indexOf("dashed") >= 0 ){
-												borderstyle.css("border-left","2px solid #888888");
-											} else {
-												borderstyle.css("border-left","1px dashed #888888");
-											}
-										}
+										event.stopPropagation();
+										var clicktag = event.target.tagName;
+										if(clicktag.toUpperCase()==="USE")
+											var tag = $(event.target).parent("svg");
+										else 
+											var tag = $(event.target);
+										tag.toggleClass("uc_layouts_border_nosel uc_layouts_border_sel");
+										
+//										var id = $(event.target).attr("id");
+//										if( id === "border-style-top" ) {
+//											var borderstyle = editPanel.find("#in-border-style");
+//											if( borderstyle.css("border-top").indexOf("dashed") >= 0 ){
+//												borderstyle.css("border-top","2px solid #888888");
+//												
+//											} else {
+//												borderstyle.css("border-top","1px dashed #888888");
+//											}
+//										} else if( id === "border-style-right" ) {
+//											var borderstyle = editPanel.find("#in-border-style");
+//											if( borderstyle.css("border-right").indexOf("dashed") >= 0 ){
+//												borderstyle.css("border-right","2px solid #888888");
+//											} else {
+//												borderstyle.css("border-right","1px dashed #888888");
+//											}
+//										} else if( id === "border-style-bottom" ) {
+//											var borderstyle = editPanel.find("#in-border-style");
+//											if( borderstyle.css("border-bottom").indexOf("dashed") >= 0 ){
+//												borderstyle.css("border-bottom","2px solid #888888");
+//											} else {
+//												borderstyle.css("border-bottom","1px dashed #888888");
+//											}
+//										} else if( id === "border-style-left" ) {
+//											var borderstyle = editPanel.find("#in-border-style");
+//											if( borderstyle.css("border-left").indexOf("dashed") >= 0 ){
+//												borderstyle.css("border-left","2px solid #888888");
+//											} else {
+//												borderstyle.css("border-left","1px dashed #888888");
+//											}
+//										}
 									}
 								});
 								
 								console.log(bgColorPicker);
 								bgColorPicker.spectrum({
-								    color: "#333333"
+								    color: "#ffffff",
+								    showAlpha: true
 								});
 								fgColorPicker.spectrum({
-								    color: "#ffffff"
+								    color: "#ffffff",
+								    showAlpha: true
 								});
 								fntColorPicker.spectrum({
-								    color: "#ffffff"
+								    color: "#000000"
 								});
 								borderColorPicker.spectrum({
-								    color: "#ffffff"
+								    color: "#ffffff",
+								    showAlpha: true
 								});
 								shadowColorPicker.spectrum({
-								    color: "#ffffff"
+								    color: "#ffffff",
+								    showAlpha: true
 								});
 								
 								console.log(rangeSlider);
@@ -799,11 +827,13 @@ $(document).ready(function(){
 								rangeSlider[0].noUiSlider.on("update", 
 										function (values, handle, unencoded, tap, positions) {
 									if (handle === 0) {
+										var val = parseInt(values[handle]);
 										var rv = editPanel.find("#border-radius-val");
-										rv.val(parseInt(values[handle]));
+										rv.val(val);
 //										rv.css("border-radius",parseInt(values[handle])+"px");
 //										rv.html(parseInt(values[handle]));
 //										console.log(values[handle]);
+										box.css("borderRadius", val+"px");
 									}
 								});
 								
