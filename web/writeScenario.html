@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=053" />
-		<script type="text/javascript" src="/var/js/uc.js?v=053"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=057" />
+		<script type="text/javascript" src="/var/js/uc.js?v=057"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=035"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=003" />
@@ -1016,10 +1016,21 @@
 		</div>
 	</div>
 
-	<div class="uc-edit-panel-block layout-border-info">
-		<span class="uc-input-title en_block_title">Border</span> <img
-			src="/var/images/icon_help.svg" />
-		<div class="uc-input-area">
+	<div class="uc-edit-panel-block layout-border-info" style="position: relative;">
+		<div style="display: flex; align-items: center; width: 100%;">
+			<span class="uc-input-title en_block_title">Border</span> 
+			
+			<div class="uc-bg-fg-chg" editable="background">
+				<div class="uc-bg-fg-chg1" style="position: absolute; left: 5px; top: 5px; background-color: rgb(232,232,232,0.75);">
+					
+				</div>
+				<div class="uc-bg-fg-chg2" style="position: absolute; left: 0px; top: 0px;background-color: rgb(255, 251, 240,1);">
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="uc-input-area flipInX" style="z-index: 6;">
 			<div class="uc-input-block">
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
@@ -1064,6 +1075,56 @@
 						</div>
 						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
 							<input type="text" id="border-radius-val" style="width: 25px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		<div class="uc-input-area flipOutX" style="z-index: 5; position: absolute; left: 0px ; top: 25px; background-color: rgb(255, 251, 240,0.75); filter:alpha(opacity:0); opacity:0;  -moz-opacity:0; -khtml-opacity: 0;">
+			<div class="uc-input-block">
+				<div class="uc-input-block-table">
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">边框</span><span class="uc-text cn_input_label">：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
+							<svg id="fgborder-style-top" onmouseover="changPointer(this)" class="uc-float-icon uc_layouts_border_nosel" aria-hidden="true">				    				
+				    		<use xlink:href="#icon-border-top-solid"></use>
+							</svg>
+							<svg id="fgborder-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc_layouts_border_nosel" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-border-right-solid"></use>
+							</svg>
+							<svg id="fgborder-style-bottom" onmouseover="changPointer(this)" class="uc-float-icon uc_layouts_border_nosel" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-border-top-solid-copy"></use>
+							</svg>
+							<svg id="fgborder-style-left" onmouseover="changPointer(this)" class="uc-float-icon uc_layouts_border_nosel" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-shadow-left"></use>
+							</svg>		
+						</div>
+						<div style="width: 90px; padding-left: 5px;">
+							<input type="text" id="in_fgbordercolor_box" style="height: 80%;"/>
+						</div>
+					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">粗细</span><span class="uc-text cn_input_label">：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_fg_borderWeight" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="fgborder-weight-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+						</div>
+					</div>
+					<div class="uc-input-block-table-row">
+						<div>
+							<span class="uc-text cn_input_label">圆角</span><span class="uc-text cn_input_label">：</span>
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+							<div id="in_fg_borderRadius" style="width: 80%; height: 10px;"></div>
+						</div>
+						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
+							<input type="text" id="fgborder-radius-val" style="width: 25px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 						</div>
 					</div>
 				</div>
