@@ -629,16 +629,38 @@ $(document).ready(function(){
 	        //event.cancelBubble = true;  //IE  
 		}
 	});
-	
-	$(".icon.editCommonInfo").on({
+	/*
+	$(".uc-bg-fg-chg").on({
 		click: function(event){
-			var clicktag = event.target.tagName;
-			if(clicktag==="svg")
-				var tag = $(event.target).children("use");
-			else if(clicktag==="use")
-				var tag = $(event.target);
-			else
-				return false;
+			event.stopPropagation(); 
+			var block = $(event.target).parents(".uc-edit-panel-block");
+			var areas = block.find(".uc-input-area");
+			
+			var chg1 = block.find(".uc-bg-fg-chg1");
+			var chg2 = block.find(".uc-bg-fg-chg2");
+			chg1.toggleClass("uc-bg-fg-chg1 uc-bg-fg-chg2");
+			chg2.toggleClass("uc-bg-fg-chg1 uc-bg-fg-chg2");
+
+			areas.toggleClass("flipInX uc-input-area-z6 flipOutX uc-input-area-z5");
+			areas.removeClass("animated");
+			areas.addClass("animated");
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});*/
+	
+	$(".uc_t_box_edit").on({
+		click: function(event){
+			event.stopPropagation(); 
+//			var clicktag = event.target.tagName;
+//			if(clicktag==="svg")
+//				var tag = $(event.target).children("use");
+//			else if(clicktag==="use")
+//				var tag = $(event.target);
+//			else
+//				return false;
+			var tag = $(event.target);
 			
 			var panel = $(".uc-edit-panel");
 			var panelMid = panel.children(".uc-edit-panel-mid");
@@ -706,13 +728,13 @@ $(document).ready(function(){
 								var fgColorPicker = editPanel.find("#in_fgcolor_box");
 								var fntColorPicker = editPanel.find("#in_fntcolor_box");
 								var borderColorPicker = editPanel.find("#in_bordercolor_box");
-								var fgborderColorPicker = editPanel.find("#in_fgbordercolor_box");
+								//var fgborderColorPicker = editPanel.find("#in_fgbordercolor_box");
 								var shadowColorPicker = editPanel.find("#in_shadowcolor_box");
 								
 								var rangeSlider = editPanel.find("#in_borderRadius");
-								var fgBorderRadiusSlider = editPanel.find("#in_fg_borderRadius");
+								//var fgBorderRadiusSlider = editPanel.find("#in_fg_borderRadius");
 								var weightRangeSlider = editPanel.find("#in_borderWeight");
-								var fgBorderWidthRangeSlider = editPanel.find("#in_fg_borderWeight");
+								//var fgBorderWidthRangeSlider = editPanel.find("#in_fg_borderWeight");
 								
 								var paddingLeftSlider = editPanel.find("#in_paddingLeft");
 								var paddingRightSlider = editPanel.find("#in_paddingRight");
@@ -720,6 +742,9 @@ $(document).ready(function(){
 								var paddingBottomSlider = editPanel.find("#in_paddingBottom");
 								var scheduleIntervalSlider = editPanel.find("#in_scheduleInterval");
 								var shadowWeightSlider = editPanel.find("#in_shadowWeight");
+								var shadowHSlider = editPanel.find("#in_Hshadow");
+								var shadowVSlider = editPanel.find("#in_Vshadow");
+								var shadowSpreadSlider = editPanel.find("#in_shadowSpread");
 								
 								var delaySpinner = editPanel.find("#in_auto_delay");
 								
@@ -806,257 +831,96 @@ $(document).ready(function(){
 								});
 								
 								console.log(bgColorPicker);
-							
-								bgColorPicker.spectrum({
-								    color: "#ffffff",
-								    showAlpha: true,
-								    showInput: true,
-								    change: function(color) {
-								    	box.css("backgroundColor", color.toRgbString());
-								    }
+								makeupColorPicker(bgColorPicker, "#ffffff", function(color) {
+							    	box.css("backgroundColor", color.toRgbString());
+							    }) ;
+								makeupColorPicker(fgColorPicker, null, function(color) {
+									 boxContent.css("backgroundColor", color.toRgbString());
+							    }) ;
+								makeupColorPicker(fntColorPicker, "#000000", function(color) {
+							    }) ;
+								makeupColorPicker(borderColorPicker, "#888888", function(color) {
+							        color.toHexString(); // #ff0000
+							    }) ;
+//								makeupColorPicker(fgborderColorPicker, "#ffffff", function(color) {
+//							        color.toHexString(); // #ff0000
+//							    }) ;
+								makeupColorPicker(shadowColorPicker, "#333333", function(color) {
+							        color.toHexString(); // #ff0000
+							    }) ;
+															
+//								makeupSlider(fgBorderRadiusSlider[0], 0, 20, 0, function(val){
+//									var rv = editPanel.find("#fgborder-radius-val");
+//									rv.val(val);
+//								});
+								makeupSlider(shadowSpreadSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#shadow-spread-val");
+									rv.val(val);
 								});
-								fgColorPicker.spectrum({
-								    color: "#ffffff",
-								    showAlpha: true,
-								    showInput: true,
-								    change: function(color) {
-								        //color.toHexString(); 
-								        boxContent.css("backgroundColor", color.toRgbString());
-								    }
+								makeupSlider(shadowHSlider[0], -20, 20, 0, function(val){
+									var rv = editPanel.find("#h-shadow-val");
+									rv.val(val);
 								});
-								fntColorPicker.spectrum({
-								    color: "#000000"
+								makeupSlider(shadowVSlider[0], -20, 20, 0, function(val){
+									var rv = editPanel.find("#v-shadow-val");
+									rv.val(val);
 								});
-								borderColorPicker.spectrum({
-								    color: "#ffffff",
-								    showAlpha: true,
-								    showInput: true,
-								    change: function(color) {
-								        color.toHexString(); // #ff0000
-								    }
+//								makeupSlider(fgBorderWidthRangeSlider[0], 0, 20, 0, function(val){
+//									var rv = editPanel.find("#fgborder-weight-val");
+//									rv.val(val);
+//								});
+								makeupSlider(rangeSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#border-radius-val");
+									rv.val(val);
+									box.css("borderRadius", val+"px");
 								});
-								fgborderColorPicker.spectrum({
-								    color: "#ffffff",
-								    showAlpha: true,
-								    showInput: true,
-								    change: function(color) {
-								        color.toHexString(); // #ff0000
-								    }
+								makeupSlider(scheduleIntervalSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#scheduleInterval-val");
+									rv.val(val);
 								});
-								
-								shadowColorPicker.spectrum({
-								    color: "#ffffff",
-								    showAlpha: true,
-								    showInput: true,
-								    change: function(color) {
-								        color.toHexString(); // #ff0000
-								    }
-								});
-								
-								console.log(rangeSlider);
-								noUiSlider.create(fgBorderRadiusSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								fgBorderRadiusSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var val = parseInt(values[handle]);
-										var rv = editPanel.find("#fgborder-radius-val");
-										rv.val(val);
-//										rv.css("border-radius",parseInt(values[handle])+"px");
-//										rv.html(parseInt(values[handle]));
-//										console.log(values[handle]);
-									}
-								});
-								noUiSlider.create(fgBorderWidthRangeSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								fgBorderWidthRangeSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var val = parseInt(values[handle]);
-										var rv = editPanel.find("#fgborder-weight-val");
-										rv.val(val);
-//										rv.css("border-radius",parseInt(values[handle])+"px");
-//										rv.html(parseInt(values[handle]));
-//										console.log(values[handle]);
-									}
-								});
-								
-								noUiSlider.create(rangeSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								rangeSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var val = parseInt(values[handle]);
-										var rv = editPanel.find("#border-radius-val");
-										rv.val(val);
-//										rv.css("border-radius",parseInt(values[handle])+"px");
-//										rv.html(parseInt(values[handle]));
-//										console.log(values[handle]);
-										box.css("borderRadius", val+"px");
-									}
-								});
-								
-								noUiSlider.create(scheduleIntervalSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								scheduleIntervalSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var rv = editPanel.find("#scheduleInterval-val");
-										rv.val(parseInt(values[handle]));
-//										rv.css("border-radius",parseInt(values[handle])+"px");
-//										rv.html(parseInt(values[handle]));
-//										console.log(values[handle]);
-									}
-								});
-								
-								noUiSlider.create(weightRangeSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								weightRangeSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var val = parseInt(values[handle]);
-										var rv = editPanel.find("#border-weight-val");
-										rv.val(val);
-										//rv.css("border-radius",parseInt(values[handle])+"px");
-										//rv.html(parseInt(values[handle]));
-										//console.log(values[handle]);
-										for(var i=0; i<borderBox.length; i++ ) {
-											if( $(borderBox[i]).hasClass("uc_layouts_border_sel") ) {
-												var borderBox_id = $(borderBox[i]).attr(id);
-												if( borderBox_id == "border-style-top") {
-													box.css( "borderTopWidth", val+"px" );
-												} else if( borderBox_id == "border-style-left") {
-													box.css( "borderLeftWidth", val+"px" );
-												} else if( borderBox_id == "border-style-right") {
-													box.css( "borderRightWidth", val+"px" );
-												} else if( borderBox_id == "border-style-bottom") {
-													box.css( "borderBottomWidth", val+"px" );
-												}
+								makeupSlider(weightRangeSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#border-weight-val");
+									rv.val(val);
+									for(var i=0; i<borderBox.length; i++ ) {
+										if( $(borderBox[i]).hasClass("uc_layouts_border_sel") ) {
+											var borderBox_id = $(borderBox[i]).attr("id");
+											if( borderBox_id == "border-style-top") {
+												box.css( "borderTopWidth", val+"px" );
+											} else if( borderBox_id == "border-style-left") {
+												box.css( "borderLeftWidth", val+"px" );
+											} else if( borderBox_id == "border-style-right") {
+												box.css( "borderRightWidth", val+"px" );
+											} else if( borderBox_id == "border-style-bottom") {
+												box.css( "borderBottomWidth", val+"px" );
 											}
 										}
-										
 									}
 								});
-								noUiSlider.create(shadowWeightSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
+								makeupSlider(shadowWeightSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#border-shadow-val");
+									rv.val(val);
 								});
-								shadowWeightSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var rv = editPanel.find("#border-shadow-val");
-										rv.val(parseInt(values[handle]));
-										//rv.css("border-radius",parseInt(values[handle])+"px");
-										//rv.html(parseInt(values[handle]));
-										//console.log(values[handle]);
-									}
+								makeupSlider(paddingLeftSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#paddingLeft-val");
+									rv.val(val);
+									box.css("paddingLeft", val+"px");
+								});
+								makeupSlider(paddingRightSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#paddingRight-val");
+									rv.val(val);
+									box.css("paddingRight", val+"px");
+								});
+								makeupSlider(paddingTopSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#paddingTop-val");
+									rv.val(val);
+									box.css("paddingTop", val+"px");
+								});
+								makeupSlider(paddingBottomSlider[0], 0, 20, 0, function(val){
+									var rv = editPanel.find("#paddingBottom-val");
+									rv.val(val);
+									box.css("paddingBottom", val+"px");
 								});
 								
-								
-								noUiSlider.create(paddingLeftSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								paddingLeftSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var val = parseInt(values[handle]);
-										var rv = editPanel.find("#paddingLeft-val");
-										rv.val(val);
-										//rv.css("border-radius",parseInt(values[handle])+"px");
-										//rv.html(parseInt(values[handle]));
-										//console.log(values[handle]);
-										box.css("paddingLeft", val+"px");
-									}
-								});
-								noUiSlider.create(paddingRightSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								paddingRightSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var val = parseInt(values[handle]);
-										var rv = editPanel.find("#paddingRight-val");
-										rv.val(val);
-										//rv.css("border-radius",parseInt(values[handle])+"px");
-										//rv.html(parseInt(values[handle]));
-										//console.log(values[handle]);
-										box.css("paddingRight", val+"px");
-									}
-								});
-								noUiSlider.create(paddingTopSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								paddingTopSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var val = parseInt(values[handle]);
-										var rv = editPanel.find("#paddingTop-val");
-										rv.val(val);
-										//rv.css("border-radius",parseInt(values[handle])+"px");
-										//rv.html(parseInt(values[handle]));
-										//console.log(values[handle]);
-										box.css("paddingTop", val+"px");
-									}
-								});
-								noUiSlider.create(paddingBottomSlider[0], {
-								    start: [0],
-								    range: {
-								        'min': [0],
-								        'max': [20]
-								    }
-								});
-								paddingBottomSlider[0].noUiSlider.on("update", 
-										function (values, handle, unencoded, tap, positions) {
-									if (handle === 0) {
-										var val = parseInt(values[handle]);
-										var rv = editPanel.find("#paddingBottom-val");
-										rv.val(val);
-										//rv.css("border-radius",parseInt(values[handle])+"px");
-										//rv.html(parseInt(values[handle]));
-										//console.log(values[handle]);
-										box.css("paddingBottom", val+"px");
-									}
-								});
 							}
 //							var rect = figureRect(".uc-populate-container");
 //							console.log("uc-populate-container's width: " + rect["width"] + ", 30percent: " + (rect["width"]*0.3)+", min-width is 400px.");

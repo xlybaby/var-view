@@ -96,6 +96,36 @@ function resize(sDrag, container, resizable) {
 			});
 }
 
+function makeupColorPicker(target, init, change) {
+	target.spectrum({
+	    color: init,
+	    showAlpha: true,
+	    showInput: true,
+	    allowEmpty: true,
+	    change: change
+	});
+}
+
+function makeupSlider(target, min, max, start, callback) {
+	noUiSlider.create(target, {
+	    start: [start],
+	    range: {
+	        'min': [min],
+	        'max': [max]
+	    }
+	});
+	target.noUiSlider.on("update", 
+			function (values, handle, unencoded, tap, positions) {
+		if (handle === 0) {
+			var val = parseInt(values[handle]);
+			
+			if( callback ) {
+				callback(val);
+			}
+		}
+	});
+}
+
 function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict) {
 	// target elements with the "draggable" class
 	onMoveListener = dragMoveListener;
