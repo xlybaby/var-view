@@ -16,6 +16,8 @@ function cloneDiv(sDiv, type){
 	c.css('background-image','url(/var/images/uc/uc_bg_'+type+'.svg)');
 	c.css('background-position','50% 75%');
 	c.css('background-size','45% 45%');
+	c.css('width','25%');
+	c.css('height','20%');
 	/*－
 	draggable=c.children(sDrag);
 	var $draggable = draggable.draggabilly({
@@ -540,50 +542,68 @@ $(document).ready(function(){
 	    }
 	});
 	
-	$(".icon.editManually").on({
+	$(".deleteScenarioBox").on({
 		click: function(event){
-			var clicktag = event.target.tagName;
-			if(clicktag==="svg")
-				var tag = $(event.target).children("use");
-			else if(clicktag==="use")
-				var tag = $(event.target);
-			else
-				return false;
+			event.stopPropagation();
+			var tbox = $(event.target).parents(".uc_t_box");
+			var sid = tbox.attr("scenarioId");
 			
-			var overlay = $(".overlay");
-			overlay.css("display","block");
-			overlay.on({
-				click: function(event){
-					$(event.target).hide();
-					var compEditor = $(".page-main-div").find(".uc-edit-components[status='modify']");
-					compEditor.hide();
-					compEditor.attr("status","hide");
-				}
-			});
-			var main = $(".page-main-div");
-			var box = tag.parents(".uc_t_box");
-			var scenarioId = box.attr("scenarioId");
-			var compEditor = $(".uc-edit-components[scenarioId='"+scenarioId+"']");
-			if(compEditor.length <= 0){
-				compEditor = $(".uc-edit-components[id='_temp']").clone(true);
-				compEditor.attr("scenarioId",scenarioId);
-				main.append(compEditor);
-			}
-			var compEditorRight=compEditor.children(".uc-edit-comp-l");
-			compEditorRight.css("display","none");
+			var panel = $(".uc-edit-panel").children(".uc-edit-panel-mid");
+			var editPanel = panel.children(".uc-edit-panel-layouts[scenarioId='"+sid+"']");
+			var editMaterial = panel.children(".uc-edit-panel-material[scenarioId='"+sid+"']");
+			editPanel.remove();
+			editMaterial.remove();
 			
-			compEditor.css("display","flex");
-			compEditor.attr("status","modify");
-			
+			tbox.remove();
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
-			
-			//event.target.setAttribute('onIcon', true);
-			//event.stopPropagation();    //标准   
-	        //event.cancelBubble = true;  //IE  
 		}
 	});
+//	$(".icon.editManually").on({
+//		click: function(event){
+//			var clicktag = event.target.tagName;
+//			if(clicktag==="svg")
+//				var tag = $(event.target).children("use");
+//			else if(clicktag==="use")
+//				var tag = $(event.target);
+//			else
+//				return false;
+//			
+//			var overlay = $(".overlay");
+//			overlay.css("display","block");
+//			overlay.on({
+//				click: function(event){
+//					$(event.target).hide();
+//					var compEditor = $(".page-main-div").find(".uc-edit-components[status='modify']");
+//					compEditor.hide();
+//					compEditor.attr("status","hide");
+//				}
+//			});
+//			var main = $(".page-main-div");
+//			var box = tag.parents(".uc_t_box");
+//			var scenarioId = box.attr("scenarioId");
+//			var compEditor = $(".uc-edit-components[scenarioId='"+scenarioId+"']");
+//			if(compEditor.length <= 0){
+//				compEditor = $(".uc-edit-components[id='_temp']").clone(true);
+//				compEditor.attr("scenarioId",scenarioId);
+//				main.append(compEditor);
+//			}
+//			var compEditorRight=compEditor.children(".uc-edit-comp-l");
+//			compEditorRight.css("display","none");
+//			
+//			compEditor.css("display","flex");
+//			compEditor.attr("status","modify");
+//			
+//		},
+//		mouseover:function(event){
+//			event.target.style.cursor="pointer";
+//			
+//			//event.target.setAttribute('onIcon', true);
+//			//event.stopPropagation();    //标准   
+//	        //event.cancelBubble = true;  //IE  
+//		}
+//	});
 	
 	$(".icon.editCompInfo").on({
 		click: function(event){
@@ -650,7 +670,7 @@ $(document).ready(function(){
 		}
 	});*/
 	
-	$(".uc_t_box_edit").on({
+	$(".editManually").on({
 		click: function(event){
 			event.stopPropagation(); 
 //			var clicktag = event.target.tagName;
@@ -723,6 +743,12 @@ $(document).ready(function(){
 								//panel.append(editPanel);
 								//editPanel.addClass("fadeInRight animated delay-1s");
 								panelMid.append(editPanel);
+								
+								var canvasContainer = $(".uc-canvas-container");
+								var scenarioW = editPanel.find(".scenarioW");
+								var scenarioH = editPanel.find(".scenarioH");
+								scenarioW.text(box.css("width"));
+								scenarioH.text(box.css("height"));
 								
 								var bgColorPicker = editPanel.find("#in_bgcolor_box");
 								var fgColorPicker = editPanel.find("#in_fgcolor_box");
