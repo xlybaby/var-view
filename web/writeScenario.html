@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=059" />
-		<script type="text/javascript" src="/var/js/uc.js?v=059"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=060" />
+		<script type="text/javascript" src="/var/js/uc.js?v=060"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=035"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
@@ -164,7 +164,7 @@
 															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
 															</svg>
-															<span class="uc-text cn_input_hint">百分比</span>
+															<span class="uc-text cn_input_hint">可视区</span>
 															<input type="text" value="100" id="tempPercentWidth-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;font-family: xihei001;font-size: 0.87em;" />
 															<span class="uc-text cn_input_hint">%</span>
 															
@@ -193,7 +193,7 @@
 															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
 															</svg>
-															<span class="uc-text cn_input_hint">百分比</span>
+															<span class="uc-text cn_input_hint">可视区</span>
 															<input type="text"  value="100" id="tempPercentHeight-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;font-family: xihei001;font-size: 0.87em;" />
 															<span class="uc-text cn_input_hint">%</span>
 															
@@ -336,6 +336,7 @@
 										</div>
 									</div>
 								</div> 
+								<!-- 
 								<div class="uc-edit-panel-block bgDrawComp-info">
 									<span class="uc-text cn_block_title">组件渲染</span> <img src="/var/images/icon_help.svg" />
 									<div class="uc-input-area">
@@ -400,9 +401,9 @@
 											</div>
 										</div>
 									</div>
-								</div> 
+								</div> -->
 								<div class="uc-edit-panel-block bgCanvas-info">
-									<span class="uc-input-title en_block_title">Canvas</span> <img src="/var/images/icon_help.svg" />
+									<span class="uc-input-title en_block_title">辅助线</span> <img src="/var/images/icon_help.svg" />
 									<div class="uc-input-area">
 										<div class="uc-input-block">
 											<div class="uc-input-block-table">
@@ -1362,7 +1363,7 @@
 	
 </div>
 			
-			<div class="uc_t_box" id="uc_box_temp">
+			<div class="uc_t_box" data-position="absolute" id="uc_box_temp">
 			<!-- 
 				<div class="uc_t_tool_addr">
 					<input type="text" placeholder="Input address here" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;" />
