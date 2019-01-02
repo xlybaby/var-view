@@ -71,7 +71,7 @@ function cloneDiv(sDiv, type){
 					moveddatay=0;
 				}
 
-				var position = target.attr("data-position");
+				var position = $(target).attr("data-position");
 				if( position === "absolute" )
 					target.style.webkitTransform = target.style.transform = 'translate(' + moveddatax + 'px, ' + moveddatay + 'px)';
 				else if( position === "relative" ) {
@@ -303,6 +303,8 @@ function initTempalePanel() {
 		var templateBgColorPicker = panel.find("#in_tempbgcolor_box");
 		var tempGridPaddingSlider = panel.find("#in_tempGridPadding");
 		
+		var hGridInterval = panel.find("#in_hGridInterval");
+		
 		templateBgColorPicker.spectrum({
 		    color: "#ffffff"
 		});
@@ -421,6 +423,8 @@ function popEditPanel(eventTag, clickTag) {
 						var shadowSpreadSlider = editPanel.find("#in_shadowSpread");
 						
 						var delaySpinner = editPanel.find("#in_auto_delay");
+						console.log(delaySpinner);
+						delaySpinner.spinner();
 						
 						var shadowBox = editPanel.find("div[id^='shadow-style']");
 						shadowBox.on({
@@ -1155,6 +1159,8 @@ $(document).ready(function(){
 								var shadowSpreadSlider = editPanel.find("#in_shadowSpread");
 								
 								var delaySpinner = editPanel.find("#in_auto_delay");
+								console.log(delaySpinner);
+								delaySpinner.spinner();
 								
 								var shadowBox = editPanel.find("div[id^='shadow-style']");
 								shadowBox.on({

@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=060" />
-		<script type="text/javascript" src="/var/js/uc.js?v=060"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=063" />
+		<script type="text/javascript" src="/var/js/uc.js?v=063"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=035"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
@@ -429,6 +429,92 @@
 													</div>
 													<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 5px;">
 														<input type="text" id="tempGridPadding-val" style="width: 25px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="width: 25%; white-space : nowrap;">
+														<span class="uc-text cn_input_label">横线</span><span class="uc-text cn_input_label">：</span>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="margin-left:7px; white-space : nowrap; width: 100%; display: flex; align-items: center;">
+															<span class="uc-text cn_input_hint">间隔</span><span class="uc-text cn_input_label">：</span>
+															
+															<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
+															<input type="text" id="in_auto_delay_val" value="0" style="text-align: center; width: 20px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" data-ruler="quantity">
+															<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
+															&nbsp;&nbsp;
+															<button type="button" style="display: flex; justify-content: center; align-items: center; padding-left: 2px; padding-right: 2px;background-color: rgba(255,255,255,0.0); border: 1px solid rgb(204,188,138,1.0);border-radius: 5px;" data-spin="up"><span class="uc-text cn_input_hint">铺满</span></button>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="margin-left:7px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">百分比</span>
+															<input type="text" value="100" id="tempPercentWidth-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;font-family: xihei001;font-size: 0.87em;" />
+															<span class="uc-text cn_input_hint">%</span>
+															
+													</div>
+													<div style="margin-left:7px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">固定值</span>
+															<input type="text" id="tempFixedWidth-val" style="width: 30px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+															<span class="uc-text cn_input_hint">px</span>
+															
+													</div>
+													<div style="margin-left:7px; width: 25%; white-space : nowrap;">
+														<button type="button" style="display: flex; justify-content: center; align-items: center; padding-left: 2px; padding-right: 2px;background-color: rgba(255,255,255,0.0); border: 1px solid rgb(204,188,138,1.0);border-radius: 5px;" data-spin="up"><span class="uc-text cn_input_hint">添加</span></button>
+														
+													<!--  
+														<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.87em; color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-msnui-add-line"></use>
+														</svg>		-->											
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="width: 25%; white-space : nowrap;">
+														<span class="uc-text cn_input_label">竖线</span><span class="uc-text cn_input_label">：</span>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="margin-left:7px; white-space : nowrap; width: 100%; display: flex; align-items: center;">
+															<span class="uc-text cn_input_hint">间隔</span><span class="uc-text cn_input_label">：</span>
+															
+															<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
+															<input type="text" id="in_auto_delay_val" value="0" style="text-align: center; width: 20px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" data-ruler="quantity">
+															<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
+															&nbsp;&nbsp;
+															<button type="button" style="display: flex; justify-content: center; align-items: center; padding-left: 2px; padding-right: 2px;background-color: rgba(255,255,255,0.0); border: 1px solid rgb(204,188,138,1.0);border-radius: 5px;" data-spin="up"><span class="uc-text cn_input_hint">铺满</span></button>
+													</div>
+												</div>
+												<div class="uc-input-block-table-row">
+													<div style="margin-left:7px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">百分比</span>
+															<input type="text" value="100" id="tempPercentWidth-val" style="width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;font-family: xihei001;font-size: 0.87em;" />
+															<span class="uc-text cn_input_hint">%</span>
+															
+													</div>
+													<div style="margin-left:7px; white-space : nowrap;">
+															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+															</svg>
+															<span class="uc-text cn_input_hint">固定值</span>
+															<input type="text" id="tempFixedWidth-val" style="width: 30px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+															<span class="uc-text cn_input_hint">px</span>
+															
+													</div>
+													<div style="margin-left: 7px; width: 25%; white-space : nowrap;">
+														<button type="button" style="display: flex; justify-content: center; align-items: center; padding-left: 2px; padding-right: 2px;background-color: rgba(255,255,255,0.0); border: 1px solid rgb(204,188,138,1.0);border-radius: 5px;" data-spin="up"><span class="uc-text cn_input_hint">添加</span></button>
+														<!--<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.87em; color: #888888;" aria-hidden="true">				    				
+												    		<use xlink:href="#icon-msnui-add-line"></use>
+														</svg>		  -->											
 													</div>
 												</div>
 											</div>
@@ -870,7 +956,7 @@
 				<div style="width: 100%; display: flex; align-items: center; justify-content: space-around;">
 			
 					<span class="en_input_hint" style="color: #888888;">Delay</span>&nbsp;&nbsp;&nbsp;
-					<div id="in_auto_delay" style="display: flex; align-items: center; padding: 0px; width: 45px;">
+					<div style="display: flex; align-items: center; padding: 0px; width: 45px;">
 						<button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
 						<input type="text" id="in_auto_delay_val" value="0" style="width: 20px;" data-ruler="quantity">
 						<button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
@@ -921,26 +1007,74 @@
 			<div class="uc-input-block">
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
-						<div style="width: 50%; ">
-							<span class="uc-text cn_input_label">X轴坐标</span><span class="uc-text cn_input_label">：</span>
-							<span class="scenarioX en_input_label"></span>
+						<div style="width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">定位</span><span class="uc-text cn_input_label">：</span>
 						</div>
-						<div style="width: 50%; ">
-							<span class="uc-text cn_input_label">Y轴坐标</span><span class="uc-text cn_input_label">：</span>
-							<span class="scenarioY en_input_label"></span>
+						<div style="width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">绝对</span>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-icon-test"></use>
+							</svg>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-2"></use>
+							</svg>
+						</div>
+						<div style="margin-left: 5px; width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">相对</span>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-icon-test"></use>
+							</svg>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-2"></use>
+							</svg>
 						</div>
 					</div>
 					<div class="uc-input-block-table-row">
-						<div style="width: 50%; ">
-							<span class="uc-text cn_input_label">视窗宽度</span><span class="uc-text cn_input_label">：</span>
-							<span class="scenarioW en_input_label"></span>
+						<div style="width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span>
 						</div>
-						<div style="width: 50%; ">
-							<span class="uc-text cn_input_label">视窗高度</span><span class="uc-text cn_input_label">：</span>
-							<span class="scenarioH en_input_label"></span>
+						<div style="width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">固定值</span>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-icon-test"></use>
+							</svg>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-2"></use>
+							</svg>
+						</div>
+						<div style="margin-left: 5px; width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">百分比</span>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-icon-test"></use>
+							</svg>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-2"></use>
+							</svg>
 						</div>
 					</div>
-				
+					<div class="uc-input-block-table-row">
+						<div style="width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
+						</div>
+						<div style="width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">固定值</span>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-icon-test"></use>
+							</svg>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-2"></use>
+							</svg>
+						</div>
+						<div style="margin-left: 5px; width: 55px; white-space : nowrap;">
+							<span class="uc-text cn_input_label">百分比</span>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-icon-test"></use>
+							</svg>
+							<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
+								<use xlink:href="#icon-2"></use>
+							</svg>
+						</div>
+					</div>
 				</div>
 			</div>
 			
@@ -1347,9 +1481,11 @@
 							<span class="uc-text cn_input_label">延迟等待</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="width: 110px; display: flex;align-items: center;">
-							<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
-							<input type="text" id="in_auto_delay_val" value="0" style="text-align: center; width: 20px; background-color: rgb(213,213,213,0.0); border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" data-ruler="quantity">
-							<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
+							<div id="in_auto_delay" style="display: flex; align-items: center; padding: 0px; width: 45px;">
+								<button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px; background-color: rgba(203,203,203,0); border: 0px;" data-spin="up">+</button>
+								<input type="text" id="in_auto_delay_val" value="0" style="text-align: right;width: 25px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" data-ruler="quantity">
+								<button type="button" style="display: flex; justify-content: center; align-items: center; width: 10px; background-color: rgba(203,203,203,0); border: 0px;" data-spin="down">-</button>
+							</div>
 							&nbsp;<span class="uc-text cn_input_hint">秒</span>
 						</div>
 					</div>
@@ -1368,7 +1504,9 @@
 				<div class="uc_t_tool_addr">
 					<input type="text" placeholder="Input address here" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;" />
 				</div> -->
-				<div class="uc_t_boxC"></div> 	
+				<div class="uc_t_boxC">
+					
+				</div> 	
 	 			 <div class="uc_t_boxD"></div>
 	 			 <div class="uc_t_tool_bar">
 					<svg class="icon editManually" style="font-size: 0.95em; font-weight: 700; color: #333;" aria-hidden="true">
@@ -1388,6 +1526,31 @@
 			   		<use xlink:href="#icon-lajitong"></use>
 					</svg>
 								 -->	
+			 	</div>
+			 	<div  class="uc_t_tool_info">
+			 		<div class="uc-input-block-table">
+						<div class="uc-input-block-table-row">
+							<div style="width: 50%; ">
+								<span class="uc-text cn_input_label">X</span><span class="uc-text cn_input_label">：</span>
+								<span class="scenarioX en_input_label"></span>
+							</div>
+							<div style="width: 50%; ">
+								<span class="uc-text cn_input_label">Y</span><span class="uc-text cn_input_label">：</span>
+								<span class="scenarioY en_input_label"></span>
+							</div>
+						</div>
+						<div class="uc-input-block-table-row">
+							<div style="width: 50%; ">
+								<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span>
+								<span class="scenarioW en_input_label"></span>
+							</div>
+							<div style="width: 50%; ">
+								<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
+								<span class="scenarioH en_input_label"></span>
+							</div>
+						</div>
+					
+					</div>
 			 	</div>
 	 			 <!-- 
 	 			 <div class="uc_t_box_edit">
