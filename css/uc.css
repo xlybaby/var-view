@@ -914,9 +914,19 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 	font-size: 0.87em;
 	text-align: right;
 }
-.uc-click-selected{
+.uc-float-icon-selected{
+	width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  font-size: 25px;
 	color: #1296db;
 }
+.uc-zindex-nag{
+	z-index: -1;
+}
+.uc-float-icon-radio-nosel{}
+.uc-float-icon-radio-sel{}
 .uc-text-disable {
 	background-image: url(/var/images/uc-icon-lock.png); 
 	background-repeat: no-repeat;

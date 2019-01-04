@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=064" />
-		<script type="text/javascript" src="/var/js/uc.js?v=064"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=065" />
+		<script type="text/javascript" src="/var/js/uc.js?v=065"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=035"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
@@ -154,27 +154,43 @@
 													<div>
 														<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span>
 													</div>
-													<div style="margin-left:2px; white-space : nowrap;">
-															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+													<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+															<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
-															</svg>
+																</svg>
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																</svg>
+															</div>
+															
 															<span class="uc-text cn_input_hint">自适应</span>
 													</div>
-													<div style="margin-left:2px; white-space : nowrap;">
-															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+													<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+															<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																</svg>
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
-															</svg>
+																</svg>
+															</div>
 															<span class="uc-text cn_input_hint">可视区</span>
-															<input type="text" value="100" id="tempPercentWidth-val" class="uc-text-editable" style="width: 25px; " />
+															<input type="text" value="100" maxlength="3"  onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" id="tempPercentWidth-val" class="uc-text-editable" style="width: 25px; " />
 															<span class="uc-text cn_input_hint">%</span>
 															
 													</div>
-													<div style="margin-left:2px; white-space : nowrap;">
-															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+													<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+															<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
-															</svg>
+																</svg>
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																</svg>
+															</div>
 															<span class="uc-text cn_input_hint">固定值</span>
-															<input type="text" id="tempFixedWidth-val" disabled="disabled" class="uc-text-disable" style="width: 25px;" />
+															<input type="text" id="tempFixedWidth-val" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">px</span>
 															
 													</div>
@@ -183,27 +199,42 @@
 													<div>
 														<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
 													</div>
-													<div style="margin-left:2px; white-space : nowrap;">
-															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+													<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+															<div style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
-															</svg>
+																</svg>
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																</svg>
+															</div>
 															<span class="uc-text cn_input_hint">自适应</span>
 													</div>
-													<div style="margin-left:2px; white-space : nowrap;">
-															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+													<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+															<div style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																</svg>
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
-															</svg>
+																</svg>
+															</div>
 															<span class="uc-text cn_input_hint">可视区</span>
-															<input type="text"  value="100" id="tempPercentHeight-val" class="uc-text-editable" style="width: 25px;" />
+															<input type="text"  value="100"  maxlength="3" id="tempPercentHeight-val" class="uc-text-editable" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">%</span>
 															
 													</div>
-													<div style="margin-left:2px; white-space : nowrap;">
-															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+													<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+															<div style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
-															</svg>
+																</svg>
+																<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																</svg>
+															</div>
 															<span class="uc-text cn_input_hint">固定值</span>
-															<input type="text" id="tempFixedHeight-val" disabled="disabled" class="uc-text-disable"  style="width: 25px;" />
+															<input type="text" id="tempFixedHeight-val"  maxlength="4" disabled="disabled" class="uc-text-disable"  style="width: 25px;" />
 															<span class="uc-text cn_input_hint">px</span>
 															
 													</div>
@@ -222,14 +253,14 @@
 														<span class="uc-text cn_input_label">最大宽度</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
-														<input type="text" id="tempWidthMax-val" class="uc-text-editable" style="width: 25px;" />
+														<input type="text" onkeydown="return false;" maxlength="4" id="tempWidthMax-val" class="uc-text-editable" style="width: 25px;" />
 														<span class="uc-text cn_input_label">px</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
 														<span class="uc-text cn_input_label">最大高度</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
-														<input type="text" id="tempHeightMax-val" class="uc-text-editable" style="width: 25px;" />
+														<input type="text" id="tempHeightMax-val" maxlength="4"  class="uc-text-editable" style="width: 25px;" />
 														<span class="uc-text cn_input_label">px</span>
 													</div>
 												</div>
@@ -238,14 +269,14 @@
 														<span class="uc-text cn_input_label">最小宽度</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
-														<input type="text" id="tempWidthMin-val" class="uc-text-editable" style="width: 25px;" />
+														<input type="text" id="tempWidthMin-val"  maxlength="4" class="uc-text-editable" style="width: 25px;" />
 														<span class="uc-text cn_input_label">px</span>
 													</div>
 													<div style="width: 25%;   white-space : nowrap;">
 														<span class="uc-text cn_input_label">最小高度</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
-														<input type="text" id="tempHeightMin-val" class="uc-text-editable" style="width: 25px;" />
+														<input type="text" id="tempHeightMin-val"  maxlength="4" class="uc-text-editable" style="width: 25px;" />
 														<span class="uc-text cn_input_label">px</span>
 													</div>
 												</div>
@@ -267,7 +298,7 @@
 														<svg onmouseover="changPointer(this)" title="左对齐"  align="h-left" class="uc-float-icon uc-temp-align" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
 														    <use xlink:href="#icon-duiqi2"></use>
 														</svg>
-														<svg onmouseover="changPointer(this)" title="水平居中"  align="h-mid" selected="selected" class="uc-float-icon uc-temp-align uc-click-selected" style="font-size: 1.25em; font-weight: 400;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
+														<svg onmouseover="changPointer(this)" title="水平居中"  align="h-mid" selected="selected" class="uc-float-icon-selected uc-temp-align" style="font-size: 1.25em; font-weight: 400;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
 														    <use xlink:href="#icon-juzhong"></use>
 														</svg>
 														<svg onmouseover="changPointer(this)" title="右对齐"  align="h-right" class="uc-float-icon uc-temp-align" style="font-size: 1.25em; font-weight: 400;transform:rotate(180deg);-ms-transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg); -o-transform:rotate(180deg);" aria-hidden="true">				    				
@@ -284,7 +315,7 @@
 														<svg onmouseover="changPointer(this)" align="v-bottom" title="顶端对齐"  class="uc-float-icon uc-temp-align" style="font-size: 1.25em; font-weight: 400;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
 														    <use xlink:href="#icon-duiqi2"></use>
 														</svg>
-														<svg onmouseover="changPointer(this)" align="v-mid" selected="selected" title="垂直居中"  class="uc-float-icon uc-temp-align uc-click-selected" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+														<svg onmouseover="changPointer(this)" align="v-mid" selected="selected" title="垂直居中"  class="uc-float-icon-selected uc-temp-align" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
 														    <use xlink:href="#icon-juzhong"></use>
 														</svg>
 														<svg onmouseover="changPointer(this)" align="v-top" title="底端对齐"  class="uc-float-icon uc-temp-align" style="font-size: 1.25em; font-weight: 400;transform:rotate(-90deg);-ms-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg); -o-transform:rotate(-90deg);" aria-hidden="true">				    				
@@ -444,7 +475,7 @@
 															<span class="uc-text cn_input_hint">行数</span><span class="uc-text cn_input_label">：</span>
 															
 															<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
-															<input type="text" id="in_auto_delay_val" value="0" class="uc-text-editable" style="width: 20px;" data-ruler="quantity">
+															<input type="text" id="in_auto_delay_val"  maxlength="3"  value="0" class="uc-text-editable" style="width: 20px;" data-ruler="quantity">
 															<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
 															&nbsp;&nbsp;
 															<button type="button" style="display: flex; justify-content: center; align-items: center; padding-left: 2px; padding-right: 2px;background-color: rgba(255,255,255,0.0); border: 1px solid rgb(204,188,138,1.0);border-radius: 5px;" data-spin="up"><span class="uc-text cn_input_hint">铺满</span></button>
@@ -460,7 +491,7 @@
 														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
 															</svg>
 															<span class="uc-text cn_input_hint">百分比</span>
-															<input type="text"  class="uc-text-editable" id="tempPercentWidth-val" style="width: 25px;" />
+															<input type="text"  class="uc-text-editable"  maxlength="3" id="tempPercentWidth-val" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">%</span>
 															
 													</div>
@@ -469,7 +500,7 @@
 														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 															</svg>
 															<span class="uc-text cn_input_hint">固定值</span>
-															<input type="text" id="tempFixedWidth-val"  class="uc-text-disable" style="width: 25px;" />
+															<input type="text" id="tempFixedWidth-val"   maxlength="4" class="uc-text-disable" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">px</span>
 															
 													</div>
@@ -492,7 +523,7 @@
 															<span class="uc-text cn_input_hint">列数</span><span class="uc-text cn_input_label">：</span>
 															
 															<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
-															<input type="text" id="in_auto_delay_val" value="0" class="uc-text-editable" style="width: 20px;" data-ruler="quantity">
+															<input type="text" id="in_auto_delay_val"  maxlength="3" value="0" class="uc-text-editable" style="width: 20px;" data-ruler="quantity">
 															<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
 															&nbsp;&nbsp;
 															<button type="button" style="display: flex; justify-content: center; align-items: center; padding-left: 2px; padding-right: 2px;background-color: rgba(255,255,255,0.0); border: 1px solid rgb(204,188,138,1.0);border-radius: 5px;" data-spin="up"><span class="uc-text cn_input_hint">铺满</span></button>
@@ -508,7 +539,7 @@
 														    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
 															</svg>
 															<span class="uc-text cn_input_hint">百分比</span>
-															<input type="text" id="tempPercentWidth-val" class="uc-text-editable" style="width: 25px;" />
+															<input type="text" id="tempPercentWidth-val"  maxlength="3"  class="uc-text-editable" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">%</span>
 															
 													</div>
@@ -517,7 +548,7 @@
 														    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 															</svg>
 															<span class="uc-text cn_input_hint">固定值</span>
-															<input type="text" id="tempFixedWidth-val" class="uc-text-disable" style="width: 25px;" />
+															<input type="text" id="tempFixedWidth-val"  maxlength="4" class="uc-text-disable" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">px</span>
 															
 													</div>

@@ -308,6 +308,35 @@ function initTempalePanel() {
 		templateBgColorPicker.spectrum({
 		    color: "#ffffff"
 		});
+		panel.find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
+			click: function(event){
+				event.stopPropagation();
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="svg")
+					var target = $(event.target);
+				else if(clicktag.toLowerCase()==="use")
+					var target = $(event.target).parent("svg");
+				else
+					return false;     
+				
+				var cursel = target.parents(".uc-radio-box");
+				if( cursel.attr("selected") === "selected" )
+					return;
+				var parent = target.parents(".uc-input-block-table-row");
+				var lastsel = parent.find(".uc-radio-box[selected='selected']");
+				
+				cursel.attr("selected", "selected");
+				lastsel.removeAttr("selected");
+				//
+				//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
 		
 //		noUiSlider.create(tempGridPaddingSlider[0], {
 //		    start: [0],
@@ -337,11 +366,11 @@ function initTempalePanel() {
 				else
 					return false;           
 				
-				if( target.hasClass("uc-click-selected") )
+				if( target.hasClass("uc-float-icon-selected") )
 					return;
 				
-				target.siblings(".uc-temp-align.uc-click-selected").removeClass("uc-click-selected");
-				target.addClass("uc-click-selected");
+				target.siblings(".uc-temp-align.uc-float-icon-selected").toggleClass("uc-float-icon-selected uc-float-icon");
+				target.toggleClass("uc-float-icon-selected uc-float-icon");
 			}, 
 			mouseover: function(event) {
 				event.stopPropagation();

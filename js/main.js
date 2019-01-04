@@ -3,6 +3,21 @@ function randomize(from, end){
     return Math.floor( ( Math.random() * end ) + from );   
 } 
 
+function checkOnKeyDown(event, codesAry) {
+	event.stopPropagation();
+	var key = event.keyCode;
+	if( key == 8 || key == 9 || key == 13 )
+		return true;
+	
+	for(var i=0;i<codesAry.length;i++){
+		var min = codesAry[i]["min"];
+		var max = codesAry[i]["max"];
+		if( key>=min && key <=max )
+			return true;
+	}
+	return false;
+}
+
 var StringUtil = (function ($) {
 	
 	var pub = {
