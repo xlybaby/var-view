@@ -327,6 +327,17 @@ function initTempalePanel() {
 				
 				cursel.attr("selected", "selected");
 				lastsel.removeAttr("selected");
+				
+				var curseltxt = cursel.siblings("input[type='text']");
+				if( curseltxt.length > 0 ) {
+					curseltxt.removeAttr("disabled");
+					curseltxt.toggleClass("uc-text-disable uc-text-editable");
+				}
+				var lastseltxt = lastsel.siblings("input[type='text']");
+				if( lastseltxt.length > 0 ) {
+					lastseltxt.attr("disabled","disabled");
+					lastseltxt.toggleClass("uc-text-disable uc-text-editable");
+				}
 				//
 				//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
 				lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
