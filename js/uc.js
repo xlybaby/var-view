@@ -349,6 +349,26 @@ function initTempalePanel() {
 			}
 		});
 		
+		panel.find(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel").on({
+			click: function(event){
+				event.stopPropagation();
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="svg")
+					var target = $(event.target);
+				else if(clicktag.toLowerCase()==="use")
+					var target = $(event.target).parent("svg");
+				else
+					return false;     
+				
+				var siblings = target.siblings("svg");
+				siblings.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+				target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
 //		noUiSlider.create(tempGridPaddingSlider[0], {
 //		    start: [0],
 //		    range: {

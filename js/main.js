@@ -3,10 +3,24 @@ function randomize(from, end){
     return Math.floor( ( Math.random() * end ) + from );   
 } 
 
+function checkFieldNumber(event) {
+	var target = $(event.target);
+	var reg = /[^0-9]/;
+	
+	if( target.val() && target.val().match(reg) ) {
+		alert("This value is invalid!");
+		target.val("");
+		target.focus();
+		return false;
+	}
+		
+	return true;
+}
+
 function checkOnKeyDown(event, codesAry) {
 	event.stopPropagation();
 	var key = event.keyCode;
-	if( key == 8 || key == 9 || key == 13 )
+	if( key == 8 || key == 9 || key == 13 || key == 37 || key == 39 )
 		return true;
 	
 	for(var i=0;i<codesAry.length;i++){
