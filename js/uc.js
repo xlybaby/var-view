@@ -304,10 +304,31 @@ function initTempalePanel() {
 		//var tempGridPaddingSlider = panel.find("#in_tempGridPadding");
 		
 		var hGridInterval = panel.find("#in_hGridInterval");
+		makeupColorPicker(templateBgColorPicker, "#ffffff", function(color) {
+	        color.toHexString(); // #ff0000
+	    }) ;
 		
-		templateBgColorPicker.spectrum({
-		    color: "#ffffff"
+		panel.find(".uc-bg-color-picker").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( target.hasClass("uc-bg-color-picker-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
 		});
+		
 		panel.find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
 			click: function(event){
 				event.stopPropagation();
