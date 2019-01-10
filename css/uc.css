@@ -138,6 +138,10 @@
 	/*overflow: scroll;*/
 	overflow-x: auto;
 	overflow-y: auto;
+	
+	background-repeat: no-repeat;
+	background-position: center 0px;
+	background-size:  atuo 100%;
 }
 
 .uc-input-title{
@@ -192,6 +196,18 @@
 	width: 100%;
 	height: 28px;
 	margin: 5px 0px 0px 0px;	
+	
+}
+.uc-temp-grid-v{
+	position: absolute;
+	top: 0px;
+	border: none;
+	border-left: 1px solid rgba(238,134,154,1.0);
+	width: 2px;
+	height: 100%;
+	margin: 0px 0px;
+}
+.uc-temp-grid-h{
 	
 }
 .uc-input-text{
@@ -879,7 +895,12 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 .uc-bg-color-picker-sel{
 	width: 14px; height: 14px; border: 2px solid #1296db; 
 }
-
+.uc-bg-image {
+	width: 67px; height: 47px; border: 4px solid #fff; margin-right: 5px; margin-top: 5px; background-repeat: no-repeat;background-position: center center;background-size: auto 100%;
+}
+.uc-bg-image-sel {
+	width: 67px; height: 47px; border: 4px solid #1296db; margin-right: 5px; margin-top: 5px; background-repeat: no-repeat;background-position: center center;background-size: auto 100%;
+}
 .uc-edit-panel-main, .uc-edit-panel-layouts, .uc-edit-panel-template, .uc-edit-panel-material{
 	position: absolute;
 	left: 0px; 

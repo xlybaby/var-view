@@ -302,13 +302,87 @@ function initTempalePanel() {
 		var panel = $(".uc-edit-panel-mid").children(".uc-edit-panel-template");
 		var templateBgColorPicker = panel.find("#in_tempbgcolor_box");
 		//var tempGridPaddingSlider = panel.find("#in_tempGridPadding");
-		
+		var canvas =  $(".uc-canvas-container");
 		var hGridInterval = panel.find("#in_hGridInterval");
 		makeupColorPicker(templateBgColorPicker, "#ffffff", function(color) {
-	        color.toHexString(); // #ff0000
+	        //color.toHexString(); // #ff0000
+			if( color )
+				canvas.css("backgroundColor", color.toRgbString());
+			else
+				canvas.css("backgroundColor", "rgba(255,255,255,0.0)");
 	    }) ;
 		
-		panel.find(".uc-bg-color-picker").on({
+		panel.find(".uc-temp-grid-btn-add").on({
+			click: function(event){
+				event.stopPropagation();
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="button")
+					var target = $(event.target);
+				else if(clicktag.toLowerCase()==="span")
+					var target = $(event.target).parent("button");
+				else
+					return false;    
+				
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		panel.find(".uc-temp-grid-btn").on({
+			click: function(event){
+				event.stopPropagation();
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="button")
+					var target = $(event.target);
+				else if(clicktag.toLowerCase()==="span")
+					var target = $(event.target).parent("button");
+				else
+					return false;     
+				
+				var orientation = target.attr("orientation");
+				if(orientation === "horizontal") {
+					
+				} else if(orientation === "vertical") {
+					var canvas = $(".uc-canvas-container");
+					var hr = $("<hr class='uc-temp-grid-v' style='left: 30%;'/>");
+					canvas.append(hr);
+				}
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		panel.find("#uc-temp-grid-v").spinner();
+		panel.find("#uc-temp-grid-h").spinner();
+		
+		panel.find(".uc-bg-image,.uc-bg-image-sel").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( target.hasClass("uc-bg-image-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-image-sel uc-bg-image");
+				last.toggleClass("uc-bg-image-sel uc-bg-image");
+				
+				canvas.css("backgroundImage", target.css("backgroundImage"));
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		panel.find(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
 			click: function(event){
 				event.stopPropagation();
 				var target = $(event.target);
@@ -322,6 +396,10 @@ function initTempalePanel() {
 				
 				target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
 				last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				
+				templateBgColorPicker.spectrum("set", target.css("backgroundColor"));
+				canvas.css("backgroundColor", target.css("backgroundColor"));
+				//console.log(templateBgColorPicker.spectrum("get").toRgbString());
 			},
 			mouseover: function(event) {
 				event.stopPropagation();
@@ -379,9 +457,12 @@ function initTempalePanel() {
 				else if(clicktag.toLowerCase()==="use")
 					var target = $(event.target).parent("svg");
 				else
-					return false;     
-				
+					return false;    
+				var parent = target.parent(".uc-check-box");
 				var siblings = target.siblings("svg");
+				var val = siblings.attr("value");
+				parent.attr("value",val);
+
 				siblings.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
 				target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
 			},
@@ -407,7 +488,7 @@ function initTempalePanel() {
 //				//console.log(values[handle]);
 //			}
 //		});
-		$(".uc-temp-align").on({
+		$(".uc-temp-align-items,.uc-temp-justify-content").on({
 			click: function(event) {
 				event.stopPropagation();
 				var clicktag = event.target.tagName;
@@ -421,7 +502,7 @@ function initTempalePanel() {
 				if( target.hasClass("uc-float-icon-selected") )
 					return;
 				
-				target.siblings(".uc-temp-align.uc-float-icon-selected").toggleClass("uc-float-icon-selected uc-float-icon");
+				target.siblings(".uc-float-icon-selected").toggleClass("uc-float-icon-selected uc-float-icon");
 				target.toggleClass("uc-float-icon-selected uc-float-icon");
 			}, 
 			mouseover: function(event) {

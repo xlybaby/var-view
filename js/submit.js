@@ -326,10 +326,78 @@ var templateInstance = (function ($) {
 	var pub = {
         newTemplate: function () {
             var temp = {};
-            var id = "uc_temp__"+guid();
+            var timestamp = Date.parse(new Date()) / 1000;
+            var id = "uc_temp__"+guid()+"_"+timestamp;
             var scenarios = {};
             temp["id"] = id;
             temp["scenarios"] = scenarios;
+            
+            var tempPanel = $(".uc-edit-panel-mid").children(".uc-edit-panel-template");
+            
+            var tempWidth =  tempPanel.find("#uc_template_width");
+            var tempWidthSel = tempWidth.find(".uc-radio-box[selected='selected']");
+            if( tempWidthSel.attr("value") === "auto" ) {
+            	temp["width"] = "auto";
+            } else if( tempWidthSel.attr("value") === "percent" ) {
+            	var input = tempWidthSel.siblings("input[type='text']");
+            	temp["width"] = input.val()+"%";
+            } else if( tempWidthSel.attr("value") === "absolute" ) {
+            	var input = tempWidthSel.siblings("input[type='text']");
+            	temp["width"] = input.val()+"px";
+            } 
+            
+            var tempHeight =  tempPanel.find("#uc_template_height");
+            var tempHeightSel = tempHeight.find(".uc-radio-box[selected='selected']");
+            if( tempHeightSel.attr("value") === "auto" ) {
+            	temp["height"] = "auto";
+            } else if( tempHeightSel.attr("value") === "percent" ) {
+            	var input = tempHeightSel.siblings("input[type='text']");
+            	temp["height"] = input.val()+"%";
+            } else if( tempHeightSel.attr("value") === "absolute" ) {
+            	var input = tempHeightSel.siblings("input[type='text']");
+            	temp["height"] = input.val()+"px";
+            } 
+            
+            var tempWidthMax = tempPanel.find(".tempWidthMax-val");
+            if( tempWidthMax.length >0 )
+            	temp["maxWidth"] = tempWidthMax.val()+"px";
+
+            var tempHeightMax = tempPanel.find(".tempHeightMax-val");
+            if( tempHeightMax.length >0 )
+            	temp["maxHeight"] = tempHeightMax.val()+"px";
+            
+            var tempWidthMin = tempPanel.find(".tempWidthMin-val");
+            if( tempWidthMin.length >0 )
+            	temp["minWidth"] = tempWidthMin.val()+"px";
+            
+            var tempHeightMin = tempPanel.find(".tempHeightMin-val");
+            if( tempHeightMin.length >0 )
+            	temp["minHeight"] = tempHeightMin.val()+"px";
+            
+            var tempAlign = tempPanel.find(".uc-float-icon-selected.uc-temp-align-items");
+            if( tempAlign.length > 0 )
+            	temp["alignItems"] = tempAlign.attr("align");
+            var tempJustify = tempPanel.find(".uc-float-icon-selected.uc-temp-justify-content");
+            if( tempJustify.length > 0 )
+            	temp["justifyContent"] = tempJustify.attr("align");
+            
+            var templateBgColorPicker = tempPanel.find("#in_tempbgcolor_box");
+            if( templateBgColorPicker.spectrum("get") )
+            	temp["backgroundColor"] = templateBgColorPicker.spectrum("get").toRgbString();
+            
+            var tempBgImg = tempPanel.find(".uc-bg-image-sel");
+            if( tempBgImg.css("backgroundImage") ) {
+            	temp["backgroundImage"] = tempBgImg.css("backgroundImage");
+            }
+            
+            var tempShare = tempPanel.find(".uc-check-box.uc-temp-share");
+            if( tempShare.length > 0 ) {
+            	temp["shareTemplate"] = tempShare.attr("value");
+            }
+            var tempCntShare = tempPanel.find(".uc-check-box.uc-temp-content-share");
+            if( tempCntShare.length > 0 ) {
+            	temp["shareTemplateContent"] = tempCntShare.attr("value");
+            }
             
             return temp;
         },
@@ -434,8 +502,11 @@ function collectAndSubmit(target) {
 	//var scenario = container.children(".uc_t_box");
 	//var scenario = editable_template["scenarios"];
 	var datas={};
-	var template = {};
+	var template = templateInstance.newTemplate();
+	console.log(template);
+	
 	if( scenarioTemplates.length > 0 ) {
+		
 		var scenarios=[];
 		for(var i=0;i<scenarioTemplates.length;i++){
 			var scenario = templateInstance.newScenario($(scenarioTemplates[i]));//{};
@@ -445,6 +516,7 @@ function collectAndSubmit(target) {
 			scenarios.push(scenario);
 			
 		}
+		
 		template["title"] = submitbox.find("#in_title").val();
 		template["keywords"] = submitbox.find("#in_keywords").val();
 		if( submitbox.find("#in_shareTheme").hasClass("switch-on"))
@@ -462,4 +534,4 @@ function collectAndSubmit(target) {
 		//request("post", "/datacenter/", template, callback)
 	}
 }
-var editable_template = templateInstance.newTemplate();
+//var editable_template = templateInstance.newTemplate();
