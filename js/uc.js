@@ -304,13 +304,25 @@ function initTempalePanel() {
 		//var tempGridPaddingSlider = panel.find("#in_tempGridPadding");
 		var canvas =  $(".uc-canvas-container");
 		var hGridInterval = panel.find("#in_hGridInterval");
+		
+		var gridHColorPicker = panel.find("#uc-temp-grid-h-color");
+		var gridVColorPicker = panel.find("#uc-temp-grid-v-color");
+		makeupColorPicker(gridHColorPicker, "#ee869a", function(color) {
+			if( color )
+				canvas.find(".uc-temp-grid-h").css("borderTop","1px solid "+ color.toRgbString());
+	    }, false, true, false) ;
+		makeupColorPicker(gridVColorPicker, "#ee869a", function(color) {
+			if( color )
+				canvas.find(".uc-temp-grid-v").css("borderLeft","1px solid "+ color.toRgbString());
+	    }, false, true, false) ;
+		
 		makeupColorPicker(templateBgColorPicker, "#ffffff", function(color) {
 	        //color.toHexString(); // #ff0000
 			if( color )
 				canvas.css("backgroundColor", color.toRgbString());
 			else
 				canvas.css("backgroundColor", "rgba(255,255,255,0.0)");
-	    }) ;
+	    },true,true,true) ;
 		
 		panel.find(".uc-temp-grid-btn-add").on({
 			click: function(event){
@@ -341,13 +353,54 @@ function initTempalePanel() {
 				else
 					return false;     
 				
-				var orientation = target.attr("orientation");
+				var orientation = target.attr("orientation");					
 				if(orientation === "horizontal") {
+					var canvas = $(".uc-canvas-container");
+					var colorpicker = target.parents(".uc-input-block-table").find("#uc-temp-grid-h-color");
+
+					var spinner = target.siblings("#uc-temp-grid-h");
+					var num = spinner.children("#uc-temp-grid-h-val");
+					for(var i=1; i< parseInt(num.val()); i++) {
+						var per = i*parseFloat(100/parseInt(num.val()));
+						var hr = $("<hr class='uc-temp-grid-h' style='top: "+per+"%;'/>");
+						hr.css( "borderTop","1px solid " + colorpicker.spectrum("get").toRgbString() );
+						hr.on({
+							mouseover:function(event){
+								var target = $(event.target);
+								target.css("boxShadow","0px 0px 5px rgba(238,134,154,1.0)");
+							},
+							mouseout:function(event){
+								var target = $(event.target);
+								target.css("boxShadow","");
+							}
+						});
+						canvas.append(hr);
+					}
 					
 				} else if(orientation === "vertical") {
 					var canvas = $(".uc-canvas-container");
-					var hr = $("<hr class='uc-temp-grid-v' style='left: 30%;'/>");
-					canvas.append(hr);
+					var colorpicker = target.parents(".uc-input-block-table").find("#uc-temp-grid-v-color");
+
+					var spinner = target.siblings("#uc-temp-grid-v");
+					var num = spinner.children("#uc-temp-grid-v-val");
+					for(var i=1; i< parseInt(num.val()); i++) {
+						var per = i*parseFloat(100/parseInt(num.val()));
+						var hr = $("<hr class='uc-temp-grid-v' style='left: "+per+"%;'/>");
+						hr.css( "borderLeft","1px solid " + colorpicker.spectrum("get").toRgbString() );
+
+						hr.on({
+							mouseover:function(event){
+								var target = $(event.target);
+								target.css("boxShadow","0px 0px 5px rgba(238,134,154,1.0)");
+							},
+							mouseout:function(event){
+								var target = $(event.target);
+								target.css("boxShadow","");
+							}
+						});
+						canvas.append(hr);
+					}
+					
 				}
 			},
 			mouseover: function(event) {
@@ -715,21 +768,21 @@ function popEditPanel(eventTag, clickTag) {
 						console.log(bgColorPicker);
 						makeupColorPicker(bgColorPicker, "#ffffff", function(color) {
 					    	box.css("backgroundColor", color.toRgbString());
-					    }) ;
+					    },true,true,true) ;
 						makeupColorPicker(fgColorPicker, null, function(color) {
 							 boxContent.css("backgroundColor", color.toRgbString());
-					    }) ;
+					    },true,true,true) ;
 						makeupColorPicker(fntColorPicker, "#000000", function(color) {
-					    }) ;
+					    },true,true,true) ;
 						makeupColorPicker(borderColorPicker, "#888888", function(color) {
 					        color.toHexString(); // #ff0000
-					    }) ;
+					    },true,true,true) ;
 //						makeupColorPicker(fgborderColorPicker, "#ffffff", function(color) {
 //					        color.toHexString(); // #ff0000
 //					    }) ;
 						makeupColorPicker(shadowColorPicker, "#333333", function(color) {
 					        color.toHexString(); // #ff0000
-					    }) ;
+					    },true,true,true) ;
 													
 //						makeupSlider(fgBorderRadiusSlider[0], 0, 20, 0, function(val){
 //							var rv = editPanel.find("#fgborder-radius-val");
@@ -1451,21 +1504,21 @@ $(document).ready(function(){
 								console.log(bgColorPicker);
 								makeupColorPicker(bgColorPicker, "#ffffff", function(color) {
 							    	box.css("backgroundColor", color.toRgbString());
-							    }) ;
+							    },true,true,true) ;
 								makeupColorPicker(fgColorPicker, null, function(color) {
 									 boxContent.css("backgroundColor", color.toRgbString());
-							    }) ;
+							    },true,true,true) ;
 								makeupColorPicker(fntColorPicker, "#000000", function(color) {
-							    }) ;
+							    },true,true,true) ;
 								makeupColorPicker(borderColorPicker, "#888888", function(color) {
 							        color.toHexString(); // #ff0000
-							    }) ;
+							    },true,true,true) ;
 //								makeupColorPicker(fgborderColorPicker, "#ffffff", function(color) {
 //							        color.toHexString(); // #ff0000
 //							    }) ;
 								makeupColorPicker(shadowColorPicker, "#333333", function(color) {
 							        color.toHexString(); // #ff0000
-							    }) ;
+							    },true,true,true) ;
 															
 //								makeupSlider(fgBorderRadiusSlider[0], 0, 20, 0, function(val){
 //									var rv = editPanel.find("#fgborder-radius-val");

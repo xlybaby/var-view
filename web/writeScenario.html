@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=072" />
-		<script type="text/javascript" src="/var/js/uc.js?v=072"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=073" />
+		<script type="text/javascript" src="/var/js/uc.js?v=073"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=041"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
@@ -467,8 +467,11 @@
 												</div>
 												  -->
 												<div class="uc-input-block-table-row">
-													<div style="width: 25%; white-space : nowrap;">
+													<div style="white-space : nowrap;">
 														<span class="uc-text cn_input_label">横线</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 75%; white-space : nowrap;">
+														<input type="text" id="uc-temp-grid-h-color" style="height: 80%;"/>
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -477,7 +480,7 @@
 															<span class="uc-text cn_input_hint">行数</span><span class="uc-text cn_input_label">：</span>
 															<div id="uc-temp-grid-h" style="display: flex; align-items: center; padding: 0px; ">
 																<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
-																<input type="text" id="in_auto_delay_val"  maxlength="3"  onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" value="0" class="uc-text-editable" style="width: 20px;" data-ruler="quantity">
+																<input type="text" id="uc-temp-grid-h-val"  maxlength="3"  onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" value="0" class="uc-text-editable" style="width: 20px;" data-ruler="quantity">
 																<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
 															</div>
 															&nbsp;&nbsp;
@@ -527,8 +530,11 @@
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
-													<div style="width: 25%; white-space : nowrap;">
+													<div style="white-space : nowrap;">
 														<span class="uc-text cn_input_label">竖线</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 75%; white-space : nowrap;">
+														<input type="text" id="uc-temp-grid-v-color" style="height: 80%;"/>
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -536,11 +542,13 @@
 															<span class="uc-text cn_input_hint">列数</span><span class="uc-text cn_input_label">：</span>
 															<div id="uc-temp-grid-v" style="display: flex; align-items: center; padding: 0px; ">
 																<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="up">+</button>
-																<input type="text" id="in_auto_delay_val"  maxlength="3" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" value="0" class="uc-text-editable" style="width: 20px;" data-ruler="quantity">
+																<input type="text" id="uc-temp-grid-v-val"  maxlength="3" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" value="0" class="uc-text-editable" style="width: 20px;" data-ruler="quantity">
 																<button type="button" style="display: flex; background-color: rgb(213,213,213,0.0);border: 0px; justify-content: center; align-items: center; width: 10px;" data-spin="down">-</button>
 															</div>
 															&nbsp;&nbsp;
 															<button type="button" class="uc-temp-grid-btn" orientation="vertical" style="display: flex; justify-content: center; align-items: center; padding-left: 2px; padding-right: 2px;background-color: rgba(255,255,255,0.0); border: 1px solid rgb(204,188,138,1.0);border-radius: 5px;" data-spin="up"><span class="uc-text cn_input_hint">铺满</span></button>
+															<button type="button" class="uc-temp-grid-btn" orientation="vertical" style="display: flex; justify-content: center; align-items: center; padding-left: 2px; padding-right: 2px;background-color: rgba(255,255,255,0.0); border: 1px solid rgb(204,188,138,1.0);border-radius: 5px;" data-spin="up"><span class="uc-text cn_input_hint">清空</span></button>
+															
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">

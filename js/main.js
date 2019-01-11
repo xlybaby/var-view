@@ -147,12 +147,13 @@ function getDisplayInfo(){
     alert (s);
   }
 
-function makeupColorPicker(target, init, change) {
+function makeupColorPicker(target, init, change, alpha, input, empty) {
+	
 	target.spectrum({
 	    color: init,
-	    showAlpha: true,
-	    showInput: true,
-	    allowEmpty: true,
+	    showAlpha: alpha?true:false,
+	    showInput: input?true:false,
+	    allowEmpty: empty?true:false,
 	    change: change
 	});
 }

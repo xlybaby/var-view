@@ -203,12 +203,18 @@
 	top: 0px;
 	border: none;
 	border-left: 1px solid rgba(238,134,154,1.0);
-	width: 2px;
+	width: 1px;
 	height: 100%;
 	margin: 0px 0px;
 }
 .uc-temp-grid-h{
-	
+	position: absolute;
+	left: 0px;
+	border: none;
+	border-top: 1px solid rgba(238,134,154,1.0);
+	width: 100%;
+	height: 1px;
+	margin: 0px 0px;
 }
 .uc-input-text{
 	width: 100%;
