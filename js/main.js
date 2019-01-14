@@ -191,9 +191,9 @@ function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict) {
 		// enable inertial throwing
 		inertia : true,
 		// keep the element within the area of it's parent
-		restrict : restrict,
-		/*
-		 {
+		//restrict : restrict,
+		
+		restrict : {
 						restriction : container,
 						endOnly : true,
 						elementRect : {
@@ -202,8 +202,8 @@ function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict) {
 							bottom : 1,
 							right : 1
 						}
-					}
-					*/
+					},
+					
 		// enable autoScroll
 		autoScroll : true,
 

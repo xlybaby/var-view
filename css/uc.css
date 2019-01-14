@@ -93,7 +93,7 @@
 	background-size: 2048px 1152px;
 	
 	*/
-	overflow: hidden;
+	overflow: auto;
 }
 .uc-canvasSubmit{
 	position: absolute;
@@ -135,9 +135,10 @@
 	position: relative;
 	height: 100%;
 	width: 100%;
-	/*overflow: scroll;*/
+	/*overflow: scroll;
 	overflow-x: auto;
-	overflow-y: auto;
+	overflow-y: auto;*/
+	background-color: #efefef;
 	
 	background-repeat: no-repeat;
 	background-position: center 0px;
@@ -1007,7 +1008,7 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 	*/
   /*width: 70px;*/
   
-  z-index: 4;
+  z-index: 6;
 }
 
 .uc-float-menu-block{
@@ -1212,10 +1213,10 @@ padding: 0px;
 	z-index: 2;
 }
 .uc_layouts_border_sel{
-	font-size: 1.28em; font-weight: 400;color: #0099cc;
+	width: 12px; height: 12px; border: 1px dotted #1296db; 
 }
 .uc_layouts_border_nosel{
-	font-size: 1.22em; font-weight: 400;color: #888888;
+	width: 12px; height: 12px; border: 1px dotted #888888; 
 }
 .uc_i_corpus{
 }
@@ -1272,7 +1273,7 @@ padding: 0px;
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	background-color: rgba(255, 251, 240,0.95);
+	background-color: rgba(255, 251, 240,0.75);
 	/*
 	flex-direction: column;
 	*/
@@ -1324,6 +1325,7 @@ padding: 0px;
 	border-bottom-right-radius: 5px;
 	
 	background-color: rgb(255, 255, 255, 1.0);*/
+	background-color: rgb(255, 255, 255, 1.0);
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	background-size: 45%;
@@ -1345,8 +1347,8 @@ padding: 0px;
 .uc_t_boxC{	
 	width: 100%;
 	height: 100%;
-	display: block;
-	background-color: rgb(255, 255, 255, 1.0);
+	position: relative;
+	
 }
 .uc_t_boxD{
 	position: absolute;
