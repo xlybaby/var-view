@@ -765,6 +765,7 @@ function popEditPanel(eventTag, clickTag) {
 								if( target.attr("selected") === "selected" )
 									return;
 								target.css("border", "1px solid #1296db");
+								target.attr("selected","selected");
 								target.siblings("div[id^='shadow-style'] [selected='selected']").removeAttr("selected");
 								target.siblings("div[id^='shadow-style'] [selected='selected']").css("border", "1px solid #888888");
 								
@@ -827,13 +828,37 @@ function popEditPanel(eventTag, clickTag) {
 					    },true,true,true) ;
 						makeupColorPicker(borderColorPicker, "#888888", function(color) {
 					        //color.toHexString(); // #ff0000
-					        
+							var bs = borderColorPicker.parents(".uc-input-block-table-row").find(".uc_layouts_border_nosel,.uc_layouts_border_sel");
+							for(var i = 0; i<bs.length; i++) {
+								if( $(bs[i]).attr("border") === "top" )
+									$(bs[i]).css("border-top", "2px solid "+color.toRgbString());
+								if( $(bs[i]).attr("border") === "left" )
+									$(bs[i]).css("border-left", "2px solid "+color.toRgbString());
+								if( $(bs[i]).attr("border") === "right" )
+									$(bs[i]).css("border-right", "2px solid "+color.toRgbString());
+								if( $(bs[i]).attr("border") === "bottom" )
+									$(bs[i]).css("border-bottom", "2px solid "+color.toRgbString());
+								
+							}
+							box.css("borderTopColor", color.toRgbString());
+							box.css("borderBottomColor", color.toRgbString());
+							box.css("borderRightColor", color.toRgbString());
+							box.css("borderLeftColor", color.toRgbString());
 					    },true,true,true) ;
 //						makeupColorPicker(fgborderColorPicker, "#ffffff", function(color) {
 //					        color.toHexString(); // #ff0000
 //					    }) ;
 						makeupColorPicker(shadowColorPicker, "#333333", function(color) {
-					        color.toHexString(); // #ff0000
+					        //color.toHexString(); // #ff0000
+					        //var lastshadow = shadowBox.css("shadowBox");
+					        var shadowInfo = shadowBox.parents(".layout-shadow-info");
+					        var hshadowval = shadowBox.find("#h-shadow-val").val();
+					        var vshadowval = shadowBox.find("#v-shadow-val").val();
+					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
+					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
+					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+					        
+					        shadowBox.css("shadowBox",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+color.toRgbString() + " "+shadowinsetval);
 					    },true,true,true) ;
 													
 //						makeupSlider(fgBorderRadiusSlider[0], 0, 20, 0, function(val){
@@ -868,23 +893,24 @@ function popEditPanel(eventTag, clickTag) {
 						makeupSlider(weightRangeSlider[0], 0, 20, 0, function(val){
 							var rv = editPanel.find("#border-weight-val");
 							rv.val(val);
-							for(var i=0; i<borderBox.length; i++ ) {
-								if( $(borderBox[i]).hasClass("uc_layouts_border_sel") ) {
-									var borderBox_id = $(borderBox[i]).attr("id");
-									if( borderBox_id == "border-style-top") {
-										box.css( "borderTopWidth", val+"px" );
-									} else if( borderBox_id == "border-style-left") {
-										box.css( "borderLeftWidth", val+"px" );
-									} else if( borderBox_id == "border-style-right") {
-										box.css( "borderRightWidth", val+"px" );
-									} else if( borderBox_id == "border-style-bottom") {
-										box.css( "borderBottomWidth", val+"px" );
-									}
+							var selborder = editPanel.find(".uc-sce-border-style").children(".uc_layouts_border_sel");
+							for(var i=0; i<selborder.length; i++ ) {
+								if( $(selborder[i]).attr("border") === "top" ) {
+									box.css("borderTopWidth", val+"px");
+								}
+								if( $(selborder[i]).attr("border") === "right" ) {
+									box.css("borderRightWidth", val+"px");	
+								}
+								if( $(selborder[i]).attr("border") === "left" ) {
+									box.css("borderLeftWidth", val+"px");
+								}
+								if( $(selborder[i]).attr("border") === "bottom" ) {
+									box.css("borderBottomWidth", val+"px");
 								}
 							}
 						});
 						makeupSlider(shadowWeightSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#border-shadow-val");
+							var rv = editPanel.find("#shadow-blur-val");
 							rv.val(val);
 						});
 						makeupSlider(paddingLeftSlider[0], 0, 20, 0, function(val){

@@ -7,8 +7,8 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=075" />
-		<script type="text/javascript" src="/var/js/uc.js?v=075"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=076" />
+		<script type="text/javascript" src="/var/js/uc.js?v=076"></script>
 		<script type="text/javascript" src="/var/js/submit.js?v=041"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
@@ -1034,7 +1034,7 @@
 							<div id="in_shadowWeight" style="width: 100%; height: 10px;"></div>
 						</div>
 						<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
-							<input type="text" id="border-shadow-val" style="text-align: right;width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+							<input type="text" id="shadow-blur-val" style="text-align: right;width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 						</div>
 					</div>
 					<div class="uc-input-block-table-row">
@@ -1049,14 +1049,19 @@
 						</div>
 					</div>
 					<div class="uc-input-block-table-row">
-						<div>
+						<div style="width: 55px; white-space : nowrap;">
 							<span class="uc-text cn_input_label">内阴影</span><span class="uc-text cn_input_label">：</span>
-							<svg id="shadow-outset"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
-								<use xlink:href="#icon-icon-test"></use>
-							</svg>
-							<svg id="shadow-inset"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
-								<use xlink:href="#icon-2"></use>
-							</svg>
+							
+						</div>
+						<div style="width: 110px; display: flex;align-items: center;padding-left: 5px; ">
+							<div class="uc-check-box shadow-inset-val" value="" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+								<svg id="btn-tempSize" value="" class="uc-float-icon  uc-float-icon-checkbox-sel zoomIn animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+					    			<use xlink:href="#icon-icon-test"></use>
+								</svg>
+								<svg id="btn-tempSize" value="inset" class="uc-float-icon uc-float-icon-checkbox-nosel zoomOut uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-2"></use>
+								</svg>
+							</div>
 						</div>
 						
 					</div>
