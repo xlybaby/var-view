@@ -652,6 +652,8 @@ function popEditPanel(eventTag, clickTag) {
 						panelMid.append(editPanel);
 						
 						var canvasContainer = $(".uc-canvas-container");
+						var shadowBox = editPanel.find("div[id^='shadow-style']");
+
 //						var scenarioW = editPanel.find(".scenarioW");
 //						var scenarioH = editPanel.find(".scenarioH");
 //						scenarioW.text(box.css("width"));
@@ -674,6 +676,7 @@ function popEditPanel(eventTag, clickTag) {
 						var paddingTopSlider = editPanel.find("#in_paddingTop");
 						var paddingBottomSlider = editPanel.find("#in_paddingBottom");
 						var scheduleIntervalSlider = editPanel.find("#in_scheduleInterval");
+						var scheduleMinutesIntervalSlider = editPanel.find("#in_scheduleMinutesInterval");
 						var shadowWeightSlider = editPanel.find("#in_shadowWeight");
 						var shadowHSlider = editPanel.find("#in_Hshadow");
 						var shadowVSlider = editPanel.find("#in_Vshadow");
@@ -758,17 +761,153 @@ function popEditPanel(eventTag, clickTag) {
 							}
 						});
 						
-						var shadowBox = editPanel.find("div[id^='shadow-style']");
+						editPanel.find(".layout-shadow-info").find(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel").on({
+							click: function(event){
+								event.stopPropagation();
+								var clicktag = event.target.tagName;
+								if(clicktag.toLowerCase()==="svg")
+									var target = $(event.target);
+								else if(clicktag.toLowerCase()==="use")
+									var target = $(event.target).parent("svg");
+								else
+									return false;    
+								var parent = target.parent(".uc-check-box");
+								var siblings = target.siblings("svg");
+								var val = siblings.attr("value");
+								parent.attr("value",val);
+								
+								var shadowInfo = shadowBox.parents(".layout-shadow-info");
+						        var hshadowval = shadowBox.find("#h-shadow-val").val();
+						        var vshadowval = shadowBox.find("#v-shadow-val").val();
+						        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
+						        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
+						        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+						        
+						        shadowBox.css("shadowBox",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+
+								siblings.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+								target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+							},
+							mouseover: function(event) {
+								event.stopPropagation();
+								event.target.style.cursor="pointer";
+							}
+						});
+						
+						editPanel.find(".schedule-info").find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
+							click: function(event){
+								event.stopPropagation();
+								var clicktag = event.target.tagName;
+								if(clicktag.toLowerCase()==="svg")
+									var target = $(event.target);
+								else if(clicktag.toLowerCase()==="use")
+									var target = $(event.target).parent("svg");
+								else
+									return false;     
+								
+								var cursel = target.parents(".uc-radio-box");
+								if( cursel.attr("selected") === "selected" )
+									return;
+								if( cursel.attr("value") === "hour" ) {
+									target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-hour").css("display","flex");
+									target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-minute").css("display","none");
+									
+								} else if( cursel.attr("value") === "minute" ) {
+									target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-hour").css("display","none");
+									target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-minute").css("display","flex");
+									
+								} 
+								var parent = target.parents(".uc-input-block-table-row");
+								var lastsel = parent.find(".uc-radio-box[selected='selected']");
+								
+								cursel.attr("selected", "selected");
+								lastsel.removeAttr("selected");
+								
+								var curseltxt = cursel.siblings("input[type='text']");
+								if( curseltxt.length > 0 ) {
+									curseltxt.removeAttr("disabled");
+									curseltxt.toggleClass("uc-text-disable uc-text-editable");
+								}
+								var lastseltxt = lastsel.siblings("input[type='text']");
+								if( lastseltxt.length > 0 ) {
+									lastseltxt.attr("disabled","disabled");
+									lastseltxt.toggleClass("uc-text-disable uc-text-editable");
+								}
+								//
+								//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+								lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+								cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+							},
+							mouseover: function(event) {
+								event.stopPropagation();
+								event.target.style.cursor="pointer";
+							}
+						});
+						
 						shadowBox.on({
 							click: function(event){
 								var target = $(event.target);
-								if( target.attr("selected") === "selected" )
-									return;
-								target.css("border", "1px solid #1296db");
-								target.attr("selected","selected");
-								target.siblings("div[id^='shadow-style'] [selected='selected']").removeAttr("selected");
-								target.siblings("div[id^='shadow-style'] [selected='selected']").css("border", "1px solid #888888");
-								
+//								if( target.attr("selected") === "selected" )
+//									return;
+//								target.css("border", "1px solid #1296db");
+//								target.attr("selected","selected");
+//								target.siblings("div[id^='shadow-style'] [selected='selected']").removeAttr("selected");
+//								target.siblings("div[id^='shadow-style'] [selected='selected']").css("border", "1px solid #888888");
+								var hshadowval;
+							     var vshadowval;
+							     var shadowblurval;
+							     var shadowspreadval;
+							     var shadowinsetval;
+						        	if(target.attr("id") === "shadow-style3") {
+						        		hshadowval = -2;
+									     vshadowval = -2;
+									     shadowblurval = 3;
+									     shadowspreadval = 0;
+									     shadowinsetval="";
+						        	} else if(target.attr("id") === "shadow-style2") {
+						        		hshadowval = 2;
+									     vshadowval = 2;
+									     shadowblurval = 3;
+									     shadowspreadval = 0;
+									     shadowinsetval="";
+						        	}  else if(target.attr("id") === "shadow-style1") {
+						        		hshadowval = 0;
+									     vshadowval = 0;
+									     shadowblurval = 3;
+									     shadowspreadval = 0;
+									     shadowinsetval="";
+						        	} else if(target.attr("id") === "shadow-style4") {
+						        		hshadowval = 0;
+									     vshadowval = 0;
+									     shadowblurval = 3;
+									     shadowspreadval = 0;
+									     shadowinsetval="inset";
+									     if( !target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+									    	 target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+						        	} else if(target.attr("id") === "shadow-style5") {
+						        		hshadowval = 2;
+									     vshadowval = 2;
+									     shadowblurval = 3;
+									     shadowspreadval = 0;
+									     shadowinsetval="inset";
+									     if( !target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+									    	 target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+						        	} else if(target.attr("id") === "shadow-style6") {
+						        		hshadowval = -2;
+									     vshadowval = -2;
+									     shadowblurval = 3;
+									     shadowspreadval = 0;
+									     shadowinsetval="inset";
+									     if( !target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+									    	 target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+						        	}
+						        	
+						        	shadowWeightSlider[0].noUiSlider.set(shadowblurval);
+									shadowHSlider[0].noUiSlider.set(hshadowval);
+									shadowVSlider[0].noUiSlider.set(vshadowval);
+									shadowSpreadSlider[0].noUiSlider.set(shadowspreadval);
+									
+							     box.css("boxShadow", hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+ shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
 							}
 						});
 						
@@ -842,7 +981,7 @@ function popEditPanel(eventTag, clickTag) {
 							}
 							box.css("borderTopColor", color.toRgbString());
 							box.css("borderBottomColor", color.toRgbString());
-							box.css("borderRightColor", color.toRgbString());
+							box.css("borderRightColor", color.toRgbString()); 
 							box.css("borderLeftColor", color.toRgbString());
 					    },true,true,true) ;
 //						makeupColorPicker(fgborderColorPicker, "#ffffff", function(color) {
@@ -857,8 +996,22 @@ function popEditPanel(eventTag, clickTag) {
 					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
 					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
 					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
-					        
-					        shadowBox.css("shadowBox",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+color.toRgbString() + " "+shadowinsetval);
+					        for(var i=0;i<shadowBox.length;i++){
+					        	if($(shadowBox[i]).attr("id") === "shadow-style3") {
+					        		$(shadowBox[i]).css("boxShadow","-2px -2px 3px 0px " + color.toRgbString());
+					        	} else if($(shadowBox[i]).attr("id") === "shadow-style2") {
+					        		$(shadowBox[i]).css("boxShadow","2px 2px 3px 0px " + color.toRgbString());
+					        	}  else if($(shadowBox[i]).attr("id") === "shadow-style1") {
+					        		$(shadowBox[i]).css("boxShadow","0px 0px 3px 0px " + color.toRgbString());
+					        	} else if($(shadowBox[i]).attr("id") === "shadow-style4") {
+					        		$(shadowBox[i]).css("boxShadow","0px 0px 3px 0px "+color.toRgbString()+" inset");
+					        	} else if($(shadowBox[i]).attr("id") === "shadow-style5") {
+					        		$(shadowBox[i]).css("boxShadow","2px 2px 3px 0px "+color.toRgbString()+" inset");
+					        	} else if($(shadowBox[i]).attr("id") === "shadow-style6") {
+					        		$(shadowBox[i]).css("boxShadow","-2px -2px 3px 0px "+color.toRgbString()+" inset");
+					        	}
+					        }
+					        box.css("boxShadow",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+color.toRgbString() + " "+shadowinsetval);
 					    },true,true,true) ;
 													
 //						makeupSlider(fgBorderRadiusSlider[0], 0, 20, 0, function(val){
@@ -868,14 +1021,41 @@ function popEditPanel(eventTag, clickTag) {
 						makeupSlider(shadowSpreadSlider[0], 0, 20, 0, function(val){
 							var rv = editPanel.find("#shadow-spread-val");
 							rv.val(val);
+							var shadowInfo = shadowBox.parents(".layout-shadow-info");
+					        var hshadowval = shadowBox.find("#h-shadow-val").val();
+					        var vshadowval = shadowBox.find("#v-shadow-val").val();
+					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
+					        //var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
+					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+					        
+					        box.css("boxShadow",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+val+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+
 						});
 						makeupSlider(shadowHSlider[0], -20, 20, 0, function(val){
 							var rv = editPanel.find("#h-shadow-val");
 							rv.val(val);
+							var shadowInfo = shadowBox.parents(".layout-shadow-info");
+					        //var hshadowval = shadowBox.find("#h-shadow-val").val();
+					        var vshadowval = shadowBox.find("#v-shadow-val").val();
+					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
+					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
+					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+					        
+					        box.css("boxShadow",val+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString()+ " "+shadowinsetval);
+
 						});
 						makeupSlider(shadowVSlider[0], -20, 20, 0, function(val){
 							var rv = editPanel.find("#v-shadow-val");
 							rv.val(val);
+							var shadowInfo = shadowBox.parents(".layout-shadow-info");
+					        var hshadowval = shadowBox.find("#h-shadow-val").val();
+					        //var vshadowval = shadowBox.find("#v-shadow-val").val();
+					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
+					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
+					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+					        
+					        box.css("boxShadow",hshadowval+"px "+val+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+
 						});
 //						makeupSlider(fgBorderWidthRangeSlider[0], 0, 20, 0, function(val){
 //							var rv = editPanel.find("#fgborder-weight-val");
@@ -886,10 +1066,15 @@ function popEditPanel(eventTag, clickTag) {
 							rv.val(val);
 							box.css("borderRadius", val+"px");
 						});
-						makeupSlider(scheduleIntervalSlider[0], 0, 20, 0, function(val){
+						makeupSlider(scheduleIntervalSlider[0], 1, 24, 1, function(val){
 							var rv = editPanel.find("#scheduleInterval-val");
 							rv.val(val);
 						});
+						makeupSlider(scheduleMinutesIntervalSlider[0], 1, 60, 5, function(val){
+							var rv = editPanel.find("#scheduleMinutesInterval-val");
+							rv.val(val);
+						});
+						
 						makeupSlider(weightRangeSlider[0], 0, 20, 0, function(val){
 							var rv = editPanel.find("#border-weight-val");
 							rv.val(val);
@@ -912,6 +1097,15 @@ function popEditPanel(eventTag, clickTag) {
 						makeupSlider(shadowWeightSlider[0], 0, 20, 0, function(val){
 							var rv = editPanel.find("#shadow-blur-val");
 							rv.val(val);
+							var shadowInfo = shadowBox.parents(".layout-shadow-info");
+					        var hshadowval = shadowBox.find("#h-shadow-val").val();
+					        var vshadowval = shadowBox.find("#v-shadow-val").val();
+					        //var shadowblurval = shadowBox.find("#shadow-blur-val").val();
+					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
+					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+					        
+					        box.css("boxShadow",hshadowval+"px "+vshadowval+"px "+val+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+
 						});
 						makeupSlider(paddingLeftSlider[0], 0, 20, 0, function(val){
 							var rv = editPanel.find("#paddingLeft-val");
