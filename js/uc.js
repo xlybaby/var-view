@@ -1103,6 +1103,11 @@ function popEditPanel(eventTag, clickTag) {
 					        //var shadowblurval = shadowBox.find("#shadow-blur-val").val();
 					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
 					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+					         
+					        if( !hshadowval ) hshadowval = 0;
+					        if( !vshadowval ) vshadowval = 0;
+					        if( !shadowspreadval ) shadowspreadval = 0;
+					        if( !shadowinsetval ) shadowinsetval = '';
 					        
 					        box.css("boxShadow",hshadowval+"px "+vshadowval+"px "+val+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
 
