@@ -776,11 +776,12 @@ function popEditPanel(eventTag, clickTag) {
 								var val = siblings.attr("value");
 								parent.attr("value",val);
 								
+								
 								var shadowInfo = shadowBox.parents(".layout-shadow-info");
-						        var hshadowval = shadowBox.find("#h-shadow-val").val();
-						        var vshadowval = shadowBox.find("#v-shadow-val").val();
-						        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
-						        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
+						        var hshadowval = shadowHSlider[0].noUiSlider.get();
+						        var vshadowval = shadowVSlider[0].noUiSlider.get();
+						        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+						        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
 						        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
 						        
 						        shadowBox.css("shadowBox",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
@@ -882,24 +883,24 @@ function popEditPanel(eventTag, clickTag) {
 									     shadowblurval = 3;
 									     shadowspreadval = 0;
 									     shadowinsetval="inset";
-									     if( !target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
-									    	 target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+									     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+									    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
 						        	} else if(target.attr("id") === "shadow-style5") {
 						        		hshadowval = 2;
 									     vshadowval = 2;
 									     shadowblurval = 3;
 									     shadowspreadval = 0;
 									     shadowinsetval="inset";
-									     if( !target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
-									    	 target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+									     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+									    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
 						        	} else if(target.attr("id") === "shadow-style6") {
 						        		hshadowval = -2;
 									     vshadowval = -2;
 									     shadowblurval = 3;
 									     shadowspreadval = 0;
 									     shadowinsetval="inset";
-									     if( !target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
-									    	 target.parents("layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+									     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+									    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
 						        	}
 						        	
 						        	shadowWeightSlider[0].noUiSlider.set(shadowblurval);
@@ -991,11 +992,14 @@ function popEditPanel(eventTag, clickTag) {
 					        //color.toHexString(); // #ff0000
 					        //var lastshadow = shadowBox.css("shadowBox");
 					        var shadowInfo = shadowBox.parents(".layout-shadow-info");
-					        var hshadowval = shadowBox.find("#h-shadow-val").val();
-					        var vshadowval = shadowBox.find("#v-shadow-val").val();
-					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
-					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
-					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+					        var hshadowval = shadowHSlider[0].noUiSlider.get();
+					        var vshadowval = shadowVSlider[0].noUiSlider.get();
+					        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+					        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+					        
+					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
+					         if(!shadowinsetval) shadowinsetval = "";
+
 					        for(var i=0;i<shadowBox.length;i++){
 					        	if($(shadowBox[i]).attr("id") === "shadow-style3") {
 					        		$(shadowBox[i]).css("boxShadow","-2px -2px 3px 0px " + color.toRgbString());
@@ -1011,7 +1015,7 @@ function popEditPanel(eventTag, clickTag) {
 					        		$(shadowBox[i]).css("boxShadow","-2px -2px 3px 0px "+color.toRgbString()+" inset");
 					        	}
 					        }
-					        box.css("boxShadow",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+color.toRgbString() + " "+shadowinsetval);
+					        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+color.toRgbString() + " "+shadowinsetval);
 					    },true,true,true) ;
 													
 //						makeupSlider(fgBorderRadiusSlider[0], 0, 20, 0, function(val){
@@ -1022,39 +1026,42 @@ function popEditPanel(eventTag, clickTag) {
 							var rv = editPanel.find("#shadow-spread-val");
 							rv.val(val);
 							var shadowInfo = shadowBox.parents(".layout-shadow-info");
-					        var hshadowval = shadowBox.find("#h-shadow-val").val();
-					        var vshadowval = shadowBox.find("#v-shadow-val").val();
-					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
-					        //var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
-					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
-					        
-					        box.css("boxShadow",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+val+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+							var hshadowval = shadowHSlider[0].noUiSlider.get();
+					        var vshadowval = shadowVSlider[0].noUiSlider.get();
+					        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+					        //var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
+					         if(!shadowinsetval) shadowinsetval = "";
+
+					        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(val)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
 
 						});
 						makeupSlider(shadowHSlider[0], -20, 20, 0, function(val){
 							var rv = editPanel.find("#h-shadow-val");
 							rv.val(val);
 							var shadowInfo = shadowBox.parents(".layout-shadow-info");
-					        //var hshadowval = shadowBox.find("#h-shadow-val").val();
-					        var vshadowval = shadowBox.find("#v-shadow-val").val();
-					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
-					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
-					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
-					        
-					        box.css("boxShadow",val+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString()+ " "+shadowinsetval);
+							//var hshadowval = shadowHSlider[0].noUiSlider.get();
+					        var vshadowval = shadowVSlider[0].noUiSlider.get();
+					        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+					        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
+					         if(!shadowinsetval) shadowinsetval = "";
+
+					        box.css("boxShadow",parseInt(val)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString()+ " "+shadowinsetval);
 
 						});
 						makeupSlider(shadowVSlider[0], -20, 20, 0, function(val){
 							var rv = editPanel.find("#v-shadow-val");
 							rv.val(val);
 							var shadowInfo = shadowBox.parents(".layout-shadow-info");
-					        var hshadowval = shadowBox.find("#h-shadow-val").val();
-					        //var vshadowval = shadowBox.find("#v-shadow-val").val();
-					        var shadowblurval = shadowBox.find("#shadow-blur-val").val();
-					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
-					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
-					        
-					        box.css("boxShadow",hshadowval+"px "+val+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+							var hshadowval = shadowHSlider[0].noUiSlider.get();
+					        //var vshadowval = shadowVSlider[0].noUiSlider.get();
+					        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+					        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
+					         if(!shadowinsetval) shadowinsetval = "";
+
+					        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(val)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
 
 						});
 //						makeupSlider(fgBorderWidthRangeSlider[0], 0, 20, 0, function(val){
@@ -1098,18 +1105,14 @@ function popEditPanel(eventTag, clickTag) {
 							var rv = editPanel.find("#shadow-blur-val");
 							rv.val(val);
 							var shadowInfo = shadowBox.parents(".layout-shadow-info");
-					        var hshadowval = shadowBox.find("#h-shadow-val").val();
-					        var vshadowval = shadowBox.find("#v-shadow-val").val();
-					        //var shadowblurval = shadowBox.find("#shadow-blur-val").val();
-					        var shadowspreadval = shadowBox.find("#shadow-spread-val").val();
-					        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
+							var hshadowval = shadowHSlider[0].noUiSlider.get();
+					        var vshadowval = shadowVSlider[0].noUiSlider.get();
+					        //var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+					        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
+					         if(!shadowinsetval) shadowinsetval = "";
 					         
-					        if( !hshadowval ) hshadowval = 0;
-					        if( !vshadowval ) vshadowval = 0;
-					        if( !shadowspreadval ) shadowspreadval = 0;
-					        if( !shadowinsetval ) shadowinsetval = '';
-					        
-					        box.css("boxShadow",hshadowval+"px "+vshadowval+"px "+val+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+					        box.css("boxShadow", parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(val)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
 
 						});
 						makeupSlider(paddingLeftSlider[0], 0, 20, 0, function(val){

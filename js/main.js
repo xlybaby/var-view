@@ -172,7 +172,11 @@ function makeupSlider(target, min, max, start, callback) {
 			var val = parseInt(values[handle]);
 			
 			if( callback ) {
-				callback(val);
+				try {
+					callback(val);
+				} catch(err){
+				     console.log(err);
+				}
 			}
 		}
 	});
