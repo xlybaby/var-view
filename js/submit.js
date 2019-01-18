@@ -5,11 +5,11 @@ var templateInstance = (function ($) {
 	
 	var _COLLECTPAGES = function(pageComponents){
 		var pageAry=[];
-//		var scenarioId = target.attr("scenario-id");
+//		var scenarioId = target.attr("scenarioId");
 //		var scenarioType = target.attr("sType");
-//		var componentsRoot = $(".uc-edit-components[scenario-id='"+ scenarioId +"']");
+//		var componentsRoot = $(".uc-edit-components[scenarioId='"+ scenarioId +"']");
 //		if(componentsRoot.length>0) {
-		var scenarioId = pageComponents.attr("scenario-id");
+		var scenarioId = pageComponents.attr("scenarioId");
 			var pages = pageComponents.find(".uc-edit-comp-r-editor-con");
 			for(var i=0;i<pages.length;i++){
 				var pageJson={};
@@ -41,9 +41,9 @@ var templateInstance = (function ($) {
 	}
 	
 	var _CORPUSCOLLECT = function(target){
-		var scenarioId = target.attr("scenario-id");
+		var scenarioId = target.attr("scenarioId");
 		var scenarioType = target.attr("sType");
-		var componentsRoot = $(".uc-edit-components[scenario-id='"+ scenarioId +"']");
+		var componentsRoot = $(".uc-edit-components[scenarioId='"+ scenarioId +"']");
 		if(componentsRoot.length>0) {
 			var pageComponent={};
 			pageComponent["pages"] = _COLLECTPAGES(componentsRoot);//_COMPONENTSINFO(page);
@@ -201,32 +201,40 @@ var templateInstance = (function ($) {
 	
 	var _COMMONINFO = function(target){
 		//var scenario = editable_template["scenarios"][scenarioId];
-		var scenarioId = target.attr("scenario-id");
-		var editPanel= $(".uc-edit-panel-main[scenario-id='"+ scenarioId +"']");
+		var scenarioId = target.attr("scenarioId");
+		var editPanel= $(".uc-edit-panel-mid").children(".uc-edit-panel-layouts[scenarioId='"+ scenarioId +"']");
 		if( editPanel.length>0 ) {
 			var baseInfo = editPanel.children(".uc-edit-panel-block.basic-info");
 			//var layoutInfo = editPanel.children(".uc-edit-panel-block.layout-info");
 			var colorInfo = editPanel.children(".uc-edit-panel-block.layout-color-info");
 			var borderInfo = editPanel.children(".uc-edit-panel-block.layout-border-info");
+			var shadowInfo = editPanel.children(".uc-edit-panel-block.layout-shadow-info");
 			var paddingInfo = editPanel.children(".uc-edit-panel-block.layout-padding-info");
-			
 			//var sharingInfo = editPanel.children(".uc-edit-panel-block.sharing-info");
 			var scheduleInfo = editPanel.children(".uc-edit-panel-block.schedule-info");
 			var modeInfo = editPanel.children(".uc-edit-panel-block.mode-info");
 			
-			var baseInfoObj = {};
-			var layoutInfoObj = {};
-			var sharingInfoObj = {};
-			var scheduleInfoObj = {};
 			var sceneObj = {};
+	
+			var container = $(".uc-canvas-container");
+			sceneObj["position"]=baseInfo.find("#uc_scenario_position").find(".uc-radio-box[selected='selected']").attr("value");
+			var x=parseFloat(target.attr("data-x"));
+			var y=parseFloat(target.attr("data-y"));
+			if( sceneObj["position"] === "absolute" ){
+				sceneObj["left"]=( x || 0)+"px";
+				sceneObj["top"]=( y || 0)+"px";
+			} else if( sceneObj["position"] === "relative" ) {
+				sceneObj["left"]=(Math.round(parseFloat(x/container.width())*10000) / 100)+"%";
+				sceneObj["top"]=(Math.round(parseFloat(y/container.height())*10000) / 100)+"%";
+			}
 			
-			if(modeInfo.children("#in_headless").hasClass("switch-on"))
-				baseInfoObj["automation"]=1;//0:no auto,1:auto
-			else
-				baseInfoObj["automation"]=0;
+			sceneObj["width"]=baseInfo.find("#uc_scenario_width").find(".uc-radio-box[selected='selected']").siblings("input[type='text']").val();
+			sceneObj["height"]=baseInfo.find("#uc_scenario_height").find(".uc-radio-box[selected='selected']").siblings("input[type='text']").val();
 			
-			baseInfoObj["maxDuration"]=baseInfo.children("#in_maxDuration").val();
-			baseInfoObj["maxThreadNum"]=baseInfo.children("#in_maxThreadNum").val();
+			sceneObj["mode"]=modeInfo.find(".uc-check-box.sce-mode-val").attr("value");
+			sceneObj["delay"]=parseInt(modeInfo.find("#in_auto_delay_val").val());
+			//baseInfoObj["maxDuration"]=baseInfo.children("#in_maxDuration").val();
+			//baseInfoObj["maxThreadNum"]=baseInfo.children("#in_maxThreadNum").val();
 			//baseInfoObj["scenarioType"]=baseInfo.children("#in_scenarioType").val();
 			//baseInfoObj["scenarioTypeName"]=baseInfo.children("#in_scenarioTypeName").val();
 			//baseInfoObj["title"]=baseInfo.children("#in_title").val();
@@ -252,74 +260,81 @@ var templateInstance = (function ($) {
 			
 			var bgColorPicker = colorInfo.find("#in_bgcolor_box");
 			var fgColorPicker = colorInfo.find("#in_fgcolor_box");
-			layoutInfoObj["backgroundColor"] = bgColorPicker.spectrum("get").toRgbString();
-			layoutInfoObj["foregroundColor"] = fgColorPicker.spectrum("get").toRgbString();
+			var fntColorPicker = colorInfo.find("#in_fntcolor_box");
+			var borderColorPicker = borderInfo.find("#in_bordercolor_box");
+			var shadowColorPicker = shadowInfo.find("#in_shadowcolor_box");
+
+			var rangeSlider = borderInfo.find("#in_borderRadius");
+			var weightRangeSlider = borderInfo.find("#in_borderWeight");
+			var paddingLeftSlider = paddingInfo.find("#in_paddingLeft");
+			var paddingRightSlider = paddingInfo.find("#in_paddingRight");
+			var paddingTopSlider = paddingInfo.find("#in_paddingTop");
+			var paddingBottomSlider = paddingInfo.find("#in_paddingBottom");
 			
-			var borders = borderInfo.find("#border-style");
+			var scheduleIntervalSlider = scheduleInfo.find("#in_scheduleInterval");
+			var scheduleMinutesSlider = scheduleInfo.find("#in_scheduleMinutesInterval");
+			
+			sceneObj["backgroundColor"] = bgColorPicker.spectrum("get").toRgbString();
+			sceneObj["foregroundColor"] = fgColorPicker.spectrum("get").toRgbString();
+			sceneObj["fontColor"] = fntColorPicker.spectrum("get").toRgbString();
+
+			var borders = borderInfo.find(".uc_layouts_border_sel");
 			if(borders.length>0){
-				layoutInfoObj["borderTop"] = borders.children("#in-border-top-style").css("borderTop");
-				layoutInfoObj["borderRight"] = borders.children("#in-border-right-style").css("borderRight");
-				layoutInfoObj["borderBottom"] = borders.children("#in-border-bottom-style").css("borderBottom");
-				layoutInfoObj["borderLeft"] = borders.children("#in-border-left-style").css("borderLeft");
-				
+				for(var i=0; i<borders.length; i++ ) {
+					if( $(borders[i]).attr("border") === "top" ) {
+						sceneObj["borderTop"] = {};
+						sceneObj["borderTop"]["style"] = "solid";
+						sceneObj["borderTop"]["color"] = borderColorPicker.spectrum("get").toRgbString();
+						sceneObj["borderTop"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+						sceneObj["borderTop"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+					}
+					if( $(borders[i]).attr("border") === "right" ) {
+						sceneObj["borderRight"] = {};
+						sceneObj["borderRight"]["style"] = "solid";
+						sceneObj["borderRight"]["color"] = borderColorPicker.spectrum("get").toRgbString();
+						sceneObj["borderRight"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+						sceneObj["borderRight"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+					}
+					if( $(borders[i]).attr("border") === "left" ) {
+						sceneObj["borderLeft"] = {};
+						sceneObj["borderLeft"]["style"] = "solid";
+						sceneObj["borderLeft"]["color"] = borderColorPicker.spectrum("get").toRgbString();
+						sceneObj["borderLeft"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+						sceneObj["borderLeft"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+					}
+					if( $(borders[i]).attr("border") === "bottom" ) {
+						sceneObj["borderBottom"] = {};
+						sceneObj["borderBottom"]["style"] = "solid";
+						sceneObj["borderBottom"]["color"] = borderColorPicker.spectrum("get").toRgbString();
+						sceneObj["borderBottom"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+						sceneObj["borderBottom"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+					}
+				}
 			}
 			
-			var radius = borderInfo.find("#border-radius-val");
-			if(radius.length>0)
-				layoutInfoObj["borderRadius"] = parseInt(radius.text());
-			
-			var shadow = borderInfo.find("#shadow-style").children("div[id^='shadow-style'] [selected='selected']");
-			if(shadow.length>0){
-				layoutInfoObj["borderShadow"] = shadow.css("box-shadow");
-			} else
-				layoutInfoObj["borderShadow"] = "0px";
-			
-			layoutInfoObj["paddingTop"] = paddingInfo.find("#sp-padding-top-val").val();
-			layoutInfoObj["paddingLeft"] = paddingInfo.find("#sp-padding-left-val").val();
-			layoutInfoObj["paddingBottom"] = paddingInfo.find("#sp-padding-down-val").val();
-			layoutInfoObj["paddingRight"] = paddingInfo.find("#sp-padding-right-val").val();
+	        var hshadowval = shadowHSlider[0].noUiSlider.get();
+	        var vshadowval = shadowVSlider[0].noUiSlider.get();
+	        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+	        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+	        var shadowinsetval = shadowInfo.find("#shadow-inset-val").attr("value");
+	        if(!shadowinsetval) shadowinsetval = "";
+	        sceneObj["shadowBox"] = hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval;
 
-				
-			scheduleInfoObj["interval"] = scheduleInfo.find("div[id^='in_delay'][selected='selected']").attr("value");
-			scheduleInfoObj["unit"]="SECONDS";
+	        sceneObj["paddingLeft"] = parseInt(paddingLeftSlider[0].noUiSlider.get());
+	        sceneObj["paddingRight"] = parseInt(paddingRightSlider[0].noUiSlider.get());
+	        sceneObj["paddingTop"] = parseInt(paddingTopSlider[0].noUiSlider.get());
+	        sceneObj["paddingBottom"] = parseInt(paddingBottomSlider[0].noUiSlider.get());
+
+			var selSchedule = 	scheduleInfo.find(".uc-radio-box[selected='selected']");
+			if( selSchedule.attr("value") === "minute" )
+				sceneObj["period"] = parseInt(scheduleIntervalSlider[0].noUiSlider.get());
+			else if( selSchedule.attr("value") === "hour" )
+				sceneObj["period"] = parseInt(scheduleMinutesSlider[0].noUiSlider.get());
+			sceneObj["periodlyUnit"]=selSchedule.attr("value");
 			
-			//baseInfoObj["sharing"]=sharingInfoObj;
-			baseInfoObj["layout"]=layoutInfoObj;
-			baseInfoObj["schedule"]=scheduleInfoObj;
 			
-			return baseInfoObj;
+			return sceneObj;
 		} else {
-			var baseInfoObj = {};
-			var layoutInfoObj = {};
-			var scheduleInfoObj = {};
-			
-			baseInfoObj["automation"]=0;
-			baseInfoObj["maxDuration"]=7200;
-			baseInfoObj["maxThreadNum"]=1;
-			
-			layoutInfoObj["backgroundColor"] = "#ffffff";
-			layoutInfoObj["foregroundColor"] = "#ffffff";
-			
-			layoutInfoObj["borderTop"] = "0px solid #ffffff";
-			layoutInfoObj["borderRight"] = "0px solid #ffffff";
-			layoutInfoObj["borderBottom"] = "0px solid #ffffff";
-			layoutInfoObj["borderLeft"] = "0px solid #ffffff";
-			layoutInfoObj["borderRadius"] = "0px";
-			
-			layoutInfoObj["paddingTop"] = "0px";
-			layoutInfoObj["paddingLeft"] = "0px";
-			layoutInfoObj["paddingBottom"] = "0px";
-			layoutInfoObj["paddingRight"] = "0px";
-
-				
-			scheduleInfoObj["interval"] = 3600;
-			scheduleInfoObj["unit"]="SECONDS";
-			
-			//baseInfoObj["sharing"]=sharingInfoObj;
-			baseInfoObj["layout"]=layoutInfoObj;
-			baseInfoObj["schedule"]=scheduleInfoObj;
-			
-			return baseInfoObj;
 		}
 	}
 	
@@ -333,6 +348,18 @@ var templateInstance = (function ($) {
             temp["scenarios"] = scenarios;
             
             var tempPanel = $(".uc-edit-panel-mid").children(".uc-edit-panel-template");
+            if( tempPanel.attr("initiated") !== "initiated" ){
+            		temp["alignItems"] = "center";
+            		temp["backgroundColor"] = "rgba(255, 255, 255, 1.0)";
+            		temp["backgroundImage"] = "";
+            		temp["height"] = "calc(100vh)";
+            		temp["justifyContent"] = "center";
+            
+            		temp["shareTemplate"] =  false;
+            		temp["shareTemplateContent"] = false;
+            		temp["width"] =  "100%";
+            		return temp;
+			}
             
             var tempWidth =  tempPanel.find("#uc_template_width");
             var tempWidthSel = tempWidth.find(".uc-radio-box[selected='selected']");
@@ -352,7 +379,8 @@ var templateInstance = (function ($) {
             	temp["height"] = "auto";
             } else if( tempHeightSel.attr("value") === "percent" ) {
             	var input = tempHeightSel.siblings("input[type='text']");
-            	temp["height"] = input.val()+"%";
+            	//temp["height"] = input.val()+"%";
+            	temp["height"] = "calc("+input.val()+"vh)";
             } else if( tempHeightSel.attr("value") === "absolute" ) {
             	var input = tempHeightSel.siblings("input[type='text']");
             	temp["height"] = input.val()+"px";
@@ -404,7 +432,7 @@ var templateInstance = (function ($) {
         newScenario: function (target) {
         	var container = $(".uc-canvas-container");
         	var scenarioType = target.attr("sType");
-        	var scenarioId = target.attr("scenario-id");
+        	var scenarioId = target.attr("scenarioId");
         	var href = target.children(".uc_t_tool_addr").children("input[type='text']").val();
         	
 			//scenario[i]["position"] = position;

@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=078" />
-		<script type="text/javascript" src="/var/js/uc.js?v=078"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=041"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=079" />
+		<script type="text/javascript" src="/var/js/uc.js?v=079"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=042"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -606,11 +606,11 @@
 													<div style="width: 50%; display: flex; align-items: center;">
 														<div style="display: flex; align-items: center;">
 															<span class="uc-text cn_input_label">舞美共享</span><span class="uc-text cn_input_label">：</span>
-															<div class="uc-check-box uc-temp-share" value="0" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
-																<svg id="btn-tempSize" value="0" class="uc-float-icon  uc-float-icon-checkbox-sel zoomIn animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+															<div class="uc-check-box uc-temp-share" value="false" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																<svg id="btn-tempSize" value="false" class="uc-float-icon  uc-float-icon-checkbox-sel zoomIn animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 													    			<use xlink:href="#icon-icon-test"></use>
 																</svg>
-																<svg id="btn-tempSize" value="1" class="uc-float-icon uc-float-icon-checkbox-nosel zoomOut uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																<svg id="btn-tempSize" value="true" class="uc-float-icon uc-float-icon-checkbox-nosel zoomOut uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 														    		<use xlink:href="#icon-2"></use>
 																</svg>
 															</div>
@@ -666,7 +666,7 @@
 		</div>
 		
 <div class="uc-edit-panel-layouts" id="temp">	
-	<div class="uc-edit-panel-block basic-info">
+	<div class="uc-edit-panel-block hidden-basic-info">
 		<input type="hidden" id="in_scenarioType" value=""/>
 		<input type="hidden" id="in_scenarioTypeName" value=""/>
 		<input type="hidden" id="in_maxDuration" value="7200"/>
@@ -739,7 +739,7 @@
 								
 						</div>
 					</div>
-					<div class="uc-input-block-table-row" id="uc_scenario_width">
+					<div class="uc-input-block-table-row" id="uc_scenario_height">
 						<div style="width: 55px; white-space : nowrap;">
 							<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
 						</div>
@@ -830,8 +830,8 @@
 							<span class="uc-text cn_input_label">文字</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div class="uc-sce-fntcolor-options" style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
-							<div class="uc-bg-color-picker" selected="selected" style="background-color: #ffffff;"></div>
-							<div class="uc-bg-color-picker-sel" style="background-color: #000000;"></div>
+							<div class="uc-bg-color-picker" style="background-color: #ffffff;"></div>
+							<div class="uc-bg-color-picker-sel" selected="selected" style="background-color: #000000;"></div>
 							<div class="uc-bg-color-picker" style="background-color: rgba(255,249,177,1.0);"></div>
 							<div class="uc-bg-color-picker"  style="background-color: rgba(106,51,21,1.0);"></div>
 							<div class="uc-bg-color-picker" style="background-color: rgba(102,25,45,1.0);"></div>
@@ -1195,14 +1195,16 @@
 			<div class="uc-input-block">
 				<div class="uc-input-block-table">
 					<div class="uc-input-block-table-row">
-						<div>
+						<div style="display: flex; align-items: center;">
 							<span class="uc-text cn_input_label">盲浏操作</span><span class="uc-text cn_input_label">：</span>
-							<svg id="btn-tempSize"  class="uc-float-icon" style="font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
-								<use xlink:href="#icon-icon-test"></use>
-							</svg>
-							<svg id="btn-tempSize"  class="uc-float-icon" style="display: none; font-size: 0.95em; color: #888888;" aria-hidden="true">				    				
-								<use xlink:href="#icon-2"></use>
-							</svg>
+							<div class="uc-check-box sce-mode-val" value="fetch" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+								<svg  value="fetch" class="uc-float-icon  uc-float-icon-checkbox-sel zoomIn animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+					    			<use xlink:href="#icon-icon-test"></use>
+								</svg>
+								<svg  value="headless" class="uc-float-icon uc-float-icon-checkbox-nosel zoomOut uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+						    		<use xlink:href="#icon-2"></use>
+								</svg>
+							</div>
 						</div>
 						
 					</div>
@@ -1251,25 +1253,25 @@
 					
 			 	</div>
 			 	<div  class="uc_t_tool_info">
-			 		<div class="uc-input-block-table" style="width: 35%; filter:alpha(opacity:55);opacity:0.55; -moz-opacity:0.55;-khtml-opacity: 0.55;">
+			 		<div class="uc-input-block-table" style="width: 35%; min-width: 130px;">
 						<div class="uc-input-block-table-row">
 							<div style="width: 50%; ">
 								<span class="uc-text cn_input_label">X</span><span class="uc-text cn_input_label">：</span>
-								<span class="scenarioX en_input_label"></span>
+								<span class="uc-text scenarioX en_input_label"></span>
 							</div>
 							<div style="width: 50%; ">
 								<span class="uc-text cn_input_label">Y</span><span class="uc-text cn_input_label">：</span>
-								<span class="scenarioY en_input_label"></span>
+								<span class="uc-text scenarioY en_input_label"></span>
 							</div>
 						</div>
 						<div class="uc-input-block-table-row">
 							<div style="width: 50%; ">
 								<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span>
-								<span class="scenarioW en_input_label"></span>
+								<span class="uc-text scenarioW en_input_label"></span>
 							</div>
 							<div style="width: 50%; ">
 								<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
-								<span class="scenarioH en_input_label"></span>
+								<span class="uc-text scenarioH en_input_label"></span>
 							</div>
 						</div>
 					

@@ -685,6 +685,24 @@ function popEditPanel(eventTag, clickTag) {
 						var delaySpinner = editPanel.find("#in_auto_delay");
 						delaySpinner.spinner();
 						
+						editPanel.find(".mode-info").find(".uc-check-box.sce-mode-val").on({
+							click: function(event){
+								event.stopPropagation();
+								var target = $(event.target);
+								if( !target.hasClass("uc-check-box") )
+									target = target.parents(".uc-check-box");
+								var box = target.children(".uc-float-icon-radio-nosel,.uc-float-icon-radio-sel");
+								box.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+								//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+								var cur =  target.children(".uc-float-icon-radio-sel");
+								target.attr("value", cur.attr("value"));
+							},
+							mouseover: function(event) {
+								event.stopPropagation();
+								event.target.style.cursor="pointer";
+							}
+						});
+						
 						editPanel.find(".uc-sce-bgcolor-options").children(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
 							click: function(event){
 								event.stopPropagation();
@@ -753,7 +771,8 @@ function popEditPanel(eventTag, clickTag) {
 								last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
 								
 								fntColorPicker.spectrum("set", target.css("backgroundColor"));
-								
+								box.find(".uc_t_tool_info").find(".uc-text").css("color", target.css("backgroundColor"));
+
 							},
 							mouseover: function(event) {
 								event.stopPropagation();
@@ -783,7 +802,8 @@ function popEditPanel(eventTag, clickTag) {
 						        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
 						        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
 						        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
-						        
+						         if(!shadowinsetval) shadowinsetval = "";
+
 						        shadowBox.css("shadowBox",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
 
 								siblings.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
@@ -965,6 +985,7 @@ function popEditPanel(eventTag, clickTag) {
 							 boxContent.css("backgroundColor", color.toRgbString());
 					    },true,true,true) ;
 						makeupColorPicker(fntColorPicker, "#000000", function(color) {
+							box.find(".uc_t_tool_info").find(".uc-text").css("color", color.toRgbString());
 					    },true,true,true) ;
 						makeupColorPicker(borderColorPicker, "#888888", function(color) {
 					        //color.toHexString(); // #ff0000
