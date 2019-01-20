@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=079" />
-		<script type="text/javascript" src="/var/js/uc.js?v=079"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=042"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=080" />
+		<script type="text/javascript" src="/var/js/uc.js?v=080"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=043"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -712,7 +712,7 @@
 							<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
-								<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
+								<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
 									<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 							    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 									</svg>
@@ -722,10 +722,10 @@
 								</div>
 								<span class="uc-text cn_input_hint">固定值</span>
 								<input type="text" id="sceFixedWidth-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
-								<span class="uc-text cn_input_hint">px</span>
+								<span class="uc-text cn_input_hint value_unit">px</span>
 						</div>
 						<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
-								<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="absolute">
+								<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="absolute">
 									<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 							    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 									</svg>
@@ -735,7 +735,7 @@
 								</div>
 								<span class="uc-text cn_input_hint">百分比</span>
 								<input type="text" id="scePerWidth-val" value="25" class="uc-text-editable" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="3" style="width: 25px;" />
-								<span class="uc-text cn_input_hint">%</span>
+								<span class="uc-text cn_input_hint value_unit">%</span>
 								
 						</div>
 					</div>
@@ -744,7 +744,7 @@
 							<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
 						</div>
 						<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
-								<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
+								<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
 									<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 							    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 									</svg>
@@ -754,10 +754,10 @@
 								</div>
 								<span class="uc-text cn_input_hint">固定值</span>
 								<input type="text" id="sceFixedHeight-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
-								<span class="uc-text cn_input_hint">px</span>
+								<span class="uc-text cn_input_hint value_unit">px</span>
 						</div>
 						<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
-								<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="absolute">
+								<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="absolute">
 									<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 							    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 									</svg>
@@ -767,7 +767,7 @@
 								</div>
 								<span class="uc-text cn_input_hint">百分比</span>
 								<input type="text" id="scePerHeight-val" value="20" class="uc-text-editable" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="3" style="width: 25px;" />
-								<span class="uc-text cn_input_hint">%</span>
+								<span class="uc-text cn_input_hint value_unit">%</span>
 								
 						</div>
 					</div>
@@ -1231,7 +1231,7 @@
 	
 </div>
 			
-			<div class="uc_t_box" data-position="absolute" id="uc_box_temp">
+			<div class="uc_t_box" data-x="0.0" data-y="0.0" data-position="absolute" id="uc_box_temp">
 			<!-- 
 				<div class="uc_t_tool_addr">
 					<input type="text" placeholder="Input address here" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;" />

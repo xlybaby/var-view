@@ -228,8 +228,8 @@ var templateInstance = (function ($) {
 				sceneObj["top"]=(Math.round(parseFloat(y/container.height())*10000) / 100)+"%";
 			}
 			
-			sceneObj["width"]=baseInfo.find("#uc_scenario_width").find(".uc-radio-box[selected='selected']").siblings("input[type='text']").val();
-			sceneObj["height"]=baseInfo.find("#uc_scenario_height").find(".uc-radio-box[selected='selected']").siblings("input[type='text']").val();
+			sceneObj["width"]=baseInfo.find("#uc_scenario_width").find(".uc-radio-box[selected='selected']").siblings("input[type='text']").val() + baseInfo.find("#uc_scenario_width").find(".uc-radio-box[selected='selected']").siblings(".value_unit").text();
+			sceneObj["height"]=baseInfo.find("#uc_scenario_height").find(".uc-radio-box[selected='selected']").siblings("input[type='text']").val() + baseInfo.find("#uc_scenario_width").find(".uc-radio-box[selected='selected']").siblings(".value_unit").text();
 			
 			sceneObj["mode"]=modeInfo.find(".uc-check-box.sce-mode-val").attr("value");
 			sceneObj["delay"]=parseInt(modeInfo.find("#in_auto_delay_val").val());
@@ -264,6 +264,11 @@ var templateInstance = (function ($) {
 			var borderColorPicker = borderInfo.find("#in_bordercolor_box");
 			var shadowColorPicker = shadowInfo.find("#in_shadowcolor_box");
 
+			var shadowHSlider = shadowInfo.find("#in_Hshadow");
+			var shadowVSlider = shadowInfo.find("#in_Vshadow");
+			var shadowSpreadSlider = shadowInfo.find("#in_shadowSpread");
+			var shadowWeightSlider = shadowInfo.find("#in_shadowWeight");
+
 			var rangeSlider = borderInfo.find("#in_borderRadius");
 			var weightRangeSlider = borderInfo.find("#in_borderWeight");
 			var paddingLeftSlider = paddingInfo.find("#in_paddingLeft");
@@ -274,9 +279,12 @@ var templateInstance = (function ($) {
 			var scheduleIntervalSlider = scheduleInfo.find("#in_scheduleInterval");
 			var scheduleMinutesSlider = scheduleInfo.find("#in_scheduleMinutesInterval");
 			
-			sceneObj["backgroundColor"] = bgColorPicker.spectrum("get").toRgbString();
-			sceneObj["foregroundColor"] = fgColorPicker.spectrum("get").toRgbString();
-			sceneObj["fontColor"] = fntColorPicker.spectrum("get").toRgbString();
+			if(bgColorPicker.spectrum("get"))
+				sceneObj["backgroundColor"] = bgColorPicker.spectrum("get").toRgbString();
+			if(fgColorPicker.spectrum("get"))
+				sceneObj["foregroundColor"] = fgColorPicker.spectrum("get").toRgbString();
+			if(fntColorPicker.spectrum("get"))
+				sceneObj["fontColor"] = fntColorPicker.spectrum("get").toRgbString();
 
 			var borders = borderInfo.find(".uc_layouts_border_sel");
 			if(borders.length>0){
@@ -327,9 +335,9 @@ var templateInstance = (function ($) {
 
 			var selSchedule = 	scheduleInfo.find(".uc-radio-box[selected='selected']");
 			if( selSchedule.attr("value") === "minute" )
-				sceneObj["period"] = parseInt(scheduleIntervalSlider[0].noUiSlider.get());
-			else if( selSchedule.attr("value") === "hour" )
 				sceneObj["period"] = parseInt(scheduleMinutesSlider[0].noUiSlider.get());
+			else if( selSchedule.attr("value") === "hour" )
+				sceneObj["period"] = parseInt(scheduleIntervalSlider[0].noUiSlider.get());
 			sceneObj["periodlyUnit"]=selSchedule.attr("value");
 			
 			

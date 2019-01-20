@@ -691,10 +691,10 @@ function popEditPanel(eventTag, clickTag) {
 								var target = $(event.target);
 								if( !target.hasClass("uc-check-box") )
 									target = target.parents(".uc-check-box");
-								var box = target.children(".uc-float-icon-radio-nosel,.uc-float-icon-radio-sel");
-								box.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+								var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
+								box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
 								//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-								var cur =  target.children(".uc-float-icon-radio-sel");
+								var cur =  target.children(".uc-float-icon-checkbox-sel");
 								target.attr("value", cur.attr("value"));
 							},
 							mouseover: function(event) {
