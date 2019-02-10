@@ -1614,7 +1614,7 @@ $(document).ready(function(){
 		}
 	});*/
 	
-	$(".editManually").on({
+	$(".editSceLayouts").on({
 		click: function(event){
 			event.stopPropagation(); 
 			popEditPanel($(event.target), "scenario") ;
@@ -1623,6 +1623,27 @@ $(document).ready(function(){
 			event.target.style.cursor="pointer";
 		}
 	});
+	$(".quickSceTemplate").on({
+		click: function(event){
+			event.stopPropagation(); 
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
+	$(".editSceMaterial").on({
+		click: function(event){
+			event.stopPropagation(); 
+			$(".uc-canvas-overlay").show();
+			$(".uc-canvasM").css("filter","blur(2px)");
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
+	
+	
+	
 	
 	$(".scenarioTypeIcon").on({
 		//mousedown:function(event){toolbarclick(event,true);},
@@ -1727,6 +1748,16 @@ $(document).ready(function(){
 		click: function(event){
 			event.stopPropagation(); 
 			popEditPanel($(event.target), "template") ;
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
+	
+	$(".uc-float-menu-one.icon-zujian").on({
+		click: function(event){
+			event.stopPropagation(); 
+			popEditPanel($(event.target), "material") ;
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";

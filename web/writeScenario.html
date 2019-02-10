@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=082" />
-		<script type="text/javascript" src="/var/js/uc.js?v=082"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=044"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=090" />
+		<script type="text/javascript" src="/var/js/uc.js?v=090"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=050"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -55,6 +55,15 @@
 				<div class="uc-populate-container">
 				
 					<div class="uc-canvas">
+						<div class="uc-canvas-overlay" style="height: 100%; width: 100%;"></div>
+						<div class="uc-editSceMaterial">
+							<div class="uc-editSceMaterial-close"></div>
+							<div class="uc-editSceMaterial-corpus"></div>
+							<div class="uc-editSceMaterial-banner"></div>
+							<div class="uc-editSceMaterial-timeseries"></div>
+							<div class="uc-editSceMaterial-subscribe"></div>
+							
+						</div>
 						<div class="uc-canvasM">
 							<div class="uc-canvas-container">
 								<div class="uc_t_box_mask"></div>
@@ -69,6 +78,13 @@
 				    				<use xlink:href="#icon-iconwangyesheji"></use>
 									</svg>
 								 </div>
+								 
+								 <div class="uc-float-menu-one icon-iconwangyesheji">
+								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
+				    				<use xlink:href="#icon-zujian"></use>
+									</svg>
+								 </div>
+								 
 								 <div class="uc-float-menu-one icon-beijing">
 								 	<svg class="uc-float-icon" style="font-size: 17px; font-weight: 400;color: #efefef;" aria-hidden="true">
 				    				<use xlink:href="#icon-beijing"></use>
@@ -1238,21 +1254,29 @@
 				</div> -->
 				<div class="uc_t_boxC">
 					<div class="uc_t_tool_bar">
-	 			 	<div  style="width: 50%; height: 100%; display:flex;align-items: center;  padding: 2px 5px;">
-	 			 		<span class="uc-text cn_input_label">场景</span>
-	 			 	</div>
-	 			 	<div style="width: 50%; height: 100%; display:flex;align-items: center;  justify-content: flex-end; padding: 2px 5px;">
-	 			 		<svg class="icon editManually" style="font-size: 0.95em; font-weight: 700; color: #333;" aria-hidden="true">
-						<use xlink:href="#icon-shoudong"></use>
-						</svg>
-						&nbsp;&nbsp;
-						<svg class="icon deleteScenarioBox" style="font-size: 0.95em; font-weight: 700; color: #333;" aria-hidden="true">
-						  <use xlink:href="#icon-lajitong"></use>
-						</svg>			
-	 			 	</div>
-					
-			 	</div>
-			 	<div  class="uc_t_tool_info">
+	 			 	
+		 			 	<div style="width: 100%; height: 100%; display:flex;align-items: center;  justify-content: center; padding: 0px 0px;">
+		 			 		<svg class="icon editSceLayouts" style="font-size: 1.95em; font-weight: 700; color: #333;" aria-hidden="true">
+							<use xlink:href="#icon-yangshi1"></use>
+							</svg>
+							&nbsp;&nbsp;
+							<svg class="icon quickSceTemplate" style="font-size: 1.95em; font-weight: 700; color: #333;" aria-hidden="true">
+							<use xlink:href="#icon-kuaisuxuanze"></use>
+							</svg>
+							&nbsp;&nbsp;
+							
+		 			 		<svg class="icon editSceMaterial" style="font-size: 1.95em; font-weight: 700; color: #333;" aria-hidden="true">
+							<use xlink:href="#icon-shoudong"></use>
+							</svg>
+							&nbsp;&nbsp;
+							<svg class="icon deleteScenarioBox" style="font-size: 1.95em; font-weight: 700; color: #333;" aria-hidden="true">
+							  <use xlink:href="#icon-lajitong"></use>
+							</svg>			
+		 			 	</div>
+						
+				 	</div>
+			 		<!-- 
+			 		<div  class="uc_t_tool_info">
 			 		<div class="uc-input-block-table" style="width: 35%; min-width: 130px;">
 						<div class="uc-input-block-table-row">
 							<div style="width: 50%; ">
@@ -1277,8 +1301,10 @@
 					
 					</div>
 			 	</div>
-				</div> 	
-	 			 <div class="uc_t_boxD"></div>
+				 	
+	 			  -->
+	 			  </div>
+	 			  <div class="uc_t_boxD"></div>
 	 			 
 	 			 <!-- 
 	 			 <div class="uc_t_box_edit">
