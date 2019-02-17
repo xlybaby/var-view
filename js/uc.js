@@ -1635,6 +1635,7 @@ $(document).ready(function(){
 		click: function(event){
 			event.stopPropagation(); 
 			$(".uc-canvas-overlay").show();
+			$(".uc-editSceMaterial").css("display","flex");
 			$(".uc-canvasM").css("filter","blur(2px)");
 		},
 		mouseover:function(event){

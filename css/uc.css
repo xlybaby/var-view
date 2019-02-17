@@ -106,6 +106,7 @@
 	width: 95%;
 	
 	display: none;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	
@@ -125,6 +126,233 @@
 	*/
 	z-index: 8;
 	overflow: auto;
+}
+.uc-editSceMaterial-close{
+	display: flex;
+	margin: 0px;
+	padding: 0px;
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	
+  min-height: 67px;
+  width: 100%;
+}
+.uc-editSceMaterial-items{
+	display: flex;
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	padding: 4px 4px;
+	
+	align-items: center;
+	-webkit-align-items: center;
+	
+  min-height: 67px;
+  width: 100%;
+}
+.uc-editSceMaterial-items-b{
+	display: flex;
+	flex-direction: column;
+	
+	margin: 2px 2px;	
+	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	
+	
+	align-items: center;
+	-webkit-align-items: center;
+	background-color: #ffffff;
+	border: 1px solid #888;
+	border-radius: 5px;
+  height: 35px;
+  width: 35px;
+}
+.uc-editSceMaterial-items-link{
+	
+	background-color: #5959ab;
+}
+.uc-editSceMaterial-items-text{
+	
+	background-color: #b5a642;
+}
+.uc-editSceMaterial-items-img{
+	
+	background-color: #2f2f4f;
+}
+.uc-editSceMaterial-corpus{
+	display: flex;
+	margin: 0px;
+	padding: 0px;
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	
+  height: 100%;
+  width: 100%;
+}
+
+.uc-editSceMaterial-corpus-p {
+	display: flex;
+	flex-direction: column;
+	
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	margin: 0px 6px;
+  height: 85%;
+  width: 22%;
+  min-width: 285px;
+  min-height: 478px;
+}
+
+.uc-editSceMaterial-p-link{
+	display: flex;
+	flex-direction: column;
+	
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	
+  height: 85%;
+  min-height: 478px;
+}
+
+.uc-editSceMaterial-corpus-p-attr {
+	display: flex;
+	/*flex-direction: column;*/
+	
+	padding: 4px 5px;
+	
+	align-items: center;
+	-webkit-align-items: center;
+	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	
+  width: 100%;
+}
+
+.uc-editSceMaterial-corpus-p-cnt {
+	display: flex;
+	flex-direction: column;
+	
+	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	align-items: center;
+	-webkit-align-items: center;
+	
+	height: 100%;
+    width: 100%;
+    background-color: rgba(255,255,255,0.85);
+    border: 1px solid #b0b0b0;
+    
+}
+
+.uc-editSceMaterial-corpus-p-block {
+	display: flex;
+	flex-direction: column;
+	
+	align-items: center;
+	-webkit-align-items: center;
+	
+	height: 75%;
+    width: 90%;
+    border: 3px dashed #d0d0d0;
+    border-radius: 12px;
+}
+
+.uc-editSceMaterial-corpus-p-block-item-empty{
+	width: 95%; 
+	background-color: rgb(213,213,213,0.0);
+	border-bottom: 1px solid rgb(204,188,138,1.0); 
+	border-top:0px; 
+	border-right:0px; 
+	border-left:0px;
+	background-image: url(/var/images/uc_icon_alert.png); 
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 35%; 
+	
+}
+.uc-editSceMaterial-corpus-p-block-item-full{
+	width: 95%; 
+	background-color: rgb(213,213,213,0.0);
+	border-bottom: 1px solid rgb(204,188,138,1.0); 
+	border-top:0px; 
+	border-right:0px; 
+	border-left:0px;
+	background-image: url(/var/images/uc_icon_info_flag.png); 
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 35%; 
+	
+}
+
+.uc-editSceMaterial-corpus-p-pagi {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	padding: 0px 0px;
+	
+	height: 15%;
+    width: 90%;
+    border: 3px dashed #d0d0d0;
+    border-radius: 12px;
+}
+
+.uc-editSceMaterial-banner{
+	display: none;
+	margin: 0px;
+	padding: 0px;
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	
+  height: 100%;
+  width: 100%;
+}
+.uc-editSceMaterial-timeseries{
+	display: none;
+	margin: 0px;
+	padding: 0px;
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	
+  height: 100%;
+  width: 100%;
+}
+.uc-editSceMaterial-subscribe{
+	display: none;
+	margin: 0px;
+	padding: 0px;
+	
+	justify-content: center;
+	-webkit-justify-content: center;
+	align-items: center;
+	-webkit-align-items: center;
+	
+  height: 100%;
+  width: 100%;
 }
 
 .uc-canvasSubmit{
