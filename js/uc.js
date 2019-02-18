@@ -7,7 +7,7 @@ function cloneDiv(sDiv, type){
 	//var bgcolors=["#0073e6","#00e6ac","#e60073","#e67300","#333333","#669900"];
 	c.css('display','flex');
 	c.attr('id',cid);
-	c.attr('sType',type);
+	c.attr('sType',scenarioTypeNames[parseInt(type)]);
 
 	
 	//var x = bgcolors.length-1;     
@@ -1634,15 +1634,48 @@ $(document).ready(function(){
 	$(".editSceMaterial").on({
 		click: function(event){
 			event.stopPropagation(); 
+			var box = $(event.target).parents(".uc_t_box");
+			var boxContent = box.children(".uc_t_boxC");
+			var scenarioId = box.attr("scenarioId");
+			var stype  = box.attr("sType");
+			
+			var editSceMaterial = $(".uc-editSceMaterial");
+			//TODO: refresh items
+			var items = editSceMaterial.children(".uc-editSceMaterial-items").children(".uc-editSceMaterial-items-b");
+			for( var i=0; i<items.length; i++ ) {
+				
+			}
+			var temp = editSceMaterial.children("div[class^='uc-editSceMaterial-spec'][stype='"+stype+"'][scenarioId='"+scenarioId+"']");
+			if( temp.length > 0 ) {
+				temp.css("display","flex");
+				
+			} else {
+//				temp = editSceMaterial.children("div[class^='uc-editSceMaterial-spec'][stype='"+stype+"'][scenarioId='temp']").clone(true);
+//				temp.css("display","flex");
+//				temp.attr("scenarioId",scenarioId);
+//				editSceMaterial.append(temp);
+			}
+			
 			$(".uc-canvas-overlay").show();
-			$(".uc-editSceMaterial").css("display","flex");
+			editSceMaterial.css("display","flex");
 			$(".uc-canvasM").css("filter","blur(2px)");
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
 		}
 	});
-	
+	$(".uc-editSceMaterial-close-btn").on({
+		click: function(event){
+			event.stopPropagation(); 
+			$(".uc-canvas-overlay").hide();
+			$(".uc-editSceMaterial").css("display","none");
+			$(".uc-editSceMaterial").children("div[class^='uc-editSceMaterial-spec']").hide();
+			$(".uc-canvasM").css("filter","blur(0px)");
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
 	
 	
 	
@@ -1952,7 +1985,44 @@ $(document).ready(function(){
 		}
 
 	});*/
-	
+	$(".uc-editSceMaterial-add-item").on({
+		click: function(event){
+			var clicktag = event.target.tagName;
+			if(clicktag.toLowerCase()==="svg")
+				var target = $(event.target).children("use");
+			else if(clicktag.toLowerCase()==="use")
+				var target = $(event.target);
+			else
+				return false;
+			event.stopPropagation(); 
+			
+			//var area = target.parents(".uc-input-block-table");
+			var areaBody = target.parents(".uc-input-block-table");
+			areaBody.append($('<div class="uc-input-block-table-row">'+
+												'	<div style="width: 20%; text-align:right;white-space : nowrap; ">'+
+												'	<span class="uc-text cn_input_label">标题</span><span class="uc-text cn_input_label">：</span>'+
+												'</div>'+
+												'<div style="width: 30%; ">'+
+												'	<input type="text" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+												'</div>'+
+												'<div style="width: 20%; text-align:right;white-space : nowrap; ">'+
+												'	<span class="uc-text cn_input_label">值域</span><span class="uc-text cn_input_label">：</span>'+
+												'</div>'+
+												'<div style="width: 30%; ">'+
+												'	<input type="text" disabled="disabled" class="uc-editSceMaterial-corpus-p-block-item-empty"/>'+
+												'</div>'+
+												'<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #888;" aria-hidden="true">'+
+												'		<use xlink:href="#icon-jianhao"></use>'+
+												'</svg>'+
+												'<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="" style="font-size: 20px; color: #888;" aria-hidden="true">'+
+												'		<use xlink:href="#icon-chaolianjie"></use>'+
+												'</svg>'+
+											'</div>'));
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
 	$(".uc-edit-comp-add-attr").on({
 		click: function(event){
 			var clicktag = event.target.tagName;

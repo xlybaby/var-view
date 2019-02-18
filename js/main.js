@@ -17,6 +17,25 @@ function checkFieldNumber(event) {
 	return true;
 }
 
+function popupDiv(target, div) {
+	target.on({
+		mouseover: function(event) {
+			event.stopPropagation();
+			event.target.style.cursor="pointer";
+			
+			$("body").append(div);
+			div.css({
+                    "top": (event.pageY + 10) + "px",
+                    "position": "absolute",
+                    "left": (event.pageX + 20) + "px"
+                }).show("fast");
+		}, 
+		mouseout: function(event) {
+			div.remove();
+		}
+	});
+}
+
 function checkOnKeyDown(event, codesAry) {
 	event.stopPropagation();
 	var key = event.keyCode;

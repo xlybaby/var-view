@@ -172,6 +172,12 @@
   height: 35px;
   width: 35px;
 }
+.uc-editSceMaterial-items-b-ani {
+	-webkit-animation: Tada 3s both infinite;
+    -moz-animation: Tada 3s both infinite;
+    -ms-animation: Tada 3s both infinite;
+    animation: Tada 3s both infinite;
+}
 .uc-editSceMaterial-items-link{
 	
 	background-color: #5959ab;
@@ -184,7 +190,7 @@
 	
 	background-color: #2f2f4f;
 }
-.uc-editSceMaterial-corpus{
+.uc-editSceMaterial-spec-corpus{
 	display: flex;
 	margin: 0px;
 	padding: 0px;
@@ -315,7 +321,7 @@
     border-radius: 12px;
 }
 
-.uc-editSceMaterial-banner{
+.uc-editSceMaterial-spec-banner{
 	display: none;
 	margin: 0px;
 	padding: 0px;
@@ -328,7 +334,7 @@
   height: 100%;
   width: 100%;
 }
-.uc-editSceMaterial-timeseries{
+.uc-editSceMaterial-spec-timeseries{
 	display: none;
 	margin: 0px;
 	padding: 0px;
@@ -341,7 +347,7 @@
   height: 100%;
   width: 100%;
 }
-.uc-editSceMaterial-subscribe{
+.uc-editSceMaterial-spec-subscribe{
 	display: none;
 	margin: 0px;
 	padding: 0px;
@@ -1013,6 +1019,7 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
   border:1px solid #eee;
   border-radius: 10px;*/
   overflow: hidden;
+  z-index: 10;
 }
 .uc-edit-panel-layout-bg {
 	display: flex;

@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=092" />
-		<script type="text/javascript" src="/var/js/uc.js?v=092"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=052"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=093" />
+		<script type="text/javascript" src="/var/js/uc.js?v=093"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=053"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -58,11 +58,11 @@
 						<div class="uc-canvas-overlay" style="height: 100%; width: 100%;"></div>
 						<div class="uc-editSceMaterial">
 							<div class="uc-editSceMaterial-close">
-								<svg class="uc-float-icon" style="font-size: 3em; font-weight: 400;color: #a0a0a0;" aria-hidden="true">
+								<svg class="uc-float-icon uc-editSceMaterial-close-btn" style="font-size: 3em; font-weight: 400;color: #a0a0a0;" aria-hidden="true">
 				    					<use xlink:href="#icon-chexiao"></use>
 								</svg>
 							</div>
-							<div class="uc-editSceMaterial-corpus">
+							<div class="uc-editSceMaterial-spec-corpus" scenarioId="temp" stype="CORPUSCOLLECT">
 								
 								<!-- 
 								<div class="uc-editSceMaterial-p-link">
@@ -92,7 +92,7 @@
 														<div class="uc-input-block-table">
 															<div class="uc-input-block-table-row">
 																<div>
-																	<svg class="icon uc-edit-comp-add-attr" style="font-size: 0.95em; color: #888;" aria-hidden="true">
+																	<svg class="icon uc-editSceMaterial-add-item" style="font-size: 0.95em; color: #888;" aria-hidden="true">
 					    												<use xlink:href="#icon-msnui-add-line"></use>
 																	</svg>
 																</div>
@@ -107,15 +107,17 @@
 																<div style="width: 20%; text-align:right;white-space : nowrap; ">
 																	<span class="uc-text cn_input_label">值域</span><span class="uc-text cn_input_label">：</span>
 																</div>
-																<div style="width: 30%; ">
-																	<input type="text" disabled="disabled" class="uc-editSceMaterial-corpus-p-block-item-empty"/>
+																<div style="width: 30%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">
+																	<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="" style="font-size: 1em; color: #888;" aria-hidden="true">
+						    												<use xlink:href="#icon-shujutance"></use>
+																	</svg>
+																	<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="" style="font-size: 1em; color: #888;" aria-hidden="true">
+						    												<use xlink:href="#icon-chaolianjie"></use>
+																	</svg>
+																	<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 1em; color: #888;" aria-hidden="true">
+						    												<use xlink:href="#icon-clear2"></use>
+																	</svg>
 																</div>
-																<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #888;" aria-hidden="true">
-					    												<use xlink:href="#icon-jianhao"></use>
-																</svg>
-																<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="" style="font-size: 20px; color: #888;" aria-hidden="true">
-					    												<use xlink:href="#icon-chaolianjie"></use>
-																</svg>
 															</div>
 															
 														</div>
@@ -134,11 +136,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="uc-editSceMaterial-banner"></div>
-							<div class="uc-editSceMaterial-timeseries"></div>
-							<div class="uc-editSceMaterial-subscribe"></div>
-							<div class="uc-editSceMaterial-items">
+							<div class="uc-editSceMaterial-spec-banner" scenarioId="temp" stype="BANNER"></div>
+							<div class="uc-editSceMaterial-spec-timeseries" scenarioId="temp" stype="TIMESERIES"></div>
+							<div class="uc-editSceMaterial-spec-subscribe" scenarioId="temp" stype="REFRESHBLOCK"></div>
+							<!-- <div class="uc-editSceMaterial-items">
 								<div class="uc-editSceMaterial-items-b uc-editSceMaterial-items-link">
+									<input type="hidden" value="" name="summary"/>
+									<input type="hidden" value="" name="name"/>
+									
 									<span class="uc-text cn_input_hint">pa</span>
 									<svg class="uc-float-icon" style="font-size: 1.95em; font-weight: 400;color: #888;" aria-hidden="true">
 				    						<use xlink:href="#icon-A"></use>		
@@ -156,7 +161,7 @@
 				    						<use xlink:href="#icon-beijing"></use>		
 									</svg>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<div class="uc-canvasM">
 							<div class="uc-canvas-container">
