@@ -530,6 +530,87 @@ function calcPosition(container, target) {
 	return position;
 }
 
+function getMaterialBlockValues(con) {
+	var conval = {};
+	if( !StringUtil.isEmpty(con.find("input[name='txtTag']").val()) ) 
+		conval["tag"] = con.find("input[name='txtTag']").val();
+	if( !StringUtil.isEmpty(con.find("input[name='txtID']").val()) ) 
+		conval["id"] = con.find("input[name='txtID']").val();
+	if( !StringUtil.isEmpty(con.find("input[name='txtClass']").val()) ) 
+		conval["class"] = con.find("input[name='txtClass']").val();
+	if( !StringUtil.isEmpty(con.find("input[name='txtName']").val()) ) 
+		conval["name"] = con.find("input[name='txtName']").val();
+	if( !StringUtil.isEmpty(con.find("input[name='txtXPath']").val()) ) 
+		conval["xpath"] = con.find("input[name='txtXPath']").val();
+	if( !StringUtil.isEmpty(con.find("input[name='txtIndex']").val()) ) 
+		conval["index"] = con.find("input[name='txtIndex']").val();
+	var concustomattrs = con.find(".container-custom-info");
+	var concustomattrsrows = concustomattrs.find(".uc-input-block-table-row.custom-rows");
+	var concustomattrsary = [];
+	for(var i=0;i<concustomattrsrows.length;i++){
+		var row = $(concustomattrsrows[i]);
+		var rowval = {};
+		if( !StringUtil.isEmpty(row.find("input[name='txtAttrName']").val()) && !StringUtil.isEmpty(row.find("input[name='txtAttrVal']" ).val()) ) {
+			rowval["attr"]=row.find("input[name='txtAttrName']").val();
+			rowval["val"]=row.find("input[name='txtAttrVal']" ).val();
+		}
+		if(JSON.stringify(rowval) != "{}")	
+			concustomattrsary.push(rowval);
+	}
+	if(concustomattrsary.length>0)	
+		conval["custom-attrs"] = concustomattrsary;
+	return conval;
+}
+
+function checkMaterial(itemPanel, vMap) {
+	var con = itemPanel.find(".container-selector");
+	var iter = itemPanel.find(".iterator-selector");
+	var item = itemPanel.find(".element-selector");
+	
+	var conval = getMaterialBlockValues(con) ;
+	if(JSON.stringify(conval) != "{}"){
+		vMap["container-selector"] = conval;
+	}
+	
+	var iterval = getMaterialBlockValues(iter) ;
+	if(JSON.stringify(iterval) != "{}"){
+		vMap["iterator-selector"] = iterval;
+	}
+	
+	var itemval = getMaterialBlockValues(item) ;
+	if(JSON.stringify(itemval) != "{}"){
+		vMap["element-selector"] = itemval;
+	}
+	
+	if(JSON.stringify(vMap) != "{}") return true;
+	
+	return false;
+}
+
+function collectMaterial(templateId) {
+	var oMaterial = {};
+    var mPanel = $(".uc-edit-panel-mid").children(".uc-edit-panel-material");
+    var itemPanels = mPanel.find(".uc-edit-comp-r-editor-con");
+    var vList = [];
+    for(var i = 0; i < itemPanels.length; i++ ) {
+    	var vMap = {};
+    	var info= {};
+    	if(checkMaterial($(itemPanels[i]), vMap)) {
+    		info["selector"] = vMap;
+    		info["name"] = $(itemPanels[i]).find(".item-basic-info").find("input[name='itemName']").val();
+    		info["code"] = $(itemPanels[i]).find(".item-basic-info").find("input[name='itemCode']").val();
+    		info["summary"] = $(itemPanels[i]).find(".item-basic-info").find("input[name='itemSummary']").val();
+    		info["type"] = $(itemPanels[i]).find(".item-basic-info").find(".uc-radio-box[selected='selected']").attr("value");
+    		vList.push(info);
+    		
+    	}
+    }
+    oMaterial["items"] = vList;
+    oMaterial["templateId"] = templateId;
+    
+    return oMaterial;
+}
+
 function collectAndSubmit(target) {
 	var submitbox = $(target).parents(".uc_submit_box");
 	var container = $(".uc-canvas-container");
@@ -540,6 +621,8 @@ function collectAndSubmit(target) {
 	var datas={};
 	var template = templateInstance.newTemplate();
 	console.log(template);
+	var oMaterial = collectMaterial(container.attr("templateId"));
+	console.log(oMaterial);
 	
 	if( scenarioTemplates.length > 0 ) {
 		

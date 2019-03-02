@@ -1168,6 +1168,7 @@ function popEditPanel(eventTag, clickTag) {
 					//var blocks = $(".uc-edit-panel-main");
 					
 				} else if( target.hasClass("material") ) {
+					/*
 					editPanel = panel.find(".uc-edit-panel-material[scenarioId='"+scenarioId+"']");
 					if( editPanel.length <= 0 ) {
 						//invokeGet( "/var/subview/uc/scenarioEditPanel", function(data){
@@ -1181,6 +1182,14 @@ function popEditPanel(eventTag, clickTag) {
 						//panel.append(panelMain);
 						//panelMain.addClass("fadeInRight animated delay-1s");
 						panelMid.append(editPanel);
+					}
+					*/
+					editPanel = panel.find(".uc-edit-panel-material");
+					editPanel.css("display","flex");
+					editPanel.attr("display","current");
+					if( editPanel.attr("initiated") !== "initiated" ){
+						initMaterialPanel(editPanel);
+						editPanel.attr("initiated","initiated");
 					}
 				} 
 				if( editPanel ) {
@@ -1254,6 +1263,132 @@ function popEditPanel(eventTag, clickTag) {
 			}
 		
 	}
+}
+
+function initMaterialPanel(panel) {
+	var listcon = panel.find(".uc-edit-comp-r-list-con");
+	var addItem = panel.find(".uc-edit-comp-r-list-con").children(".uc-editSceMaterial-items-b.uc-editSceMaterial-add");
+	var addedItems = addItem.siblings(".uc-editSceMaterial-items-b");
+	
+	addItem.on({
+			click: function(event){
+				event.stopPropagation();
+				var itemid = "imaterial-"+guid() ;
+				
+				var curitem = listcon.children(".uc-editSceMaterial-items-b-sel");
+				curitem.toggleClass("uc-editSceMaterial-items-b-sel");
+				panel.find(".uc-edit-comp-r-editor-con[itemId='"+curitem.attr("itemId")+"']").hide();
+				
+				var itemAdded = $('<div class="uc-editSceMaterial-items-b uc-editSceMaterial-items-text uc-editSceMaterial-items-b-sel" itemId="'+itemid+'"> </div>');
+				var itempanel = panel.find(".uc-edit-comp-r-editor-con[itemId='temp']").clone(true);
+				listcon.append(itemAdded);
+
+				itemAdded.on({
+					click: function(event){
+						if( $(event.target).hasClass("uc-editSceMaterial-items-b-sel") ) return;
+						var last = $(event.target).siblings(".uc-editSceMaterial-items-b-sel");
+						last.toggleClass("uc-editSceMaterial-items-b-sel");
+						panel.find(".uc-edit-comp-r-editor-con[itemId='"+last.attr("itemId")+"']").hide();
+						
+						var itemid = $(event.target).attr("itemId");
+						$(event.target).toggleClass("uc-editSceMaterial-items-b-sel");
+						panel.find(".uc-edit-comp-r-editor-con[itemId='"+itemid+"']").css("display","flex");
+						
+						//var itempanel = panel.find(".uc-edit-comp-r-editor-con[itemId='"+itemid+"']");
+						//itempanel.css("display","flex");
+						
+					},
+					mouseover:function(event){
+						event.stopPropagation();  
+						event.target.style.cursor="pointer";
+					}
+				});
+				
+				itempanel.find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
+					click: function(event){
+						event.stopPropagation();
+						var clicktag = event.target.tagName;
+						if(clicktag.toLowerCase()==="svg")
+							var target = $(event.target);
+						else if(clicktag.toLowerCase()==="use")
+							var target = $(event.target).parent("svg");
+						else
+							return false;     
+						
+						var cursel = target.parents(".uc-radio-box");
+						if( cursel.attr("selected") === "selected" )
+							return;
+						var parent = target.parents(".uc-input-block-table-row");
+						var lastsel = parent.find(".uc-radio-box[selected='selected']");
+						
+						cursel.attr("selected", "selected");
+						lastsel.removeAttr("selected");
+						
+						var listitem = listcon.children(".uc-editSceMaterial-items-b[itemId='"+ itempanel.attr("itemId")+"']");
+						listitem.toggleClass("uc-editSceMaterial-items-"+cursel.attr("value")+" uc-editSceMaterial-items-"+lastsel.attr("value"));
+						
+//						var curseltxt = cursel.siblings("input[type='text']");
+//						if( curseltxt.length > 0 ) {
+//							curseltxt.removeAttr("disabled");
+//							curseltxt.toggleClass("uc-text-disable uc-text-editable");
+//						}
+//						var lastseltxt = lastsel.siblings("input[type='text']");
+//						if( lastseltxt.length > 0 ) {
+//							lastseltxt.attr("disabled","disabled");
+//							lastseltxt.toggleClass("uc-text-disable uc-text-editable");
+//						}
+						//
+						//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+						lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+						cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+					},
+					mouseover: function(event) {
+						event.stopPropagation();
+						event.target.style.cursor="pointer";
+					}
+				});
+				var detBtn = itempanel.find("button[name='uc-edit-comp-r-editor-submit-del']");
+				detBtn.on({
+					click: function(event) {
+						var itemId = itempanel.attr("itemId");
+						var itemSelId = listcon.find(".uc-editSceMaterial-items-b[itemId='"+itemId+"']");
+						var preItem = itemSelId.prev();
+						
+						itemSelId.remove();
+						itempanel.remove();
+						
+						if( !preItem.attr("itemId") ) return;
+						preItem.toggleClass("uc-editSceMaterial-items-b-sel");
+						panel.find(".uc-edit-comp-r-editor-con[itemId='"+preItem.attr("itemId")+"']").css("display","flex");
+
+					}
+				})
+				itempanel.css("display","flex");
+				itempanel.attr("itemId",itemid);
+				itempanel.addClass("uc-edit-comp-r-editor-con-sel");
+				panel.find(".uc-edit-comp-r-editor").append(itempanel);
+			},
+			mouseover:function(event){
+				event.stopPropagation();  
+				event.target.style.cursor="pointer";
+			}
+	});
+	
+}
+
+function bindingItem(event) {
+	
+}
+
+function corpusNextPage(event) {
+	var panel = $(event.target).parents(".uc-editSceMaterial-spec-corpus");
+	var newPage = panel.children(".uc-editSceMaterial-corpus-p").clone();
+	panel.append($('<div class="uc-editSceMaterial-p-link">'+
+								'	<svg class="uc-float-icon" style="font-size: 1.95em; color: #888;" aria-hidden="true">'+
+					    		'			<use xlink:href="#icon-changlianjie"></use>'+
+								'	</svg>'+
+								'</div>'));
+	panel.append(newPage);
 }
 
 $(document).ready(function(){ 
@@ -2000,23 +2135,25 @@ $(document).ready(function(){
 			var areaBody = target.parents(".uc-input-block-table");
 			areaBody.append($('<div class="uc-input-block-table-row">'+
 												'	<div style="width: 20%; text-align:right;white-space : nowrap; ">'+
-												'	<span class="uc-text cn_input_label">标题</span><span class="uc-text cn_input_label">：</span>'+
-												'</div>'+
-												'<div style="width: 30%; ">'+
-												'	<input type="text" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
-												'</div>'+
-												'<div style="width: 20%; text-align:right;white-space : nowrap; ">'+
-												'	<span class="uc-text cn_input_label">值域</span><span class="uc-text cn_input_label">：</span>'+
-												'</div>'+
-												'<div style="width: 30%; ">'+
-												'	<input type="text" disabled="disabled" class="uc-editSceMaterial-corpus-p-block-item-empty"/>'+
-												'</div>'+
-												'<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #888;" aria-hidden="true">'+
-												'		<use xlink:href="#icon-jianhao"></use>'+
-												'</svg>'+
-												'<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="" style="font-size: 20px; color: #888;" aria-hidden="true">'+
-												'		<use xlink:href="#icon-chaolianjie"></use>'+
-												'</svg>'+
+											'		<span class="uc-text cn_input_label">标题</span><span class="uc-text cn_input_label">：</span>'+
+											'	</div>'+
+											'	<div style="width: 30%; ">'+
+											'		<input type="text" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+											'	</div>'+
+											'	<div style="width: 20%; text-align:right;white-space : nowrap; ">'+
+											'		<span class="uc-text cn_input_label">值域</span><span class="uc-text cn_input_label">：</span>'+
+											'	</div>'+
+											'	<div style="width: 30%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">'+
+											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="bindingItem(event);" style="font-size: 1em; color: #888;" aria-hidden="true">'+
+											'				<use xlink:href="#icon-xinhao2"></use>'+
+											'		</svg>'+
+											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="corpusNextPage(event);" style="font-size: 1em; color: #888;" aria-hidden="true">'+
+											'				<use xlink:href="#icon-chaolianjie"></use>'+
+											'		</svg>'+
+											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 1em; color: #888;" aria-hidden="true">'+
+											'				<use xlink:href="#icon-clear2"></use>'+
+											'		</svg>'+
+											'	</div>'+
 											'</div>'));
 		},
 		mouseover:function(event){
@@ -2068,22 +2205,27 @@ $(document).ready(function(){
 			event.stopPropagation(); 
 			var targetIdx = target.attr("index");
 			
-			var mask = target.parents(".uc-edit-comp-r-editor-nav").siblings("#uc-edit-comp-nav-bar-mask");
-			var maskIdx = mask.attr("index");
-			console.log(mask.width());
-			var move = targetIdx*mask.width();
-			console.log("move: "+move);
-			mask.animate({ left:move+"px"}, 400,"linear");
+			//var mask = target.parents(".uc-edit-comp-r-editor-nav").siblings("#uc-edit-comp-nav-bar-mask");
+			//var maskIdx = mask.attr("index");
+			//console.log(mask.width());
+			//var move = targetIdx*mask.width();
+			//console.log("move: "+move);
+			//mask.animate({ left:move+"px"}, 400,"linear");
+			//mask.attr("index",targetIdx);
+			var selector = target.parent(".uc-edit-comp-r-editor-nav").siblings(".uc-edit-comp-r-editor-content").children(".uc-edit-components-selector[index='"+targetIdx+"']");
 			
-			var selector = mask.siblings(".uc-edit-comp-r-editor-content").children(".uc-edit-components-selector[index='"+targetIdx+"']");
-			var displaySel = mask.siblings(".uc-edit-comp-r-editor-content").children(".uc-edit-components-selector[index='"+maskIdx+"']");
+			var cur = target.parent(".uc-edit-comp-r-editor-nav").children(".uc-edit-comp-nav-bar.selected");
+			target.find(".cn_input_label").css({"font-size": "1.15em","color": "#000"});
+			cur.find(".cn_input_label").css({"font-size": "1em","color": "#888"});
+			
+			var displaySel = target.parent(".uc-edit-comp-r-editor-nav").siblings(".uc-edit-comp-r-editor-content").children(".uc-edit-components-selector[index='"+cur.attr("index")+"']");
 			//displaySel.hide();
 			displaySel.css("display","none");
 			//selector.show();
 			selector.css("display","flex");
 			
-			mask.attr("index",targetIdx);
-
+			target.toggleClass("selected");
+			cur.toggleClass("selected");
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";

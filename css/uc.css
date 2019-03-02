@@ -166,11 +166,58 @@
 	
 	align-items: center;
 	-webkit-align-items: center;
-	background-color: #ffffff;
+	
 	border: 1px solid #888;
 	border-radius: 5px;
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
+  /*
+  background-image: url(/var/images/uc-icon-ele.png); 
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 80%; */
+  
+}
+
+.uc-editSceMaterial-binding-ani {
+	-webkit-animation: changeBG 3s infinite linear;
+    -moz-animation: changeBG 3s infinite linear;
+    -ms-animation: changeBG 3s infinite linear;
+    animation: changeBG 3s infinite linear;
+}
+@keyframes changeBG {
+    0% {
+        background-color: rgba(30,80,162,0.1);
+    }
+	10%{
+        background-color: rgba(30,80,162,0.25);
+    }
+    20%{
+        background-color: rgba(30,80,162,0.55);
+    }
+ 	30%{
+        background-color: rgba(30,80,162,0.75);
+    }
+   40%  {
+        background-color: rgba(30,80,162,0.95);
+    }
+	50%{
+        background-color: rgba(30,80,162,0.75);
+    }
+    60%{
+        background-color: rgba(30,80,162,0.55);
+    }
+
+	 80%{
+        background-color: rgba(30,80,162,0.25);
+    }
+    
+    100% {
+       background-color: rgba(30,80,162,0.1);
+    }
+}
+.uc-editSceMaterial-items-b-sel{
+	border: 2px solid #1296db;
 }
 .uc-editSceMaterial-items-b-ani {
 	-webkit-animation: Tada 3s both infinite;
@@ -179,16 +226,25 @@
     animation: Tada 3s both infinite;
 }
 .uc-editSceMaterial-items-link{
-	
-	background-color: #5959ab;
+	background-image: url(/var/images/uc_icon_linkline.png); 
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 80%; 
+	background-color: rgba(161,216,230,1.0);
 }
 .uc-editSceMaterial-items-text{
-	
+	background-image: url(/var/images/uc_icon_textfont.png); 
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 80%; 
 	background-color: #b5a642;
 }
 .uc-editSceMaterial-items-img{
-	
-	background-color: #2f2f4f;
+	background-image: url(/var/images/uc_icon_image.png); 
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 80%; 
+	background-color: rgba(237,110,61,1.0);
 }
 .uc-editSceMaterial-spec-corpus{
 	display: flex;
@@ -638,7 +694,7 @@
 	margin-top: 10px;
 	width: 100%;
 	height: 100%;
-	display: flex;
+	display: none;
 	flex-direction: column;
 }
 .uc-edit-comp-r-editor-baseinfo {
