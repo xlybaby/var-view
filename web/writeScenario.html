@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=102" />
-		<script type="text/javascript" src="/var/js/uc.js?v=102"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=102"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=104" />
+		<script type="text/javascript" src="/var/js/uc.js?v=104"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=104"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -86,29 +86,29 @@
 									<div class="uc-editSceMaterial-corpus-p-cnt">
 										<div class="uc-editSceMaterial-corpus-p-block">
 											<div class="uc-edit-panel-block">
-												<span class="uc-text cn_block_title">内容</span> <img src="/var/images/icon_help.svg" />
+												<span class="uc-text cn_block_title">内容</span> 
+														<svg class="icon uc-editSceMaterial-add-item" style="font-size: 0.95em; color: #888;" aria-hidden="true">
+					    								<use xlink:href="#icon-msnui-add-line"></use>
+														</svg>
 												<div class="uc-input-area">
 													<div class="uc-input-block">
-														<div class="uc-input-block-table">
-															<div class="uc-input-block-table-row">
-																<div>
-																	<svg class="icon uc-editSceMaterial-add-item" style="font-size: 0.95em; color: #888;" aria-hidden="true">
-					    												<use xlink:href="#icon-msnui-add-line"></use>
-																	</svg>
+														<div class="uc-input-block-table" id="uc_corpus_item_def_table">
+															<div class="uc-input-block-table-row"  itemId="uc_corpus_item_def_34uigh43qt" style="height: 25px; align-items:center; justify-content: space-around;">
+																<div style="width: 35%; display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">
+																	<!-- <img src="/var/images/uc_icon_edit.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, 'title');" onmouseover="this.style.cursor='pointer';" />
+																	 -->
+																	<input type="text" placeholder="标题"  style="text-align: center; width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																	
 																</div>
-															</div>
-															<div class="uc-input-block-table-row">
-																<div style="width: 20%; text-align:right;white-space : nowrap; ">
-																	<span class="uc-text cn_input_label">标题</span><span class="uc-text cn_input_label">：</span>
+																<div style="width: 25%;  display: flex; align-items: center; justify-content: center; ">
+																	<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, 'binding');" onmouseover="this.style.cursor='pointer';" />
+																
 																</div>
-																<div style="width: 30%; ">
-																	<input type="text" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																<div style="width: 20%;  display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">
+																	<img src="/var/images/uc_icon_data_connect_arrow.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, 'link');" onmouseover="this.style.cursor='pointer';" />
 																</div>
-																<div style="width: 20%; text-align:right;white-space : nowrap; ">
-																	<span class="uc-text cn_input_label">值域</span><span class="uc-text cn_input_label">：</span>
-																</div>
-																<div style="width: 30%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">
-																	<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="bindingItem(event);" style="font-size: 1em; color: #888;" aria-hidden="true">
+																<div style="width: 20%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">
+																	<!-- <svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="bindingItem(event);" style="font-size: 1em; color: #888;" aria-hidden="true">
 						    												<use xlink:href="#icon-xinhao2"></use>
 																	</svg>
 																	<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="corpusNextPage(event);" style="font-size: 1em; color: #888;" aria-hidden="true">
@@ -116,7 +116,8 @@
 																	</svg>
 																	<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 1em; color: #888;" aria-hidden="true">
 						    												<use xlink:href="#icon-clear2"></use>
-																	</svg>
+																	</svg> -->
+																	<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, 'delete');" onmouseover="this.style.cursor='pointer';" />
 																</div>
 															</div>
 															
@@ -1461,8 +1462,8 @@
 							</div>-->
 						</div>
 						<div class="uc-edit-comp-r-editor-submit">
-							<button name="uc-edit-comp-r-editor-submit-ok"  class="uc-editSceMaterial-binding-ani" style="display:flex;align-items:center;justify-content: center;position:absolute; left: 5px; width: 70px; height: 90%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" >
-							<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="" style="font-size: 1em; color: #888;" aria-hidden="true">
+							<button name="uc-edit-comp-r-editor-submit-binding"  onclick="ucCorpusItemBinding(event);" style="display:flex;align-items:center;justify-content: center;position:absolute; left: 5px; width: 70px; height: 90%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" >
+							<svg class="icon" onmouseover="this.style.cursor='pointer';"  style="font-size: 1em; color: #888;" aria-hidden="true">
 						    	<use xlink:href="#icon-xinhao2"></use>
 							</svg>
 							<span class="uc-text cn_input_label">绑定</span>

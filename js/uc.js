@@ -1375,9 +1375,49 @@ function initMaterialPanel(panel) {
 	});
 	
 }
-
-function bindingItem(event) {
+function ucItemBinding(event) {
+	var target = $(event.target);
+	var parent = target.parents(".uc-edit-comp-r-editor-con");
 	
+	var editMaterial = $("div[class^='uc-editSceMaterial-spec-'][scenarioId='"+current_ucMaterialScenarioId+"']");
+	var editMaterialItem = editMaterial.find(".uc-input-block-table-row[itemId='"+current_ucMaterialItemEditId+"']");
+	editMaterialItem.attr("bindingItemId", parent.attr("itemId"));
+	editMaterialItem.attr("binding","");
+	editMaterialItem.find(".eBinding").attr("src", "/var/images/uc_icon_connected.png");
+	
+	parent.find("button[name='uc-edit-comp-r-editor-submit-binding']").toggleClass("uc-editSceMaterial-binding-ani");
+	parent.attr("binding","binding");
+	target.css("backgroundColor","rgba(61,125,83,1.0)");
+}
+var current_ucMaterialItemEditId;
+var current_ucMaterialScenarioId;
+function ucCorpusItemEdit(event, method) {
+	var target = $(event.target);
+	if( method==="title") {
+		
+	} else if( method==="binding") {
+		var row = target.parents(".uc-input-block-table-row");
+		var bindingRow = row.siblings(".uc-input-block-table-row[binding='binding']");
+		if( bindingRow.length > 0 ) {
+			bindingRow.find(".eBinding").attr("src", "/var/images/uc_icon_connecting.png");
+		}
+		
+		target.attr("src", "/var/images/uc_icon_signal_recieving.png");
+		var id = target.attr("itemId");
+		current_ucCorpusItemEditId = id;
+		var corpus = target.parents(".uc-editSceMaterial-spec-corpus");
+		current_ucCorpusScenarioId = corpus.attr("scenarioId");
+		
+		$(".uc-edit-panel-material").find("button[name='uc-edit-comp-r-editor-submit-binding']").toggleClass("uc-editSceMaterial-binding-ani");
+		
+		row.attr("binding","binding");
+		//row.toggleClass("uc-editSceMaterial-binding-ani");
+	} else if( method==="link") {
+		corpusNextPage(event);
+	} else if( method==="delete") {
+		deleteInputBlock(event);
+	} else
+		return;
 }
 
 function corpusNextPage(event) {
@@ -1785,10 +1825,10 @@ $(document).ready(function(){
 				temp.css("display","flex");
 				
 			} else {
-//				temp = editSceMaterial.children("div[class^='uc-editSceMaterial-spec'][stype='"+stype+"'][scenarioId='temp']").clone(true);
-//				temp.css("display","flex");
-//				temp.attr("scenarioId",scenarioId);
-//				editSceMaterial.append(temp);
+				temp = editSceMaterial.children("div[class^='uc-editSceMaterial-spec'][stype='"+stype+"'][scenarioId='temp']").clone(true);
+				temp.css("display","flex");
+				temp.attr("scenarioId",scenarioId);
+				editSceMaterial.append(temp);
 			}
 			
 			$(".uc-canvas-overlay").show();
@@ -2132,29 +2172,23 @@ $(document).ready(function(){
 			event.stopPropagation(); 
 			
 			//var area = target.parents(".uc-input-block-table");
-			var areaBody = target.parents(".uc-input-block-table");
-			areaBody.append($('<div class="uc-input-block-table-row">'+
-												'	<div style="width: 20%; text-align:right;white-space : nowrap; ">'+
-											'		<span class="uc-text cn_input_label">标题</span><span class="uc-text cn_input_label">：</span>'+
-											'	</div>'+
-											'	<div style="width: 30%; ">'+
-											'		<input type="text" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
-											'	</div>'+
-											'	<div style="width: 20%; text-align:right;white-space : nowrap; ">'+
-											'		<span class="uc-text cn_input_label">值域</span><span class="uc-text cn_input_label">：</span>'+
-											'	</div>'+
-											'	<div style="width: 30%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">'+
-											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="bindingItem(event);" style="font-size: 1em; color: #888;" aria-hidden="true">'+
-											'				<use xlink:href="#icon-xinhao2"></use>'+
-											'		</svg>'+
-											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="corpusNextPage(event);" style="font-size: 1em; color: #888;" aria-hidden="true">'+
-											'				<use xlink:href="#icon-chaolianjie"></use>'+
-											'		</svg>'+
-											'		<svg class="icon" onmouseover="this.style.cursor=\'pointer\';" onclick="deleteInputBlock(event);" style="font-size: 1em; color: #888;" aria-hidden="true">'+
-											'				<use xlink:href="#icon-clear2"></use>'+
-											'		</svg>'+
-											'	</div>'+
-											'</div>'));
+			var areaBody = target.parents(".uc-edit-panel-block").find("#uc_corpus_item_def_table");
+			var itemid = guid();
+			areaBody.append($('<div class="uc-input-block-table-row" itemId="'+itemid+'" style="height: 25px; align-items:center; justify-content: space-around;">'+
+										'			<div style="width: 35%; display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
+										'			<img src="/var/images/uc_icon_edit.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'title\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+										'			<input type="text" style="width: 0%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+										'		</div>'+
+										'		<div style="width: 25%;  display: flex; align-items: center; justify-content: center; ">'+
+										'			<img src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+										'		</div>'+
+										'		<div style="width: 20%;  display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
+										'			<img src="/var/images/uc_icon_data_connect_arrow.png" style="height: 20px;" onclick="ucCorpusItemEdit(event,\'link\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+										'		</div>'+
+										'		<div style="width: 20%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">'+
+										'			<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+										'		</div>'+
+										'	</div>'));
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";

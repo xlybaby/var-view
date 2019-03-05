@@ -247,7 +247,7 @@
 	background-color: rgba(237,110,61,1.0);
 }
 .uc-editSceMaterial-spec-corpus{
-	display: flex;
+	display: none;
 	margin: 0px;
 	padding: 0px;
 	
@@ -331,6 +331,7 @@
     width: 90%;
     border: 3px dashed #d0d0d0;
     border-radius: 12px;
+    over-flow: scroll;
 }
 
 .uc-editSceMaterial-corpus-p-block-item-empty{
