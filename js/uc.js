@@ -1375,19 +1375,43 @@ function initMaterialPanel(panel) {
 	});
 	
 }
+function ucItemUnbinding(event) {
+	if( commonConfirm( "是否要解绑元素？" ) ) {
+		var target = $(event.target);
+		var row = target.parents(".uc-input-block-table-row");
+		var bindingItemID = row.attr("bindingItemId");
+		var bindingItem = $(".uc-edit-panel-material").find(".uc-edit-comp-r-editor-con[itemId='"+bindingItemID+"']");
+		//bindingItem.find("button[name='uc-edit-comp-r-editor-submit-binding']").toggleClass("uc-editSceMaterial-binding-ani");
+		bindingItem.removeClass("ucMaterialComponentBeBindinged");
+		bindingItem.find("button[name='uc-edit-comp-r-editor-submit-binding']").css("backgroundColor","");
+		bindingItem.find("button[name='uc-edit-comp-r-editor-submit-binding']").removeClass("ucMaterialBeBindinged");
+		
+		row.removeAttr("bindingItemId");
+		row.removeClass("uc-input-block-table-row-binded");
+		target.hide();
+		target.siblings(".eBinding").show();
+	}
+}
 function ucItemBinding(event) {
 	var target = $(event.target);
+	if( target.attr("name") !== "uc-edit-comp-r-editor-submit-binding" )
+		target = target.parents("button[name='uc-edit-comp-r-editor-submit-binding']");
+	if( !target.hasClass("uc-editSceMaterial-binding-ani") ) return;
 	var parent = target.parents(".uc-edit-comp-r-editor-con");
 	
 	var editMaterial = $("div[class^='uc-editSceMaterial-spec-'][scenarioId='"+current_ucMaterialScenarioId+"']");
 	var editMaterialItem = editMaterial.find(".uc-input-block-table-row[itemId='"+current_ucMaterialItemEditId+"']");
 	editMaterialItem.attr("bindingItemId", parent.attr("itemId"));
-	editMaterialItem.attr("binding","");
-	editMaterialItem.find(".eBinding").attr("src", "/var/images/uc_icon_connected.png");
+	editMaterialItem.toggleClass("uc-input-block-table-row-binding uc-input-block-table-row-binded");
+	editMaterialItem.find(".eRemoving").show();
+	editMaterialItem.find(".eRecieving").hide();
 	
 	parent.find("button[name='uc-edit-comp-r-editor-submit-binding']").toggleClass("uc-editSceMaterial-binding-ani");
-	parent.attr("binding","binding");
+	parent.toggleClass("ucMaterialComponentBeBindinged");
 	target.css("backgroundColor","rgba(61,125,83,1.0)");
+	target.addClass("ucMaterialBeBindinged");
+	$(".uc-edit-panel-material").find("button[name='uc-edit-comp-r-editor-submit-binding']").not(".ucMaterialBeBindinged").toggleClass("uc-editSceMaterial-binding-ani");
+
 }
 var current_ucMaterialItemEditId;
 var current_ucMaterialScenarioId;
@@ -1397,20 +1421,22 @@ function ucCorpusItemEdit(event, method) {
 		
 	} else if( method==="binding") {
 		var row = target.parents(".uc-input-block-table-row");
-		var bindingRow = row.siblings(".uc-input-block-table-row[binding='binding']");
+		var bindingRow = row.siblings(".uc-input-block-table-row-binding");
 		if( bindingRow.length > 0 ) {
-			bindingRow.find(".eBinding").attr("src", "/var/images/uc_icon_connecting.png");
+			bindingRow.find(".eBinding").show();
+			bindingRow.find(".eRecieving").hide();
 		}
 		
-		target.attr("src", "/var/images/uc_icon_signal_recieving.png");
-		var id = target.attr("itemId");
-		current_ucCorpusItemEditId = id;
+		target.hide();
+		target.siblings(".eRecieving").show();
+		var id = row.attr("itemId");
+		current_ucMaterialItemEditId = id;
 		var corpus = target.parents(".uc-editSceMaterial-spec-corpus");
-		current_ucCorpusScenarioId = corpus.attr("scenarioId");
+		current_ucMaterialScenarioId = corpus.attr("scenarioId");
 		
-		$(".uc-edit-panel-material").find("button[name='uc-edit-comp-r-editor-submit-binding']").toggleClass("uc-editSceMaterial-binding-ani");
+		$(".uc-edit-panel-material").find("button[name='uc-edit-comp-r-editor-submit-binding']").not(".ucMaterialBeBindinged").toggleClass("uc-editSceMaterial-binding-ani");
 		
-		row.attr("binding","binding");
+		row.addClass("uc-input-block-table-row-binding");
 		//row.toggleClass("uc-editSceMaterial-binding-ani");
 	} else if( method==="link") {
 		corpusNextPage(event);
@@ -2207,7 +2233,7 @@ $(document).ready(function(){
 			
 			//var area = target.parents(".uc-input-block-table");
 			var areaBody = target.parents(".uc-input-block-table");
-			areaBody.append($('<div class="uc-input-block-table-row">'+
+			areaBody.append($('<div class="uc-input-block-table-row custom-rows">'+
 												'	<div style="width: 20%; ">'+
 												'	<span class="uc-text cn_input_label">属性</span>'+
 												'</div>'+

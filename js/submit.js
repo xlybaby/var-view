@@ -611,6 +611,113 @@ function collectMaterial(templateId) {
     return oMaterial;
 }
 
+function collectUCScenarioComponents(template) {
+	var editSceMaterial = $(".uc-editSceMaterial");
+	var scenarios = {};
+	template.children(".uc_t_box").each( function(index, element) {
+		var stype = $(element).attr("sType");
+		var sid = $(element).attr("scenarioId");
+		var componentsEditPanel = editSceMaterial.find("div[class^='uc-editSceMaterial-spec-'][scenarioId='"+sid+"']");
+		var scenario = {};
+		scenario["type"] = stype;
+		
+		scenario["component"] = {};
+		
+		if( componentsEditPanel.length > 0 ) {
+			if( stype.toUpperCase() === "CORPUSCOLLECT" ) {
+				scenario["component"]["pages"] = {};
+				componentsEditPanel.children(".uc-editSceMaterial-corpus-p").each( function(index, element){
+					var page = {};
+					$(element).find("#uc_corpus_item_def_table").find(".uc-input-block-table-row-binded").each( function(index, element){
+						var selector = {};
+						var summary = {};
+						var container = {};
+						var iterator = {};
+						var item = {};
+						var bindItemId = $(element).attr("bindingItemId");
+						var bindItemPanel = $(".uc-edit-panel-material").find(".uc-edit-comp-r-editor-con[itemId='"+bindItemId+"']");
+						
+						var basic = bindItemPanel.find(".item-basic-info");
+						summary["name"] = StringUtil.getValue(basic.find("#itemName").val());
+						summary["code"] = StringUtil.getValue(basic.find("#itemCode").val());
+						summary["summary"] = StringUtil.getValue(basic.find("#itemSummary").val());
+						summary["type"] = basic.find(".uc-radio-box[selected='selected']").attr("value");
+						selector["summary"] = summary;
+						
+						var con = bindItemPanel.find(".container-selector");
+						container["tag"] = StringUtil.getValue( con.find("#txtTag").val() );
+						container["id"] = StringUtil.getValue( con.find("#txtID").val() );
+						container["class"] = StringUtil.getValue( con.find("#txtClass").val() );
+						container["name"] = StringUtil.getValue( con.find("#txtName").val() );
+						container["xpath"] = StringUtil.getValue( con.find("#txtXPath").val() );
+						container["index"] = StringUtil.getValue( con.find("#txtIndex").val() );
+						var custinfo = con.find(".container-custom-info");
+						container["custom"] = [];
+						custinfo.find(".custom-rows").each( function(index, element){
+							var key = $(element).find("#txtAttrName").val();
+							var value = $(element).find("#txtAttrVal").val();
+							if( !StringUtil.isEmpty() && !StringUtil.isEmpty() ) {
+								container["custom"].push({"key":key, "value":value});
+							}
+						} );
+						selector["container"] = container;
+						
+						var iter = bindItemPanel.find(".iterator-selector");
+						iterator["tag"] = StringUtil.getValue( iter.find("#txtTag").val() );
+						iterator["id"] = StringUtil.getValue( iter.find("#txtID").val() );
+						iterator["class"] = StringUtil.getValue( iter.find("#txtClass").val() );
+						iterator["name"] = StringUtil.getValue( iter.find("#txtName").val() );
+						iterator["xpath"] = StringUtil.getValue( iter.find("#txtXPath").val() );
+						iterator["index"] = StringUtil.getValue( iter.find("#txtIndex").val() );
+						var icustinfo = iter.find(".iterator-custom-info");
+						iterator["custom"] = [];
+						icustinfo.find(".custom-rows").each( function(index, element){
+							var key = $(element).find("#txtAttrName").val();
+							var value = $(element).find("#txtAttrVal").val();
+							if( !StringUtil.isEmpty() && !StringUtil.isEmpty() ) {
+								iterator["custom"].push({"key":key, "value":value});
+							}
+						} );
+						selector["iterator"] = iterator;
+						
+						var itm = bindItemPanel.find(".element-selector");
+						item["tag"] = StringUtil.getValue( itm.find("#txtTag").val() );
+						item["id"] = StringUtil.getValue( itm.find("#txtID").val() );
+						item["class"] = StringUtil.getValue( itm.find("#txtClass").val() );
+						item["name"] = StringUtil.getValue( itm.find("#txtName").val() );
+						item["xpath"] = StringUtil.getValue( itm.find("#txtXPath").val() );
+						item["index"] = StringUtil.getValue( itm.find("#txtIndex").val() );
+						var itcustinfo = itm.find(".ele-val-custom-info");
+						item["custom"] = [];
+						itcustinfo.find(".custom-rows").each( function(index, element){
+							var key = $(element).find("#txtAttrName").val();
+							var value = $(element).find("#txtAttrVal").val();
+							if( !StringUtil.isEmpty() && !StringUtil.isEmpty() ) {
+								item["custom"].push({"key":key, "value":value});
+							}
+						} );
+						selector["item"] = item;
+						
+						page["selector"] = selector;
+					});
+					
+					scenario["component"]["pages"][index+""] = page;
+				});
+			} else if( stype.toUpperCase() === "BANNER" ) {
+				
+			}  else if( stype.toUpperCase() === "TIMESERIES" ) {
+				
+			}  else if( stype.toUpperCase() === "REFRESHBLOCK" ) {
+				
+			} 
+			
+			return 
+		}
+		scenarios[sid] = scenario;
+	} );
+	
+}
+
 function collectAndSubmit(target) {
 	var submitbox = $(target).parents(".uc_submit_box");
 	var container = $(".uc-canvas-container");

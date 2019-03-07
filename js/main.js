@@ -2,7 +2,12 @@ function randomize(from, end){
     if(!from && from!=0 || !end){return null;}   
     return Math.floor( ( Math.random() * end ) + from );   
 } 
-
+function commonAlert(msg) {
+	alert(msg);
+}
+function commonConfirm(msg, ok, cancel) {
+	return confirm(msg, ok?ok:"ok", cancel?cancel:"cancel");
+}
 function checkFieldNumber(event) {
 	var target = $(event.target);
 	var reg = /[^0-9]/;
@@ -63,6 +68,16 @@ var StringUtil = (function ($) {
 				return true; 
 			}
 			return false;
+        },
+        getValue: function (str,ret) {
+			if(typeof(str)=="undefined" || ""+str =="undefined"  || str == null) {
+				return ret?ret:"";
+			}
+			var t = $.trim(str);
+			if(t == "" || t == "null" || t == "undefined") {
+				return ret?ret:""; 
+			}
+			return str;
         }
     } 
     return pub;    

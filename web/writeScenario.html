@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=104" />
-		<script type="text/javascript" src="/var/js/uc.js?v=104"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=104"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=106" />
+		<script type="text/javascript" src="/var/js/uc.js?v=106"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=106"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -102,6 +102,8 @@
 																</div>
 																<div style="width: 25%;  display: flex; align-items: center; justify-content: center; ">
 																	<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, 'binding');" onmouseover="this.style.cursor='pointer';" />
+																	<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />
+																	<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor='pointer';" />
 																
 																</div>
 																<div style="width: 20%;  display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">
@@ -806,7 +808,7 @@
 														<span class="uc-text cn_input_label">名称</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="itemName" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="itemName" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -814,7 +816,7 @@
 														<span class="uc-text cn_input_label">编号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="itemCode" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="itemCode" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -822,7 +824,7 @@
 														<span class="uc-text cn_input_label">描述</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="itemSummary" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="itemSummary" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row" style="margin-top: 4px;">
@@ -920,7 +922,7 @@
 														<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -928,7 +930,7 @@
 														<span class="uc-text cn_input_label">ID</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtID"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtID"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -936,7 +938,7 @@
 														<span class="uc-text cn_input_label">Class</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtClass"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtClass"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -944,7 +946,7 @@
 														<span class="uc-text cn_input_label">Name</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtName"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtName"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -952,7 +954,7 @@
 														<span class="uc-text cn_input_label">XPath</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtXPath"   style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtXPath"   style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -960,7 +962,7 @@
 														<span class="uc-text cn_input_label">序号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtIndex"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtIndex"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												
@@ -986,13 +988,13 @@
 														<span class="uc-text cn_input_label">属性</span>
 													</div>
 													<div style="width: 30%; ">
-														<input type="text" name="txtAttrName"  style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtAttrName"  style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<div style="width: 20%; ">
 														<span class="uc-text cn_input_label">值</span>
 													</div>
 													<div style="width: 30%; ">
-														<input type="text" name="txtAttrVal"  style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtAttrVal"  style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;"
 														aria-hidden="true">
@@ -1018,7 +1020,7 @@
 														<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1026,7 +1028,7 @@
 														<span class="uc-text cn_input_label">ID</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtID" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtID" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1034,7 +1036,7 @@
 														<span class="uc-text cn_input_label">Class</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtClass" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtClass" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1042,7 +1044,7 @@
 														<span class="uc-text cn_input_label">Name</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtName" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtName" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1050,7 +1052,7 @@
 														<span class="uc-text cn_input_label">XPath</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtXPath"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtXPath"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1058,7 +1060,7 @@
 														<span class="uc-text cn_input_label">序号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtIndex" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtIndex" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 											</div>
@@ -1077,18 +1079,18 @@
 														</svg>
 													</div>
 												</div>
-												<div class="uc-input-block-table-row">
+												<div class="uc-input-block-table-row custom-rows">
 													<div style="width: 20%; ">
 														<span class="uc-text cn_input_label">属性</span>
 													</div>
 													<div style="width: 30%; ">
-														<input type="text" name="txtAttrName" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtAttrName" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<div style="width: 20%; ">
 														<span class="uc-text cn_input_label">值</span>
 													</div>
 													<div style="width: 30%; ">
-														<input type="text" name="txtAttrVal" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtAttrVal" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;"
 														aria-hidden="true">
@@ -1232,7 +1234,7 @@
 														<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtTag" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1240,7 +1242,7 @@
 														<span class="uc-text cn_input_label">ID</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtID" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtID" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1248,7 +1250,7 @@
 														<span class="uc-text cn_input_label">Class</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtClass" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtClass" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1256,7 +1258,7 @@
 														<span class="uc-text cn_input_label">Name</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtName" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtName" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1264,7 +1266,7 @@
 														<span class="uc-text cn_input_label">XPath</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtXPath"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtXPath"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												<div class="uc-input-block-table-row">
@@ -1272,7 +1274,7 @@
 														<span class="uc-text cn_input_label">序号</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 75%; ">
-														<input type="text" name="txtIndex" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtIndex" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 												</div>
 												
@@ -1293,18 +1295,18 @@
 														</svg>
 													</div>
 												</div>
-												<div class="uc-input-block-table-row">
+												<div class="uc-input-block-table-row custom-rows">
 													<div style="width: 20%; ">
 														<span class="uc-text cn_input_label">属性</span>
 													</div>
 													<div style="width: 30%; ">
-														<input type="text" name="txtAttrName" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtAttrName" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<div style="width: 20%; ">
 														<span class="uc-text cn_input_label">值</span>
 													</div>
 													<div style="width: 30%; ">
-														<input type="text" name="txtAttrVal" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														<input type="text" id="txtAttrVal" style="width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 													</div>
 													<svg class="icon" onmouseover="this.style.cursor='pointer';" onclick="deleteInputBlock(event);" style="font-size: 20px; color: #000000;"
 														aria-hidden="true">
@@ -1462,7 +1464,7 @@
 							</div>-->
 						</div>
 						<div class="uc-edit-comp-r-editor-submit">
-							<button name="uc-edit-comp-r-editor-submit-binding"  onclick="ucCorpusItemBinding(event);" style="display:flex;align-items:center;justify-content: center;position:absolute; left: 5px; width: 70px; height: 90%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" >
+							<button name="uc-edit-comp-r-editor-submit-binding"  onclick="ucItemBinding(event);" style="display:flex;align-items:center;justify-content: center;position:absolute; left: 5px; width: 70px; height: 90%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" >
 							<svg class="icon" onmouseover="this.style.cursor='pointer';"  style="font-size: 1em; color: #888;" aria-hidden="true">
 						    	<use xlink:href="#icon-xinhao2"></use>
 							</svg>
