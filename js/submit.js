@@ -715,7 +715,7 @@ function collectUCScenarioComponents(template) {
 		}
 		scenarios[sid] = scenario;
 	} );
-	
+	return scenarios;
 }
 
 function collectAndSubmit(target) {
@@ -730,6 +730,8 @@ function collectAndSubmit(target) {
 	console.log(template);
 	var oMaterial = collectMaterial(container.attr("templateId"));
 	console.log(oMaterial);
+	var components = collectUCScenarioComponents($(".uc-canvas-container"));
+	console.log(components);
 	
 	if( scenarioTemplates.length > 0 ) {
 		
