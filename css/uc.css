@@ -404,6 +404,15 @@
   height: 100%;
   width: 100%;
 }
+.uc-editSceMaterial-spec-ts-body{
+	
+}
+.uc-editSceMaterial-spec-ts-bodyTemp{
+	
+}
+.uc-editSceMaterial-spec-ts-bodyOpts{
+	
+}
 .uc-editSceMaterial-spec-subscribe{
 	display: none;
 	margin: 0px;
@@ -1762,7 +1771,7 @@ padding: 0px;
   padding: 0px;
   overflow: hidden;
   
-  z-index: 6;
+  z-index: 12;
 }
 
 .uc_new_box, .uc_new_submit{
@@ -1781,7 +1790,7 @@ padding: 0px;
   overflow: hidden;
   background-color: rgb(213,213,213,1.0);
   border-radius: 10px;
-  z-index: 6;
+  z-index: 12;
 }
 .uc_addnew_box{
 	display: none;
@@ -1797,7 +1806,7 @@ padding: 0px;
   padding: 0px;
   overflow: hidden;
   
-  z-index: 6;
+  z-index: 12;
 }
 
 .uc_submit_box_con{

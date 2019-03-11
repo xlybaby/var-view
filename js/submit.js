@@ -353,7 +353,7 @@ var templateInstance = (function ($) {
             var id = "uc_temp__"+guid()+"_"+timestamp;
             var scenarios = {};
             temp["id"] = id;
-            temp["scenarios"] = scenarios;
+            //temp["scenarios"] = scenarios;
             
             var tempPanel = $(".uc-edit-panel-mid").children(".uc-edit-panel-template");
             if( tempPanel.attr("initiated") !== "initiated" ){
@@ -455,7 +455,7 @@ var templateInstance = (function ($) {
             //var layout = {};
             var sceneList = [];
             
-            scenario["scenarioId"] = scenarioId;
+            //scenario["scenarioId"] = scenarioId;
             scenario["scenarioType"] = scenarioType;
             scenario["scenarioTypeName"] = scenarioTypeNames[scenarioType];
             scenario["href"] = href;
@@ -469,26 +469,26 @@ var templateInstance = (function ($) {
 //            scenario["schedule"]=schedule;
             scenario["configuration"] = _COMMONINFO(target);
             //scenario["pages"] = _COLLECTPAGES(target);
-            if( scenarioType == 1 ) {
-            	//scenario["collect"] = _BANNER;
-            	var actors = _BANNER(target);
-            } else if( scenarioType == 2 ) {
-            	//scenario["collect"] = _REFRESHBLOCK;
-            	var actors = _REFRESHBLOCK(target);
-            } else if( scenarioType == 3 ) {
-            	//scenario["collect"] = _RANKLIST;
-            	var actors = _RANKLIST(target);
-            } else if( scenarioType == 4 ) {
-            	///scenario["collect"] = _TIMESERIES;
-            	var actors = _TIMESERIES(target);
-            } else if( scenarioType == 5 ) {
-            	//scenario["collect"] = _CORPUSCOLLECT;
-            	var actors = _CORPUSCOLLECT(target);
-            }
-            if(!actors) {
-        		console.log("scenario has no actors");
-        	}
-        	scenario["actors"] = actors;
+//            if( scenarioType == 1 ) {
+//            	//scenario["collect"] = _BANNER;
+//            	var actors = _BANNER(target);
+//            } else if( scenarioType == 2 ) {
+//            	//scenario["collect"] = _REFRESHBLOCK;
+//            	var actors = _REFRESHBLOCK(target);
+//            } else if( scenarioType == 3 ) {
+//            	//scenario["collect"] = _RANKLIST;
+//            	var actors = _RANKLIST(target);
+//            } else if( scenarioType == 4 ) {
+//            	///scenario["collect"] = _TIMESERIES;
+//            	var actors = _TIMESERIES(target);
+//            } else if( scenarioType == 5 ) {
+//            	//scenario["collect"] = _CORPUSCOLLECT;
+//            	var actors = _CORPUSCOLLECT(target);
+//            }
+//            if(!actors) {
+//        		console.log("scenario has no actors");
+//        	}
+//        	scenario["actors"] = actors;
             return scenario;
         }
     	
@@ -591,7 +591,7 @@ function collectMaterial(templateId) {
 	var oMaterial = {};
     var mPanel = $(".uc-edit-panel-mid").children(".uc-edit-panel-material");
     var itemPanels = mPanel.find(".uc-edit-comp-r-editor-con");
-    var vList = [];
+    var vList = {};
     for(var i = 0; i < itemPanels.length; i++ ) {
     	var vMap = {};
     	var info= {};
@@ -601,9 +601,9 @@ function collectMaterial(templateId) {
     		info["code"] = $(itemPanels[i]).find(".item-basic-info").find("input[name='itemCode']").val();
     		info["summary"] = $(itemPanels[i]).find(".item-basic-info").find("input[name='itemSummary']").val();
     		info["type"] = $(itemPanels[i]).find(".item-basic-info").find(".uc-radio-box[selected='selected']").attr("value");
-    		vList.push(info);
-    		
+    		//vList.push(info);
     	}
+    	vList[$(itemPanels[i]).attr("itemId")] = info;
     }
     oMaterial["items"] = vList;
     oMaterial["templateId"] = templateId;
@@ -620,88 +620,28 @@ function collectUCScenarioComponents(template) {
 		var componentsEditPanel = editSceMaterial.find("div[class^='uc-editSceMaterial-spec-'][scenarioId='"+sid+"']");
 		var scenario = {};
 		scenario["type"] = stype;
-		
 		scenario["component"] = {};
 		
 		if( componentsEditPanel.length > 0 ) {
 			if( stype.toUpperCase() === "CORPUSCOLLECT" ) {
-				scenario["component"]["pages"] = {};
+				scenario["component"] = {};
 				componentsEditPanel.children(".uc-editSceMaterial-corpus-p").each( function(index, element){
 					var page = {};
+					var rowlist = {};
 					$(element).find("#uc_corpus_item_def_table").find(".uc-input-block-table-row-binded").each( function(index, element){
-						var selector = {};
-						var summary = {};
-						var container = {};
-						var iterator = {};
-						var item = {};
-						var bindItemId = $(element).attr("bindingItemId");
-						var bindItemPanel = $(".uc-edit-panel-material").find(".uc-edit-comp-r-editor-con[itemId='"+bindItemId+"']");
-						
-						var basic = bindItemPanel.find(".item-basic-info");
-						summary["name"] = StringUtil.getValue(basic.find("#itemName").val());
-						summary["code"] = StringUtil.getValue(basic.find("#itemCode").val());
-						summary["summary"] = StringUtil.getValue(basic.find("#itemSummary").val());
-						summary["type"] = basic.find(".uc-radio-box[selected='selected']").attr("value");
-						selector["summary"] = summary;
-						
-						var con = bindItemPanel.find(".container-selector");
-						container["tag"] = StringUtil.getValue( con.find("#txtTag").val() );
-						container["id"] = StringUtil.getValue( con.find("#txtID").val() );
-						container["class"] = StringUtil.getValue( con.find("#txtClass").val() );
-						container["name"] = StringUtil.getValue( con.find("#txtName").val() );
-						container["xpath"] = StringUtil.getValue( con.find("#txtXPath").val() );
-						container["index"] = StringUtil.getValue( con.find("#txtIndex").val() );
-						var custinfo = con.find(".container-custom-info");
-						container["custom"] = [];
-						custinfo.find(".custom-rows").each( function(index, element){
-							var key = $(element).find("#txtAttrName").val();
-							var value = $(element).find("#txtAttrVal").val();
-							if( !StringUtil.isEmpty() && !StringUtil.isEmpty() ) {
-								container["custom"].push({"key":key, "value":value});
-							}
-						} );
-						selector["container"] = container;
-						
-						var iter = bindItemPanel.find(".iterator-selector");
-						iterator["tag"] = StringUtil.getValue( iter.find("#txtTag").val() );
-						iterator["id"] = StringUtil.getValue( iter.find("#txtID").val() );
-						iterator["class"] = StringUtil.getValue( iter.find("#txtClass").val() );
-						iterator["name"] = StringUtil.getValue( iter.find("#txtName").val() );
-						iterator["xpath"] = StringUtil.getValue( iter.find("#txtXPath").val() );
-						iterator["index"] = StringUtil.getValue( iter.find("#txtIndex").val() );
-						var icustinfo = iter.find(".iterator-custom-info");
-						iterator["custom"] = [];
-						icustinfo.find(".custom-rows").each( function(index, element){
-							var key = $(element).find("#txtAttrName").val();
-							var value = $(element).find("#txtAttrVal").val();
-							if( !StringUtil.isEmpty() && !StringUtil.isEmpty() ) {
-								iterator["custom"].push({"key":key, "value":value});
-							}
-						} );
-						selector["iterator"] = iterator;
-						
-						var itm = bindItemPanel.find(".element-selector");
-						item["tag"] = StringUtil.getValue( itm.find("#txtTag").val() );
-						item["id"] = StringUtil.getValue( itm.find("#txtID").val() );
-						item["class"] = StringUtil.getValue( itm.find("#txtClass").val() );
-						item["name"] = StringUtil.getValue( itm.find("#txtName").val() );
-						item["xpath"] = StringUtil.getValue( itm.find("#txtXPath").val() );
-						item["index"] = StringUtil.getValue( itm.find("#txtIndex").val() );
-						var itcustinfo = itm.find(".ele-val-custom-info");
-						item["custom"] = [];
-						itcustinfo.find(".custom-rows").each( function(index, element){
-							var key = $(element).find("#txtAttrName").val();
-							var value = $(element).find("#txtAttrVal").val();
-							if( !StringUtil.isEmpty() && !StringUtil.isEmpty() ) {
-								item["custom"].push({"key":key, "value":value});
-							}
-						} );
-						selector["item"] = item;
-						
-						page["selector"] = selector;
+						var bindedItemId = $(element).attr("bindingitemid");
+						var row={};
+						row["bindedItemId"] = bindedItemId;
+						if( $(element).hasClass("uc-input-block-table-row-extract") )
+							row["isExtracted"] = true;
+						rowlist["row"+index] = row;
 					});
+					page["rows"] = rowlist;
+					pattr = $(element).children(".uc-editSceMaterial-corpus-p-attr");
 					
-					scenario["component"]["pages"][index+""] = page;
+					page["width"] = StringUtil.isEmpty(pattr.find("#pageWidth-val").val())?"auto":( pattr.find("#pageWidth-val").val() + "%");
+					page["height"] = StringUtil.isEmpty(pattr.find("#pageHeight-val").val())?"100%":( pattr.find("#pageHeight-val").val() + "%");
+					scenario["component"]["pages"+index] = page;
 				});
 			} else if( stype.toUpperCase() === "BANNER" ) {
 				
@@ -710,8 +650,6 @@ function collectUCScenarioComponents(template) {
 			}  else if( stype.toUpperCase() === "REFRESHBLOCK" ) {
 				
 			} 
-			
-			return 
 		}
 		scenarios[sid] = scenario;
 	} );
@@ -727,22 +665,23 @@ function collectAndSubmit(target) {
 	//var scenario = editable_template["scenarios"];
 	var datas={};
 	var template = templateInstance.newTemplate();
+	console.log("Template: ");
 	console.log(template);
-	var oMaterial = collectMaterial(container.attr("templateId"));
+	var oMaterial = collectMaterial( template["id"]);
+	console.log("Material: ");
 	console.log(oMaterial);
-	var components = collectUCScenarioComponents($(".uc-canvas-container"));
-	console.log(components);
+	
 	
 	if( scenarioTemplates.length > 0 ) {
-		
-		var scenarios=[];
+		var oScenarios = {};
+		var scenarios={};
 		for(var i=0;i<scenarioTemplates.length;i++){
 			var scenario = templateInstance.newScenario($(scenarioTemplates[i]));//{};
-			
+			var scenarioId = $(scenarioTemplates[i]).attr("scenarioId");
 			//console.log("Save scenario: " + type +", position: ("+ x +","+ y + "), rect: " + w +"x"+ h);
 			//console.log("Save scenario: " + type +", position: ("+ parseFloat(x/container.width()) +","+ parseFloat(y/container.height()) + "), rect: " + parseFloat(w/container.width()) +"x"+ parseFloat(h/container.height()));
-			scenarios.push(scenario);
-			
+			//scenarios.push(scenario);
+			scenarios[scenarioId]=scenario;
 		}
 		
 		template["title"] = submitbox.find("#in_title").val();
@@ -757,9 +696,20 @@ function collectAndSubmit(target) {
 		else
 			template["shareContent"] = false;
 		
-		template["scenarios"] = scenarios;
-		console.log(JSON.stringify(template));
+		//template["scenarios"] = scenarios;
+		oScenarios["templateId"] =  template["id"];
+		oScenarios["scenarios"] = scenarios;
+		console.log("Scenarios: ");
+		console.log(oScenarios);
+		//console.log(JSON.stringify(template));
 		//request("post", "/datacenter/", template, callback)
+		var oComponents = {};
+		var components = collectUCScenarioComponents($(".uc-canvas-container"));
+		oComponents["templateId"] =  template["id"];
+		oComponents["scenarios"] = components;
+		console.log("Scenario binding components: ");
+		console.log(oComponents);
+		
 	}
 }
 //var editable_template = templateInstance.newTemplate();

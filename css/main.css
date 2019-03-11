@@ -461,5 +461,5 @@ input {
     background-image: url(../images/neon-lights-background_600x594_h.jpg);
     */
     display: none;
-    z-index: 5;
+    z-index: 11;
 }
