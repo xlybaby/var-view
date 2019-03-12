@@ -1462,6 +1462,66 @@ function corpusNextPage(event) {
 	panel.append(newPage);
 }
 
+function initEditScenariosComponentPanel(temp) {
+	//var container = $(".uc-editSceMaterial");
+	//var timeseriesPanel = container.children(".uc-editSceMaterial-spec-timeseries");
+	
+	var timeseriesPanel = temp;
+	timeseriesPanel.find(".uc-timeseries-add-item").on({
+		click: function(event){
+			var clicktag = event.target.tagName;
+			if(clicktag.toLowerCase()==="svg")
+				var target = $(event.target).children("use");
+			else if(clicktag.toLowerCase()==="use")
+				var target = $(event.target);
+			else
+				return false;
+			event.stopPropagation(); 
+			
+			//var area = target.parents(".uc-input-block-table");
+			var areaBody = target.parents(".uc-input-block-table");
+			var itemid = guid();
+			areaBody.append($('<div class="uc-input-block-table-row" itemId="'+itemid+'">'+
+								'					<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">'+
+								'							<input type="text" placeholder="数据名"  style="text-align: center; width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+								'							<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+								'							<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
+								'							<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />		'+		
+								'							&nbsp;&nbsp;<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+								'					</div>'+
+								'				</div>'));
+		},
+		mouseover:function(event){
+			event.target.style.cursor="pointer";
+		}
+	});
+	
+	timeseriesPanel.find("#specTSx-axisInHour").spinner({max: 24,min:1});
+	timeseriesPanel.find("#specTSx-axisInMinute").spinner({max: 59,min:5});
+	
+	makeupColorPicker(timeseriesPanel.find("#uc-timeseries-bgcolor-box"), "#ffffff", null, true, true, true) ;
+	makeupColorPicker(timeseriesPanel.find("#uc-timeseries-axis-color-box"), "#333333", null, false, true, false) ;
+	makeupColorPicker(timeseriesPanel.find("#uc-timeseries-fonts-color-box"), "#000000", null, false, true, false) ;
+	
+	timeseriesPanel.find(".uc-check-box.uc-timeseries-grid-val").on({
+		click: function(event){
+			event.stopPropagation();
+			var target = $(event.target);
+			if( !target.hasClass("uc-check-box") )
+				target = target.parents(".uc-check-box");
+			var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
+			box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
+			//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+			var cur =  target.children(".uc-float-icon-checkbox-sel");
+			target.attr("value", cur.attr("value"));
+		},
+		mouseover: function(event) {
+			event.stopPropagation();
+			event.target.style.cursor="pointer";
+		}
+	});
+}
+
 $(document).ready(function(){ 
 	mainInit();
 	
@@ -1865,6 +1925,8 @@ $(document).ready(function(){
 			$(".uc-canvas-overlay").show();
 			editSceMaterial.css("display","flex");
 			$(".uc-canvasM").css("filter","blur(2px)");
+			
+			initEditScenariosComponentPanel(temp) ;
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
