@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=109" />
-		<script type="text/javascript" src="/var/js/uc.js?v=109"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=109"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=110" />
+		<script type="text/javascript" src="/var/js/uc.js?v=110"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=110"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -145,7 +145,135 @@
 									</div>
 								</div>
 							</div>
-							<div class="uc-editSceMaterial-spec-banner" scenarioId="temp" stype="BANNER"></div>
+							<div class="uc-editSceMaterial-spec-banner" scenarioId="temp" stype="BANNER">
+								<div class="uc-editSceMaterial-spec-banner-body">
+									<div class="uc-editSceMaterial-spec-banner-bodyOpts">
+										<div class="uc-editSceMaterial-spec-banner-cfg">	
+											<div class="uc-edit-panel-block value-info">
+												<span class="uc-text cn_block_title">元素</span> <img src="/var/images/icon_help.svg" />
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row" itemId="uc-banner-element">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">绑定元素</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">																
+																		<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, 'binding');" onmouseover="this.style.cursor='pointer';" />
+																		<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />
+																		<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor='pointer';" />																									
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block theme-info">
+												<span class="uc-input-title en_block_title">Layout</span> <img
+													src="/var/images/icon_help.svg" />
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">背景</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div class="uc-banner-bgcolor-options" style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
+																	<div class="uc-bg-color-picker-sel" selected="selected" style="background-color: #ffffff;"></div>
+																	<div class="uc-bg-color-picker" style="background-color: rgba(0,101,80,1.0);"></div>
+																	<div class="uc-bg-color-picker" style="background-color: rgba(102,132,176,1.0);"></div>
+																	<div class="uc-bg-color-picker"  style="background-color: rgba(157,137,157,1.0);"></div>
+																	<div class="uc-bg-color-picker" style="background-color: rgba(164,0,39,1.0);"></div>
+																</div>
+																<div style="width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-banner-bgcolor-box" style="height: 80%;"/>
+																</div>
+															</div>
+														</div>
+													</div>	
+												</div>
+											</div>
+											<div class="uc-edit-panel-block position-info">
+												<span class="uc-text cn_block_title">图片位置</span> <img src="/var/images/icon_help.svg" />
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 100%; display: flex;flex-wrap: wrap; align-items: center;justify-content: flex-start;align-content: space-around;">
+																	<div class="uc-bg-image-sel" alt="填充" style="background-image: url(/var/images/icon_image_tianchong.jpg);"></div>
+																	<div class="uc-bg-image" alt="拉伸" style="background-image: url(/var/images/icon_image_lashen.jpg);"></div>
+																	<div class="uc-bg-image" alt="适应" style="background-image: url(/var/images/icon_image_shiying.jpg);"></div>
+																	<div class="uc-bg-image" alt="平铺" style="background-image: url(/var/images/icon_image_pingpu.jpg);"></div>
+																	<div class="uc-bg-image" alt="居中"  style="background-image: url(/var/images/icon_image_juzhong.jpg);"></div>
+																	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block operation-info">
+												<span class="uc-input-title en_block_title">Operation</span> <img
+													src="/var/images/icon_help.svg" />
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">手动</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div class="uc-banner-bgcolor-options" style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
+																	<div class="uc-check-box uc-banner-manual-val" value="nomanual" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																		<svg  value="nomanual" class="uc-float-icon  uc-float-icon-checkbox-sel zoomIn animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+															    			<use xlink:href="#icon-2"></use>
+																		</svg>
+																		<svg  value="manual" class="uc-float-icon uc-float-icon-checkbox-nosel zoomOut uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    		<use xlink:href="#icon-icon-test"></use>
+																		</svg>
+																	</div>
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">自动</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div class="uc-banner-bgcolor-options" style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
+																	<div class="uc-check-box uc-banner-automation-val" value="auto" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;">
+																		<svg  value="auto" class="uc-float-icon  uc-float-icon-checkbox-sel zoomIn animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+															    			<use xlink:href="#icon-2"></use>
+																		</svg>
+																		<svg  value="noauto" class="uc-float-icon uc-float-icon-checkbox-nosel zoomOut uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    		<use xlink:href="#icon-icon-test"></use>
+																		</svg>
+																	</div>
+																</div>
+																
+															</div>
+														</div>
+													</div>	
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									<div class="uc-editSceMaterial-spec-banner-bodyTemp">
+										<div class="uc-editSceMaterial-spec-banner-bodyTempTop">
+											
+										</div>
+										<div class="uc-editSceMaterial-spec-banner-bodyTempBottom">
+											<div style="width: 80%; display: flex;flex-wrap: wrap; align-items: center;justify-content: flex-start;align-content: space-around;">
+												<div class="uc-bg-image-sel" style="width: 167px; height: 147px; background-image: url(/var/images/uc_icon_banner.png);"></div>
+												<div class="uc-bg-image" style="width: 167px; height: 147px; background-image: url(/var/images/uc_icon_smile_face.png);"></div>
+												<div class="uc-bg-image" style="width: 167px; height: 147px; background-image: url(/var/images/uc_icon_smile_face.png);"></div>
+												<div class="uc-bg-image" style="width: 167px; height: 147px; background-image: url(/var/images/uc_icon_smile_face.png);"></div>
+												<div class="uc-bg-image" style="width: 167px; height: 147px; background-image: url(/var/images/uc_icon_smile_face.png);"></div>
+														
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							<div class="uc-editSceMaterial-spec-timeseries" scenarioId="temp" stype="TIMESERIES">
 								<div class="uc-editSceMaterial-spec-ts-body">
 									<div class="uc-editSceMaterial-spec-ts-bodyOpts">
@@ -347,25 +475,15 @@
 																		</svg>
 																	</div>
 																</div>
-																
 															</div>
-															
-															
 														</div>
 													</div>
 													</div>
 											</div>
-	
-	
-	
-	
-	
-	
-	
 </div>
 									</div>
 									<div class="uc-editSceMaterial-spec-ts-bodyTemp">
-										<div style="width: 100%; display: flex;flex-wrap: wrap; align-items: center;justify-content: flex-start;align-content: space-around;">
+										<div style="width: 80%; display: flex;flex-wrap: wrap; align-items: center;justify-content: flex-start;align-content: space-around;">
 												<div class="uc-bg-image-sel" style="width: 167px; height: 147px; background-image: url(/var/images/uc-icon-timeseries-charts.png);"></div>
 												<div class="uc-bg-image" style="width: 167px; height: 147px; background-image: url(/var/images/uc_icon_smile_face.png);"></div>
 												<div class="uc-bg-image" style="width: 167px; height: 147px; background-image: url(/var/images/uc_icon_smile_face.png);"></div>
@@ -378,7 +496,110 @@
 									
 								</div>
 							</div>
-							<div class="uc-editSceMaterial-spec-subscribe" scenarioId="temp" stype="REFRESHBLOCK"></div>
+							<div class="uc-editSceMaterial-spec-subscribe" scenarioId="temp" stype="REFRESHBLOCK">
+								<div class="uc-editSceMaterial-spec-subscribe-body">
+									<div class="uc-editSceMaterial-spec-subscribe-bodyOpts">
+										<div class="uc-editSceMaterial-spec-subscribe-cfg">	
+											<div class="uc-edit-panel-block value-info">
+												<span class="uc-text cn_block_title">元素</span> <img src="/var/images/icon_help.svg" />
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row" itemId="uc-banner-element">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">绑定元素</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">																
+																		<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, 'binding');" onmouseover="this.style.cursor='pointer';" />
+																		<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />
+																		<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor='pointer';" />																									
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+										</div>
+									</div>
+									<div class="uc-editSceMaterial-spec-subscribe-bodyTemp">
+										<div class="uc-editSceMaterial-corpus-p" style="height: 90%;">
+										<div class="uc-editSceMaterial-corpus-p-cnt">
+										<div class="uc-editSceMaterial-corpus-p-block" style="height: 95%;">
+											<div class="uc-edit-panel-block"  style="opacity: 0.25;">														
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table" id="uc_corpus_item_def_table">
+															<div class="uc-input-block-table-row"  style="height: 25px; align-items:center; justify-content: space-around;">
+																<span class="uc-text cn_input_label">xxxxxxxxxxxxxxxx</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block"  style="opacity: 0.65;">														
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table" id="uc_corpus_item_def_table">
+															<div class="uc-input-block-table-row"  style="height: 25px; align-items:center; justify-content: space-around;">
+																<span class="uc-text cn_input_label">xxxxxxxxxxxxxxxx</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block"  style="opacity: 0.85;">														
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table" id="uc_corpus_item_def_table">
+															<div class="uc-input-block-table-row"  style="height: 25px; align-items:center; justify-content: space-around;">
+																<span class="uc-text cn_input_label">xxxxxxxxxxxxxxxx</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block">														
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table" id="uc_corpus_item_def_table">
+															<div class="uc-input-block-table-row"  style="height: 25px; align-items:center; justify-content: space-around;">
+																<span class="uc-text cn_input_label">xxxxxxxxxxxxxxxx</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block">														
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table" id="uc_corpus_item_def_table">
+															<div class="uc-input-block-table-row"  style="height: 25px; align-items:center; justify-content: space-around;">
+																<span class="uc-text cn_input_label">xxxxxxxxxxxxxxxx</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block">														
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table" id="uc_corpus_item_def_table">
+															<div class="uc-input-block-table-row"  style="height: 25px; align-items:center; justify-content: space-around;">
+																<span class="uc-text cn_input_label">xxxxxxxxxxxxxxxx</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+										</div>
+										
+										
+									</div>
+									</div>
+									</div>
+									
+								</div>
+							</div>
 							<!-- <div class="uc-editSceMaterial-items">
 								<div class="uc-editSceMaterial-items-b uc-editSceMaterial-items-link">
 									<input type="hidden" value="" name="summary"/>
