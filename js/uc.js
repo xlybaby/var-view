@@ -1465,61 +1465,249 @@ function corpusNextPage(event) {
 function initEditScenariosComponentPanel(temp) {
 	//var container = $(".uc-editSceMaterial");
 	//var timeseriesPanel = container.children(".uc-editSceMaterial-spec-timeseries");
-	
-	var timeseriesPanel = temp;
-	timeseriesPanel.find(".uc-timeseries-add-item").on({
-		click: function(event){
-			var clicktag = event.target.tagName;
-			if(clicktag.toLowerCase()==="svg")
-				var target = $(event.target).children("use");
-			else if(clicktag.toLowerCase()==="use")
+	var stype = temp.attr("stype");
+	if( stype === "REFRESHBLOCK" ) {
+		temp.find("#uc-spec-subscribe-limit").spinner({max: 100,min:10});
+
+	} else if( stype === "BANNER" ) {
+		var bannerbg = makeupColorPicker(temp.find("#uc-banner-bgcolor-box"), "#ffffff", null, false, true, false) ;
+		
+		temp.find(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
+			click: function(event){
+				event.stopPropagation();
 				var target = $(event.target);
-			else
-				return false;
-			event.stopPropagation(); 
-			
-			//var area = target.parents(".uc-input-block-table");
-			var areaBody = target.parents(".uc-input-block-table");
-			var itemid = guid();
-			areaBody.append($('<div class="uc-input-block-table-row" itemId="'+itemid+'">'+
-								'					<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">'+
-								'							<input type="text" placeholder="数据名"  style="text-align: center; width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
-								'							<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
-								'							<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
-								'							<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />		'+		
-								'							&nbsp;&nbsp;<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+				if( target.hasClass("uc-bg-color-picker-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				
+				bannerbg.spectrum("set", target.css("backgroundColor"));
+				//console.log(templateBgColorPicker.spectrum("get").toRgbString());
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		temp.find(".uc-check-box.uc-banner-automation-val").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( !target.hasClass("uc-check-box") )
+					target = target.parents(".uc-check-box");
+				var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
+				box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
+				//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+				var cur =  target.children(".uc-float-icon-checkbox-sel");
+				target.attr("value", cur.attr("value"));
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		temp.find(".uc-check-box.uc-banner-manual-val").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( !target.hasClass("uc-check-box") )
+					target = target.parents(".uc-check-box");
+				var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
+				box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
+				//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+				var cur =  target.children(".uc-float-icon-checkbox-sel");
+				target.attr("value", cur.attr("value"));
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		panel.find(".uc-bg-image,.uc-bg-image-sel").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( target.hasClass("uc-bg-image-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-image-sel uc-bg-image");
+				last.toggleClass("uc-bg-image-sel uc-bg-image");
+				
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		
+	} else if( stype === "CORPUSCOLLECT" ) {
+		temp.find(".uc-editSceMaterial-add-item").on({
+			click: function(event){
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="svg")
+					var target = $(event.target).children("use");
+				else if(clicktag.toLowerCase()==="use")
+					var target = $(event.target);
+				else
+					return false;
+				event.stopPropagation(); 
+				
+				//var area = target.parents(".uc-input-block-table");
+				var areaBody = target.parents(".uc-edit-panel-block").find("#uc_corpus_item_def_table");
+				var itemid = guid();
+				areaBody.append($('<div class="uc-input-block-table-row"  itemId="'+itemid+'" style="height: 25px; align-items:center; justify-content: space-around;">'+
+								'						<div style="width: 35%; display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
+								'						<input type="text" placeholder="标题"  style="text-align: center; width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+								'					</div>'+
+								'					<div style="width: 25%;  display: flex; align-items: center; justify-content: center; ">'+
+								'						<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+								'						<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
+								'						<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />'+
+								'					</div>'+
+								'					<div style="width: 20%;  display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
+								'						<img src="/var/images/uc_icon_data_connect_arrow.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'link\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+								'					</div>'+
+								'					<div style="width: 20%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">'+
+								'						<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event,\'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
 								'					</div>'+
 								'				</div>'));
-		},
-		mouseover:function(event){
-			event.target.style.cursor="pointer";
-		}
-	});
+			},
+			mouseover:function(event){
+				event.target.style.cursor="pointer";
+			}
+		});
+	} else if( stype === "TIMESERIES" ) {
+		var timeseriesPanel = temp;
+		timeseriesPanel.find(".uc-timeseries-add-item").on({
+			click: function(event){
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="svg")
+					var target = $(event.target).children("use");
+				else if(clicktag.toLowerCase()==="use")
+					var target = $(event.target);
+				else
+					return false;
+				event.stopPropagation(); 
+				
+				//var area = target.parents(".uc-input-block-table");
+				var areaBody = target.parents(".uc-input-block-table");
+				var itemid = guid();
+				areaBody.append($('<div class="uc-input-block-table-row" itemId="'+itemid+'">'+
+									'					<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">'+
+									'							<input type="text" placeholder="数据名"  style="text-align: center; width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+									'							<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+									'							<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
+									'							<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />		'+		
+									'							&nbsp;&nbsp;<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+									'					</div>'+
+									'				</div>'));
+			},
+			mouseover:function(event){
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		timeseriesPanel.find("#specTSx-axisInHour").spinner({max: 24,min:1});
+		timeseriesPanel.find("#specTSx-axisInMinute").spinner({max: 59,min:5});
+		
+		var tsbgcolor = makeupColorPicker(timeseriesPanel.find("#uc-timeseries-bgcolor-box"), "#ffffff", null, true, true, true) ;
+		var axiscolor = makeupColorPicker(timeseriesPanel.find("#uc-timeseries-axis-color-box"), "#333333", null, false, true, false) ;
+		var fontscolor = makeupColorPicker(timeseriesPanel.find("#uc-timeseries-fonts-color-box"), "#000000", null, false, true, false) ;
+		
+		timeseriesPanel.find(".uc-check-box.uc-timeseries-grid-val").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( !target.hasClass("uc-check-box") )
+					target = target.parents(".uc-check-box");
+				var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
+				box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
+				//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+				var cur =  target.children(".uc-float-icon-checkbox-sel");
+				target.attr("value", cur.attr("value"));
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		timeseriesPanel.find(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( target.hasClass("uc-bg-color-picker-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				
+				//templateBgColorPicker.spectrum("set", target.css("backgroundColor"));
+				//canvas.css("backgroundColor", target.css("backgroundColor"));
+				//console.log(templateBgColorPicker.spectrum("get").toRgbString());
+				var row = target.parents(".uc-input-block-table-row");
+				var colorInput = row.find("input[type='text']");
+				var colorInputId = colorInput.attr("id");
+				
+				if(colorInputId.indexOf("axis") >= 0 ) {
+					axiscolor.spectrum("set", target.css("backgroundColor"));
+					
+				} else if(colorInputId.indexOf("bgcolor") >= 0 ) {
+					tsbgcolor.spectrum("set", target.css("backgroundColor"));
+					
+				} else if(colorInputId.indexOf("fonts") >= 0 ) {
+					fontscolor.spectrum("set", target.css("backgroundColor"));
+					
+				}
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		panel.find(".uc-bg-image,.uc-bg-image-sel").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( target.hasClass("uc-bg-image-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-image-sel uc-bg-image");
+				last.toggleClass("uc-bg-image-sel uc-bg-image");
+				
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+	}
 	
-	timeseriesPanel.find("#specTSx-axisInHour").spinner({max: 24,min:1});
-	timeseriesPanel.find("#specTSx-axisInMinute").spinner({max: 59,min:5});
-	
-	makeupColorPicker(timeseriesPanel.find("#uc-timeseries-bgcolor-box"), "#ffffff", null, true, true, true) ;
-	makeupColorPicker(timeseriesPanel.find("#uc-timeseries-axis-color-box"), "#333333", null, false, true, false) ;
-	makeupColorPicker(timeseriesPanel.find("#uc-timeseries-fonts-color-box"), "#000000", null, false, true, false) ;
-	
-	timeseriesPanel.find(".uc-check-box.uc-timeseries-grid-val").on({
-		click: function(event){
-			event.stopPropagation();
-			var target = $(event.target);
-			if( !target.hasClass("uc-check-box") )
-				target = target.parents(".uc-check-box");
-			var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
-			box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
-			//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-			var cur =  target.children(".uc-float-icon-checkbox-sel");
-			target.attr("value", cur.attr("value"));
-		},
-		mouseover: function(event) {
-			event.stopPropagation();
-			event.target.style.cursor="pointer";
-		}
-	});
 }
 
 $(document).ready(function(){ 
@@ -1919,14 +2107,14 @@ $(document).ready(function(){
 				temp = editSceMaterial.children("div[class^='uc-editSceMaterial-spec'][stype='"+stype+"'][scenarioId='temp']").clone(true);
 				temp.css("display","flex");
 				temp.attr("scenarioId",scenarioId);
+				initEditScenariosComponentPanel(temp) ;
+				
 				editSceMaterial.append(temp);
 			}
 			
 			$(".uc-canvas-overlay").show();
 			editSceMaterial.css("display","flex");
 			$(".uc-canvasM").css("filter","blur(2px)");
-			
-			initEditScenariosComponentPanel(temp) ;
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
@@ -2253,41 +2441,7 @@ $(document).ready(function(){
 		}
 
 	});*/
-	$(".uc-editSceMaterial-add-item").on({
-		click: function(event){
-			var clicktag = event.target.tagName;
-			if(clicktag.toLowerCase()==="svg")
-				var target = $(event.target).children("use");
-			else if(clicktag.toLowerCase()==="use")
-				var target = $(event.target);
-			else
-				return false;
-			event.stopPropagation(); 
-			
-			//var area = target.parents(".uc-input-block-table");
-			var areaBody = target.parents(".uc-edit-panel-block").find("#uc_corpus_item_def_table");
-			var itemid = guid();
-			areaBody.append($('<div class="uc-input-block-table-row"  itemId="'+itemid+'" style="height: 25px; align-items:center; justify-content: space-around;">'+
-							'						<div style="width: 35%; display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
-							'						<input type="text" placeholder="标题"  style="text-align: center; width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
-							'					</div>'+
-							'					<div style="width: 25%;  display: flex; align-items: center; justify-content: center; ">'+
-							'						<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
-							'						<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
-							'						<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />'+
-							'					</div>'+
-							'					<div style="width: 20%;  display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
-							'						<img src="/var/images/uc_icon_data_connect_arrow.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'link\');" onmouseover="this.style.cursor=\'pointer\';" />'+
-							'					</div>'+
-							'					<div style="width: 20%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">'+
-							'						<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event,\'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
-							'					</div>'+
-							'				</div>'));
-		},
-		mouseover:function(event){
-			event.target.style.cursor="pointer";
-		}
-	});
+	
 	$(".uc-edit-comp-add-attr").on({
 		click: function(event){
 			var clicktag = event.target.tagName;
