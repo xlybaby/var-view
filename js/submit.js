@@ -610,7 +610,56 @@ function collectMaterial(templateId) {
     
     return oMaterial;
 }
+function componentsEditPanel(panel, btype) {
+	var banner = {};
+	banner["type"] = btype;
+	if( btype === "classic" ) {
+		var val = panel.find(".value-info");
+		banner["img"]	= val.find(".uc-input-block-table-row[itemId='uc-banner-element']").attr("bindingitemid");
+		var theme = panel.find(".theme-info");
+		banner["backgroundColor"] = theme.find("#uc-banner-bgcolor-box").spectrum("get").toRgbString();
+		var position = panel.find(".position-info");
+		banner["position"] = position.find("#uc-bg-image-sel").attr("value");
+		var oper = panel.find(".operation-info");
+		banner["manual"] = oper.find("#uc-banner-manual-val").attr("value");
+		banner["auto"] = oper.find("#uc-banner-automation-val").attr("value");
+	}
+	return banner;
+}
+function collectTimeseriesChartInfo(panel, ctype) {
+	var chart = {};
+	chart["type"] = ctype;
+	if( ctype === "ts-line" ) {
+		var xaxis = panel.find(".x-axis-info");
+		chart["xAxisLabel"] = xaxis.find("#specXAxisLabel").val();
+		var unit = xaxis.find(".uc-radio-box[selected='selected']").attr("value");
+		chart["xAxisUnit"] = unit;
+		chart["xAxisInterval"] = xaxis.find("#ts-axis-interval-val-"+unit).val();
+		
+		var yaxis = panel.find(".y-axis-info");
+		chart["yAxisLabel"] = yaxis.find("#specYAxisLabel").val();
 
+		var values = panel.find(".value-info");
+		var rowlist = {};
+		values.find( ".uc-input-block-table-row[itemId]").each( function(index, element){
+			var bindedItemId = $(element).attr("bindingitemid");
+			var row={};
+			row["bindedItemId"] = bindedItemId;
+			rowlist["row"+index] = row;
+		});
+		chart["lines"] = rowlist;
+		
+		var theme = panel.find(".theme-info");
+		chart["backgroundColor"] = theme.find("#uc-timeseries-bgcolor-box").spectrum("get").toRgbString();
+		chart["axisColor"] = theme.find("#uc-timeseries-axis-color-box").spectrum("get").toRgbString();
+		chart["fontColor"] = theme.find("#uc-timeseries-fonts-color-box").spectrum("get").toRgbString();
+		
+		var layouts = panel.find(".layouts-info");
+		chart["grid"] = layouts.find("#uc-timeseries-grid-val").attr("value");
+		
+		return chart;
+	}
+}
 function collectUCScenarioComponents(template) {
 	var editSceMaterial = $(".uc-editSceMaterial");
 	var scenarios = {};
@@ -624,7 +673,7 @@ function collectUCScenarioComponents(template) {
 		
 		if( componentsEditPanel.length > 0 ) {
 			if( stype.toUpperCase() === "CORPUSCOLLECT" ) {
-				scenario["component"] = {};
+				//scenario["component"] = {};
 				componentsEditPanel.children(".uc-editSceMaterial-corpus-p").each( function(index, element){
 					var page = {};
 					var rowlist = {};
@@ -644,8 +693,23 @@ function collectUCScenarioComponents(template) {
 					scenario["component"]["pages"+index] = page;
 				});
 			} else if( stype.toUpperCase() === "BANNER" ) {
+				var banner = componentsEditPanel.find(".uc-editSceMaterial-spec-banner-type");
+				var selBanner = banner.find(".uc-bg-image-sel");
+				var bannerType = selChart.attr("classic");
+				var comp = collectBannerInfo(componentsEditPanel, bannerType);
+				scenario["component"] = comp;
+				
+				value-info
+				theme-info
+				position-info
+				operation-info
 				
 			}  else if( stype.toUpperCase() === "TIMESERIES" ) {
+				var charts = componentsEditPanel.find(".uc-editSceMaterial-spec-ts-charts");
+				var selChart = charts.find(".uc-bg-image-sel");
+				var chartType = selChart.attr("ctype");
+				var comp = collectTimeseriesChartInfo(componentsEditPanel, chartType);
+				scenario["component"] = comp;
 				
 			}  else if( stype.toUpperCase() === "REFRESHBLOCK" ) {
 				

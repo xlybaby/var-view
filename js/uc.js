@@ -1431,7 +1431,7 @@ function ucCorpusItemEdit(event, method) {
 		target.siblings(".eRecieving").show();
 		var id = row.attr("itemId");
 		current_ucMaterialItemEditId = id;
-		var corpus = target.parents(".uc-editSceMaterial-spec-corpus");
+		var corpus = target.parents("div[class^='uc-editSceMaterial-spec-'][scenarioId]");
 		current_ucMaterialScenarioId = corpus.attr("scenarioId");
 		
 		$(".uc-edit-panel-material").find("button[name='uc-edit-comp-r-editor-submit-binding']").not(".ucMaterialBeBindinged").toggleClass("uc-editSceMaterial-binding-ani");
@@ -1608,7 +1608,7 @@ function initEditScenariosComponentPanel(temp) {
 				var itemid = guid();
 				areaBody.append($('<div class="uc-input-block-table-row" itemId="'+itemid+'">'+
 									'					<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">'+
-									'							<input type="text" placeholder="数据名"  style="text-align: center; width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+									'							<input type="text" placeholder="数据名"  style="text-align: center; width: 70px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
 									'							<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
 									'							<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
 									'							<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />		'+		
@@ -1621,12 +1621,12 @@ function initEditScenariosComponentPanel(temp) {
 			}
 		});
 		
-		timeseriesPanel.find("#specTSx-axisInHour").spinner({max: 24,min:1});
-		timeseriesPanel.find("#specTSx-axisInMinute").spinner({max: 59,min:5});
+		//timeseriesPanel.find("#specTSx-axisInHour").spinner({max: 24,min:1});
+		//timeseriesPanel.find("#specTSx-axisInMinute").spinner({max: 59,min:5});
 		
-		var tsbgcolor = makeupColorPicker(timeseriesPanel.find("#uc-timeseries-bgcolor-box"), "#ffffff", null, true, true, true) ;
-		var axiscolor = makeupColorPicker(timeseriesPanel.find("#uc-timeseries-axis-color-box"), "#333333", null, false, true, false) ;
-		var fontscolor = makeupColorPicker(timeseriesPanel.find("#uc-timeseries-fonts-color-box"), "#000000", null, false, true, false) ;
+		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-bgcolor-box"), "#ffffff", null, true, true, true) ;
+		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-axis-color-box"), "#333333", null, false, true, false) ;
+		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-fonts-color-box"), "#000000", null, false, true, false) ;
 		
 		timeseriesPanel.find(".uc-check-box.uc-timeseries-grid-val").on({
 			click: function(event){
@@ -1669,13 +1669,13 @@ function initEditScenariosComponentPanel(temp) {
 				var colorInputId = colorInput.attr("id");
 				
 				if(colorInputId.indexOf("axis") >= 0 ) {
-					axiscolor.spectrum("set", target.css("backgroundColor"));
+					timeseriesPanel.find("#uc-timeseries-axis-color-box").spectrum("set", target.css("backgroundColor"));
 					
 				} else if(colorInputId.indexOf("bgcolor") >= 0 ) {
-					tsbgcolor.spectrum("set", target.css("backgroundColor"));
+					timeseriesPanel.find("#uc-timeseries-bgcolor-box").spectrum("set", target.css("backgroundColor"));
 					
 				} else if(colorInputId.indexOf("fonts") >= 0 ) {
-					fontscolor.spectrum("set", target.css("backgroundColor"));
+					timeseriesPanel.find("#uc-timeseries-fonts-color-box").spectrum("set", target.css("backgroundColor"));
 					
 				}
 			},
@@ -1685,7 +1685,7 @@ function initEditScenariosComponentPanel(temp) {
 			}
 		});
 		
-		panel.find(".uc-bg-image,.uc-bg-image-sel").on({
+		timeseriesPanel.find(".uc-bg-image,.uc-bg-image-sel").on({
 			click: function(event){
 				event.stopPropagation();
 				var target = $(event.target);
