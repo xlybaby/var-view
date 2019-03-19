@@ -8,12 +8,24 @@ function commonAlert(msg) {
 function commonConfirm(msg, ok, cancel) {
 	return confirm(msg, ok?ok:"ok", cancel?cancel:"cancel");
 }
+function checkFieldUrl(event) {
+	var target = $(event.target);
+	var pattern = new RegExp("(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]");
+	//var reg = /(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/;
+	if( target.val() && !pattern.exec(target.val()) ) {
+		commonAlert("This value is invalid!");
+		target.val("");
+		target.focus();
+		return false;
+	}
+	return true;
+}
 function checkFieldNumber(event) {
 	var target = $(event.target);
 	var reg = /[^0-9]/;
 	
 	if( target.val() && target.val().match(reg) ) {
-		alert("This value is invalid!");
+		commonAlert("This value is invalid!");
 		target.val("");
 		target.focus();
 		return false;

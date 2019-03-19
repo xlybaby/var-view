@@ -597,9 +597,10 @@ function collectMaterial(templateId) {
     	var info= {};
     	if(checkMaterial($(itemPanels[i]), vMap)) {
     		info["selector"] = vMap;
-    		info["name"] = $(itemPanels[i]).find(".item-basic-info").find("input[name='itemName']").val();
-    		info["code"] = $(itemPanels[i]).find(".item-basic-info").find("input[name='itemCode']").val();
-    		info["summary"] = $(itemPanels[i]).find(".item-basic-info").find("input[name='itemSummary']").val();
+    		info["src"] = $(itemPanels[i]).find(".item-basic-info").find("#itemSrc").val();
+    		info["name"] = $(itemPanels[i]).find(".item-basic-info").find("#itemName").val();
+    		info["code"] = $(itemPanels[i]).find(".item-basic-info").find("#itemCode").val();
+    		info["summary"] = $(itemPanels[i]).find(".item-basic-info").find("#itemSummary").val();
     		info["type"] = $(itemPanels[i]).find(".item-basic-info").find(".uc-radio-box[selected='selected']").attr("value");
     		//vList.push(info);
     	}
@@ -610,21 +611,26 @@ function collectMaterial(templateId) {
     
     return oMaterial;
 }
-function componentsEditPanel(panel, btype) {
+
+function collectBannerInfo(panel, btype) {
 	var banner = {};
 	banner["type"] = btype;
-	if( btype === "classic" ) {
-		var val = panel.find(".value-info");
-		banner["img"]	= val.find(".uc-input-block-table-row[itemId='uc-banner-element']").attr("bindingitemid");
-		var theme = panel.find(".theme-info");
-		banner["backgroundColor"] = theme.find("#uc-banner-bgcolor-box").spectrum("get").toRgbString();
-		var position = panel.find(".position-info");
-		banner["position"] = position.find("#uc-bg-image-sel").attr("value");
-		var oper = panel.find(".operation-info");
-		banner["manual"] = oper.find("#uc-banner-manual-val").attr("value");
-		banner["auto"] = oper.find("#uc-banner-automation-val").attr("value");
+	if( btype === "classic" ){
+		var valueInfo = panel.find(".value-info");
+		banner["binding"] = valueInfo.find( ".uc-input-block-table-row[itemId]").attr("bindingitemid");
+		
+		var themeInfo = panel.find(".theme-info");
+		banner["backgroundColor"] = themeInfo.find("#uc-banner-bgcolor-box").spectrum("get").toRgbString();
+		
+		var posInfo = panel.find(".position-info");
+		banner["position"] = posInfo.find(".uc-bg-image-sel").attr("value");
+		
+		var operInfo = panel.find(".operation-info");
+		banner["manual"] = operInfo.find(".uc-banner-manual-val").attr("value");
+		banner["automation"] = operInfo.find(".uc-banner-automation-val").attr("value");
 	}
 	return banner;
+
 }
 function collectTimeseriesChartInfo(panel, ctype) {
 	var chart = {};
@@ -657,8 +663,8 @@ function collectTimeseriesChartInfo(panel, ctype) {
 		var layouts = panel.find(".layouts-info");
 		chart["grid"] = layouts.find("#uc-timeseries-grid-val").attr("value");
 		
-		return chart;
 	}
+	return chart;
 }
 function collectUCScenarioComponents(template) {
 	var editSceMaterial = $(".uc-editSceMaterial");
@@ -695,14 +701,10 @@ function collectUCScenarioComponents(template) {
 			} else if( stype.toUpperCase() === "BANNER" ) {
 				var banner = componentsEditPanel.find(".uc-editSceMaterial-spec-banner-type");
 				var selBanner = banner.find(".uc-bg-image-sel");
-				var bannerType = selChart.attr("classic");
+				var bannerType = selBanner.attr("btype");
 				var comp = collectBannerInfo(componentsEditPanel, bannerType);
 				scenario["component"] = comp;
 				
-				value-info
-				theme-info
-				position-info
-				operation-info
 				
 			}  else if( stype.toUpperCase() === "TIMESERIES" ) {
 				var charts = componentsEditPanel.find(".uc-editSceMaterial-spec-ts-charts");
@@ -712,7 +714,14 @@ function collectUCScenarioComponents(template) {
 				scenario["component"] = comp;
 				
 			}  else if( stype.toUpperCase() === "REFRESHBLOCK" ) {
+				var subscribe = {};
+				var  valueInfo = componentsEditPanel.find(".value-info");
+				var  listInfo = componentsEditPanel.find(".list-info");
 				
+				subscribe["binding"] = valueInfo.find( ".uc-input-block-table-row[itemId]").attr("bindingitemid");
+				subscribe["limit"] = listInfo.find( "#uc-spec-subscribe-limit-val").val();
+				subscribe["keyWords"] = listInfo.find( "#uc-spec-subscribe-catch-val").val();
+				scenario["component"] = subscribe;
 			} 
 		}
 		scenarios[sid] = scenario;

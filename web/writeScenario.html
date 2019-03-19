@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=112" />
-		<script type="text/javascript" src="/var/js/uc.js?v=112"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=112"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=114" />
+		<script type="text/javascript" src="/var/js/uc.js?v=114"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=114"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -514,7 +514,7 @@
 												<div class="uc-input-area">
 													<div class="uc-input-block">
 														<div class="uc-input-block-table">
-															<div class="uc-input-block-table-row" itemId="uc-banner-element">
+															<div class="uc-input-block-table-row" itemId="uc-subscribe-element">
 																<div style="width: 55px; white-space : nowrap;">
 																	<span class="uc-text cn_input_label">绑定元素</span><span class="uc-text cn_input_label">：</span>
 																</div>
@@ -550,7 +550,7 @@
 																	<span class="uc-text cn_input_label">嗅探词条</span><span class="uc-text cn_input_label">：</span>
 																</div>
 																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">																
-																	<input type="text" placeholder=""  style="text-align: center; width: 110px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />													
+																	<input type="text" id="uc-spec-subscribe-catch-val" placeholder=""  style="text-align: center; width: 110px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />													
 																</div>
 															</div>
 														</div>
@@ -1293,6 +1293,14 @@
 									<div class="uc-input-area" style="background-color: rgba(255,255,255,0.75);">
 										<div class="uc-input-block">
 											<div class="uc-input-block-table">
+												<div class="uc-input-block-table-row">
+													<div style="width: 25%;  white-space : nowrap;">
+														<span class="uc-text cn_input_label">来源</span><span class="uc-text cn_input_label">：</span>
+													</div>
+													<div style="width: 75%; ">
+														<input type="text" id="itemSrc" onchange="checkFieldUrl(event);" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+													</div>
+												</div>
 												<div class="uc-input-block-table-row">
 													<div style="width: 25%;  white-space : nowrap;">
 														<span class="uc-text cn_input_label">名称</span><span class="uc-text cn_input_label">：</span>
@@ -2566,9 +2574,12 @@
 					<input type="text" placeholder="Input address here" style="width: 95%; height: 55%; border-radius: 3px; border: 1px solid #afafaf;font-family: Sansation_Regular;font-weight: 100;font-style:italic;" />
 				</div> -->
 				<div class="uc_t_boxC">
+					<div class="uc_t_tool_typelogo">
+					
+					</div>
 					<div class="uc_t_tool_bar">
 	 			 	
-		 			 	<div style="width: 100%; height: 100%; display:flex;align-items: center;  justify-content: center; padding: 0px 0px;">
+		 			 	<div style="width: 100%; height: 100%; display:flex;align-items: center; padding: 0px 10px;">
 		 			 		<svg class="icon editSceLayouts" style="font-size: 1.95em; font-weight: 700; color: #333;" aria-hidden="true">
 							<use xlink:href="#icon-yangshi1"></use>
 							</svg>

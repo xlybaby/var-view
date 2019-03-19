@@ -1760,6 +1760,15 @@ padding: 0px;
 	-moz-opacity:0;
 	-khtml-opacity: 0;*/
 }
+.uc_t_tool_typelogo{
+	width: 20%;
+	min-width: 90px;
+	height: 100%;
+	/*background-image: url(/var/images/uc-icon-wastebin.png);*/
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 75%;
+}
 .uc_t_tool_bar{
 	display: flex;
 	justify-content: center;
