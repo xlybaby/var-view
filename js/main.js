@@ -228,7 +228,7 @@ function makeupSlider(target, min, max, start, callback) {
 	});
 }
 
-function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict) {
+function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict, snap) {
 	// target elements with the "draggable" class
 	onMoveListener = dragMoveListener;
 	onEndListener = dragMoveEndListener;
@@ -243,16 +243,9 @@ function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict) {
 		// keep the element within the area of it's parent
 		//restrict : restrict,
 		
-		restrict : {
-						restriction : container,
-						endOnly : true,
-						elementRect : {
-							top : 0,
-							left : 0,
-							bottom : 1,
-							right : 1
-						}
-					},
+		snap : snap,
+	    
+		restrict : restrict,
 					
 		// enable autoScroll
 		autoScroll : true,

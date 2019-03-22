@@ -1,6 +1,24 @@
 var containerOverflowXBoxNum={};
 var containerOverflowYBoxNum={};
 
+function makeBoxHighlight(target) {
+	if( !target.hasClass("uc_t_box") )
+		target = target.parents(".uc_t_box");
+	var curBox = target.siblings(".uc_t_box.uc-t-box-highlight");
+	curBox.removeClass("uc-t-box-highlight");
+	var curBoxType = curBox.attr("sType");
+	var curBoxbg = curBox.find(".uc_t_tool_typelogo");
+	curBoxbg.css('backgroundImage','url(/var/images/uc_icon_bg_'+curBoxType+'.png)');
+	
+	
+	target.addClass("uc-t-box-highlight");
+	var targetType = target.attr("sType");
+	var bg = target.find(".uc_t_tool_typelogo");
+	bg.css('backgroundImage','url(/var/images/uc_icon_bg_'+targetType+'_highlight.png)');
+	var editPanel = $(".uc-edit-panel-mid").children(".uc-edit-panel-layouts");
+	editPanel.attr("currentSceId", target.attr("scenarioId"));
+	
+}
 function cloneDiv(sDiv, type){
 	c=$("#"+sDiv).clone(true);
 	var cid = sDiv+"_"+guid();
@@ -9,12 +27,10 @@ function cloneDiv(sDiv, type){
 	c.attr('id',cid);
 	c.attr('sType',scenarioTypeNames[parseInt(type)]);
 
-	
 	//var x = bgcolors.length-1;     
 	//var y = 0; 
 	//c.css('background-color', bgcolors[parseInt(Math.random() * (x - y + 1) + y)]);
-	var bg = c.find(".uc_t_tool_typelogo");
-	bg.css('backgroundImage','url(/var/images/uc_icon_bg_'+scenarioTypeNames[parseInt(type)]+'.png)');
+	
 	//c.css('background-image','url(/var/images/uc/uc_bg_'+type+'.svg)');
 	//c.css('background-position','50% 75%');
 	//c.css('background-size','45% 45%');
@@ -26,11 +42,11 @@ function cloneDiv(sDiv, type){
 		containment: '.uc-canvasM'
 	})
 	console.log(c);*/
-	c.on({
-		mousedown:function(event){showmask(event,true);},
+	//c.on({
+		//mousedown:function(event){showmask(event,true);},
 		//mouseup:function(event){toolbarclick(event,false);}
-	});
-
+	//});
+	/*
 	draggabilly("#"+cid,".uc-canvas-container", 
 			function (event) {
 				var target = $(".uc_t_box_mask")[0],
@@ -99,11 +115,82 @@ function cloneDiv(sDiv, type){
 				"edge-bottom": true,
 				"min-width": 100,
 				"min-height": 50
-				}, null);
-	
+				}, null);*/
+	draggabilly("#"+cid,".uc-canvas-container", null, null,  { "able": true, 
+		"edge-left": true,
+		"edge-right": true,
+		"edge-top": false,
+		"edge-bottom": true,
+		"min-width": 100,
+		"min-height": 50
+		},  {
+			restriction : ".uc-canvas-container",
+			endOnly : true,
+			elementRect : {
+				top : 0,
+				left : 0,
+				bottom : 1,
+				right : 1
+			}
+		},  null);
+	/*{
+	        targets: [ interact.createSnapGrid({
+		          x: 30, y: 30
+		        }) ]
+		    }*/
 	//resize(sDiv, ".uc-canvasM");
 	$(".uc-canvas-container").append(c);
+	var id = "uc_sce__"+guid();
+	c.attr("scenarioId",id);
+	makeBoxHighlight(c);
+
 	return c;
+}
+
+function clearTemplateGrid(event, orientation) {
+	var canvas = $(".uc-canvas-container");
+	if( orientation === "vertical" ) {
+		canvas.find(".uc-temp-grid-v").remove();
+	} else if( orientation === "horizontal" ) {
+		canvas.find(".uc-temp-grid-h").remove();
+	} 
+}
+
+function addTemplateGrid(event, orientation) {
+	var canvas = $(".uc-canvas-container");
+	event.stopPropagation();
+	var clicktag = event.target.tagName;
+	if(clicktag.toLowerCase()==="button")
+		var target = $(event.target);
+	else if(clicktag.toLowerCase()==="span")
+		var target = $(event.target).parent("button");
+	else
+		return false;     
+	var colorpicker = target.parents(".uc-input-block-table").find("#uc-temp-grid-h-color");
+	var value = target.parents(".uc-input-block-table-row").find(".uc-radio-box[selected='selected']").attr("value");
+	var offset;
+	if(value === "percent")
+		offset = target.parents(".uc-input-block-table-row").find("#tempGridOffsetPercent").val()?target.parents(".uc-input-block-table-row").find("#tempGridOffsetPercent").val()+"%":null;
+	else if	(value === "fixed")
+		offset = target.parents(".uc-input-block-table-row").find("#tempGridOffsetFixed").val()?target.parents(".uc-input-block-table-row").find("#tempGridOffsetFixed").val()+"px":null;
+	
+	if( orientation === "vertical" ) {		
+		if( offset ) {
+			var hr = $("<hr  ondblclick='deleteTemplateGrid(event);' onmouseover='this.style.boxShadow=\"0px 0px 5px rgba(238,134,154,1.0)\";' onmouseout='this.style.boxShadow=\"\";' class='uc-temp-grid-v' style='left: "+offset+";'/>");
+			hr.css( "borderLeft","1px solid " + colorpicker.spectrum("get").toRgbString() );
+			canvas.append(hr);
+		}
+	} else if( orientation === "horizontal" ) {
+		if( offset ) {
+			var hr = $("<hr  ondblclick='deleteTemplateGrid(event);' onmouseover='this.style.boxShadow=\"0px 0px 5px rgba(238,134,154,1.0)\";' onmouseout='this.style.boxShadow=\"\";' class='uc-temp-grid-h' style='top: "+offset+";'/>");
+			hr.css( "borderTop","1px solid " + colorpicker.spectrum("get").toRgbString() );
+			canvas.append(hr);
+		}
+	} 
+}
+
+function deleteTemplateGrid(event, orientation) {
+	$(event.target).remove();
 }
 
 function addTemplate(aTemp) {
@@ -325,24 +412,6 @@ function initTempalePanel() {
 			else
 				canvas.css("backgroundColor", "rgba(255,255,255,0.0)");
 	    },true,true,true) ;
-		
-		panel.find(".uc-temp-grid-btn-add").on({
-			click: function(event){
-				event.stopPropagation();
-				var clicktag = event.target.tagName;
-				if(clicktag.toLowerCase()==="button")
-					var target = $(event.target);
-				else if(clicktag.toLowerCase()==="span")
-					var target = $(event.target).parent("button");
-				else
-					return false;    
-				
-			},
-			mouseover: function(event) {
-				event.stopPropagation();
-				event.target.style.cursor="pointer";
-			}
-		});
 		
 		panel.find(".uc-temp-grid-btn").on({
 			click: function(event){
@@ -589,6 +658,758 @@ function initTempalePanel() {
 		panel.css("display","flex");
 }
 
+function populateScenarioData(editPanel, scenario) {
+	if(!scenario)
+		scenario = UC_SCENARIO_DATA_CACHE["empty"];
+	//TODO initialize editPanel with scenario's data
+	
+}
+function collectScenarioData(editPanel) {
+	//var scenario = editable_template["scenarios"][scenarioId];
+	//var scenarioId = target.attr("scenarioId");
+	//var editPanel= $(".uc-edit-panel-mid").children(".uc-edit-panel-layouts[currentSceId='"+ scenarioId +"']");
+	if( editPanel.length>0 ) {
+		var baseInfo = editPanel.children(".uc-edit-panel-block.basic-info");
+		//var layoutInfo = editPanel.children(".uc-edit-panel-block.layout-info");
+		var colorInfo = editPanel.children(".uc-edit-panel-block.layout-color-info");
+		var borderInfo = editPanel.children(".uc-edit-panel-block.layout-border-info");
+		var shadowInfo = editPanel.children(".uc-edit-panel-block.layout-shadow-info");
+		var paddingInfo = editPanel.children(".uc-edit-panel-block.layout-padding-info");
+		//var sharingInfo = editPanel.children(".uc-edit-panel-block.sharing-info");
+		var scheduleInfo = editPanel.children(".uc-edit-panel-block.schedule-info");
+		//var modeInfo = editPanel.children(".uc-edit-panel-block.mode-info");
+		
+		var sceneObj = {};
+
+		var container = $(".uc-canvas-container");
+		sceneObj["position"]=baseInfo.find("#uc_scenario_position").find(".uc-radio-box[selected='selected']").attr("value");
+		var x=parseFloat(target.attr("data-x"));
+		var y=parseFloat(target.attr("data-y"));
+		if( sceneObj["position"] === "absolute" ){
+			sceneObj["left"]=( x || 0)+"px";
+			sceneObj["top"]=( y || 0)+"px";
+		} else if( sceneObj["position"] === "relative" ) {
+			sceneObj["left"]=(Math.round(parseFloat(x/container.width())*10000) / 100)+"%";
+			sceneObj["top"]=(Math.round(parseFloat(y/container.height())*10000) / 100)+"%";
+		}
+		
+		sceneObj["width"] = baseInfo.find("#uc_scenario_width").find(".uc-radio-box[selected='selected']").siblings("input[type='text']").val() ;
+		sceneObj["widthUnit"] = baseInfo.find("#uc_scenario_width").find(".uc-radio-box[selected='selected']").siblings(".value_unit").text() ;
+		sceneObj["height"] = baseInfo.find("#uc_scenario_height").find(".uc-radio-box[selected='selected']").siblings("input[type='text']").val() ;
+		sceneObj["heightUnit"] = baseInfo.find("#uc_scenario_width").find(".uc-radio-box[selected='selected']").siblings(".value_unit").text();
+		
+		var bgColorPicker = colorInfo.find("#in_bgcolor_box");
+		var fgColorPicker = colorInfo.find("#in_fgcolor_box");
+		var fntColorPicker = colorInfo.find("#in_fntcolor_box");
+		var borderColorPicker = borderInfo.find("#in_bordercolor_box");
+		var shadowColorPicker = shadowInfo.find("#in_shadowcolor_box");
+
+		var shadowHSlider = shadowInfo.find("#in_Hshadow");
+		var shadowVSlider = shadowInfo.find("#in_Vshadow");
+		var shadowSpreadSlider = shadowInfo.find("#in_shadowSpread");
+		var shadowWeightSlider = shadowInfo.find("#in_shadowWeight");
+
+		var rangeSlider = borderInfo.find("#in_borderRadius");
+		var weightRangeSlider = borderInfo.find("#in_borderWeight");
+		var paddingLeftSlider = paddingInfo.find("#in_paddingLeft");
+		var paddingRightSlider = paddingInfo.find("#in_paddingRight");
+		var paddingTopSlider = paddingInfo.find("#in_paddingTop");
+		var paddingBottomSlider = paddingInfo.find("#in_paddingBottom");
+		
+		var scheduleIntervalSlider = scheduleInfo.find("#in_scheduleInterval");
+		var scheduleMinutesSlider = scheduleInfo.find("#in_scheduleMinutesInterval");
+		
+		if(bgColorPicker.spectrum("get"))
+			sceneObj["backgroundColor"] = bgColorPicker.spectrum("get").toRgbString();
+		if(fgColorPicker.spectrum("get"))
+			sceneObj["foregroundColor"] = fgColorPicker.spectrum("get").toRgbString();
+		if(fntColorPicker.spectrum("get"))
+			sceneObj["fontColor"] = fntColorPicker.spectrum("get").toRgbString();
+
+		var borders = borderInfo.find(".uc_layouts_border_sel");
+		if(borders.length>0){
+			for(var i=0; i<borders.length; i++ ) {
+				if( $(borders[i]).attr("border") === "top" ) {
+					sceneObj["borderTop"] = {};
+					sceneObj["borderTop"]["style"] = "solid";
+					sceneObj["borderTop"]["color"] = borderColorPicker.spectrum("get").toRgbString();
+					sceneObj["borderTop"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+					sceneObj["borderTop"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+				}
+				if( $(borders[i]).attr("border") === "right" ) {
+					sceneObj["borderRight"] = {};
+					sceneObj["borderRight"]["style"] = "solid";
+					sceneObj["borderRight"]["color"] = borderColorPicker.spectrum("get").toRgbString();
+					sceneObj["borderRight"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+					sceneObj["borderRight"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+				}
+				if( $(borders[i]).attr("border") === "left" ) {
+					sceneObj["borderLeft"] = {};
+					sceneObj["borderLeft"]["style"] = "solid";
+					sceneObj["borderLeft"]["color"] = borderColorPicker.spectrum("get").toRgbString();
+					sceneObj["borderLeft"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+					sceneObj["borderLeft"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+				}
+				if( $(borders[i]).attr("border") === "bottom" ) {
+					sceneObj["borderBottom"] = {};
+					sceneObj["borderBottom"]["style"] = "solid";
+					sceneObj["borderBottom"]["color"] = borderColorPicker.spectrum("get").toRgbString();
+					sceneObj["borderBottom"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+					sceneObj["borderBottom"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+				}
+			}
+		}
+		
+        var hshadowval = shadowHSlider[0].noUiSlider.get();
+        var vshadowval = shadowVSlider[0].noUiSlider.get();
+        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+        var shadowinsetval = shadowInfo.find("#shadow-inset-val").attr("value");
+        if(!shadowinsetval) shadowinsetval = "";
+        sceneObj["shadowBox"] = hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval;
+        sceneObj["shadowH"] = hshadowval;
+        sceneObj["shadowV"] = vshadowval;
+        sceneObj["shadowSpread"] = shadowspreadval;
+        sceneObj["shadowBlur"] = shadowblurval;
+        sceneObj["shadowInset"] = shadowinsetval;
+        
+        sceneObj["paddingLeft"] = parseInt(paddingLeftSlider[0].noUiSlider.get());
+        sceneObj["paddingRight"] = parseInt(paddingRightSlider[0].noUiSlider.get());
+        sceneObj["paddingTop"] = parseInt(paddingTopSlider[0].noUiSlider.get());
+        sceneObj["paddingBottom"] = parseInt(paddingBottomSlider[0].noUiSlider.get());
+
+		var selSchedule = 	scheduleInfo.find(".uc-radio-box[selected='selected']");
+		if( selSchedule.attr("value") === "minute" )
+			sceneObj["period"] = parseInt(scheduleMinutesSlider[0].noUiSlider.get());
+		else if( selSchedule.attr("value") === "hour" )
+			sceneObj["period"] = parseInt(scheduleIntervalSlider[0].noUiSlider.get());
+		sceneObj["periodUnit"]=selSchedule.attr("value");
+		
+		
+		return sceneObj;
+	} else {
+		return null;
+	}
+}
+
+function changeScenarioEditPanelValue(editPanel, preEditSceId, targetEditSceId) {
+	editPanel.attr("currentSceId", scenarioId);
+	if( !preEditSceId ) {
+		initScenarioEditPanel(editPanel);
+		editPanel.css("display","flex");
+		return;
+	}
+	//collect pre scenario data
+	if( !UC_SCENARIO_DATA_CACHE[preEditSceId] ) {
+		var scenario = collectScenarioData(editPanel) ;
+		UC_SCENARIO_DATA_CACHE[preEditSceId] = scenario ;
+	}
+	//populate target scenario data
+	populateScenarioData(editPanel, UC_SCENARIO_DATA_CACHE[targetEditSceId]);
+}
+
+function initScenarioEditPanel(editPanel) {
+	//editPanel = panel.find(".uc-edit-panel-layouts[id='temp']");
+		var canvasContainer = $(".uc-canvas-container");
+		var shadowBox = editPanel.find("div[id^='shadow-style']");
+		
+		var bgColorPicker = editPanel.find("#in_bgcolor_box");
+		var fgColorPicker = editPanel.find("#in_fgcolor_box");
+		var fntColorPicker = editPanel.find("#in_fntcolor_box");
+		var borderColorPicker = editPanel.find("#in_bordercolor_box");
+		//var fgborderColorPicker = editPanel.find("#in_fgbordercolor_box");
+		var shadowColorPicker = editPanel.find("#in_shadowcolor_box");
+		
+		var rangeSlider = editPanel.find("#in_borderRadius");
+		//var fgBorderRadiusSlider = editPanel.find("#in_fg_borderRadius");
+		var weightRangeSlider = editPanel.find("#in_borderWeight");
+		//var fgBorderWidthRangeSlider = editPanel.find("#in_fg_borderWeight");
+		
+		var paddingLeftSlider = editPanel.find("#in_paddingLeft");
+		var paddingRightSlider = editPanel.find("#in_paddingRight");
+		var paddingTopSlider = editPanel.find("#in_paddingTop");
+		var paddingBottomSlider = editPanel.find("#in_paddingBottom");
+		var scheduleIntervalSlider = editPanel.find("#in_scheduleInterval");
+		var scheduleMinutesIntervalSlider = editPanel.find("#in_scheduleMinutesInterval");
+		var shadowWeightSlider = editPanel.find("#in_shadowWeight");
+		var shadowHSlider = editPanel.find("#in_Hshadow");
+		var shadowVSlider = editPanel.find("#in_Vshadow");
+		var shadowSpreadSlider = editPanel.find("#in_shadowSpread");
+		
+		var delaySpinner = editPanel.find("#in_auto_delay");
+		delaySpinner.spinner();
+		
+		editPanel.find(".basic-info").find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
+			click: function(event){
+				event.stopPropagation();
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="svg")
+					var target = $(event.target);
+				else if(clicktag.toLowerCase()==="use")
+					var target = $(event.target).parent("svg");
+				else
+					return false;     
+				
+				var cursel = target.parents(".uc-radio-box");
+				if( cursel.attr("selected") === "selected" )
+					return;
+				
+				var parent = target.parents(".uc-input-block-table-row");
+				var lastsel = parent.find(".uc-radio-box[selected='selected']");
+				
+				cursel.attr("selected", "selected");
+				lastsel.removeAttr("selected");
+				
+				var curseltxt = cursel.siblings("input[type='text']");
+				if( curseltxt.length > 0 ) {
+					curseltxt.removeAttr("disabled");
+					curseltxt.toggleClass("uc-text-disable uc-text-editable");
+				}
+				var lastseltxt = lastsel.siblings("input[type='text']");
+				if( lastseltxt.length > 0 ) {
+					lastseltxt.attr("disabled","disabled");
+					lastseltxt.toggleClass("uc-text-disable uc-text-editable");
+				}
+				//
+				//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		editPanel.find(".mode-info").find(".uc-check-box.sce-mode-val").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( !target.hasClass("uc-check-box") )
+					target = target.parents(".uc-check-box");
+				var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
+				box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
+				//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+				var cur =  target.children(".uc-float-icon-checkbox-sel");
+				target.attr("value", cur.attr("value"));
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		editPanel.find(".uc-sce-bgcolor-options").children(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( target.hasClass("uc-bg-color-picker-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				
+				bgColorPicker.spectrum("set", target.css("backgroundColor"));
+				var curSceId = editPanel.attr("currentsceid");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+				box.css("backgroundColor", target.css("backgroundColor"));
+				//canvas.css("backgroundColor", target.css("backgroundColor"));
+				//console.log(templateBgColorPicker.spectrum("get").toRgbString());
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		editPanel.find(".uc-sce-fgcolor-options").children(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( target.hasClass("uc-bg-color-picker-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				
+				fgColorPicker.spectrum("set", target.css("backgroundColor"));
+				var curSceId = editPanel.attr("currentsceid");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+				var boxContent = box.find(".uc_t_boxC");
+				boxContent.css("backgroundColor", target.css("backgroundColor"));
+				//canvas.css("backgroundColor", target.css("backgroundColor"));
+				//console.log(templateBgColorPicker.spectrum("get").toRgbString());
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		editPanel.find(".uc-sce-fntcolor-options").children(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
+			click: function(event){
+				event.stopPropagation();
+				var target = $(event.target);
+				if( target.hasClass("uc-bg-color-picker-sel") )
+					return;
+				
+				target.attr("selected","selected");
+				
+				var last = target.siblings("div[selected='selected']");
+				last.removeAttr("selected");
+				
+				target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+				
+				fntColorPicker.spectrum("set", target.css("backgroundColor"));
+				var curSceId = editPanel.attr("currentsceid");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+				box.find(".uc_t_tool_bar").find("svg").css("color", target.css("backgroundColor"));
+
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		editPanel.find(".layout-shadow-info").find(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel").on({
+			click: function(event){
+				event.stopPropagation();
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="svg")
+					var target = $(event.target);
+				else if(clicktag.toLowerCase()==="use")
+					var target = $(event.target).parent("svg");
+				else
+					return false;    
+				var parent = target.parent(".uc-check-box");
+				var siblings = target.siblings("svg");
+				var val = siblings.attr("value");
+				parent.attr("value",val);
+				
+				var colorstr = shadowColorPicker.spectrum("get").toRgbString() ;
+				var shadowInfo = shadowBox.parents(".layout-shadow-info");
+		        var hshadowval = shadowHSlider[0].noUiSlider.get();
+		        var vshadowval = shadowVSlider[0].noUiSlider.get();
+		        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+		        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+		        var shadowinsetval = parent.attr("value");
+		         if(!shadowinsetval) shadowinsetval = "";
+		         
+		         var curSceId = editPanel.attr("currentsceid");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+				box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+colorstr + " "+shadowinsetval);
+
+		        //shadowBox.css("shadowBox",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+
+				siblings.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+				target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		editPanel.find(".schedule-info").find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
+			click: function(event){
+				event.stopPropagation();
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="svg")
+					var target = $(event.target);
+				else if(clicktag.toLowerCase()==="use")
+					var target = $(event.target).parent("svg");
+				else
+					return false;     
+				
+				var cursel = target.parents(".uc-radio-box");
+				if( cursel.attr("selected") === "selected" )
+					return;
+				if( cursel.attr("value") === "hour" ) {
+					target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-hour").css("display","flex");
+					target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-minute").css("display","none");
+					
+				} else if( cursel.attr("value") === "minute" ) {
+					target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-hour").css("display","none");
+					target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-minute").css("display","flex");
+					
+				} 
+				var parent = target.parents(".uc-input-block-table-row");
+				var lastsel = parent.find(".uc-radio-box[selected='selected']");
+				
+				cursel.attr("selected", "selected");
+				lastsel.removeAttr("selected");
+				
+				var curseltxt = cursel.siblings("input[type='text']");
+				if( curseltxt.length > 0 ) {
+					curseltxt.removeAttr("disabled");
+					curseltxt.toggleClass("uc-text-disable uc-text-editable");
+				}
+				var lastseltxt = lastsel.siblings("input[type='text']");
+				if( lastseltxt.length > 0 ) {
+					lastseltxt.attr("disabled","disabled");
+					lastseltxt.toggleClass("uc-text-disable uc-text-editable");
+				}
+				//
+				//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		shadowBox.on({
+			click: function(event){
+				var target = $(event.target);
+//				if( target.attr("selected") === "selected" )
+//					return;
+//				target.css("border", "1px solid #1296db");
+//				target.attr("selected","selected");
+//				target.siblings("div[id^='shadow-style'] [selected='selected']").removeAttr("selected");
+//				target.siblings("div[id^='shadow-style'] [selected='selected']").css("border", "1px solid #888888");
+				var hshadowval;
+			     var vshadowval;
+			     var shadowblurval;
+			     var shadowspreadval;
+			     var shadowinsetval;
+		        	if(target.attr("id") === "shadow-style3") {
+		        		hshadowval = -2;
+					     vshadowval = -2;
+					     shadowblurval = 3;
+					     shadowspreadval = 0;
+					     shadowinsetval="";
+		        	} else if(target.attr("id") === "shadow-style2") {
+		        		hshadowval = 2;
+					     vshadowval = 2;
+					     shadowblurval = 3;
+					     shadowspreadval = 0;
+					     shadowinsetval="";
+		        	}  else if(target.attr("id") === "shadow-style1") {
+		        		hshadowval = 0;
+					     vshadowval = 0;
+					     shadowblurval = 3;
+					     shadowspreadval = 0;
+					     shadowinsetval="";
+		        	} else if(target.attr("id") === "shadow-style4") {
+		        		hshadowval = 0;
+					     vshadowval = 0;
+					     shadowblurval = 3;
+					     shadowspreadval = 0;
+					     shadowinsetval="inset";
+					     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+					    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+		        	} else if(target.attr("id") === "shadow-style5") {
+		        		hshadowval = 2;
+					     vshadowval = 2;
+					     shadowblurval = 3;
+					     shadowspreadval = 0;
+					     shadowinsetval="inset";
+					     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+					    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+		        	} else if(target.attr("id") === "shadow-style6") {
+		        		hshadowval = -2;
+					     vshadowval = -2;
+					     shadowblurval = 3;
+					     shadowspreadval = 0;
+					     shadowinsetval="inset";
+					     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
+					    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
+		        	}
+		        	
+		        	shadowWeightSlider[0].noUiSlider.set(shadowblurval);
+					shadowHSlider[0].noUiSlider.set(hshadowval);
+					shadowVSlider[0].noUiSlider.set(vshadowval);
+					shadowSpreadSlider[0].noUiSlider.set(shadowspreadval);
+					var curSceId = editPanel.attr("currentsceid");
+					var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");	
+			     box.css("boxShadow", hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+ shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+			}
+		});
+		
+		var borderBox = editPanel.find(".uc-sce-border-style").children(".uc_layouts_border_nosel,.uc_layouts_border_sel");
+		borderBox.on({
+			click: function(event){
+				event.stopPropagation();
+				var tag = $(event.target);
+				var curSceId = editPanel.attr("currentsceid");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");	
+				var colorstr = borderColorPicker.spectrum("get").toRgbString() ;
+				var width = editPanel.find("#border-weight-val").val();
+				var border = $(event.target).attr("border");
+
+				tag.toggleClass("uc_layouts_border_nosel uc_layouts_border_sel");
+				if( tag.hasClass("uc_layouts_border_nosel") ) {
+					if( border === "top" ) {
+						box.css( "border-top", "0px solid "+colorstr );
+					} else if( border === "right" ) {
+						box.css( "border-right", "0px solid "+colorstr );
+					} else if( border === "bottom" ) {
+						box.css( "border-bottom", "0px solid "+colorstr );
+					} else if( border === "left" ) {
+						box.css( "border-left", "0px solid "+colorstr );
+					}
+					return;
+				}
+				
+					
+				if( border === "top" ) {
+					box.css( "border-top", width+"px solid "+colorstr );
+				} else if( border === "right" ) {
+					box.css( "border-right", width+"px solid "+colorstr );
+				} else if( border === "bottom" ) {
+					box.css( "border-bottom", width+"px solid "+colorstr );
+				} else if( border === "left" ) {
+					box.css( "border-left", width+"px solid "+colorstr );
+				}
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		console.log(bgColorPicker);
+		makeupColorPicker(bgColorPicker, "#ffffff", function(color) {
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+			box.css("backgroundColor", color.toRgbString());
+	    },true,true,true) ;
+		makeupColorPicker(fgColorPicker, null, function(color) {
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+			var boxContent = box.find(".uc_t_boxC");
+			 boxContent.css("backgroundColor", color.toRgbString());
+	    },true,true,true) ;
+		makeupColorPicker(fntColorPicker, "#000000", function(color) {
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+			box.find(".uc_t_tool_info").find(".uc-text").css("color", color.toRgbString());
+	    },true,true,true) ;
+		makeupColorPicker(borderColorPicker, "#888888", function(color) {
+	        //color.toHexString(); // #ff0000
+			var bs = borderColorPicker.parents(".uc-input-block-table-row").find(".uc_layouts_border_nosel,.uc_layouts_border_sel");
+			//var width = editPanel.find("#border-weight-val").val();
+			for(var i = 0; i<bs.length; i++) {
+				if( $(bs[i]).attr("border") === "top" )
+					$(bs[i]).css("border-top", "2px solid "+color.toRgbString());
+				if( $(bs[i]).attr("border") === "left" )
+					$(bs[i]).css("border-left",  "2px solid "+color.toRgbString());
+				if( $(bs[i]).attr("border") === "right" )
+					$(bs[i]).css("border-right", "2px solid "+color.toRgbString());
+				if( $(bs[i]).attr("border") === "bottom" )
+					$(bs[i]).css("border-bottom", "2px solid "+color.toRgbString());
+				
+			}
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+			box.css("borderTopColor", color.toRgbString());
+			box.css("borderBottomColor", color.toRgbString());
+			box.css("borderRightColor", color.toRgbString()); 
+			box.css("borderLeftColor", color.toRgbString());
+	    },true,true,true) ;
+//		makeupColorPicker(fgborderColorPicker, "#ffffff", function(color) {
+//	        color.toHexString(); // #ff0000
+//	    }) ;
+		makeupColorPicker(shadowColorPicker, "#333333", function(color) {
+	        //color.toHexString(); // #ff0000
+	        //var lastshadow = shadowBox.css("shadowBox");
+	        var shadowInfo = shadowBox.parents(".layout-shadow-info");
+	        var hshadowval = shadowHSlider[0].noUiSlider.get();
+	        var vshadowval = shadowVSlider[0].noUiSlider.get();
+	        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+	        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+	        
+	        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
+	         if(!shadowinsetval) shadowinsetval = "";
+
+	        for(var i=0;i<shadowBox.length;i++){
+	        	if($(shadowBox[i]).attr("id") === "shadow-style3") {
+	        		$(shadowBox[i]).css("boxShadow","-2px -2px 3px 0px " + color.toRgbString());
+	        	} else if($(shadowBox[i]).attr("id") === "shadow-style2") {
+	        		$(shadowBox[i]).css("boxShadow","2px 2px 3px 0px " + color.toRgbString());
+	        	}  else if($(shadowBox[i]).attr("id") === "shadow-style1") {
+	        		$(shadowBox[i]).css("boxShadow","0px 0px 3px 0px " + color.toRgbString());
+	        	} else if($(shadowBox[i]).attr("id") === "shadow-style4") {
+	        		$(shadowBox[i]).css("boxShadow","0px 0px 3px 0px "+color.toRgbString()+" inset");
+	        	} else if($(shadowBox[i]).attr("id") === "shadow-style5") {
+	        		$(shadowBox[i]).css("boxShadow","2px 2px 3px 0px "+color.toRgbString()+" inset");
+	        	} else if($(shadowBox[i]).attr("id") === "shadow-style6") {
+	        		$(shadowBox[i]).css("boxShadow","-2px -2px 3px 0px "+color.toRgbString()+" inset");
+	        	}
+	        }
+	        var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+	        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+color.toRgbString() + " "+shadowinsetval);
+	    },true,true,true) ;
+									
+//		makeupSlider(fgBorderRadiusSlider[0], 0, 20, 0, function(val){
+//			var rv = editPanel.find("#fgborder-radius-val");
+//			rv.val(val);
+//		});
+		makeupSlider(shadowSpreadSlider[0], 0, 20, 0, function(val){
+			var rv = editPanel.find("#shadow-spread-val");
+			rv.val(val);
+			var shadowInfo = rv.parents(".layout-shadow-info");
+			var hshadowval = shadowHSlider[0].noUiSlider.get();
+	        var vshadowval = shadowVSlider[0].noUiSlider.get();
+	        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+	        //var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+	        var shadowinsetval = shadowInfo.find(".shadow-inset-val").attr("value");
+	         if(!shadowinsetval) shadowinsetval = "";
+	         var curSceId = editPanel.attr("currentsceid");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+	        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(val)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+
+		});
+		makeupSlider(shadowHSlider[0], -20, 20, 0, function(val){
+			var rv = editPanel.find("#h-shadow-val");
+			rv.val(val);
+			var shadowInfo = rv.parents(".layout-shadow-info");
+			//var hshadowval = shadowHSlider[0].noUiSlider.get();
+	        var vshadowval = shadowVSlider[0].noUiSlider.get();
+	        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+	        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+	        var shadowinsetval = shadowInfo.find(".shadow-inset-val").attr("value");
+	         if(!shadowinsetval) shadowinsetval = "";
+	         var curSceId = editPanel.attr("currentsceid");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+	        box.css("boxShadow",parseInt(val)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString()+ " "+shadowinsetval);
+
+		});
+		makeupSlider(shadowVSlider[0], -20, 20, 0, function(val){
+			var rv = editPanel.find("#v-shadow-val");
+			rv.val(val);
+			var shadowInfo = rv.parents(".layout-shadow-info");
+			var hshadowval = shadowHSlider[0].noUiSlider.get();
+	        //var vshadowval = shadowVSlider[0].noUiSlider.get();
+	        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+	        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+	        var shadowinsetval = shadowInfo.find(".shadow-inset-val").attr("value");
+	         if(!shadowinsetval) shadowinsetval = "";
+	         var curSceId = editPanel.attr("currentsceid");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+	        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(val)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+
+		});
+//		makeupSlider(fgBorderWidthRangeSlider[0], 0, 20, 0, function(val){
+//			var rv = editPanel.find("#fgborder-weight-val");
+//			rv.val(val);
+//		});
+		makeupSlider(rangeSlider[0], 0, 20, 0, function(val){
+			var rv = editPanel.find("#border-radius-val");
+			rv.val(val);
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+			box.css("borderRadius", val+"px");
+		});
+		makeupSlider(scheduleIntervalSlider[0], 1, 24, 1, function(val){
+			var rv = editPanel.find("#scheduleInterval-val");
+			rv.val(val);
+		});
+		makeupSlider(scheduleMinutesIntervalSlider[0], 1, 60, 5, function(val){
+			var rv = editPanel.find("#scheduleMinutesInterval-val");
+			rv.val(val);
+		});
+		
+		makeupSlider(weightRangeSlider[0], 0, 20, 0, function(val){
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+			var rv = editPanel.find("#border-weight-val");
+			rv.val(val);
+			var selborder = editPanel.find(".uc-sce-border-style").children(".uc_layouts_border_sel");
+			for(var i=0; i<selborder.length; i++ ) {
+				if( $(selborder[i]).attr("border") === "top" ) {
+					box.css("borderTopWidth", val+"px");
+				}
+				if( $(selborder[i]).attr("border") === "right" ) {
+					box.css("borderRightWidth", val+"px");	
+				}
+				if( $(selborder[i]).attr("border") === "left" ) {
+					box.css("borderLeftWidth", val+"px");
+				}
+				if( $(selborder[i]).attr("border") === "bottom" ) {
+					box.css("borderBottomWidth", val+"px");
+				}
+			}
+		});
+		makeupSlider(shadowWeightSlider[0], 0, 20, 0, function(val){
+			var rv = editPanel.find("#shadow-blur-val");
+			rv.val(val);
+			var shadowInfo = rv.parents(".layout-shadow-info");
+			var hshadowval = shadowHSlider[0].noUiSlider.get();
+	        var vshadowval = shadowVSlider[0].noUiSlider.get();
+	        //var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
+	        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+	        var shadowinsetval = shadowInfo.find(".shadow-inset-val").attr("value");
+	         if(!shadowinsetval) shadowinsetval = "";
+	         var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+	        box.css("boxShadow", parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(val)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
+
+		});
+		makeupSlider(paddingLeftSlider[0], 0, 20, 0, function(val){
+			var rv = editPanel.find("#paddingLeft-val");
+			rv.val(val);
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+
+			box.css("paddingLeft", val+"px");
+		});
+		makeupSlider(paddingRightSlider[0], 0, 20, 0, function(val){
+			var rv = editPanel.find("#paddingRight-val");
+			rv.val(val);
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+			box.css("paddingRight", val+"px");
+		});
+		makeupSlider(paddingTopSlider[0], 0, 20, 0, function(val){
+			var rv = editPanel.find("#paddingTop-val");
+			rv.val(val);
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+			box.css("paddingTop", val+"px");
+		});
+		makeupSlider(paddingBottomSlider[0], 0, 20, 0, function(val){
+			var rv = editPanel.find("#paddingBottom-val");
+			rv.val(val);
+			var curSceId = editPanel.attr("currentsceid");
+			var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+			box.css("paddingBottom", val+"px");
+		});
+		
+	
+//	var rect = figureRect(".uc-populate-container");
+//	console.log("uc-populate-container's width: " + rect["width"] + ", 30percent: " + (rect["width"]*0.3)+", min-width is 400px.");
+//	var mw=400;
+//	if( (rect["width"] * 0.3) > mw ) {
+//		mw=rect["width"] * 0.3;
+//	}
+	
+	//var blocks = $(".uc-edit-panel-main");
+	
+
+}
 function popEditPanel(eventTag, clickTag) {
 	var panel = $(".uc-edit-panel");
 	var panelMid = panel.children(".uc-edit-panel-mid");
@@ -635,540 +1456,12 @@ function popEditPanel(eventTag, clickTag) {
 					}
 					
 				} else if( target.hasClass("scenario") ) {
+					editPanel = panel.find(".uc-edit-panel-layouts");
 					var box = eventTag.parents(".uc_t_box");
-					var boxContent = box.children(".uc_t_boxC");
 					var scenarioId = box.attr("scenarioId");
+					var curEditScenarioId = editPanel.attr("currentSceId");
 					
-					editPanel = panel.find(".uc-edit-panel-layouts[scenarioId='"+scenarioId+"']");
-					if( editPanel.length <= 0 ) {
-						//invokeGet( "/var/subview/uc/scenarioEditPanel", function(data){
-						//	console.log(data);
-						//});
-						editPanel = $(".uc-edit-panel-layouts[id='temp']").clone(true);
-						editPanel.attr("scenarioId", scenarioId);
-						editPanel.attr("display","current");
-						editPanel.css("display","flex");
-						//editPanel.hide();
-						//panel.append(editPanel);
-						//editPanel.addClass("fadeInRight animated delay-1s");
-						panelMid.append(editPanel);
-						
-						var canvasContainer = $(".uc-canvas-container");
-						var shadowBox = editPanel.find("div[id^='shadow-style']");
-
-//						var scenarioW = editPanel.find(".scenarioW");
-//						var scenarioH = editPanel.find(".scenarioH");
-//						scenarioW.text(box.css("width"));
-//						scenarioH.text(box.css("height"));
-						
-						var bgColorPicker = editPanel.find("#in_bgcolor_box");
-						var fgColorPicker = editPanel.find("#in_fgcolor_box");
-						var fntColorPicker = editPanel.find("#in_fntcolor_box");
-						var borderColorPicker = editPanel.find("#in_bordercolor_box");
-						//var fgborderColorPicker = editPanel.find("#in_fgbordercolor_box");
-						var shadowColorPicker = editPanel.find("#in_shadowcolor_box");
-						
-						var rangeSlider = editPanel.find("#in_borderRadius");
-						//var fgBorderRadiusSlider = editPanel.find("#in_fg_borderRadius");
-						var weightRangeSlider = editPanel.find("#in_borderWeight");
-						//var fgBorderWidthRangeSlider = editPanel.find("#in_fg_borderWeight");
-						
-						var paddingLeftSlider = editPanel.find("#in_paddingLeft");
-						var paddingRightSlider = editPanel.find("#in_paddingRight");
-						var paddingTopSlider = editPanel.find("#in_paddingTop");
-						var paddingBottomSlider = editPanel.find("#in_paddingBottom");
-						var scheduleIntervalSlider = editPanel.find("#in_scheduleInterval");
-						var scheduleMinutesIntervalSlider = editPanel.find("#in_scheduleMinutesInterval");
-						var shadowWeightSlider = editPanel.find("#in_shadowWeight");
-						var shadowHSlider = editPanel.find("#in_Hshadow");
-						var shadowVSlider = editPanel.find("#in_Vshadow");
-						var shadowSpreadSlider = editPanel.find("#in_shadowSpread");
-						
-						var delaySpinner = editPanel.find("#in_auto_delay");
-						delaySpinner.spinner();
-						
-						editPanel.find(".mode-info").find(".uc-check-box.sce-mode-val").on({
-							click: function(event){
-								event.stopPropagation();
-								var target = $(event.target);
-								if( !target.hasClass("uc-check-box") )
-									target = target.parents(".uc-check-box");
-								var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
-								box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
-								//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-								var cur =  target.children(".uc-float-icon-checkbox-sel");
-								target.attr("value", cur.attr("value"));
-							},
-							mouseover: function(event) {
-								event.stopPropagation();
-								event.target.style.cursor="pointer";
-							}
-						});
-						
-						editPanel.find(".uc-sce-bgcolor-options").children(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
-							click: function(event){
-								event.stopPropagation();
-								var target = $(event.target);
-								if( target.hasClass("uc-bg-color-picker-sel") )
-									return;
-								
-								target.attr("selected","selected");
-								
-								var last = target.siblings("div[selected='selected']");
-								last.removeAttr("selected");
-								
-								target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
-								last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
-								
-								bgColorPicker.spectrum("set", target.css("backgroundColor"));
-								box.css("backgroundColor", target.css("backgroundColor"));
-								//canvas.css("backgroundColor", target.css("backgroundColor"));
-								//console.log(templateBgColorPicker.spectrum("get").toRgbString());
-							},
-							mouseover: function(event) {
-								event.stopPropagation();
-								event.target.style.cursor="pointer";
-							}
-						});
-						
-						editPanel.find(".uc-sce-fgcolor-options").children(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
-							click: function(event){
-								event.stopPropagation();
-								var target = $(event.target);
-								if( target.hasClass("uc-bg-color-picker-sel") )
-									return;
-								
-								target.attr("selected","selected");
-								
-								var last = target.siblings("div[selected='selected']");
-								last.removeAttr("selected");
-								
-								target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
-								last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
-								
-								fgColorPicker.spectrum("set", target.css("backgroundColor"));
-								boxContent.css("backgroundColor", target.css("backgroundColor"));
-								//canvas.css("backgroundColor", target.css("backgroundColor"));
-								//console.log(templateBgColorPicker.spectrum("get").toRgbString());
-							},
-							mouseover: function(event) {
-								event.stopPropagation();
-								event.target.style.cursor="pointer";
-							}
-						});
-						
-						editPanel.find(".uc-sce-fntcolor-options").children(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
-							click: function(event){
-								event.stopPropagation();
-								var target = $(event.target);
-								if( target.hasClass("uc-bg-color-picker-sel") )
-									return;
-								
-								target.attr("selected","selected");
-								
-								var last = target.siblings("div[selected='selected']");
-								last.removeAttr("selected");
-								
-								target.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
-								last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
-								
-								fntColorPicker.spectrum("set", target.css("backgroundColor"));
-								box.find(".uc_t_tool_info").find(".uc-text").css("color", target.css("backgroundColor"));
-
-							},
-							mouseover: function(event) {
-								event.stopPropagation();
-								event.target.style.cursor="pointer";
-							}
-						});
-						
-						editPanel.find(".layout-shadow-info").find(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel").on({
-							click: function(event){
-								event.stopPropagation();
-								var clicktag = event.target.tagName;
-								if(clicktag.toLowerCase()==="svg")
-									var target = $(event.target);
-								else if(clicktag.toLowerCase()==="use")
-									var target = $(event.target).parent("svg");
-								else
-									return false;    
-								var parent = target.parent(".uc-check-box");
-								var siblings = target.siblings("svg");
-								var val = siblings.attr("value");
-								parent.attr("value",val);
-								
-								
-								var shadowInfo = shadowBox.parents(".layout-shadow-info");
-						        var hshadowval = shadowHSlider[0].noUiSlider.get();
-						        var vshadowval = shadowVSlider[0].noUiSlider.get();
-						        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
-						        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
-						        var shadowinsetval = shadowBox.find("#shadow-inset-val").attr("value");
-						         if(!shadowinsetval) shadowinsetval = "";
-
-						        shadowBox.css("shadowBox",hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
-
-								siblings.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-								target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-							},
-							mouseover: function(event) {
-								event.stopPropagation();
-								event.target.style.cursor="pointer";
-							}
-						});
-						
-						editPanel.find(".schedule-info").find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
-							click: function(event){
-								event.stopPropagation();
-								var clicktag = event.target.tagName;
-								if(clicktag.toLowerCase()==="svg")
-									var target = $(event.target);
-								else if(clicktag.toLowerCase()==="use")
-									var target = $(event.target).parent("svg");
-								else
-									return false;     
-								
-								var cursel = target.parents(".uc-radio-box");
-								if( cursel.attr("selected") === "selected" )
-									return;
-								if( cursel.attr("value") === "hour" ) {
-									target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-hour").css("display","flex");
-									target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-minute").css("display","none");
-									
-								} else if( cursel.attr("value") === "minute" ) {
-									target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-hour").css("display","none");
-									target.parents(".uc-input-block-table-row").siblings(".uc-input-block-table-row.interval-minute").css("display","flex");
-									
-								} 
-								var parent = target.parents(".uc-input-block-table-row");
-								var lastsel = parent.find(".uc-radio-box[selected='selected']");
-								
-								cursel.attr("selected", "selected");
-								lastsel.removeAttr("selected");
-								
-								var curseltxt = cursel.siblings("input[type='text']");
-								if( curseltxt.length > 0 ) {
-									curseltxt.removeAttr("disabled");
-									curseltxt.toggleClass("uc-text-disable uc-text-editable");
-								}
-								var lastseltxt = lastsel.siblings("input[type='text']");
-								if( lastseltxt.length > 0 ) {
-									lastseltxt.attr("disabled","disabled");
-									lastseltxt.toggleClass("uc-text-disable uc-text-editable");
-								}
-								//
-								//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
-								lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
-								cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
-							},
-							mouseover: function(event) {
-								event.stopPropagation();
-								event.target.style.cursor="pointer";
-							}
-						});
-						
-						shadowBox.on({
-							click: function(event){
-								var target = $(event.target);
-//								if( target.attr("selected") === "selected" )
-//									return;
-//								target.css("border", "1px solid #1296db");
-//								target.attr("selected","selected");
-//								target.siblings("div[id^='shadow-style'] [selected='selected']").removeAttr("selected");
-//								target.siblings("div[id^='shadow-style'] [selected='selected']").css("border", "1px solid #888888");
-								var hshadowval;
-							     var vshadowval;
-							     var shadowblurval;
-							     var shadowspreadval;
-							     var shadowinsetval;
-						        	if(target.attr("id") === "shadow-style3") {
-						        		hshadowval = -2;
-									     vshadowval = -2;
-									     shadowblurval = 3;
-									     shadowspreadval = 0;
-									     shadowinsetval="";
-						        	} else if(target.attr("id") === "shadow-style2") {
-						        		hshadowval = 2;
-									     vshadowval = 2;
-									     shadowblurval = 3;
-									     shadowspreadval = 0;
-									     shadowinsetval="";
-						        	}  else if(target.attr("id") === "shadow-style1") {
-						        		hshadowval = 0;
-									     vshadowval = 0;
-									     shadowblurval = 3;
-									     shadowspreadval = 0;
-									     shadowinsetval="";
-						        	} else if(target.attr("id") === "shadow-style4") {
-						        		hshadowval = 0;
-									     vshadowval = 0;
-									     shadowblurval = 3;
-									     shadowspreadval = 0;
-									     shadowinsetval="inset";
-									     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
-									    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
-						        	} else if(target.attr("id") === "shadow-style5") {
-						        		hshadowval = 2;
-									     vshadowval = 2;
-									     shadowblurval = 3;
-									     shadowspreadval = 0;
-									     shadowinsetval="inset";
-									     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
-									    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
-						        	} else if(target.attr("id") === "shadow-style6") {
-						        		hshadowval = -2;
-									     vshadowval = -2;
-									     shadowblurval = 3;
-									     shadowspreadval = 0;
-									     shadowinsetval="inset";
-									     if( !target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='inset']").hasClass("zoomIn") )
-									    	 target.parents(".layout-shadow-info").find(".shadow-inset-val").children("svg[value='']").trigger("click");
-						        	}
-						        	
-						        	shadowWeightSlider[0].noUiSlider.set(shadowblurval);
-									shadowHSlider[0].noUiSlider.set(hshadowval);
-									shadowVSlider[0].noUiSlider.set(vshadowval);
-									shadowSpreadSlider[0].noUiSlider.set(shadowspreadval);
-									
-							     box.css("boxShadow", hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+ shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
-							}
-						});
-						
-						var borderBox = editPanel.find(".uc-sce-border-style").children(".uc_layouts_border_nosel,.uc_layouts_border_sel");
-						borderBox.on({
-							click: function(event){
-								event.stopPropagation();
-								var tag = $(event.target);
-								tag.toggleClass("uc_layouts_border_nosel uc_layouts_border_sel");
-								
-//								var id = $(event.target).attr("id");
-//								if( id === "border-style-top" ) {
-//									var borderstyle = editPanel.find("#in-border-style");
-//									if( borderstyle.css("border-top").indexOf("dashed") >= 0 ){
-//										borderstyle.css("border-top","2px solid #888888");
-//										
-//									} else {
-//										borderstyle.css("border-top","1px dashed #888888");
-//									}
-//								} else if( id === "border-style-right" ) {
-//									var borderstyle = editPanel.find("#in-border-style");
-//									if( borderstyle.css("border-right").indexOf("dashed") >= 0 ){
-//										borderstyle.css("border-right","2px solid #888888");
-//									} else {
-//										borderstyle.css("border-right","1px dashed #888888");
-//									}
-//								} else if( id === "border-style-bottom" ) {
-//									var borderstyle = editPanel.find("#in-border-style");
-//									if( borderstyle.css("border-bottom").indexOf("dashed") >= 0 ){
-//										borderstyle.css("border-bottom","2px solid #888888");
-//									} else {
-//										borderstyle.css("border-bottom","1px dashed #888888");
-//									}
-//								} else if( id === "border-style-left" ) {
-//									var borderstyle = editPanel.find("#in-border-style");
-//									if( borderstyle.css("border-left").indexOf("dashed") >= 0 ){
-//										borderstyle.css("border-left","2px solid #888888");
-//									} else {
-//										borderstyle.css("border-left","1px dashed #888888");
-//									}
-//								}
-							},
-							mouseover: function(event) {
-								event.stopPropagation();
-								event.target.style.cursor="pointer";
-							}
-						});
-						
-						console.log(bgColorPicker);
-						makeupColorPicker(bgColorPicker, "#ffffff", function(color) {
-					    	box.css("backgroundColor", color.toRgbString());
-					    },true,true,true) ;
-						makeupColorPicker(fgColorPicker, null, function(color) {
-							 boxContent.css("backgroundColor", color.toRgbString());
-					    },true,true,true) ;
-						makeupColorPicker(fntColorPicker, "#000000", function(color) {
-							box.find(".uc_t_tool_info").find(".uc-text").css("color", color.toRgbString());
-					    },true,true,true) ;
-						makeupColorPicker(borderColorPicker, "#888888", function(color) {
-					        //color.toHexString(); // #ff0000
-							var bs = borderColorPicker.parents(".uc-input-block-table-row").find(".uc_layouts_border_nosel,.uc_layouts_border_sel");
-							for(var i = 0; i<bs.length; i++) {
-								if( $(bs[i]).attr("border") === "top" )
-									$(bs[i]).css("border-top", "2px solid "+color.toRgbString());
-								if( $(bs[i]).attr("border") === "left" )
-									$(bs[i]).css("border-left", "2px solid "+color.toRgbString());
-								if( $(bs[i]).attr("border") === "right" )
-									$(bs[i]).css("border-right", "2px solid "+color.toRgbString());
-								if( $(bs[i]).attr("border") === "bottom" )
-									$(bs[i]).css("border-bottom", "2px solid "+color.toRgbString());
-								
-							}
-							box.css("borderTopColor", color.toRgbString());
-							box.css("borderBottomColor", color.toRgbString());
-							box.css("borderRightColor", color.toRgbString()); 
-							box.css("borderLeftColor", color.toRgbString());
-					    },true,true,true) ;
-//						makeupColorPicker(fgborderColorPicker, "#ffffff", function(color) {
-//					        color.toHexString(); // #ff0000
-//					    }) ;
-						makeupColorPicker(shadowColorPicker, "#333333", function(color) {
-					        //color.toHexString(); // #ff0000
-					        //var lastshadow = shadowBox.css("shadowBox");
-					        var shadowInfo = shadowBox.parents(".layout-shadow-info");
-					        var hshadowval = shadowHSlider[0].noUiSlider.get();
-					        var vshadowval = shadowVSlider[0].noUiSlider.get();
-					        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
-					        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
-					        
-					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
-					         if(!shadowinsetval) shadowinsetval = "";
-
-					        for(var i=0;i<shadowBox.length;i++){
-					        	if($(shadowBox[i]).attr("id") === "shadow-style3") {
-					        		$(shadowBox[i]).css("boxShadow","-2px -2px 3px 0px " + color.toRgbString());
-					        	} else if($(shadowBox[i]).attr("id") === "shadow-style2") {
-					        		$(shadowBox[i]).css("boxShadow","2px 2px 3px 0px " + color.toRgbString());
-					        	}  else if($(shadowBox[i]).attr("id") === "shadow-style1") {
-					        		$(shadowBox[i]).css("boxShadow","0px 0px 3px 0px " + color.toRgbString());
-					        	} else if($(shadowBox[i]).attr("id") === "shadow-style4") {
-					        		$(shadowBox[i]).css("boxShadow","0px 0px 3px 0px "+color.toRgbString()+" inset");
-					        	} else if($(shadowBox[i]).attr("id") === "shadow-style5") {
-					        		$(shadowBox[i]).css("boxShadow","2px 2px 3px 0px "+color.toRgbString()+" inset");
-					        	} else if($(shadowBox[i]).attr("id") === "shadow-style6") {
-					        		$(shadowBox[i]).css("boxShadow","-2px -2px 3px 0px "+color.toRgbString()+" inset");
-					        	}
-					        }
-					        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+color.toRgbString() + " "+shadowinsetval);
-					    },true,true,true) ;
-													
-//						makeupSlider(fgBorderRadiusSlider[0], 0, 20, 0, function(val){
-//							var rv = editPanel.find("#fgborder-radius-val");
-//							rv.val(val);
-//						});
-						makeupSlider(shadowSpreadSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#shadow-spread-val");
-							rv.val(val);
-							var shadowInfo = shadowBox.parents(".layout-shadow-info");
-							var hshadowval = shadowHSlider[0].noUiSlider.get();
-					        var vshadowval = shadowVSlider[0].noUiSlider.get();
-					        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
-					        //var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
-					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
-					         if(!shadowinsetval) shadowinsetval = "";
-
-					        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(val)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
-
-						});
-						makeupSlider(shadowHSlider[0], -20, 20, 0, function(val){
-							var rv = editPanel.find("#h-shadow-val");
-							rv.val(val);
-							var shadowInfo = shadowBox.parents(".layout-shadow-info");
-							//var hshadowval = shadowHSlider[0].noUiSlider.get();
-					        var vshadowval = shadowVSlider[0].noUiSlider.get();
-					        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
-					        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
-					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
-					         if(!shadowinsetval) shadowinsetval = "";
-
-					        box.css("boxShadow",parseInt(val)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString()+ " "+shadowinsetval);
-
-						});
-						makeupSlider(shadowVSlider[0], -20, 20, 0, function(val){
-							var rv = editPanel.find("#v-shadow-val");
-							rv.val(val);
-							var shadowInfo = shadowBox.parents(".layout-shadow-info");
-							var hshadowval = shadowHSlider[0].noUiSlider.get();
-					        //var vshadowval = shadowVSlider[0].noUiSlider.get();
-					        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
-					        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
-					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
-					         if(!shadowinsetval) shadowinsetval = "";
-
-					        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(val)+"px "+parseInt(shadowblurval)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
-
-						});
-//						makeupSlider(fgBorderWidthRangeSlider[0], 0, 20, 0, function(val){
-//							var rv = editPanel.find("#fgborder-weight-val");
-//							rv.val(val);
-//						});
-						makeupSlider(rangeSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#border-radius-val");
-							rv.val(val);
-							box.css("borderRadius", val+"px");
-						});
-						makeupSlider(scheduleIntervalSlider[0], 1, 24, 1, function(val){
-							var rv = editPanel.find("#scheduleInterval-val");
-							rv.val(val);
-						});
-						makeupSlider(scheduleMinutesIntervalSlider[0], 1, 60, 5, function(val){
-							var rv = editPanel.find("#scheduleMinutesInterval-val");
-							rv.val(val);
-						});
-						
-						makeupSlider(weightRangeSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#border-weight-val");
-							rv.val(val);
-							var selborder = editPanel.find(".uc-sce-border-style").children(".uc_layouts_border_sel");
-							for(var i=0; i<selborder.length; i++ ) {
-								if( $(selborder[i]).attr("border") === "top" ) {
-									box.css("borderTopWidth", val+"px");
-								}
-								if( $(selborder[i]).attr("border") === "right" ) {
-									box.css("borderRightWidth", val+"px");	
-								}
-								if( $(selborder[i]).attr("border") === "left" ) {
-									box.css("borderLeftWidth", val+"px");
-								}
-								if( $(selborder[i]).attr("border") === "bottom" ) {
-									box.css("borderBottomWidth", val+"px");
-								}
-							}
-						});
-						makeupSlider(shadowWeightSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#shadow-blur-val");
-							rv.val(val);
-							var shadowInfo = shadowBox.parents(".layout-shadow-info");
-							var hshadowval = shadowHSlider[0].noUiSlider.get();
-					        var vshadowval = shadowVSlider[0].noUiSlider.get();
-					        //var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
-					        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
-					        var shadowinsetval = shadowBox.parents(".layout-shadow-info").find(".shadow-inset-val").attr("value");
-					         if(!shadowinsetval) shadowinsetval = "";
-					         
-					        box.css("boxShadow", parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(val)+"px "+parseInt(shadowspreadval)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
-
-						});
-						makeupSlider(paddingLeftSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#paddingLeft-val");
-							rv.val(val);
-							box.css("paddingLeft", val+"px");
-						});
-						makeupSlider(paddingRightSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#paddingRight-val");
-							rv.val(val);
-							box.css("paddingRight", val+"px");
-						});
-						makeupSlider(paddingTopSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#paddingTop-val");
-							rv.val(val);
-							box.css("paddingTop", val+"px");
-						});
-						makeupSlider(paddingBottomSlider[0], 0, 20, 0, function(val){
-							var rv = editPanel.find("#paddingBottom-val");
-							rv.val(val);
-							box.css("paddingBottom", val+"px");
-						});
-						
-					}
-//					var rect = figureRect(".uc-populate-container");
-//					console.log("uc-populate-container's width: " + rect["width"] + ", 30percent: " + (rect["width"]*0.3)+", min-width is 400px.");
-//					var mw=400;
-//					if( (rect["width"] * 0.3) > mw ) {
-//						mw=rect["width"] * 0.3;
-//					}
-					
-					//var blocks = $(".uc-edit-panel-main");
-					
+					changeScenarioEditPanelValue(editPanel, curEditScenarioId, scenarioId);
 				} else if( target.hasClass("material") ) {
 					/*
 					editPanel = panel.find(".uc-edit-panel-material[scenarioId='"+scenarioId+"']");
@@ -2320,13 +2613,7 @@ $(document).ready(function(){
 				return;
 			}
 			var scenario_div = cloneDiv("uc_box_temp",scenarioType);
-            var id = "uc_sce__"+guid();
-
-			//var scenario = templateInstance.newScenario();
-			//editable_template["scenarios"][scenario["scenarioId"]] = scenario;
-			//console.log("Add new scenario: ");
-			//console.log(scenario);
-			scenario_div.attr("scenarioId",id);
+            
 			if(addr) {
 				var addrInput = scenario_div.children(".uc_t_tool_addr").children("input[type='text']");
 				addrInput.val(addr);
