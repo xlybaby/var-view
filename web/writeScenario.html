@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=118" />
-		<script type="text/javascript" src="/var/js/uc.js?v=118"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=118"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=119" />
+		<script type="text/javascript" src="/var/js/uc.js?v=119"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=119"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -790,7 +790,7 @@
 																</svg>
 															</div>
 															<span class="uc-text cn_input_hint">可视区</span>
-															<input type="text" value="100" maxlength="3" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" id="tempPercentWidth-val" class="uc-text-editable" style="width: 25px; " />
+															<input type="text" value="100" maxlength="3" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" id="tempPercentWidth-val" class="uc-text-editable" style="width: 25px; " />
 															<span class="uc-text cn_input_hint">%</span>
 															
 													</div>
@@ -804,7 +804,7 @@
 																</svg>
 															</div>
 															<span class="uc-text cn_input_hint">固定值</span>
-															<input type="text" id="tempFixedWidth-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
+															<input type="text" id="tempFixedWidth-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">px</span>
 															
 													</div>
@@ -834,7 +834,7 @@
 																</svg>
 															</div>
 															<span class="uc-text cn_input_hint">可视区</span>
-															<input type="text"  value="100"  maxlength="3" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" id="tempPercentHeight-val" class="uc-text-editable" style="width: 25px;" />
+															<input type="text"  value="100"  maxlength="3" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" id="tempPercentHeight-val" class="uc-text-editable" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">%</span>
 															
 													</div>
@@ -848,7 +848,7 @@
 																</svg>
 															</div>
 															<span class="uc-text cn_input_hint">固定值</span>
-															<input type="text" id="tempFixedHeight-val"  maxlength="4" disabled="disabled" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" class="uc-text-disable"  style="width: 25px;" />
+															<input type="text" id="tempFixedHeight-val"  maxlength="4" disabled="disabled" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" class="uc-text-disable"  style="width: 25px;" />
 															<span class="uc-text cn_input_hint">px</span>
 															
 													</div>
@@ -867,14 +867,14 @@
 														<span class="uc-text cn_input_label">最大宽度</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
-														<input type="text" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="4" id="tempWidthMax-val" class="uc-text-editable" style="width: 25px;" />
+														<input type="text" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" maxlength="4" id="tempWidthMax-val" class="uc-text-editable" style="width: 25px;" />
 														<span class="uc-text cn_input_label">px</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
 														<span class="uc-text cn_input_label">最大高度</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
-														<input type="text" id="tempHeightMax-val" maxlength="4" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" class="uc-text-editable" style="width: 25px;" />
+														<input type="text" id="tempHeightMax-val" maxlength="4" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" class="uc-text-editable" style="width: 25px;" />
 														<span class="uc-text cn_input_label">px</span>
 													</div>
 												</div>
@@ -883,14 +883,14 @@
 														<span class="uc-text cn_input_label">最小宽度</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
-														<input type="text" id="tempWidthMin-val"  maxlength="4" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" class="uc-text-editable" style="width: 25px;" />
+														<input type="text" id="tempWidthMin-val"  maxlength="4" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" class="uc-text-editable" style="width: 25px;" />
 														<span class="uc-text cn_input_label">px</span>
 													</div>
 													<div style="width: 25%;   white-space : nowrap;">
 														<span class="uc-text cn_input_label">最小高度</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 25%;  white-space : nowrap; ">
-														<input type="text" id="tempHeightMin-val"  maxlength="4" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" class="uc-text-editable" style="width: 25px;" />
+														<input type="text" id="tempHeightMin-val"  maxlength="4" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" class="uc-text-editable" style="width: 25px;" />
 														<span class="uc-text cn_input_label">px</span>
 													</div>
 												</div>
@@ -904,7 +904,7 @@
 										<div class="uc-input-block">
 											<div class="uc-input-block-table">
 												
-												<div class="uc-input-block-table-row">
+												<div class="uc-input-block-table-row" id="uc-bg-align-h">
 													<div >
 														<span class="uc-text cn_input_label">水平对齐</span><span class="uc-text cn_input_label">：</span>
 													</div>
@@ -921,7 +921,7 @@
 															
 													</div>
 												</div>
-												<div class="uc-input-block-table-row">
+												<div class="uc-input-block-table-row" id="uc-bg-align-v">
 													<div>
 														<span class="uc-text cn_input_label">垂直对齐</span><span class="uc-text cn_input_label">：</span>
 													</div>
@@ -1318,7 +1318,7 @@
 													<span class="uc-text cn_input_label">宽</span><span class="uc-text cn_input_label">：</span>
 												</div>
 												<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
-														<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
+														<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="absolute">
 															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 													    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 															</svg>
@@ -1331,7 +1331,7 @@
 														<span class="uc-text cn_input_hint value_unit">px</span>
 												</div>
 												<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
-														<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="absolute">
+														<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
 															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 													    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 															</svg>
@@ -1350,7 +1350,7 @@
 													<span class="uc-text cn_input_label">高</span><span class="uc-text cn_input_label">：</span>
 												</div>
 												<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
-														<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
+														<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="absolute">
 															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 													    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 															</svg>
@@ -1363,7 +1363,7 @@
 														<span class="uc-text cn_input_hint value_unit">px</span>
 												</div>
 												<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
-														<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="absolute">
+														<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
 															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
 													    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
 															</svg>
@@ -1406,7 +1406,7 @@
 													<span class="uc-text cn_input_label">背景</span><span class="uc-text cn_input_label">：</span>
 												</div>
 												<div class="uc-sce-bgcolor-options" style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
-													<div class="uc-bg-color-picker-sel" selected="selected" style="background-color: #ffffff;"></div>
+													<div class="uc-bg-color-picker-sel" selected="selected" style="background-color: #ffffff;" value="white"></div>
 													<div class="uc-bg-color-picker" style="background-color: rgba(0,101,80,1.0);"></div>
 													<div class="uc-bg-color-picker" style="background-color: rgba(102,132,176,1.0);"></div>
 													<div class="uc-bg-color-picker"  style="background-color: rgba(157,137,157,1.0);"></div>
@@ -1773,7 +1773,7 @@
 													<div id="in_scheduleInterval" style="width: 100%; height: 10px;"></div>
 												</div>
 												<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
-													<input type="text" id="scheduleInterval-val" style="text-align: right;width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+													<input type="text" id="scheduleInterval-val" class="txt-uc-schedule-period-value" style="text-align: right;width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 												</div>
 											</div>
 											<div class="uc-input-block-table-row interval-minute" style="display: none;">
@@ -1784,7 +1784,7 @@
 													<div id="in_scheduleMinutesInterval" style="width: 100%; height: 10px;"></div>
 												</div>
 												<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
-													<input type="text" id="scheduleMinutesInterval-val" style="text-align: right;width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+													<input type="text" id="scheduleMinutesInterval-val" class="txt-uc-schedule-period-value" style="text-align: right;width: 50px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
 												</div>
 											</div>
 											

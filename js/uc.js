@@ -5,6 +5,12 @@ function makeBoxHighlight(target) {
 	if( !target.hasClass("uc_t_box") )
 		target = target.parents(".uc_t_box");
 	var curBox = target.siblings(".uc_t_box.uc-t-box-highlight");
+	if( curBox.length <=0 && target.hasClass("uc-t-box-highlight") )
+		return;
+	var curSceId = null;
+	if( curBox.length > 0 )
+		curSceId = curBox.attr("scenarioId");
+	
 	curBox.removeClass("uc-t-box-highlight");
 	var curBoxType = curBox.attr("sType");
 	var curBoxbg = curBox.find(".uc_t_tool_typelogo");
@@ -15,9 +21,12 @@ function makeBoxHighlight(target) {
 	var targetType = target.attr("sType");
 	var bg = target.find(".uc_t_tool_typelogo");
 	bg.css('backgroundImage','url(/var/images/uc_icon_bg_'+targetType+'_highlight.png)');
-	var editPanel = $(".uc-edit-panel-mid").children(".uc-edit-panel-layouts");
-	editPanel.attr("currentSceId", target.attr("scenarioId"));
-	
+	//var editPanel = $(".uc-edit-panel-mid").children(".uc-edit-panel-layouts");
+	//editPanel.attr("currentSceId", target.attr("scenarioId"));
+	var editPanel = $(".uc-edit-panel");
+	if( editPanel.hasClass("uc-PanelInRight") ){
+		changeScenarioEditPanelValue(editPanel.find(".uc-edit-panel-layouts"), curSceId, target.attr("scenarioId"));
+	}
 }
 function cloneDiv(sDiv, type){
 	c=$("#"+sDiv).clone(true);
@@ -26,7 +35,8 @@ function cloneDiv(sDiv, type){
 	c.css('display','flex');
 	c.attr('id',cid);
 	c.attr('sType',scenarioTypeNames[parseInt(type)]);
-
+	var bg = c.find(".uc_t_tool_typelogo");
+	bg.css('backgroundImage','url(/var/images/uc_icon_bg_'+scenarioTypeNames[parseInt(type)]+'.png)');
 	//var x = bgcolors.length-1;     
 	//var y = 0; 
 	//c.css('background-color', bgcolors[parseInt(Math.random() * (x - y + 1) + y)]);
@@ -142,7 +152,7 @@ function cloneDiv(sDiv, type){
 	$(".uc-canvas-container").append(c);
 	var id = "uc_sce__"+guid();
 	c.attr("scenarioId",id);
-	makeBoxHighlight(c);
+	//makeBoxHighlight(c);
 
 	return c;
 }
@@ -387,10 +397,37 @@ function discardPageComponents(pageCon) {
 	
 }
 
+function changeCanvaRect(event) {
+	var target = $(event.target);
+	var canvas =  $(".uc-canvas-container");
+	if ( target.attr("id") === "tempPercentWidth-val" ) {
+		canvas.css( "width", target.val()+"%" );
+	} else if ( target.attr("id") === "tempFixedWidth-val" ) {
+		canvas.css( "width", target.val()+"px" );
+	} else if ( target.attr("id") === "tempPercentHeight-val" ) {
+		canvas.css( "height", target.val()+"%" );
+	} else if ( target.attr("id") === "tempFixedHeight-val" ) {
+		canvas.css( "height", target.val()+"px" );
+		
+	} else if ( target.attr("id") === "tempWidthMax-val" ) {
+		canvas.css( "max-width", target.val()+"px" );
+	} else if ( target.attr("id") === "tempHeightMax-val" ) {
+		canvas.css( "max-height", target.val()+"px" );
+	} else if ( target.attr("id") === "tempWidthMin-val" ) {
+		canvas.css( "min-width", target.val()+"px" );
+	} else if ( target.attr("id") === "tempHeightMin-val" ) {
+		canvas.css( "min-height", target.val()+"px" );
+	} 
+	
+	
+	
+}
+
 function initTempalePanel() {
 		var panel = $(".uc-edit-panel-mid").children(".uc-edit-panel-template");
 		var templateBgColorPicker = panel.find("#in_tempbgcolor_box");
 		//var tempGridPaddingSlider = panel.find("#in_tempGridPadding");
+		var canvasM =  $(".uc-canvasM");
 		var canvas =  $(".uc-canvas-container");
 		var hGridInterval = panel.find("#in_hGridInterval");
 		
@@ -531,7 +568,60 @@ function initTempalePanel() {
 			}
 		});
 		
-		panel.find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
+		panel.find(".bgRect-info").find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
+			click: function(event){
+				event.stopPropagation();
+				var clicktag = event.target.tagName;
+				if(clicktag.toLowerCase()==="svg")
+					var target = $(event.target);
+				else if(clicktag.toLowerCase()==="use")
+					var target = $(event.target).parent("svg");
+				else
+					return false;     
+				
+				var cursel = target.parents(".uc-radio-box");
+				if( cursel.attr("selected") === "selected" )
+					return;
+				var parent = target.parents(".uc-input-block-table-row");
+				var lastsel = parent.find(".uc-radio-box[selected='selected']");
+				
+				cursel.attr("selected", "selected");
+				lastsel.removeAttr("selected");
+				
+				var curseltxt = cursel.siblings("input[type='text']");
+				if( curseltxt.length > 0 ) {
+					curseltxt.removeAttr("disabled");
+					curseltxt.toggleClass("uc-text-disable uc-text-editable");
+				}
+				var lastseltxt = lastsel.siblings("input[type='text']");
+				if( lastseltxt.length > 0 ) {
+					lastseltxt.attr("disabled","disabled");
+					lastseltxt.toggleClass("uc-text-disable uc-text-editable");
+				}
+				//
+				//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+			
+				var editRow = target.parents(".uc-input-block-table-row").attr("id");	
+				var val = editRow.find(".uc-radio-box[selected='selected']").attr("value");
+				if( editRow === "uc_template_width") {
+					if( val === "auto" ) {
+						canvas.css("width","auto");
+					}
+				} else if( editRow === "uc_template_height") {
+					if( val === "auto" ) {
+						canvas.css("height","auto");
+					}
+				} 
+			},
+			mouseover: function(event) {
+				event.stopPropagation();
+				event.target.style.cursor="pointer";
+			}
+		});
+		
+		panel.find(".bgCanvas-info").find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
 			click: function(event){
 				event.stopPropagation();
 				var clicktag = event.target.tagName;
@@ -628,6 +718,13 @@ function initTempalePanel() {
 				
 				target.siblings(".uc-float-icon-selected").toggleClass("uc-float-icon-selected uc-float-icon");
 				target.toggleClass("uc-float-icon-selected uc-float-icon");
+				
+				if( target.parents().attr("id") === "uc-bg-align-h"){
+					canvasM.css("justifyContent", target.attr("align"));
+				} else if( target.parents().attr("id") === "uc-bg-align-v"){
+					canvasM.css("alignItems", target.attr("align"));
+				}
+				
 			}, 
 			mouseover: function(event) {
 				event.stopPropagation();
@@ -661,9 +758,101 @@ function initTempalePanel() {
 function populateScenarioData(editPanel, scenario) {
 	if(!scenario)
 		scenario = UC_SCENARIO_DATA_CACHE["empty"];
-	//TODO initialize editPanel with scenario's data
+	
+	var shadowBox = editPanel.find("div[id^='shadow-style']");
+	var bgColorPicker = editPanel.find("#in_bgcolor_box");
+	var fgColorPicker = editPanel.find("#in_fgcolor_box");
+	var fntColorPicker = editPanel.find("#in_fntcolor_box");
+	var borderColorPicker = editPanel.find("#in_bordercolor_box");
+	var shadowColorPicker = editPanel.find("#in_shadowcolor_box");
+	
+	var rangeSlider = editPanel.find("#in_borderRadius");
+	var weightRangeSlider = editPanel.find("#in_borderWeight");
+	
+	var paddingLeftSlider = editPanel.find("#in_paddingLeft");
+	var paddingRightSlider = editPanel.find("#in_paddingRight");
+	var paddingTopSlider = editPanel.find("#in_paddingTop");
+	var paddingBottomSlider = editPanel.find("#in_paddingBottom");
+	var scheduleIntervalSlider = editPanel.find("#in_scheduleInterval");
+	var scheduleMinutesIntervalSlider = editPanel.find("#in_scheduleMinutesInterval");
+	var shadowWeightSlider = editPanel.find("#in_shadowWeight");
+	var shadowHSlider = editPanel.find("#in_Hshadow");
+	var shadowVSlider = editPanel.find("#in_Vshadow");
+	var shadowSpreadSlider = editPanel.find("#in_shadowSpread");
+	
+	var delaySpinner = editPanel.find("#in_auto_delay");
+	
+	var position = scenario["position"];
+	var heightUnit =  = scenario["heightUnit"];
+	var widthUnit =  = scenario["widthUnit"];
+	if( position != "relative" ){
+		editPanel.find(".basic-info").find("#uc_scenario_position").find(".uc-radio-box[value='relative']").children(".uc-float-icon-radio-sel").trigger("click");
+	}
+	if( widthUnit != "%" ) {
+		editPanel.find(".basic-info").find("#uc_scenario_width").find(".uc-radio-box[value='percent']").children(".uc-float-icon-radio-sel").trigger("click");
+		editPanel.find(".basic-info").find("#uc_scenario_width").find("#scePerWidth-val").val(scenario["width"]);
+	} else {
+		editPanel.find(".basic-info").find("#uc_scenario_width").find("#sceFixedWidth-val").val(scenario["width"]);
+	}
+	if( heightUnit != "%" ) {
+		editPanel.find(".basic-info").find("#uc_scenario_height").find(".uc-radio-box[value='percent']").children(".uc-float-icon-radio-sel").trigger("click");
+		editPanel.find(".basic-info").find("#uc_scenario_height").find("#scePerHeight-val").val(scenario["height"]);
+	} else {
+		editPanel.find(".basic-info").find("#uc_scenario_height").find("#sceFixedHeight-val").val(scenario["height"]);
+	}
+	
+//	if( scenario["backgroundColor"] ) {
+//		bgColorPicker.spectrum("set", scenario["backgroundColor"]);
+//	} else {
+//		bgColorPicker.spectrum("set", null);
+//	}
+	bgColorPicker.spectrum("set", scenario["backgroundColor"]);
+	editPanel.find(".uc-sce-bgcolor-options").children(".uc-bg-color-picker-sel").toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+	
+	fgColorPicker.spectrum("set", scenario["foregroundColor"]);
+	editPanel.find(".uc-sce-fgcolor-options").children(".uc-bg-color-picker-sel").toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+	
+	fntColorPicker.spectrum("set", scenario["fontColor"]);
+	editPanel.find(".uc-sce-fntcolor-options").children(".uc-bg-color-picker-sel").toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
+	
+	var shadowBlur=  scenario["shadowBlur"];
+	var shadowH=  scenario["shadowH"];
+	var shadowInset=  scenario["shadowInset"];
+	var shadowSpread=  scenario["shadowSpread"];
+	var shadowV=  scenario["shadowV"];
+//	editPanel.find(".layout-shadow-info").find("#h-shadow-val").val(shadowH);
+//	editPanel.find(".layout-shadow-info").find("#v-shadow-val").val(shadowV);
+//	editPanel.find(".layout-shadow-info").find("#shadow-blur-val").val(shadowBlur);
+//	editPanel.find(".layout-shadow-info").find("#shadow-spread-val").val(shadowSpread);
+	shadowWeightSlider[0].noUiSlider.set(shadowBlur);
+	shadowHSlider[0].noUiSlider.set(shadowH);
+	shadowVSlider[0].noUiSlider.set(shadowV);
+	shadowSpreadSlider[0].noUiSlider.set(shadowSpread);
+	if( shadowInset != editPanel.find(".layout-shadow-info").find(".shadow-inset-val").attr("value") )
+		editPanel.find(".layout-shadow-info").find(".shadow-inset-val").children(".uc-float-icon-checkbox-sel").trigger("click");
+	shadowColorPicker.spectrum("set", scenario["shadowColor"]);
+	
+	var scheUnit = scenario["periodUnit"];
+	var scheValue = scenario["period"];
+	if( scheUnit !== editPanel.find(".schedule-info").find(".uc-radio-box[selected='selected']") )
+		editPanel.find(".schedule-info").find(".uc-radio-box[selected!='selected']").children(".").trigger("click");
+	editPanel.find(".schedule-info").find(".uc-input-block-table-row.interval-"+scheUnit).find(".txt-uc-schedule-period-value").val(scheValue);
+	
+	var borderTopStyle = scenario["borderTopStyle"];
+	var borderTopColor = scenario["borderTopColor"];
+	var borderTopWidth = scenario["borderTopWidth"];
+	var borderTopRadius = scenario["borderTopRadius"];
+	rangeSlider[0].noUiSlider.set(borderTopRadius);
+	weightRangeSlider[0].noUiSlider.set(borderTopWidth);
+	borderColorPicker.spectrum("set", scenario["borderTopColor"]);
+
+	paddingLeftSlider[0].noUiSlider.set(scenario["paddingLeft"]);
+	paddingRightSlider[0].noUiSlider.set(scenario["paddingRight"]);
+	paddingTopSlider[0].noUiSlider.set(scenario["paddingTop"]);
+	paddingBottomSlider[0].noUiSlider.set(scenario["paddingBottom"]);
 	
 }
+
 function collectScenarioData(editPanel) {
 	//var scenario = editable_template["scenarios"][scenarioId];
 	//var scenarioId = target.attr("scenarioId");
@@ -680,11 +869,14 @@ function collectScenarioData(editPanel) {
 		//var modeInfo = editPanel.children(".uc-edit-panel-block.mode-info");
 		
 		var sceneObj = {};
-
+		var curSceId = editPanel.attr("currentSceId");
+		var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+		var boxContent = box.find(".uc_t_boxC");
+		
 		var container = $(".uc-canvas-container");
 		sceneObj["position"]=baseInfo.find("#uc_scenario_position").find(".uc-radio-box[selected='selected']").attr("value");
-		var x=parseFloat(target.attr("data-x"));
-		var y=parseFloat(target.attr("data-y"));
+		var x=parseFloat(box.attr("data-x"));
+		var y=parseFloat(box.attr("data-y"));
 		if( sceneObj["position"] === "absolute" ){
 			sceneObj["left"]=( x || 0)+"px";
 			sceneObj["top"]=( y || 0)+"px";
@@ -730,40 +922,56 @@ function collectScenarioData(editPanel) {
 		if(borders.length>0){
 			for(var i=0; i<borders.length; i++ ) {
 				if( $(borders[i]).attr("border") === "top" ) {
-					sceneObj["borderTop"] = {};
-					sceneObj["borderTop"]["style"] = "solid";
-					sceneObj["borderTop"]["color"] = borderColorPicker.spectrum("get").toRgbString();
-					sceneObj["borderTop"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
-					sceneObj["borderTop"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+					sceneObj["borderTopStyle"] = "solid";
+					sceneObj["borderTopColor"] = borderColorPicker.spectrum("get").toRgbString();
+					sceneObj["borderTopWidth"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+					sceneObj["borderTopRadius"] = parseInt(rangeSlider[0].noUiSlider.get());
 				}
 				if( $(borders[i]).attr("border") === "right" ) {
-					sceneObj["borderRight"] = {};
-					sceneObj["borderRight"]["style"] = "solid";
-					sceneObj["borderRight"]["color"] = borderColorPicker.spectrum("get").toRgbString();
-					sceneObj["borderRight"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
-					sceneObj["borderRight"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+					sceneObj["borderRightStyle"] = "solid";
+					sceneObj["borderRightColor"] = borderColorPicker.spectrum("get").toRgbString();
+					sceneObj["borderRightWidth"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+					sceneObj["borderRightRadius"] = parseInt(rangeSlider[0].noUiSlider.get());
 				}
 				if( $(borders[i]).attr("border") === "left" ) {
-					sceneObj["borderLeft"] = {};
-					sceneObj["borderLeft"]["style"] = "solid";
-					sceneObj["borderLeft"]["color"] = borderColorPicker.spectrum("get").toRgbString();
-					sceneObj["borderLeft"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
-					sceneObj["borderLeft"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+					sceneObj["borderLeftStyle"] = "solid";
+					sceneObj["borderLeftColor"] = borderColorPicker.spectrum("get").toRgbString();
+					sceneObj["borderLeftWidth"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+					sceneObj["borderLeftRadius"] = parseInt(rangeSlider[0].noUiSlider.get());
 				}
 				if( $(borders[i]).attr("border") === "bottom" ) {
-					sceneObj["borderBottom"] = {};
-					sceneObj["borderBottom"]["style"] = "solid";
-					sceneObj["borderBottom"]["color"] = borderColorPicker.spectrum("get").toRgbString();
-					sceneObj["borderBottom"]["width"] = parseInt(weightRangeSlider[0].noUiSlider.get());
-					sceneObj["borderBottom"]["radius"] = parseInt(rangeSlider[0].noUiSlider.get());
+					sceneObj["borderBottomStyle"] = "solid";
+					sceneObj["borderBottomColor"] = borderColorPicker.spectrum("get").toRgbString();
+					sceneObj["borderBottomWidth"] = parseInt(weightRangeSlider[0].noUiSlider.get());
+					sceneObj["borderBottomRadius"] = parseInt(rangeSlider[0].noUiSlider.get());
 				}
 			}
+		} else {
+			sceneObj["borderBottomStyle"] = "solid";
+			sceneObj["borderBottomColor"] = "rgb(136,136,136)";
+			sceneObj["borderBottomWidth"] = 0;
+			sceneObj["borderBottomRadius"] = 0;
+			
+			sceneObj["borderLeftStyle"] = "solid";
+			sceneObj["borderLeftColor"] = "rgb(136,136,136)";
+			sceneObj["borderLeftWidth"] = 0;
+			sceneObj["borderLeftRadius"] = 0;
+				
+			sceneObj["borderRightStyle"] = "solid";
+			sceneObj["borderRightColor"] = "rgb(136,136,136)";
+			sceneObj["borderRightWidth"] = 0;
+			sceneObj["borderRightRadius"] = 	0;
+				
+			sceneObj["borderTopStyle"] = "solid";
+			sceneObj["borderTopColor"] = "rgb(136,136,136)";
+			sceneObj["borderTopWidth"] = 0;
+			sceneObj["borderTopRadius"] = 0;
 		}
 		
-        var hshadowval = shadowHSlider[0].noUiSlider.get();
-        var vshadowval = shadowVSlider[0].noUiSlider.get();
-        var shadowblurval = shadowWeightSlider[0].noUiSlider.get();
-        var shadowspreadval = shadowSpreadSlider[0].noUiSlider.get();
+        var hshadowval = parseInt(shadowHSlider[0].noUiSlider.get());
+        var vshadowval = parseInt(shadowVSlider[0].noUiSlider.get());
+        var shadowblurval = parseInt(shadowWeightSlider[0].noUiSlider.get());
+        var shadowspreadval = parseInt(shadowSpreadSlider[0].noUiSlider.get());
         var shadowinsetval = shadowInfo.find("#shadow-inset-val").attr("value");
         if(!shadowinsetval) shadowinsetval = "";
         sceneObj["shadowBox"] = hshadowval+"px "+vshadowval+"px "+shadowblurval+"px "+shadowspreadval+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval;
@@ -772,6 +980,7 @@ function collectScenarioData(editPanel) {
         sceneObj["shadowSpread"] = shadowspreadval;
         sceneObj["shadowBlur"] = shadowblurval;
         sceneObj["shadowInset"] = shadowinsetval;
+        sceneObj["shadowColor"] = shadowColorPicker.spectrum("get").toRgbString();
         
         sceneObj["paddingLeft"] = parseInt(paddingLeftSlider[0].noUiSlider.get());
         sceneObj["paddingRight"] = parseInt(paddingRightSlider[0].noUiSlider.get());
@@ -793,15 +1002,17 @@ function collectScenarioData(editPanel) {
 }
 
 function changeScenarioEditPanelValue(editPanel, preEditSceId, targetEditSceId) {
-	editPanel.attr("currentSceId", scenarioId);
-	if( !preEditSceId ) {
-		initScenarioEditPanel(editPanel);
-		editPanel.css("display","flex");
-		return;
-	}
+	editPanel.attr("currentSceId", targetEditSceId);
+//	if( !preEditSceId ) {
+//		initScenarioEditPanel(editPanel);
+//		editPanel.css("display","flex");
+//		return;
+//	}
 	//collect pre scenario data
-	if( !UC_SCENARIO_DATA_CACHE[preEditSceId] ) {
+	if( preEditSceId && !UC_SCENARIO_DATA_CACHE[preEditSceId] ) {
 		var scenario = collectScenarioData(editPanel) ;
+		console.log("collect scenario: ");
+		console.log(scenario);
 		UC_SCENARIO_DATA_CACHE[preEditSceId] = scenario ;
 	}
 	//populate target scenario data
@@ -1457,11 +1668,15 @@ function popEditPanel(eventTag, clickTag) {
 					
 				} else if( target.hasClass("scenario") ) {
 					editPanel = panel.find(".uc-edit-panel-layouts");
-					var box = eventTag.parents(".uc_t_box");
-					var scenarioId = box.attr("scenarioId");
-					var curEditScenarioId = editPanel.attr("currentSceId");
-					
-					changeScenarioEditPanelValue(editPanel, curEditScenarioId, scenarioId);
+//					var box = eventTag.parents(".uc_t_box");
+//					var scenarioId = box.attr("scenarioId");
+//					var curEditScenarioId = editPanel.attr("currentSceId");
+//					if( !preEditSceId ) {
+					initScenarioEditPanel(editPanel);
+					editPanel.css("display","flex");
+//						return;
+//					}
+//					changeScenarioEditPanelValue(editPanel, curEditScenarioId, scenarioId);
 				} else if( target.hasClass("material") ) {
 					/*
 					editPanel = panel.find(".uc-edit-panel-material[scenarioId='"+scenarioId+"']");
@@ -1708,8 +1923,7 @@ function ucItemBinding(event) {
 	$(".uc-edit-panel-material").find("button[name='uc-edit-comp-r-editor-submit-binding']").not(".ucMaterialBeBindinged").toggleClass("uc-editSceMaterial-binding-ani");
 
 }
-var current_ucMaterialItemEditId;
-var current_ucMaterialScenarioId;
+
 function ucCorpusItemEdit(event, method) {
 	var target = $(event.target);
 	if( method==="title") {
@@ -2366,7 +2580,21 @@ $(document).ready(function(){
 	$(".editSceLayouts").on({
 		click: function(event){
 			event.stopPropagation(); 
-			popEditPanel($(event.target), "scenario") ;
+			var editPanel = $(".uc-edit-panel");
+			if( editPanel.hasClass("uc-PanelOutRight") ){
+				console.log("panel is not popup, popup first!");
+				popEditPanel($(event.target), "scenario") ;
+			}
+				
+			
+			var box = $(event.target).parents(".uc_t_box");
+			var scenarioId = box.attr("scenarioId");
+			var curEditScenarioId = editPanel.find(".uc-edit-panel-layouts").attr("currentSceId");
+			if( scenarioId === curEditScenarioId )
+				return;
+			
+			console.log("changeScenarioEditPanelValue, curEditScenarioId->"+curEditScenarioId+", scenarioId->"+scenarioId);
+			changeScenarioEditPanelValue(editPanel.find(".uc-edit-panel-layouts"), curEditScenarioId, scenarioId);
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";

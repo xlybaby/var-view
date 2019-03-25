@@ -1,5 +1,3 @@
-var unsavedTempaltes = {};
-var scenarioTypeNames = ["DEFAULT","BANNER","REFRESHBLOCK","RANKLIST","TIMESERIES","CORPUSCOLLECT"];
 
 var templateInstance = (function ($) {
 	
