@@ -603,16 +603,30 @@ function initTempalePanel() {
 				lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
 				cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
 			
-				var editRow = target.parents(".uc-input-block-table-row").attr("id");	
+				var editRow = target.parents(".uc-input-block-table-row");	
 				var val = editRow.find(".uc-radio-box[selected='selected']").attr("value");
-				if( editRow === "uc_template_width") {
+				if( editRow.attr("id") === "uc_template_width") {
 					if( val === "auto" ) {
 						canvas.css("width","auto");
-					}
-				} else if( editRow === "uc_template_height") {
+						
+					} else if( val === "percent" ) {
+						canvas.css("width", editRow.find("#tempPercentWidth-val").val()+"%");
+						
+					} else if( val === "absolute" ) {
+						canvas.css("width", editRow.find("#tempFixedWidth-val").val()+"px");
+						
+					} 
+				} else if( editRow.attr("id") === "uc_template_height") {
 					if( val === "auto" ) {
 						canvas.css("height","auto");
-					}
+						
+					} else if( val === "percent" ) {
+						canvas.css("height", editRow.find("#tempPercentHeight-val").val()+"%");
+						
+					} else if( val === "absolute" ) {
+						canvas.css("height", editRow.find("#tempFixedHeight-val").val()+"px");
+						
+					} 
 				} 
 			},
 			mouseover: function(event) {
@@ -719,9 +733,9 @@ function initTempalePanel() {
 				target.siblings(".uc-float-icon-selected").toggleClass("uc-float-icon-selected uc-float-icon");
 				target.toggleClass("uc-float-icon-selected uc-float-icon");
 				
-				if( target.parents().attr("id") === "uc-bg-align-h"){
+				if( target.parents(".uc-input-block-table-row").attr("id") === "uc-bg-align-h"){
 					canvasM.css("justifyContent", target.attr("align"));
-				} else if( target.parents().attr("id") === "uc-bg-align-v"){
+				} else if( target.parents(".uc-input-block-table-row").attr("id") === "uc-bg-align-v"){
 					canvasM.css("alignItems", target.attr("align"));
 				}
 				
@@ -783,8 +797,8 @@ function populateScenarioData(editPanel, scenario) {
 	var delaySpinner = editPanel.find("#in_auto_delay");
 	
 	var position = scenario["position"];
-	var heightUnit =  = scenario["heightUnit"];
-	var widthUnit =  = scenario["widthUnit"];
+	var heightUnit =  scenario["heightUnit"];
+	var widthUnit =  scenario["widthUnit"];
 	if( position != "relative" ){
 		editPanel.find(".basic-info").find("#uc_scenario_position").find(".uc-radio-box[value='relative']").children(".uc-float-icon-radio-sel").trigger("click");
 	}
@@ -835,7 +849,7 @@ function populateScenarioData(editPanel, scenario) {
 	var scheUnit = scenario["periodUnit"];
 	var scheValue = scenario["period"];
 	if( scheUnit !== editPanel.find(".schedule-info").find(".uc-radio-box[selected='selected']") )
-		editPanel.find(".schedule-info").find(".uc-radio-box[selected!='selected']").children(".").trigger("click");
+		editPanel.find(".schedule-info").find(".uc-radio-box[selected!='selected']").children(".uc-float-icon-radio-sel").trigger("click");
 	editPanel.find(".schedule-info").find(".uc-input-block-table-row.interval-"+scheUnit).find(".txt-uc-schedule-period-value").val(scheValue);
 	
 	var borderTopStyle = scenario["borderTopStyle"];
@@ -1019,6 +1033,24 @@ function changeScenarioEditPanelValue(editPanel, preEditSceId, targetEditSceId) 
 	populateScenarioData(editPanel, UC_SCENARIO_DATA_CACHE[targetEditSceId]);
 }
 
+function changeScenarioRect(event) {
+	var target = $(event.target);
+	var editPanel = target.parents(".uc-edit-panel-layouts");
+	var curSceId = editPanel.attr("currentSceId");
+	var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+	
+	if( target.attr("id") === "sceFixedWidth-val" ) {
+		box.css("width", target.val() + "px" );
+	} else if( target.attr("id") === "scePerWidth-val" ) {
+		box.css("width", target.val() + "%" );
+	}  else if( target.attr("id") === "sceFixedHeight-val" ) {
+		box.css("height", target.val() + "px" );
+	}  else if( target.attr("id") === "scePerHeight-val" ) {
+		box.css("height", target.val() + "%" );
+	} 
+	 
+}
+
 function initScenarioEditPanel(editPanel) {
 	//editPanel = panel.find(".uc-edit-panel-layouts[id='temp']");
 		var canvasContainer = $(".uc-canvas-container");
@@ -1085,12 +1117,44 @@ function initScenarioEditPanel(editPanel) {
 				//var radios = parent.find(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
 				lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
 				cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
+				var curSceId = editPanel.attr("currentSceId");
+				var box = $(".uc-canvas-container").find(".uc_t_box[scenarioId='"+curSceId+"']");
+				
+				if( parent.attr("id") ===  "uc_scenario_position" ) {
+					box.css( "position", cursel.attr("value") );
+					
+				} else if( parent.attr("id") ===  "uc_scenario_width" ) {
+					if( cursel.attr("value") === "absolute" ) {
+						if(parent.find("#sceFixedWidth-val").val())
+							box.css( "width", parent.find("#sceFixedWidth-val").val() + "px" );
+						else
+							parent.find("#sceFixedWidth-val").val( box.width() );
+						
+					} else if( cursel.attr("value") === "percent" ) {
+						box.css( "width", parent.find("#scePerWidth-val").val() + "%" );
+						
+					}
+				} else if( parent.attr("id") ===  "uc_scenario_height" ) {
+					if( cursel.attr("value") === "absolute" ) {
+						if(  parent.find("#sceFixedHeight-val").val() )
+							box.css( "height", parent.find("#sceFixedHeight-val").val() + "px" );
+						else
+							 parent.find("#sceFixedHeight-val").val( box.height() );
+						
+					} else if( cursel.attr("value") === "percent" ) {
+						box.css( "height", parent.find("#scePerHeight-val").val() + "%" );
+						
+					}
+					
+				} 
+				
 			},
 			mouseover: function(event) {
 				event.stopPropagation();
 				event.target.style.cursor="pointer";
 			}
 		});
+		
 		editPanel.find(".mode-info").find(".uc-check-box.sce-mode-val").on({
 			click: function(event){
 				event.stopPropagation();
@@ -1489,7 +1553,7 @@ function initScenarioEditPanel(editPanel) {
 	        box.css("boxShadow",parseInt(hshadowval)+"px "+parseInt(vshadowval)+"px "+parseInt(shadowblurval)+"px "+parseInt(val)+"px "+shadowColorPicker.spectrum("get").toRgbString() + " "+shadowinsetval);
 
 		});
-		makeupSlider(shadowHSlider[0], -20, 20, 0, function(val){
+		makeupSlider(shadowHSlider[0], -100, 100, 0, function(val){
 			var rv = editPanel.find("#h-shadow-val");
 			rv.val(val);
 			var shadowInfo = rv.parents(".layout-shadow-info");

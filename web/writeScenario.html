@@ -7,9 +7,9 @@
 		
 		<link rel='stylesheet' href='/var/css/spectrum.css' />
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=119" />
-		<script type="text/javascript" src="/var/js/uc.js?v=119"></script>
-		<script type="text/javascript" src="/var/js/submit.js?v=119"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc.css?v=122" />
+		<script type="text/javascript" src="/var/js/uc.js?v=122"></script>
+		<script type="text/javascript" src="/var/js/submit.js?v=122"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/var/css/nouislider.css?v=005" />
 		<script type="text/javascript" src="/var/js/jscolor.js" ></script>
@@ -804,7 +804,7 @@
 																</svg>
 															</div>
 															<span class="uc-text cn_input_hint">固定值</span>
-															<input type="text" id="tempFixedWidth-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
+															<input type="text" id="tempFixedWidth-val" value="800" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
 															<span class="uc-text cn_input_hint">px</span>
 															
 													</div>
@@ -848,7 +848,7 @@
 																</svg>
 															</div>
 															<span class="uc-text cn_input_hint">固定值</span>
-															<input type="text" id="tempFixedHeight-val"  maxlength="4" disabled="disabled" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" class="uc-text-disable"  style="width: 25px;" />
+															<input type="text" id="tempFixedHeight-val"  value="600" maxlength="4" disabled="disabled" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeCanvaRect(event);" class="uc-text-disable"  style="width: 25px;" />
 															<span class="uc-text cn_input_hint">px</span>
 															
 													</div>
@@ -909,10 +909,10 @@
 														<span class="uc-text cn_input_label">水平对齐</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
-														<svg onmouseover="changPointer(this)" title="左对齐"  align="flex-start" class="uc-float-icon uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+														<svg onmouseover="changPointer(this)" title="左对齐"  align="flex-start" selected="selected" class="uc-float-icon-selected uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
 														    <use xlink:href="#icon-duiqi2"></use>
 														</svg>
-														<svg onmouseover="changPointer(this)" title="水平居中"  align="center" selected="selected" class="uc-float-icon-selected uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
+														<svg onmouseover="changPointer(this)" title="水平居中"  align="center" class="uc-float-icon uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
 														    <use xlink:href="#icon-juzhong"></use>
 														</svg>
 														<svg onmouseover="changPointer(this)" title="右对齐"  align="flex-end" class="uc-float-icon uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;transform:rotate(180deg);-ms-transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg); -o-transform:rotate(180deg);" aria-hidden="true">				    				
@@ -926,10 +926,10 @@
 														<span class="uc-text cn_input_label">垂直对齐</span><span class="uc-text cn_input_label">：</span>
 													</div>
 													<div style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
-														<svg onmouseover="changPointer(this)" align="flex-start" title="顶端对齐"  class="uc-float-icon uc-temp-align-items" style="font-size: 1.25em; font-weight: 400;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
+														<svg onmouseover="changPointer(this)" align="flex-start" selected="selected" title="顶端对齐"  class="uc-float-icon-selected uc-temp-align-items" style="font-size: 1.25em; font-weight: 400;transform:rotate(90deg);-ms-transform:rotate(90deg);-moz-transform:rotate(90deg);-webkit-transform:rotate(90deg); -o-transform:rotate(90deg);" aria-hidden="true">				    				
 														    <use xlink:href="#icon-duiqi2"></use>
 														</svg>
-														<svg onmouseover="changPointer(this)" align="center" selected="selected" title="垂直居中"  class="uc-float-icon-selected uc-temp-align-items" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+														<svg onmouseover="changPointer(this)" align="center"  title="垂直居中"  class="uc-float-icon uc-temp-align-items" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
 														    <use xlink:href="#icon-juzhong"></use>
 														</svg>
 														<svg onmouseover="changPointer(this)" align="flex-end" title="底端对齐"  class="uc-float-icon uc-temp-align-items" style="font-size: 1.25em; font-weight: 400;transform:rotate(-90deg);-ms-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg); -o-transform:rotate(-90deg);" aria-hidden="true">				    				
@@ -1327,9 +1327,9 @@
 															</svg>
 														</div>
 														<span class="uc-text cn_input_hint">固定值</span>
-														<input type="text" id="sceFixedWidth-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
+														<input type="text" id="sceFixedWidth-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeScenarioRect(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 35px;" />
 														<span class="uc-text cn_input_hint value_unit">px</span>
-												</div>
+												</div>&nbsp;
 												<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
 														<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
 															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
@@ -1340,7 +1340,7 @@
 															</svg>
 														</div>
 														<span class="uc-text cn_input_hint">百分比</span>
-														<input type="text" id="scePerWidth-val" value="25" class="uc-text-editable" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="3" style="width: 25px;" />
+														<input type="text" id="scePerWidth-val" value="25" class="uc-text-editable" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeScenarioRect(event);" maxlength="3" style="width: 35px;" />
 														<span class="uc-text cn_input_hint value_unit">%</span>
 														
 												</div>
@@ -1359,9 +1359,9 @@
 															</svg>
 														</div>
 														<span class="uc-text cn_input_hint">固定值</span>
-														<input type="text" id="sceFixedHeight-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 25px;" />
+														<input type="text" id="sceFixedHeight-val" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeScenarioRect(event);" maxlength="4"  disabled="disabled" class="uc-text-disable" style="width: 35px;" />
 														<span class="uc-text cn_input_hint value_unit">px</span>
-												</div>
+												</div>&nbsp;
 												<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
 														<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="percent">
 															<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
@@ -1372,7 +1372,7 @@
 															</svg>
 														</div>
 														<span class="uc-text cn_input_hint">百分比</span>
-														<input type="text" id="scePerHeight-val" value="20" class="uc-text-editable" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="checkFieldNumber(event);" maxlength="3" style="width: 25px;" />
+														<input type="text" id="scePerHeight-val" value="20" class="uc-text-editable" onkeydown="return checkOnKeyDown(event, [{'min':48,'max':57},{'min':96,'max':105}]);" onchange="if(checkFieldNumber(event)) changeScenarioRect(event);" maxlength="3" style="width: 35px;" />
 														<span class="uc-text cn_input_hint value_unit">%</span>
 														
 												</div>

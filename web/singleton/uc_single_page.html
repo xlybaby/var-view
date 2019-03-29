@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>User Page</title>
+		<script type="text/javascript" src="/var/js/jquery_2.2.4.js" ></script>
+		<script type="text/javascript" src="/var/js/bootstrap_3.3.0.min.js" ></script>
+		<script type="text/javascript" src="http://at.alicdn.com/t/font_761657_58qk5jdiwh.js" ></script>
+		<script type="text/javascript" src="/var/js/main.js"></script>
+		<script type="text/javascript" src="/var/js/invoke.js?v=101"></script>
+		<script type="text/javascript" src="/var/js/echarts.4.2.0-rc.2.js" ></script>
+		
+		<link rel="stylesheet" type="text/css" href="/var/css/bootstrap_3.3.0.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/var/css/animate.css"/>
+		<link rel="stylesheet" type="text/css" href="/var/css/uc_page.css?v=001"/>
+		<script type="text/javascript" src="/var/js/uc_page.js?v=001" ></script>
+		
+	</head>
+	<body style="height: auto; width: 100%;">
+		
+		<div class="uc-timeseries-chart" id="uc-timeseries-chart-001" style="position: absolute; left: 0px; top:0px; width: 50%; height: 350px;">
+		
+		</div>
+		<div class="uc-timeseries-chart" id="uc-timeseries-chart-002" style="position: absolute; left: 50%; top:0px; width: 50%; height: 350px;">
+		
+		</div>
+		
+		<div class="uc-timeseries-chart" id="uc-timeseries-chart-003" style="position: absolute; left: 0px; top:350px; width: 50%; height: 350px;">
+		
+		</div>
+		<div class="uc-timeseries-chart" id="uc-timeseries-chart-004" style="position: absolute; left: 50%; top:350px; width: 50%; height: 350px;">
+		
+		</div>
+		
+		<div class="uc-timeseries-chart" id="uc-timeseries-chart-005" style="position: absolute; left: 0px; top:700px; width: 50%; height: 350px;">
+		
+		</div>
+		<div class="uc-timeseries-chart" id="uc-timeseries-chart-006" style="position: absolute; left: 50%; top:700px; width: 50%; height: 350px;">
+		
+		</div>
+		
+		<div class="uc-timeseries-chart" id="uc-timeseries-chart-007" style="position: absolute; left: 0px; top:1050px; width: 50%; height: 350px;">
+		
+		</div>
+		<div class="uc-timeseries-chart" id="uc-timeseries-chart-008" style="position: absolute; left: 50%; top:1050px; width: 50%; height: 350px;">
+		
+		</div>
+		<div class="uc-corpus-browser" id="uc-corpus-browser-001" style="display: flex; align-items: center; justify-content: center; background-color: #ffffff; border: 1px solid #888888; position: absolute; left: 10%; top:1400px; width: 80%; height: 750px;">
+			<div class="uc-corpus-browser-contents" style="display: flex; align-items: center; justify-content: center; height: 100%; width: 25%;">
+				<div class="uc-corpus-browser-contents-list" style="display: flex; 	flex-direction: column; align-items: center; justify-content: flex-start; width: 60%; height: 80%;">
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis;white-space:nowrap; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 1.15em;color:#888888;font-weight: bold;font-style: normal">财经</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis;white-space:nowrap; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">娱乐</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis;white-space:nowrap; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">军事</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis;white-space:nowrap; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">时政</span>
+					</div>
+				</div>
+			</div>
+			<div class="uc-corpus-browser-split">
+				<div class="or-spacer-vertical left">
+				    <div class="mask"></div>
+				</div>
+			</div>
+			<div class="uc-corpus-browser-contents"  style="display: flex; align-items: center; justify-content: center; height: 100%; width: 25%;">
+				<div class="uc-corpus-browser-contents-list" style="display: flex; 	flex-direction: column; align-items: center; justify-content:  flex-start; width: 60%; height: 80%;">
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 1.15em;color:#888888;font-weight: bold;font-style: normal">李克强：中国将持续扩大金融业对外开放</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">部分年轻人成“负一代”，八千工资到手直接还钱乐</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">收评：沪指跌1%再失3000点 50余股跌停工业大麻概念现跌停潮</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">中国房地产新一哥诞生：核心净利润是碧桂园两倍多，平均日赚2亿</span>
+					</div>
+				</div>
+			</div>
+			<div class="uc-corpus-browser-split">
+				<div class="or-spacer-vertical left">
+				    <div class="mask"></div>
+				</div>
+			</div>
+			<div class="uc-corpus-browser-article"  style="display: flex; align-items: center; justify-content: center; height: 100%; width: 50%;">
+				<div class="uc-corpus-browser-article-body" style="display: flex; align-items: flex-start; justify-content: center; width: 85%; height: 80%;">
+					<p style="margin-top: 20px; text-indent : 20px; letter-spacing:8px; line-height: 1.5; font-size: 1.05em; color:#333333; font-style: normal">
+						国务院总理李克强28日在博鳌亚洲论坛演讲时表示，中国将持续扩大金融业对外开放。银行、证券和保险业对外资全面放开市场准入正在加快推进，外资银行业务范围大幅扩大，对外资证券公司和保险经纪公司业务范围不再单独设限，征信、信用评级服务、银行卡清算和非银行支付的准入限制大幅放宽。我们将进一步便利外商投资企业举办创业投资、设立投资性公司，完善外国投资者对上市公司战略投资、并购境内企业的相关规定。推进债券市场对外开放，完善相关政策，为境外投资者投资和交易中国债券创造更便利的条件。
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- 
+		<div class="uc-corpus-browser" id="uc-corpus-browser-001" style="display: table; background-color: #ffffff; border: 1px solid #888888; position: absolute; left: 0px; top:1400px; width: 100%; height: 350px;">
+			<div class="uc-corpus-browser-content" style="display: table-row;  width: 100%;  min-height: 25px;">
+				<div class="uc-corpus-browser-content-con" style="display: table-cell; width: 40%;">
+					<div class="uc-corpus-browser-page" style="display: table; width: 100%; padding: 15px 0px;">
+						<div class="uc-corpus-browser-page-row" style="display: table-row; width: 100%;">
+							<div class="uc-corpus-browser-page-row-content" style="margin:0px auto;width: 80%; box-shadow:rgb(51, 51, 51) 0px 0px 3px 0px;">
+								<div class="uc-corpus-browser-page-row-key" style="display: table-cell;  padding: 2px 2px; vertical-align: middle; text-align: right; width: 50%;">
+									<span style="color: #000;font-size: 0.65em;font-style: normal;font-weight: bold;">标题</span>
+									<span style="color: #000;font-size: 0.65em;font-style: normal;font-weight: bold;">：</span>
+								</div>
+								<div class="uc-corpus-browser-page-row-value" style="display: table-cell;  padding: 2px 4px;  vertical-align: middle;  width: 50%; text-overflow:ellipsis;white-space:nowrap;">
+									<span style="color: #000;font-size: 0.5em;font-style: normal;"><p>交通运输部：清明节、五一假期收费公路免收小客车通行费</p></span>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="uc-corpus-browser-content-con" style="display: table-cell; height: 100%; width: 5px;">
+					<hr style="position: absolute;
+	top: 0px;
+	border: none;
+	border-left: 1px solid rgba(238,134,154,1.0);
+	width: 1px;
+	height: 100%;
+	margin: 0px 0px;"/>
+				</div>
+				
+			</div>
+			
+		</div>
+	 -->
+		
+		<div class="uc-banner" id="uc-banner-001" style="display: flex; align-items: center; justify-content: center; background-color: #000; position: absolute; left: 0px; top:2200px; width: 80%; height: 750px;">
+			<div class="comp_banner">
+				<div class="banner_body">
+					 
+				 </div>
+				 <div class="banner_footer">
+				 	
+				 </div>
+				 <div class="banner_tool" onmouseover="showBannerTool(event);" onmouseout="hideBannerTool(event);" >
+				 	<button style="background-color: rgba(253,208,0,1.0); border: 0px; width: 40px; height: 40px; border-radius: 30px; margin: 0px 5px;" onclick="changBGMode(event, 'fillfull');">fill</button>
+					<button style="background-color: rgba(253,208,0,1.0); border: 0px; width: 40px; height: 40px; border-radius: 30px; margin: 0px 5px;" onclick="changBGMode(event, 'fitness');">fit</button>
+					<button style="background-color: rgba(253,208,0,1.0); border: 0px; width: 40px; height: 40px; border-radius: 30px; margin: 0px 5px;" onclick="changBGMode(event, 'stretching');">stret</button>
+					<button style="background-color: rgba(253,208,0,1.0); border: 0px; width: 40px; height: 40px; border-radius: 30px; margin: 0px 5px;" onclick="changBGMode(event, 'repeating');">repe</button>
+					<button style="background-color: rgba(253,208,0,1.0); border: 0px; width: 40px; height: 40px; border-radius: 30px; margin: 0px 5px;" onclick="changBGMode(event, 'centric');">cent</button>
+				 </div>
+			</div>
+		</div>
+		<div class="uc-refreshblock" id="uc-refreshblock-001" style="display: flex; align-items: center; justify-content: center; background-color: #fff; position: absolute; left: 0px; top:2970px; width: 450px; height: 750px;">
+			<div class="uc-corpus-browser-contents-list" style="display: flex; 	flex-direction: column; align-items: center; justify-content:  flex-start; width: 60%; height: 80%;">
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">李克强：中国将持续扩大金融业对外开放</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">部分年轻人成“负一代”，八千工资到手直接还钱乐</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">收评：沪指跌1%再失3000点 50余股跌停工业大麻概念现跌停潮</span>
+					</div>
+					<div class="uc-corpus-browser-contents-list-row" style="width: 100%; text-align: center; overflow: hidden; margin: 20px 0px; white-space: nowrap; text-overflow:ellipsis; border-bottom: 1px dashed #efefef;">
+						<span style="font-size: 0.65em;color:#888888;font-weight: bold;font-style: normal">中国房地产新一哥诞生：核心净利润是碧桂园两倍多，平均日赚2亿</span>
+					</div>
+				</div>
+		
+		</div>
+	</body>
+	<script type="text/javascript">
+	$(document).ready(function(){ 
+		for(var i=0;i<8;i++){
+			var target = { id : "uc-timeseries-chart-00"+(i+1) };
+			initChart(target);
+		}
+		var banner = { id : "uc-banner-001", display: "fillfull", images:[
+				{width:3840, height:2160, url:"/var/images/mainbg/2016-star-citizen-game-img.jpg"},
+				{width:2048, height:1152, url:"/var/images/mainbg/harmony-boat-creative-background-nr-2048x1152.jpg"},
+				{width:1920, height:1080, url:"/var/images/mainbg/570cc4ab38433.jpg"},
+				{width:5184, height:3456, url:"/var/images/mainbg/i-mac-qhd.jpg"},
+				{width:3840, height:2160, url:"/var/images/mainbg/ride-on-yela-star-citizen-4k-m1.jpg"}]
+			
+		};
+		var banner2 = { id : "uc-banner-001", display: "fillfull", images:[
+			{width:850, height:500, url:"/var/images/mainbg/1539336011691.jpg"},
+			{width:2048, height:1152, url:"/var/images/mainbg/1541750964959.jpg"},
+			{width:1920, height:1080, url:"/var/images/mainbg/1542269972365.jpg"},
+			{width:5184, height:3456, url:"/var/images/mainbg/1543198964577.jpg"},
+			{width:3840, height:2160, url:"/var/images/mainbg/1543201594165.jpg"}]
+		
+	};
+		initBanner(banner2);
+
+	});
+	
+	
+	</script>
+</html>

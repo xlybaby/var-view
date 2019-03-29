@@ -148,12 +148,32 @@ function resize(sDrag, container, resizable) {
 						.getAttribute('data-x')) || 0), y = (parseFloat(target
 						.getAttribute('data-y')) || 0);
 				var rect = figureRect(".uc-canvas-container");
+				var sid = $(target).attr("scenarioId");
+				var editPanel = $(".uc-edit-panel-layouts[currentSceId='"+sid+"']");
+				var widthUnit = editPanel.find(".uc-input-block-table-row[id='uc_scenario_width']").find(".uc-radio-box[selected='selected']").attr("value");
+				var heightUnit = editPanel.find(".uc-input-block-table-row[id='uc_scenario_height']").find(".uc-radio-box[selected='selected']").attr("value");
 				
 				// update the element's style
 				//target.style.width = event.rect.width + 'px';
 				//target.style.height = event.rect.height + 'px';
-				target.style.width  = (Math.round(event.rect.width/rect["width"]*10000)/100)+"%";
-				target.style.height = (Math.round(event.rect.height/rect["height"]*10000)/100)+"%";
+				var widthPer  = (Math.round(event.rect.width/rect["width"]*10000)/100);
+				var heightPer = (Math.round(event.rect.height/rect["height"]*10000)/100);
+				
+				if( widthUnit === "absolute" )
+					target.style.width  = event.rect.width + 'px';
+				else if( widthUnit === "percent" )
+					target.style.width  = widthPer + "%";
+				
+				if( heightUnit === "absolute" )
+					target.style.height  = event.rect.height + 'px';
+				else if( heightUnit === "percent" )
+					target.style.height  = heightPer + "%";
+				
+				editPanel.find(".basic-info").find("#sceFixedWidth-val").val(event.rect.width);
+				editPanel.find(".basic-info").find("#scePerWidth-val").val(widthPer);
+				editPanel.find(".basic-info").find("#sceFixedHeight-val").val(event.rect.height);
+				editPanel.find(".basic-info").find("#scePerHeight-val").val(heightPer);
+				
 				//console.log("current target's width/parent's is "+(Math.round(event.rect.width/rect["width"]*10000)/100)+"%");
 				//console.log("current target's height/parent's is "+(Math.round(event.rect.height/rect["height"]*10000)/100)+"%");
 				

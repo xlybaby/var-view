@@ -8,7 +8,7 @@ var UC_SCENARIO_DATA_CACHE = {};
 UC_SCENARIO_DATA_CACHE["empty"] = {
 		    "backgroundColor": "rgb(255, 255, 255)",
 			"fontColor": "rgb(0, 0, 0)",
-			"height": "20",
+			"height": "",
 			"heightUnit": "%",
 			"left": "0%",
 			"paddingBottom": 0,
@@ -26,7 +26,7 @@ UC_SCENARIO_DATA_CACHE["empty"] = {
 			"shadowSpread": 0,
 			"shadowV": 0,
 			"top": "0%",
-			"width": "25",
+			"width": "",
 			"widthUnit": "%",
 			
 			"borderBottomStyle":"solid",
