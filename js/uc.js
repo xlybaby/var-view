@@ -2128,41 +2128,51 @@ function initEditScenariosComponentPanel(temp) {
 		
 		
 	} else if( stype === "CORPUSCOLLECT" ) {
-		temp.find(".uc-editSceMaterial-add-item").on({
-			click: function(event){
-				var clicktag = event.target.tagName;
-				if(clicktag.toLowerCase()==="svg")
-					var target = $(event.target).children("use");
-				else if(clicktag.toLowerCase()==="use")
-					var target = $(event.target);
-				else
-					return false;
-				event.stopPropagation(); 
-				
-				//var area = target.parents(".uc-input-block-table");
-				var areaBody = target.parents(".uc-edit-panel-block").find("#uc_corpus_item_def_table");
-				var itemid = guid();
-				areaBody.append($('<div class="uc-input-block-table-row"  itemId="'+itemid+'" style="height: 25px; align-items:center; justify-content: space-around;">'+
-								'						<div style="width: 35%; display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
-								'						<input type="text" placeholder="标题"  style="text-align: center; width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
-								'					</div>'+
-								'					<div style="width: 25%;  display: flex; align-items: center; justify-content: center; ">'+
-								'						<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
-								'						<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
-								'						<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />'+
-								'					</div>'+
-								'					<div style="width: 20%;  display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
-								'						<img src="/var/images/uc_icon_data_connect_arrow.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'link\');" onmouseover="this.style.cursor=\'pointer\';" />'+
-								'					</div>'+
-								'					<div style="width: 20%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">'+
-								'						<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event,\'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
-								'					</div>'+
-								'				</div>'));
-			},
-			mouseover:function(event){
-				event.target.style.cursor="pointer";
-			}
+		makeupColorPicker(temp.find("#uc-corpus-bgcolor-box"), "#ffffff", null, true, true, true) ;
+		makeupColorPicker(temp.find("#uc-corpus-fntcolor-box"), "#000000", null, true, true, true) ;
+		var panel  = temp.parent(".uc-editSceMaterial-spec-corpus").children(".uc-editSceMaterial-spec-corpus-temp");
+		
+		makeupSlider(temp.find("#in_ucCorpusMarginRight")[0], 0, 50, 0, function(val){
+			var rv = temp.find("#uc-corpus-margin-right-val");
+			rv.val(val);
+			panel.find(".uc-corpus-browser-contents[pageId='"+temp.attr("pageId")+"']").css("paddingTop", val+"%");
 		});
+		
+//		temp.find(".uc-editSceMaterial-add-item").on({
+//			click: function(event){
+//				var clicktag = event.target.tagName;
+//				if(clicktag.toLowerCase()==="svg")
+//					var target = $(event.target).children("use");
+//				else if(clicktag.toLowerCase()==="use")
+//					var target = $(event.target);
+//				else
+//					return false;
+//				event.stopPropagation(); 
+//				
+//				//var area = target.parents(".uc-input-block-table");
+//				var areaBody = target.parents(".uc-edit-panel-block").find("#uc_corpus_item_def_table");
+//				var itemid = guid();
+//				areaBody.append($('<div class="uc-input-block-table-row"  itemId="'+itemid+'" style="height: 25px; align-items:center; justify-content: space-around;">'+
+//								'						<div style="width: 35%; display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
+//								'						<input type="text" placeholder="标题"  style="text-align: center; width: 95%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />'+
+//								'					</div>'+
+//								'					<div style="width: 25%;  display: flex; align-items: center; justify-content: center; ">'+
+//								'						<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'binding\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+//								'						<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
+//								'						<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />'+
+//								'					</div>'+
+//								'					<div style="width: 20%;  display: flex; align-items: center; justify-content: center; text-align:right;white-space : nowrap; ">'+
+//								'						<img src="/var/images/uc_icon_data_connect_arrow.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'link\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+//								'					</div>'+
+//								'					<div style="width: 20%; display:flex; align-items: center; justify-content: space-around; white-space : nowrap; ">'+
+//								'						<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event,\'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+//								'					</div>'+
+//								'				</div>'));
+//			},
+//			mouseover:function(event){
+//				event.target.style.cursor="pointer";
+//			}
+//		});
 	} else if( stype === "TIMESERIES" ) {
 		var timeseriesPanel = temp;
 		timeseriesPanel.find(".uc-timeseries-add-item").on({
