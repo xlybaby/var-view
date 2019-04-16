@@ -65,8 +65,8 @@
 							</div>
 							<div class="uc-editSceMaterial-spec-corpus" scenarioId="temp" stype="CORPUSCOLLECT">
 								<div class="uc-editSceMaterial-spec-corpus-cfg">	
-											<div class="uc-edit-panel-block value-info">
-												<span class="uc-text cn_block_title">元素</span> <img src="/var/images/icon_help.svg" />
+											<div class="uc-edit-panel-block tbl-value-info">
+												<span class="uc-text cn_block_title">目录元素</span> <img src="/var/images/icon_help.svg" />
 												<div class="uc-input-area">
 													<div class="uc-input-block">
 														<div class="uc-input-block-table">
@@ -84,8 +84,27 @@
 													</div>
 												</div>
 											</div> 
-											<div class="uc-edit-panel-block theme-info">
-												<span class="uc-input-title en_block_title">Layout</span> <img
+											<div class="uc-edit-panel-block cnt-value-info">
+												<span class="uc-text cn_block_title">内容元素</span> <img src="/var/images/icon_help.svg" />
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row" itemId="uc-banner-element">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">绑定元素</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">																
+																		<img class="eBinding" src="/var/images/uc_icon_connecting.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, 'binding');" onmouseover="this.style.cursor='pointer';" />
+																		<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />
+																		<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor='pointer';" />																									
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block tbl-theme-info">
+												<span class="uc-input-title en_block_title">目录样式</span> <img
 													src="/var/images/icon_help.svg" />
 												<div class="uc-input-area">
 													<div class="uc-input-block">
@@ -165,8 +184,211 @@
 													</div>	
 												</div>
 											</div>
-											<div class="uc-edit-panel-block position-info">
-												<span class="uc-text cn_block_title">字体</span> <img src="/var/images/icon_help.svg" />
+											<div class="uc-edit-panel-block cnt-theme-info">
+												<span class="uc-input-title en_block_title">内容样式</span> <img
+													src="/var/images/icon_help.svg" />
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">背景</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<!-- 
+																<div class="uc-banner-bgcolor-options" style="width: 110px; display: flex;align-items: center;justify-content: space-around;">
+																	<div class="uc-bg-color-picker-sel" selected="selected" style="background-color: #ffffff;"></div>
+																	<div class="uc-bg-color-picker" style="background-color: rgba(0,101,80,1.0);"></div>
+																	<div class="uc-bg-color-picker" style="background-color: rgba(102,132,176,1.0);"></div>
+																	<div class="uc-bg-color-picker"  style="background-color: rgba(157,137,157,1.0);"></div>
+																	<div class="uc-bg-color-picker" style="background-color: rgba(164,0,39,1.0);"></div>
+																</div> -->
+																<div style="width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-bgcolor-box" style="height: 80%;"/>
+																</div>
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">页宽</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+																	<div id="in_ucCorpusWeight" style="width: 100%; height: 10px;"></div>
+																</div>
+																<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-width-val" style="text-align: right;width: 27px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />%
+																</div>
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">上边距</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+																	<div id="in_ucCorpusMarginTop" style="width: 100%; height: 10px;"></div>
+																</div>
+																<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-margin-top-val" style="text-align: right;width: 27px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />%
+																</div>
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">下边距</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+																	<div id="in_ucCorpusMarginBottom" style="width: 100%; height: 10px;"></div>
+																</div>
+																<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-margin-bottom-val" style="text-align: right;width: 27px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />%
+																</div>
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">左边距</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+																	<div id="in_ucCorpusMarginLeft" style="width: 100%; height: 10px;"></div>
+																</div>
+																<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-margin-left-val" style="text-align: right;width: 27px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />%
+																</div>
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">右边距</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+																	<div id="in_ucCorpusMarginRight" style="width: 100%; height: 10px;"></div>
+																</div>
+																<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-margin-right-val" style="text-align: right;width: 27px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />%
+																</div>
+															</div>
+														</div>
+													</div>	
+												</div>
+											</div>
+											<div class="uc-edit-panel-block tbl-font-info">
+												<span class="uc-text cn_block_title">目录字体</span> <img src="/var/images/icon_help.svg" />
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">颜色</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-tbl-fntcolor-box" style="height: 80%;"/>
+																</div>
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">上边距</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+																	<div id="in_corpus-tbl-marginTop" style="width: 100%; height: 10px;"></div>
+																</div>
+																<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-tbl-margin-top-val" style="text-align: right;width: 27px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />%
+																</div>
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 55px; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">字间距</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 110px; display: flex;align-items: center;justify-content: center;">
+																	<div id="in_ucCorpusMarginRight" style="width: 100%; height: 10px;"></div>
+																</div>
+																<div style="display: flex;align-items: center;justify-content: flex-start;width: 90px; padding-left: 17px;">
+																	<input type="text" id="uc-corpus-margin-right-val" style="text-align: right;width: 27px; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />px
+																</div>
+															</div>
+															
+															<div class="uc-input-block-table-row" id="uc-corpus-font-size">
+																<div>
+																	<span class="uc-text cn_input_label">大小</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+																		<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="small">
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																			</svg>
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																			</svg>
+																		</div>
+																		
+																		<span class="uc-text cn_input_hint">小号</span>
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+																		<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="medium">
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																			</svg>
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																			</svg>
+																		</div>
+																		<span class="uc-text cn_input_hint">中号</span>
+																		
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+																		<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="large">
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																			</svg>
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																			</svg>
+																		</div>
+																		<span class="uc-text cn_input_hint">大号</span>
+																		
+																</div>
+															</div>
+															<div class="uc-input-block-table-row" id="uc-corpus-font-style">
+																<div>
+																	<span class="uc-text cn_input_label">样式</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+																		<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="italic">
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																			</svg>
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																			</svg>
+																		</div>
+																		
+																		<span class="uc-text cn_input_hint">斜体</span>
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+																		<div class="uc-radio-box" selected="selected" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="normal">
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																			</svg>
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																			</svg>
+																		</div>
+																		<span class="uc-text cn_input_hint">普通</span>
+																		
+																</div>
+																<div style="display: flex; align-items: center; margin-left:2px; white-space : nowrap;">
+																		<div class="uc-radio-box" style="height: 100%; width: 16px; display: flex; align-items: center; position: relative;" value="bold">
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-sel flipInX animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																			</svg>
+																			<svg id="border-style-right" onmouseover="changPointer(this)" class="uc-float-icon uc-float-icon-radio-nosel flipOutX uc-zindex-nag animated" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																			</svg>
+																		</div>
+																		<span class="uc-text cn_input_hint">加粗</span>
+																		
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block cnt-font-info">
+												<span class="uc-text cn_block_title">内容字体</span> <img src="/var/images/icon_help.svg" />
 												<div class="uc-input-area">
 													<div class="uc-input-block">
 														<div class="uc-input-block-table">
