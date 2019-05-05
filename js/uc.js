@@ -2295,6 +2295,7 @@ function initEditScenariosComponentPanel(temp) {
 
 $(document).ready(function(){ 
 	mainInit();
+	$(".m-page").css("backgroundImage", "url(/var/images/mainbg/i-mac-qhd.jpg)");
 	
 //	var canvas = $(".uc-canvasM");
 //	//console.log("Canvas width: %d, height: %d", canvas.width(), canvas.height());

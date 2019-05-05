@@ -4,6 +4,18 @@
 	}
 }
 
+@media screen and (max-width:1529px){
+	.m-page{
+	background-size:  auto 100%;
+	}
+}
+
+@media screen and (min-width:1530px){
+	.m-page{
+	background-size:   100% auto;
+	}
+}
+
 @media screen and (max-height:656px){
 	.m-page{
 		height: 656px;
@@ -22,6 +34,12 @@
   width: 100%;
   min-width: 800px;
   min-height: 656px;
+  /*background-image: url(/var/images/mainbg/i-mac-qhd.jpg);	
+  	background-size:  auto 100%;
+  */
+  background-repeat: no-repeat;
+	background-position: center center;
+	
   /*
   height: 100%;
   background-color: #ffffff;*/
@@ -29,19 +47,19 @@
 
 .m-title {
 	display:flex;
+	/*
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	
+	background-color: rgb(244,244,244,0.0);
+	*/
 	justify-content: space-between;
 	align-items: flex-end;
-	
   width: 100%;
-  height: 68px;
+  height: 48px;
+  min-height: 40px;
   padding: 0px;
-	margin: 0px;
-	
-  background-color: rgb(244,244,244,0.0);
+  margin: 0px;
 }
 .m-logo{
 	display:flex;
@@ -438,11 +456,12 @@ body {
 }
 
 .page-main-div{
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
-	background-color: #ffffff;	
+	display:flex;
+	flex-direction: column;
+  width: 100%;
+  height: 100%;
+  
+  
 }
 
 input {
