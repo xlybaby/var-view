@@ -8,12 +8,12 @@ function invokeRrequest(method, contentType, dt, uri, entity, callback) {
         dataType: dt,
         contentType: contentType,
         success: function(data){
-        	var msg = data["retMsg"];
+        	var msg = data["message"];
         	if( !StringUtil.isEmpty(msg) ) {
         		alert(msg);
         		return;
         	}
-        	var result = data["retData"];
+        	var result = data["data"];
         	callback(result);
         }
     });

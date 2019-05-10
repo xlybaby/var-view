@@ -4478,10 +4478,10 @@ var restrict = {
     // left, top, right, bottom
     if ('x' in restriction && 'y' in restriction) {
       modifiedX = Math.max(Math.min(rect.x + rect.width - offset.right, page.x), rect.x + offset.left);
-      modifiedY = Math.max(Math.min(rect.y + rect.height - offset.bottom, page.y), rect.y + offset.top);
+      //modifiedY = Math.max(Math.min(rect.y + rect.height - offset.bottom, page.y), rect.y + offset.top);
     } else {
       modifiedX = Math.max(Math.min(rect.right - offset.right, page.x), rect.left + offset.left);
-      modifiedY = Math.max(Math.min(rect.bottom - offset.bottom, page.y), rect.top + offset.top);
+      //modifiedY = Math.max(Math.min(rect.bottom - offset.bottom, page.y), rect.top + offset.top);
     }
 
     status.dx = modifiedX - page.x;

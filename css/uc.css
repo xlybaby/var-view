@@ -407,7 +407,7 @@
 	justify-content: center;
 	min-width: 300px;
   width: 100%;
-  height: 90%;
+  height: 100%;
   margin: 0px 6px;	
   padding: 0px 0px;
  
@@ -423,7 +423,7 @@
 	justify-content: flex-start;
 	min-width: 280px;
   width: 300px;
-  height: 90%;
+  height: 100%;
   margin: 0px 6px;	
   padding: 0px 0px;
  
@@ -437,7 +437,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
-	max-width: 300px;
+	max-width: 400px;
   width: 100%;
   height: 90%;
   margin: 0px 0px;	
@@ -453,13 +453,14 @@
 	flex-direction: column;
 	justify-content: center;
 	-webkit-justify-content: center;
-	align-items: flex-start;
-	-webkit-align-items: flex-start;
+	align-items: center;
+	-webkit-align-items: center;
 	height: 100%;
   	width: 60%;
 }
 .uc-editSceMaterial-spec-banner-bodyTempTop{
-	display: none;
+	height: 50%;
+  	width: 95%;
 }
 .uc-editSceMaterial-spec-banner-bodyTempBottom{
 	display: flex;
@@ -470,6 +471,14 @@
 	-webkit-align-items: flex-start;
 	height: 100%;
   	width: 100%;
+}
+.uc-editSceMaterial-spec-ts-bodyTempTop{
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50%;
+  	width: 95%;
 }
 .uc-editSceMaterial-spec-timeseries{
 	display: none;
@@ -495,10 +504,11 @@
 }
 .uc-editSceMaterial-spec-ts-bodyTemp{
 	display: flex;
-	justify-content: center;
-	-webkit-justify-content: center;
-	align-items: flex-start;
-	-webkit-align-items: flex-start;
+	flex-direction: column;
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+	align-items: center;
+	-webkit-align-items: center;
 	height: 100%;
   	width: 60%;
 }
@@ -519,7 +529,7 @@
 	justify-content: flex-start;
 	max-width: 300px;
   width: 100%;
-  height: 90%;
+  height: 100%;
   margin: 0px 0px;	
   padding: 0px 0px;
  
@@ -693,6 +703,9 @@
 	height: 28px;
 	margin: 5px 0px 0px 0px;	
 	
+}
+.uc-corpus-browser-split-line-hidden {
+	display:none;
 }
 .uc-temp-grid-v{
 	position: absolute;
@@ -1261,7 +1274,7 @@ display: flex;  width: 65px; height: 100%; align-items: center; justify-content:
 	background-color: #ffffff;*/
   height: 96%;
   width: 0;
-  max-width: 580px;
+  max-width: 350px;
   min-width: 0px;
   margin-right: 5px;	
   padding: 0px 0px;

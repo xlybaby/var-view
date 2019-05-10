@@ -212,71 +212,7 @@ function getDisplayInfo(){
     s += " 你的屏幕设置 "+ window.screen.deviceXDPI +" 像素/英寸"+"\n";    
     alert (s);
   }
-function makeupCheckBox(target, callback) {
-	target.on({
-		click: function(event){
-			event.stopPropagation();
-			var target = $(event.target);
-			if( !target.hasClass("uc-check-box") )
-				target = target.parents(".uc-check-box");
-			var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
-			box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
-			//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-			var cur =  target.children(".uc-float-icon-checkbox-sel");
-			target.attr("value", cur.attr("value"));
-			
-			if(callback) {
-				try {
-					callback(target.attr("value"));
-				} catch(err){
-				     console.log(err);
-				}
-			}
-				
-		},
-		mouseover: function(event) {
-			event.stopPropagation();
-			event.target.style.cursor="pointer";
-		}
-	});
-}
-function makeupRadioBox(target, callback) {
-	target.find(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").on({
-		click: function(event){
-			event.stopPropagation();
-			var clicktag = event.target.tagName;
-			if(clicktag.toLowerCase()==="svg")
-				var target = $(event.target);
-			else if(clicktag.toLowerCase()==="use")
-				var target = $(event.target).parent("svg");
-			else
-				return false;     
-			
-			var cursel = target.parents(".uc-radio-box");
-			if( cursel.attr("selected") === "selected" )
-				return;
-			var parent = target.parents(".uc-input-block-table-row");
-			var lastsel = parent.find(".uc-radio-box[selected='selected']");
-			
-			cursel.attr("selected", "selected");
-			lastsel.removeAttr("selected");
-			lastsel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
-			cursel.children(".uc-float-icon").toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel flipInX flipOutX uc-zindex-nag");
-		
-			if(callback) {
-				try {
-					callback(cursel.attr("value"));
-				} catch(err){
-				     console.log(err);
-				}
-			}
-		},
-		mouseover: function(event) {
-			event.stopPropagation();
-			event.target.style.cursor="pointer";
-		}
-	});
-}
+
 function makeupColorPicker(target, init, change, alpha, input, empty) {
 	
 	target.spectrum({

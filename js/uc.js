@@ -2035,6 +2035,15 @@ function corpusNextPage(event) {
 	panel.append(newPage);
 }
 
+function changeTSDemoAxisLbl(event, axis) {
+	var target=$(event.target);
+	if(axis === 'x') {
+		
+	} else if(axis === 'y') {
+		
+	} 
+}
+
 function initEditScenariosComponentPanel(temp) {
 	//var container = $(".uc-editSceMaterial");
 	//var timeseriesPanel = container.children(".uc-editSceMaterial-spec-timeseries");
@@ -2044,6 +2053,72 @@ function initEditScenariosComponentPanel(temp) {
 
 	} else if( stype === "BANNER" ) {
 		var bannerbg = makeupColorPicker(temp.find("#uc-banner-bgcolor-box"), "#ffffff", null, false, true, false) ;
+		
+		makeupSlider(temp.find("#in_uc-banner-borderRadius")[0], 0, 20, 0, function(val){
+			var rv = temp.find("#uc-banner-border-radius-val");
+			rv.val(val);
+			temp.find(".uc-editSceMaterial-spec-banner-demo").css("borderRadius", val+"px");
+		});
+		makeupSlider(temp.find("#in_uc-banner-cnt-Weight")[0], 0, 100, 100, function(val){
+			var rv = temp.find("#uc-banner-width-val");
+			rv.val(val);
+			temp.find(".uc-editSceMaterial-spec-banner-demo").css("width", val+"%");
+		});
+		makeupSlider(temp.find("#in_uc-banner-cnt-high")[0], 0, 100, 100, function(val){
+			var rv = temp.find("#uc-banner-high-val");
+			rv.val(val);
+			temp.find(".uc-editSceMaterial-spec-banner-demo").css("height", val+"%");
+		});
+		makeupRadioBox(temp.find("#uc-banner-pic-position"), function(value){
+			var mode=value;
+			var imgW=850;
+			var imgH=500;
+			var bg= temp.find(".uc-editSceMaterial-spec-banner-demo").find(".uc-editSceMaterial-spec-banner-demo-bg");
+			var banner=temp.find(".uc-editSceMaterial-spec-banner-demo");
+			
+			var width = banner.width();
+			var height = banner.height();
+			
+			if(mode=="fillfull") {
+				if( parseFloat( imgH / parseFloat(imgW/width) ) >= height ) {
+					bg.css("backgroundRepeat","no-repeat");
+					bg.css("backgroundPosition","center center");
+					bg.css("backgroundSize","100% auto");
+				} else {
+					bg.css("backgroundRepeat","no-repeat");
+					bg.css("backgroundPosition","center center");
+					bg.css("backgroundSize","auto 100%");
+				}
+				
+			} else if(mode=="fitness") {
+				if( parseFloat( imgH / parseFloat(imgW/width) ) >= height ) {
+					bg.css("backgroundRepeat","no-repeat");
+					bg.css("backgroundPosition","center center");
+					bg.css("backgroundSize","auto 100%");
+				} else {
+					bg.css("backgroundRepeat","no-repeat");
+					bg.css("backgroundPosition","center center");
+					bg.css("backgroundSize","100% auto");
+				}
+			} else if(mode=="stretching") {
+				bg.css("backgroundRepeat","no-repeat");
+				bg.css("backgroundPosition","center center");
+				bg.css("backgroundSize","100% 100%");
+				
+			} else if(mode=="repeating") {
+				bg.css("backgroundRepeat","repeat");
+				bg.css("backgroundPosition","top left");
+				bg.css("backgroundSize","auto");
+				
+			} else if(mode=="centric") {
+				bg.css("backgroundRepeat","no-repeat");
+				bg.css("backgroundPosition","center center");
+				bg.css("backgroundSize","auto");
+			} 
+			
+		}) ;
+		
+		
 		
 		temp.find(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
 			click: function(event){
@@ -2068,42 +2143,9 @@ function initEditScenariosComponentPanel(temp) {
 				event.target.style.cursor="pointer";
 			}
 		});
-		
-		temp.find(".uc-check-box.uc-banner-automation-val").on({
-			click: function(event){
-				event.stopPropagation();
-				var target = $(event.target);
-				if( !target.hasClass("uc-check-box") )
-					target = target.parents(".uc-check-box");
-				var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
-				box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
-				//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-				var cur =  target.children(".uc-float-icon-checkbox-sel");
-				target.attr("value", cur.attr("value"));
-			},
-			mouseover: function(event) {
-				event.stopPropagation();
-				event.target.style.cursor="pointer";
-			}
-		});
-		temp.find(".uc-check-box.uc-banner-manual-val").on({
-			click: function(event){
-				event.stopPropagation();
-				var target = $(event.target);
-				if( !target.hasClass("uc-check-box") )
-					target = target.parents(".uc-check-box");
-				var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
-				box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
-				//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-				var cur =  target.children(".uc-float-icon-checkbox-sel");
-				target.attr("value", cur.attr("value"));
-			},
-			mouseover: function(event) {
-				event.stopPropagation();
-				event.target.style.cursor="pointer";
-			}
-		});
-		
+		makeupCheckBox(temp.find(".uc-check-box.uc-banner-automation-val"), null);
+		makeupCheckBox(temp.find(".uc-check-box.uc-banner-manual-val"), null);
+
 		temp.find(".uc-bg-image,.uc-bg-image-sel").on({
 			click: function(event){
 				event.stopPropagation();
@@ -2128,15 +2170,91 @@ function initEditScenariosComponentPanel(temp) {
 		
 		
 	} else if( stype === "CORPUSCOLLECT" ) {
-		makeupColorPicker(temp.find("#uc-corpus-bgcolor-box"), "#ffffff", null, true, true, true) ;
-		makeupColorPicker(temp.find("#uc-corpus-fntcolor-box"), "#000000", null, true, true, true) ;
+		makeupColorPicker(temp.find("#uc-corpus-tbl-fntcolor-box"), "#000000", null, false, true, false) ;
+		makeupColorPicker(temp.find("#uc-corpus-cnt-fntcolor-box"), "#000000", null, false, true, false) ;
+		makeupColorPicker(temp.find("#uc-corpus-cnt-bgcolor-box"), "#ffffff", null, true, true, true) ;
+		makeupColorPicker(temp.find("#uc-corpus-tbl-bgcolor-box"), "#ffffff", null, true, true, true) ;
+		
 		var panel  = temp.parent(".uc-editSceMaterial-spec-corpus").children(".uc-editSceMaterial-spec-corpus-temp");
 		
-		makeupSlider(temp.find("#in_ucCorpusMarginRight")[0], 0, 50, 0, function(val){
-			var rv = temp.find("#uc-corpus-margin-right-val");
+		
+		makeupSlider(temp.find("#in_uc-corpus-tbl-weight")[0], 0, 100, 60, function(val){
+			var rv = temp.find("#uc-corpus-tbl-width-val");
 			rv.val(val);
-			panel.find(".uc-corpus-browser-contents[pageId='"+temp.attr("pageId")+"']").css("paddingTop", val+"%");
+			temp.find(".uc-corpus-browser-contents-list").css("width", val+"%");
 		});
+		makeupSlider(temp.find("#in_uc-corpus-tbl-high")[0], 0, 100, 80, function(val){
+			var rv = temp.find("#uc-corpus-tbl-high-val");
+			rv.val(val);
+			temp.find(".uc-corpus-browser-contents-list").css("height", val+"%");
+		});
+		
+		makeupSlider(temp.find("#in_uc-corpus-cnt-Weight")[0], 0, 100, 85, function(val){
+			var rv = temp.find("#uc-corpus-width-val");
+			rv.val(val);
+			temp.find(".uc-corpus-browser-article-body").css("width", val+"%");
+		});
+		makeupSlider(temp.find("#in_uc-corpus-cnt-high")[0], 0, 100, 80, function(val){
+			var rv = temp.find("#uc-corpus-high-val");
+			rv.val(val);
+			temp.find(".uc-corpus-browser-article-body").css("height", val+"%");
+		});
+		
+		makeupSlider(temp.find("#in_uc-corpus-cnt-fnt-indent")[0], 0, 40, 20, function(val){
+			var rv = temp.find("#uc-corpus-cnt-fnt-indent-val");
+			rv.val(val);
+			temp.find(".uc-corpus-article-txt").css("text-indent", val+"px");
+		});
+		makeupSlider(temp.find("#in_uc-corpus-cnt-fnt-spacing")[0], 0, 20, 8, function(val){
+			var rv = temp.find("#uc-corpus-cnt-fnt-spacing-val");
+			rv.val(val);
+			temp.find(".uc-corpus-article-txt").css("letterSpacing", val+"px");
+		});
+		
+		makeupSlider(temp.find("#in_corpus-tbl-fnt-marginTop")[0], 0, 40, 20, function(val){
+			var rv = temp.find("#uc-corpus-tbl-fnt-margin-top-val");
+			rv.val(val);
+			temp.find(".uc-corpus-article-txt").css("marginTop", val+"px");
+		});
+		makeupSlider(temp.find("#in_uc-corpus-tbl-fnt-spacing")[0], 0, 20, 0, function(val){
+			var rv = temp.find("#uc-corpus-tbl-fnt-spacing-val");
+			rv.val(val);
+			temp.find(".uc-corpus-article-txt").css("letterSpacing", val+"px");
+		});
+		
+		makeupRadioBox(temp.find(".uc-corpus-tbl-fnt-size"), function(value){
+			temp.find(".uc-corpus-list-txt").css("fontSize", value);
+
+		}) ;
+		makeupRadioBox(temp.find(".uc-corpus-tbl-fnt-style"), function(value){
+			temp.find(".uc-corpus-list-txt").css("fontStyle", value);
+
+		}) ;
+		makeupRadioBox(temp.find(".uc-corpus-tbl-halign"), function(value){
+			temp.find(".uc-corpus-browser-contents").css("justifyContent", value);
+
+		}) ;
+		
+		
+		makeupRadioBox(temp.find(".uc-corpus-cnt-fnt-line-high"), function(value){
+			temp.find(".uc-corpus-article-txt").css("lineHeight", value);
+
+		}) ;
+		makeupRadioBox(temp.find(".uc-corpus-cnt-fnt-size"), function(value){
+			temp.find(".uc-corpus-article-txt").css("fontSize", value);
+
+		}) ;
+		makeupRadioBox(temp.find(".uc-corpus-cnt-fnt-style"), function(value){
+			temp.find(".uc-corpus-article-txt").css("fontStyle", value);
+
+		}) ;
+		makeupRadioBox(temp.find(".uc-corpus-splitting-line"), function(value){
+			temp.find(".uc-corpus-browser-split-line ").toggleClass("display");
+		}) ;
+		
+		
+		
+		
 		
 //		temp.find(".uc-editSceMaterial-add-item").on({
 //			click: function(event){
@@ -2175,6 +2293,30 @@ function initEditScenariosComponentPanel(temp) {
 //		});
 	} else if( stype === "TIMESERIES" ) {
 		var timeseriesPanel = temp;
+		var tempTop = timeseriesPanel.find(".uc-editSceMaterial-spec-ts-bodyTempTop");
+		console.log(tempTop.width()+" x "+tempTop.height());
+		var chart;
+		
+		timeseriesPanel.find("#uc-ts-specXAxisLabel,#uc-ts-specYAxisLabel").on({
+			change: function(event){
+				var target=$(event.target);
+				if(target.attr("id") === "uc-ts-specXAxisLabel") {
+					chart.setOption({
+						xAxis: {
+							name: target.val()
+					    }
+				    });
+				} else if(target.attr("id") === "uc-ts-specYAxisLabel") {
+					chart.setOption({
+						yAxis: {
+							name: target.val()
+					    }
+				    });
+				} 
+				
+			}
+		});
+		
 		timeseriesPanel.find(".uc-timeseries-add-item").on({
 			click: function(event){
 				var clicktag = event.target.tagName;
@@ -2196,8 +2338,11 @@ function initEditScenariosComponentPanel(temp) {
 									'							<img class="eRecieving" src="/var/images/uc_icon_signal_recieving.png" style="display: none;height: 20px;"  />'+
 									'							<img class="eRemoving" src="/var/images/uc_icon_connected.png" style="display: none;height: 20px;" onclick="ucItemUnbinding(event);" onmouseover="this.style.cursor=\'pointer\';" />		'+		
 									'							&nbsp;&nbsp;<img src="/var/images/uc_icon_garbage_box.png" style="height: 20px;" onclick="ucCorpusItemEdit(event, \'delete\');" onmouseover="this.style.cursor=\'pointer\';" />'+
+									'                            &nbsp;&nbsp;<input type="text" id="uc-timeseries-value-line-'+itemid+'" style="height: 80%;"/>'+
 									'					</div>'+
 									'				</div>'));
+				makeupColorPicker(areaBody.find("#uc-timeseries-value-line-"+itemid), "#000000", null, true, true, true) ;
+
 			},
 			mouseover:function(event){
 				event.target.style.cursor="pointer";
@@ -2207,28 +2352,187 @@ function initEditScenariosComponentPanel(temp) {
 		//timeseriesPanel.find("#specTSx-axisInHour").spinner({max: 24,min:1});
 		//timeseriesPanel.find("#specTSx-axisInMinute").spinner({max: 59,min:5});
 		
-		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-bgcolor-box"), "#ffffff", null, true, true, true) ;
-		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-axis-color-box"), "#333333", null, false, true, false) ;
-		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-fonts-color-box"), "#000000", null, false, true, false) ;
+		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-value-line-1"), "#888888", null, true, true, true) ;
+		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-xaxis-color-box"), "#9d899d", function(color) {
+			chart.setOption({
+				
+				xAxis: {
+			        
+			        axisLine: {
+			            lineStyle: {
+			                color: color.toRgbString()
+			            }
+			        }
+			    }
+		    });
+	    }, true, true, true) ;
+		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-yaxis-color-box"), "#9d899d", function(color) {
+			chart.setOption({
+				yAxis: {
+			        
+			        axisLine: {
+			            lineStyle: {
+			                color: color.toRgbString()
+			            }
+			        }
+			    }
+		    });
+	    }, true, true, true) ;
+		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-bgcolor-box"), "#333333",  function(color) {
+			chart.setOption({
+			    backgroundColor: color.toRgbString()
+		    });
+	    }, true, true, true) ;
+		//makeupColorPicker(timeseriesPanel.find("#uc-timeseries-axis-color-box"), "#333333", null, false, true, false) ;
+		makeupColorPicker(timeseriesPanel.find("#uc-timeseries-fonts-color-box"), "#888888", function(color) {
+			chart.setOption({
+				xAxis: {
+			        
+			        nameTextStyle: {
+			            color: color.toRgbString()
+			        },
+			        axisLabel: {
+			            color:color.toRgbString()
+			        }
+			    },
+			    	yAxis: {
+			        
+			        nameTextStyle: {
+			            color: color.toRgbString()
+			        },
+			        axisLabel: {
+			            color:color.toRgbString()
+			        }
+			    }
+		    });
+	    }, false, true, false) ;
 		
-		timeseriesPanel.find(".uc-check-box.uc-timeseries-grid-val").on({
-			click: function(event){
-				event.stopPropagation();
-				var target = $(event.target);
-				if( !target.hasClass("uc-check-box") )
-					target = target.parents(".uc-check-box");
-				var box = target.children(".uc-float-icon-checkbox-sel,.uc-float-icon-checkbox-nosel");
-				box.toggleClass("uc-float-icon-checkbox-sel uc-float-icon-checkbox-nosel zoomIn zoomOut uc-zindex-nag");
-				//target.toggleClass("uc-float-icon-radio-nosel uc-float-icon-radio-sel zoomIn zoomOut uc-zindex-nag");
-				var cur =  target.children(".uc-float-icon-checkbox-sel");
-				target.attr("value", cur.attr("value"));
-			},
-			mouseover: function(event) {
-				event.stopPropagation();
-				event.target.style.cursor="pointer";
-			}
+		makeupCheckBox(timeseriesPanel.find(".uc-check-box.uc-timeseries-yline-val"), function(value){
+			if(value==="display") {
+				chart.setOption({
+					yAxis: {
+						axisLine:{
+					          show: true
+					        }
+				    }
+			    });
+			} else if(value==="hidden") {
+				chart.setOption({
+					yAxis: {
+						axisLine:{
+					          show: false
+					        }
+				    }
+			    });
+			} 
 		});
 		
+		makeupCheckBox(timeseriesPanel.find(".uc-check-box.uc-timeseries-ygrid-val"), function(value){
+			if(value==="display") {
+				chart.setOption({
+					yAxis: {
+						splitLine:{
+					          show: true
+					        }
+				    }
+			    });
+			} else if(value==="hidden") {
+				chart.setOption({
+					yAxis: {
+						splitLine:{
+					          show: false
+					        }
+				    }
+			    });
+			} 
+		});
+		
+		
+		makeupCheckBox(timeseriesPanel.find(".uc-check-box.uc-timeseries-xline-val"), function(value){
+			if(value==="display") {
+				chart.setOption({
+					xAxis: {
+						axisLine:{
+					          show: true
+					        }
+				    }
+			    });
+			} else if(value==="hidden") {
+				chart.setOption({
+					xAxis: {
+						axisLine:{
+					          show: false
+					        }
+				    }
+			    });
+			} 
+		});
+		
+		makeupCheckBox(timeseriesPanel.find(".uc-check-box.uc-timeseries-xgrid-val"), function(value){
+			if(value==="display") {
+				chart.setOption({
+					xAxis: {
+						splitLine:{
+					          show: true
+					        }
+				    }
+			    });
+			} else if(value==="hidden") {
+				chart.setOption({
+					xAxis: {
+						splitLine:{
+					          show: false
+					        }
+				    }
+			    });
+			} 
+		});
+		makeupCheckBox(timeseriesPanel.find(".uc-check-box.uc-timeseries-xshow-val"), function(value){
+			if(value==="display") {
+				chart.setOption({
+					xAxis: {
+				        show: true
+				    }
+			    });
+			} else if(value==="hidden") {
+				chart.setOption({
+					xAxis: {
+				        show: false
+				    }
+			    });
+			} 
+		});
+		makeupCheckBox(timeseriesPanel.find(".uc-check-box.uc-timeseries-yshow-val"), function(value){
+			if(value==="display") {
+				chart.setOption({
+					yAxis: {
+				        show: true
+				    }
+			    });
+			} else if(value==="hidden") {
+				chart.setOption({
+					yAxis: {
+				        show: false
+				    }
+			    });
+			} 
+		});
+		makeupCheckBox(timeseriesPanel.find(".uc-check-box.uc-timeseries-grid-val"), function(value){
+			if(value==="display") {
+				chart.setOption({
+					grid:{
+						show:true
+					}
+			    });
+			} else if(value==="hidden") {
+				chart.setOption({
+					grid:{
+						show:false
+					}
+			    });
+			} 
+		});
+
 		timeseriesPanel.find(".uc-bg-color-picker-sel,.uc-bg-color-picker").on({
 			click: function(event){
 				event.stopPropagation();
@@ -2289,8 +2593,115 @@ function initEditScenariosComponentPanel(temp) {
 				event.target.style.cursor="pointer";
 			}
 		});
+		setTimeout(function () {
+			chart = initTSDemo(timeseriesPanel.find(".uc-editSceMaterial-spec-ts-demo")[0]);
+		}, 1000);
 	}
 	
+}
+
+function initTSDemo(target) {
+	var chart = echarts.init(target);
+	chart.setOption(
+{
+		title: {
+	        text: '',
+	        textAlign: 'center',
+	        textVerticalAlign: 'center',
+	        left: 'center'
+	},
+    backgroundColor: 'rgb(51，51，51)',
+    grid: {
+        show: false,
+        left: '10%',
+        	top: '10%'
+    },
+    xAxis: {
+        boundaryGap: false,
+        name: '时间',
+        nameLocation: 'end',
+        nameTextStyle: {
+            color: '#888888',
+            fontStyle: 'normal',
+            fontSize: 15,
+            fontWeight: 'bold'
+        },
+        axisLine: {
+        	   show: true,
+            lineStyle: {
+                color: 'rgb(157,137,157)',
+                type: 'solid'
+            }
+        },
+        
+        axisLabel: {
+            color: '#888888'
+        },
+//        splitLine: {
+//            show: true,
+//            lineStyle: {
+//                color: ['#efefef', '#dfdfdf'],
+//                type: 'dashed'
+//            }
+//        },
+        type: 'category',
+        //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: false,
+        name: '数据值',
+        nameLocation: 'end',
+        nameTextStyle: {
+            color: '#888888',
+            fontStyle: 'normal',
+            fontSize: 15,
+            fontWeight: 'bold'
+        },
+        axisLine: {
+        	show: true,
+            lineStyle: {
+                color: 'rgb(157,137,157)',
+                type: 'solid'
+            }
+        },
+//      splitLine: {
+//      show: true,
+//      lineStyle: {
+//          color: ['#efefef', '#dfdfdf'],
+//          type: 'dashed'
+//      }
+//  },
+        axisLabel: {
+            color: '#888888'
+        }
+
+    },
+    series: [{
+        name: '时间序列图',
+        //data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        //symbol: 'circle',
+        //symbolSize: 5,
+        lineStyle: {
+            color: '#888888'
+            //shadowColor: 'rgba(0, 0, 0, 0.5)',
+           // shadowBlur: 10
+        }
+    }]
+});
+	
+	//load data
+	chart.setOption({
+        xAxis: {
+            data: ['09:00', '09:05', '09:10', '09:15', '09:20', '09:25', '09:30']
+        },
+        series: [{
+        	name: '时间序列图',
+        	data: [820, 932, 901, 934, 1290, 1330, 1320]
+        }]
+    });
+	return chart;
 }
 
 $(document).ready(function(){ 
@@ -2716,6 +3127,15 @@ $(document).ready(function(){
 		},
 		mouseover:function(event){
 			event.target.style.cursor="pointer";
+		}
+	});
+	$(".uc-canvas-overlay").on({
+		click: function(event){
+			event.stopPropagation(); 
+			$(".uc-canvas-overlay").hide();
+			$(".uc-editSceMaterial").css("display","none");
+			$(".uc-editSceMaterial").children("div[class^='uc-editSceMaterial-spec']").hide();
+			$(".uc-canvasM").css("filter","blur(0px)");
 		}
 	});
 	$(".uc-editSceMaterial-close-btn").on({

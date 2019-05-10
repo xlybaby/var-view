@@ -781,12 +781,6 @@ function collectAndSubmit(target) {
 		console.log("Scenario binding components: ");
 		console.log(oComponents);
 		
-		var postdata = {};
-		postdata["userId"] = "u001";
-		postdata["template"] = JSON.stringify(oComponents);
-		exchange("platform", "/t/sbt", postdata, function(data){
-			alert(data);
-		});
 	}
 }
 //var editable_template = templateInstance.newTemplate();
