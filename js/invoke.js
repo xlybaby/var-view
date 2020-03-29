@@ -1,40 +1,49 @@
 var SERVICE_LOCATION_PREFIX = {"datacenter":"http://localhost/datacenter", "platform":"http://localhost/platform"};
+var _GLOBAL_TOKN;
 
-function invokeRrequest(method, contentType, dt, uri, entity, callback) {
+function invokeRedirect( direct ) {
+	var entity = {direct:direct};
 	$.ajax({
-        type: method,
-        url: uri,
+		headers: {      
+            Accept: "application/json; charset=utf-8",
+            token: _GLOBAL_TOKN 
+        },
+        type: "POST",
+        url: "/var/auth/redirect",
         data: JSON.stringify(entity),
-        dataType: dt,
-        contentType: contentType,
-        success: function(data){
-        	var msg = data["retMsg"];
-        	if( !StringUtil.isEmpty(msg) ) {
-        		alert(msg);
-        		return;
-        	}
-        	var result = data["retData"];
-        	callback(result);
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function(data, status, xhr){
+				        	_GLOBAL_TOKN = xhr.getResponseHeader("authorization");
+				        	if(xhr.status == 301){
+				        		var uri = xhr.getResponseHeader("uc-redirect-uri");
+				        		window.location.href=uri;
+				        	}
         }
     });
 }
 
-function exchange(service, uri, entity, callback) {
-	var url = SERVICE_LOCATION_PREFIX[service];
-	if(uri.substr(0,'/'.length) !== '/')
-		url += "/"+uri;
-	else
-		url += uri;
-	console.log("exchange: " + url);
-	invokeRrequest("POST", "application/json; charset=utf-8", "json", url, entity, callback);
-}
-
-function invokeGet(uri, callback) {
+function invokeRrequest( uri, callback,  entity, method, contentType, dt ) {
 	$.ajax({
-        type: "GET",
+		headers: {      
+            Accept: mGetStringValue(contentType, "application/json; charset=utf-8"),
+            token: _GLOBAL_TOKN 
+        },
+        type: mGetStringValue(method, "POST"),
         url: uri,
-        success: function(data){
-        	callback(data);
+        data: StringUtil.isEmpty(entity)?"":JSON.stringify(entity),
+        dataType: mGetStringValue(dt, "json"),
+        contentType: mGetStringValue(contentType, "application/json; charset=utf-8"),
+        success: function(data, status, xhr){
+        	_GLOBAL_TOKN = xhr.getResponseHeader("authorization");
+		        	var result = data["retData"];
+		        	if(callback)	callback(result);
+		        	var msg = data["retMsg"];
+		        	if( !StringUtil.isEmpty(msg) ) {
+		        		alert(msg);
+		        		return;
+		        	}
+		        
         }
     });
 }

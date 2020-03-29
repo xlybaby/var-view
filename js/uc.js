@@ -445,9 +445,11 @@ function initTempalePanel() {
 		makeupColorPicker(templateBgColorPicker, "#ffffff", function(color) {
 	        //color.toHexString(); // #ff0000
 			if( color )
-				canvas.css("backgroundColor", color.toRgbString());
+				//canvas.css("backgroundColor", color.toRgbString());
+				canvas.parent(".uc-canvasM").css("backgroundColor", color.toRgbString());
 			else
-				canvas.css("backgroundColor", "rgba(255,255,255,0.0)");
+				//canvas.css("backgroundColor", "rgba(255,255,255,0.0)");
+				canvas.parent(".uc-canvasM").css("backgroundColor", "rgba(255,255,255,0.0)");
 	    },true,true,true) ;
 		
 		panel.find(".uc-temp-grid-btn").on({
@@ -535,7 +537,8 @@ function initTempalePanel() {
 				target.toggleClass("uc-bg-image-sel uc-bg-image");
 				last.toggleClass("uc-bg-image-sel uc-bg-image");
 				
-				canvas.css("backgroundImage", target.css("backgroundImage"));
+				//canvas.css("backgroundImage", target.css("backgroundImage"));
+				canvas.parent(".uc-canvasM").css("backgroundImage", target.css("backgroundImage"));
 			},
 			mouseover: function(event) {
 				event.stopPropagation();
@@ -559,7 +562,8 @@ function initTempalePanel() {
 				last.toggleClass("uc-bg-color-picker-sel uc-bg-color-picker");
 				
 				templateBgColorPicker.spectrum("set", target.css("backgroundColor"));
-				canvas.css("backgroundColor", target.css("backgroundColor"));
+				//canvas.css("backgroundColor", target.css("backgroundColor"));
+				canvas.parent(".uc-canvasM").css("backgroundColor", target.css("backgroundColor"));
 				//console.log(templateBgColorPicker.spectrum("get").toRgbString());
 			},
 			mouseover: function(event) {

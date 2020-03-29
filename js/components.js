@@ -766,7 +766,7 @@ var PopulateTemplate = (function ($) {
     } 
     return pub;    
 })(window.jQuery);
-
+/*
 $(document).ready(function(){ 
 	mainInit();
 	//get parameter: template_id
@@ -876,3 +876,4 @@ $(document).ready(function(){
 	
 	Ranklist.load("test-ranklist-001");
 });
+*/

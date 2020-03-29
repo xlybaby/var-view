@@ -52,4 +52,13 @@
 		<div class="overlay" style="height: 100%; width: 100%;"></div>
 		
 	</body>
+	<script>
+		$(document).ready(function(){ 
+			mainInit();
+			if( window.varDocComponents && window.varDocComponents.ini ) {
+				window.varDocComponents.ini();
+			}
+		});
+	
+	</script>
 </html>

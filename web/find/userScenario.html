@@ -1,0 +1,288 @@
+<script type="text/javascript" src="/var/js/module/component.js?v=050" ></script>
+<link rel="stylesheet" type="text/css" href="/var/css/userScenario.css?v=101" />
+<script type="text/javascript" src="/var/js/userScenario.js?v=101"></script>
+	
+<div class="page-main-div" style="background-color: #ffffff;">
+	<div class="uc-edit-components">
+		<div class="uc-edit-comp-l">
+				<div class="uc-edit-panel-material">
+				<div class="uc-edit-panel-block"  id="user-items-search-box" >
+												<div class="uc-input-area" style="background-color: #ffffff;">
+													<div style="width: 90%; margin-left:6px; display: flex;background-color: #ffffff;height: 25px;align-items: center;justify-content: space-between;">
+																						<input type="text" id="uc-material-search-keywords" placeholder="关键字..."  style="width: 100%; height: 100%; border:0px;" />													
+																						<button  class="uc-temp-grid-btn" style="display: flex; width:auto;justify-content: center; border:0px; align-items: center; " data-spin="up">
+																							<svg  class="uc-float-icon" style=" font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																						    		<use xlink:href="#icon-sousuo"></use>
+																								</svg>
+																						</button>
+																						
+																					</div>
+												</div>
+												</div>
+						
+							<div class="uc-edit-panel-block" id="user-items-filter-type">
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+														
+															<div class="uc-input-block-table-row">
+															<div style="width: 65px; display: flex; align-items: center; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">选择类型</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																
+																<div class="uc-radio-box checked" item="template" style="align-items: center; margin-left:2px; white-space : nowrap;">
+																	<div class="uc-float-icon-radio-nosel" selected="selected" style="height: 100%; width: 16px; align-items: center; position: relative;" value="relative">
+																		<svg  class="uc-float-icon" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																		</svg>
+																	</div>
+																	<div class="uc-float-icon-radio-sel" selected="selected" style="height: 100%; width: 16px; align-items: center; position: relative;" value="relative">
+																		<svg  class="uc-float-icon" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																		</svg>
+																	</div>
+																</div>
+																<div style="display:flex; align-items: center; white-space : nowrap;">
+																		<span class="uc-text cn_input_hint">模板</span>
+																</div>
+																<div class="uc-radio-box" item="material" style="align-items: center; margin-left:2px; white-space : nowrap;">
+																	<div class="uc-float-icon-radio-sel" selected="selected" style="height: 100%; width: 16px; align-items: center; position: relative;" value="relative">
+																		<svg  class="uc-float-icon" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																		</svg>
+																	</div>
+																	<div class="uc-float-icon-radio-nosel" selected="selected" style="height: 100%; width: 16px; align-items: center; position: relative;" value="relative">
+																		<svg  class="uc-float-icon" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																		</svg>
+																	</div>
+																</div>
+																<div style="display:flex; align-items: center; white-space : nowrap;">
+																		<span class="uc-text cn_input_hint">素材</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+									<div class="uc-edit-panel-block" id="user-items-category">
+								<span class="uc-text uc-block-title-cn">分类</span> <img src="/var/images/icon_help.svg" />
+								<div class="uc-input-area">
+									<div class="uc-input-block">
+										<div class="uc-input-block-table">
+											<div class="uc-input-block-table-row" >
+												<div class="user-items-category-sel category-lable" category="">
+													<span class="uc-text cn_category_label">全部</span>
+													
+													
+												</div>
+												
+											</div>
+											<!-- 
+											<div class="uc-input-block-table-row" >
+												<div class="user-items-category-sel category-lable" category="">
+													<span class="uc-text cn_category_label">新闻</span>
+													<div style="display: flex; align-items: center; margin-left:5px; white-space : nowrap;">
+															<svg  class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-bianji"></use>
+															</svg>&nbsp;&nbsp;&nbsp;
+															<svg  class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-lajitong3"></use>
+															</svg>
+													</div>
+													
+												</div>
+												<div class="user-items-category-sel" style="display: none;">
+													<input type="text" class="input-category-editor" value="新闻" style="width: 100%;outline:none;" />
+												</div>
+											</div>
+											<div class="uc-input-block-table-row" >
+												<div class="user-items-category-nosel">
+													<span class="uc-text cn_category_label">理财</span>
+													<div style="display: flex; align-items: center; margin-left:5px; white-space : nowrap;">
+															<svg  class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-bianji"></use>
+															</svg>&nbsp;&nbsp;&nbsp;
+															<svg  class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-lajitong3"></use>
+															</svg>
+													</div>
+													
+												</div>
+												<div class="user-items-category-sel" style="display: none;">
+													<input type="text" class="input-category-editor" value="理财" style="width: 100%;outline:none;" />
+												</div>
+											</div>-->
+											<div class="uc-input-block-table-row" >
+												<div class="user-items-category-nosel">
+													<span class="uc-text cn_category_label">房市</span>
+													<div style="display: flex; align-items: center; margin-left:5px; white-space : nowrap;">
+															<svg  class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-bianji"></use>
+															</svg>&nbsp;&nbsp;&nbsp;
+															<svg  class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-lajitong3"></use>
+															</svg>
+													</div>
+													
+												</div>
+												<div class="user-items-category-sel" style="display: none;">
+													<input type="text" class="input-category-editor" value="房市" style="width: 100%;outline:none;" />
+												</div>
+											</div>
+											<div class="uc-input-block-table-row">
+																<div style="margin-top: 7px; width: 100%;display: flex;height: 30px;align-items: center;justify-content: center;">
+																	<button name="addCategory" class="uc-temp-grid-btn" style="display: flex; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(255,255,255,1.0); border-radius: 10px; width: 100%; height: 100%; align-items: center; " data-spin="up">
+																		<span class="uc-text cn_input_label">新增分类</span>
+																	</button>	
+																</div>
+															</div>
+										</div>
+									</div>
+								</div>
+							</div> 		
+											
+								
+						</div>
+			</div>
+			<div class="uc-edit-comp-con">
+				<div class="page-tab-box">
+					<div class="page-tab" template="favorite">
+						<button onmouseover="this.style.cursor='pointer';"><span class="uc-text box-link-label">收藏夹</span></button>
+						
+					</div>
+					<div class="page-tab-hide" template="myProject">
+						<button onmouseover="this.style.cursor='pointer';"><span class="uc-text box-link-label-hide">我的项目</span></button>
+						
+					</div>
+				</div>
+				<div class="uc-edit-components-favorite element-display-flex">
+			<div class="view-row">
+				<div class="view-col-wide">
+					<div class="view-col-img">
+						<img src="/var/images/mainbg/vintage-typewriter-qhd-2048x1152.jpg" style="width: 100%;" />
+					</div>
+					<div class="view-col-txt">
+						<div class="view-col-txt-left">
+							<svg class="uc-float-icon" style=" font-size: 1em; font-weight: 400;color: #c83c23;" aria-hidden="true">				    				
+								<use xlink:href="#icon-xinsui"></use>
+							</svg>
+							<svg class="uc-float-icon" style=" font-size: 1.17em; font-weight: 400;color: #efefef;" aria-hidden="true">				    				
+								<use xlink:href="#icon-tuijian1"></use>
+							</svg>
+							<svg class="uc-float-icon" style=" font-size: 1.17em; font-weight: 400;color: #efefef;" aria-hidden="true">				    				
+								<use xlink:href="#icon-jubao3"></use>
+							</svg>
+						</div>
+						<div class="view-col-txt-right">
+							<span class="view-col-label">By&nbsp;</span>
+							<span class="view-col-label author">Andy笑笑</span>
+						</div>
+						
+					</div>
+					<div class="view-col-mask"></div>
+				</div>
+				<div class="view-col-wide">
+					<div class="view-col-img">
+						<div style="width: 100%; height: auto;">
+							<img src="/var/images/favicon.ico" style="width:32px;height:32px;float:left;"/>
+							<span class="uc-text cn_material_label"><p>本站致力于推广各种编程语言技术，所有资源是完全免费的，并且会根据当前互联网的变化实时更新本站内容。</p></span>
+						</div>
+					</div>
+					<div class="view-col-txt">
+						<div class="view-col-txt-left">
+							<svg class="uc-float-icon" style=" font-size: 1em; font-weight: 400;color: #c83c23;" aria-hidden="true">				    				
+								<use xlink:href="#icon-xinsui"></use>
+							</svg>
+							<svg class="uc-float-icon" style=" font-size: 1.17em; font-weight: 400;color: #efefef;" aria-hidden="true">				    				
+								<use xlink:href="#icon-tuijian1"></use>
+							</svg>
+							<svg class="uc-float-icon" style=" font-size: 1.17em; font-weight: 400;color: #efefef;" aria-hidden="true">				    				
+								<use xlink:href="#icon-jubao3"></use>
+							</svg>
+						</div>
+						<div class="view-col-txt-right">
+							<span class="view-col-label">By&nbsp;</span>
+							<span class="view-col-label author">Andy笑笑</span>
+						</div>
+						
+					</div>
+					<div class="view-col-mask"></div>
+				</div>
+				<div class="view-col-wide">
+					<div class="view-col-img">
+						<img src="/var/images/mainbg/vintage-typewriter-qhd-2048x1152.jpg" style="width: 100%;" />
+					</div>
+					<div class="view-col-txt">
+						<span class="view-col-label">By Andy笑笑</span>
+					</div>
+					<div class="view-col-mask"></div>
+				</div>
+				<div class="view-col-wide">
+					<div class="view-col-img">
+						<img src="/var/images/mainbg/vintage-typewriter-qhd-2048x1152.jpg" style="width: 100%;" />
+					</div>
+					<div class="view-col-txt">
+						<span class="view-col-label">By Andy笑笑</span>
+					</div>
+					<div class="view-col-mask"></div>
+				</div>
+				<div class="view-col-wide">
+					<div class="view-col-img">
+						<img src="/var/images/mainbg/minimalistic-abstract-colors-simple-background-5k-fc.jpg" style="width: 100%;" />
+					</div>
+					<div class="view-col-txt">
+						<span class="view-col-label">By Andy笑笑</span>
+					</div>
+					<div class="view-col-mask"></div>
+				</div>
+			</div>
+		</div>
+		<div class="uc-edit-components-user element-hide">
+					<div class="view-row">
+						<div class="view-col-wide-my">
+							<div class="view-col-img">
+								<img src="/var/images/mainbg/harmony-boat-creative-background-nr-2048x1152.jpg" style="width: 100%;" />
+							</div>
+							<div class="view-col-txt">
+								<span class="view-col-label"></span>
+							</div>
+							<div class="view-col-mask"></div>
+						</div>
+						
+						<div class="view-col-wide-my">
+							<div class="view-col-img">
+								<img src="/var/images/mainbg/vintage-volkswagen-van-toy-1g-2048x1152.jpg" style="width: 100%;" />
+							</div>
+							<div class="view-col-txt">
+								<span class="view-col-label"></span>
+							</div>
+							<div class="view-col-mask"></div>
+						</div>
+						
+						<div class="view-col-wide-my">
+							<div class="view-col-img">
+								<img src="/var/images/mainbg/porsche-911-gt3-drift-wide-2048x1152.jpg" style="width: 100%;" />
+							</div>
+							<div class="view-col-txt">
+								<span class="view-col-label"></span>
+							</div>
+							<div class="view-col-mask"></div>
+						</div>
+						<div class="view-col-wide-my">
+							<div class="view-col-img">
+								<img src="/var/images/mainbg/vintage-volkswagen-van-toy-1g-2048x1152.jpg" style="width: 100%;" />
+							</div>
+							<div class="view-col-txt">
+								<span class="view-col-label"></span>
+							</div>
+							<div class="view-col-mask"></div>
+						</div>
+					</div>
+		</div>
+				
+			</div>
+		
+		
+	</div>
+</div>

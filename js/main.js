@@ -1,3 +1,40 @@
+var _varInvoker = (function ($){
+	$.varInvoker = function(args){
+		var map = {"uc":{"material":{"uri":"/d/uc/fetchMaterialByType"}}};
+		this.request = function(module, method, core){
+			
+		}
+		this.invoke = function(uri, entity, callback, method, contentType, dt) {
+			if( StringUtil.isEmpty(uri) ) {
+	        		console.log("Invalid uri");
+	        		return;
+	        	}
+			$.ajax({
+		        type: method?method:"POST",
+		        url: uri,
+		        data: JSON.stringify(entity),
+		        dataType: dt?dt:"json",
+		        contentType: contentType?contentType:"application/json; charset=utf-8",
+		        success: function(data){
+						        	var msg = data["retMsg"];
+						        	if( !StringUtil.isEmpty(msg) ) {
+						        		alert(msg);
+						        		return;
+						        	}
+						        	var result = data["retData"];
+						        	if(callback) callback(result);
+		        },
+		        error: function(XMLHttpRequest, textStatus, errorThrown){
+		            console.log(XMLHttpRequest, textStatus, errorThrown);
+		         }
+		    });
+		};
+		
+	};
+	return new $.varInvoker();
+})(window.jQuery);
+
+
 function randomize(from, end){   
     if(!from && from!=0 || !end){return null;}   
     return Math.floor( ( Math.random() * end ) + from );   
@@ -95,6 +132,19 @@ var StringUtil = (function ($) {
     return pub;    
 })(window.jQuery);
 
+function mGetStringValue(str, d) {
+	if( StringUtil.isEmpty(str) ) return d;
+	if( str.trim().toLowerCase() === "none" ) return d;
+	return str;
+}
+
+function mGetIntValue(str, d) {
+	if( StringUtil.isEmpty(str) ) return d;
+	var v= str.match(/-?\d+/);
+	if(v.length>0) return v[0]-0;
+	return d;
+}
+
 function changPointer(obj) {
 	obj.style.cursor="pointer";
 }
@@ -118,6 +168,7 @@ function guid() {
 //var _visibleWindowHeight = $(document).scrollTop(); //获取滚动条到顶部的垂直高度
 //var _visibleWindowHeight = $(document).scrollLeft(); //获取滚动条到左边的垂直宽度
 function resize(sDrag, container, resizable) {
+	var callback = resizable.hasOwnProperty("callback")?resizable["callback"] : null;
 	interact(sDrag).resizable({
 		// resize from all edges and corners
 		edges : {
@@ -143,10 +194,14 @@ function resize(sDrag, container, resizable) {
 
 		inertia : true,
 	}).on('resizemove',
-			function(event) {
-				var target = event.target, x = (parseFloat(target
+			function(event) {				
+				var target = event.target;
+				
+				/*
+				 * ,x = (parseFloat(target
 						.getAttribute('data-x')) || 0), y = (parseFloat(target
-						.getAttribute('data-y')) || 0);
+								.getAttribute('data-y')) || 0)
+						
 				var rect = figureRect(".uc-canvas-container");
 				var sid = $(target).attr("scenarioId");
 				var editPanel = $(".uc-edit-panel-layouts[currentSceId='"+sid+"']");
@@ -177,15 +232,22 @@ function resize(sDrag, container, resizable) {
 				//console.log("current target's width/parent's is "+(Math.round(event.rect.width/rect["width"]*10000)/100)+"%");
 				//console.log("current target's height/parent's is "+(Math.round(event.rect.height/rect["height"]*10000)/100)+"%");
 				
+				
 				// translate when resizing from top or left edges
 				x += event.deltaRect.left;
 				y += event.deltaRect.top;
 
-				target.style.webkitTransform = target.style.transform = 'translate('
-						+ x + 'px,' + y + 'px)';
-
+				//target.style.webkitTransform = target.style.transform = 'translate('+ x + 'px,' + y + 'px)';
+				target.style.left = x + 'px';
+				target.style.top = y + 'px';
+				
 				target.setAttribute('data-x', x);
 				target.setAttribute('data-y', y);
+				*/
+				target.style.width  = event.rect.width + 'px';
+				target.style.height  = event.rect.height + 'px';
+				
+				if(callback) callback(event);
 				/*target.textContent = Math.round(event.rect.width)
 						+ '\u00D7' + Math.round(event.rect.height);*/
 			});
@@ -314,12 +376,14 @@ function makeupSlider(target, min, max, start, callback) {
 
 function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict, snap) {
 	// target elements with the "draggable" class
-	onMoveListener = dragMoveListener;
-	onEndListener = dragMoveEndListener;
-	if (onMove)
-		onMoveListener = onMove;
-	if (onEnd)
-		onEndListener = onEnd;
+	onMoveListener = function(event){
+		dragMoveListener(event);
+		if (onMove) onMove(event);
+	};
+	onEndListener = function(event){
+		dragMoveEndListener(event);
+		if (onEnd) onEnd(event);
+	};
 	
 	var dragobj = interact(sDrag).draggable({
 		// enable inertial throwing
@@ -346,14 +410,15 @@ function draggabilly(sDrag, container, onMove, onEnd, resizable, restrict, snap)
 	function dragMoveListener(event) {
 		//console.log("drag moving...");
 		var target = event.target,
-		
 		// keep the dragged position in the data-x/data-y attributes
 		x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx, 
 		y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
 		// translate the element
-		target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-
+		//target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+		target.style.left = x + 'px';
+		target.style.top = y + 'px';
+				
 		// update the posiion attributes
 		target.setAttribute('data-x', x);
 		target.setAttribute('data-y', y);
@@ -467,4 +532,5 @@ function mainInit(){
 			img.removeClass("m-title-sign-anim");
 		
 	});
+	
 }

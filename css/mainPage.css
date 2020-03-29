@@ -75,12 +75,32 @@
   overflow: hidden;
   justify-content: center;
   align-items: center;
+    background-color: #f2f1ed;
   
-  background-image: url(/var/images/mainbg/vintage-typewriter-qhd-2048x1152.jpg);
+  background-image: url(/var/images/mainbg/star-citizen-5k-d5.jpg);
 	background-repeat: no-repeat;
-	background-position: 0px 0px;
+	background-position: center 0px;
+	background-size: cover;
 }
-
+.m-panel-white-slogan{
+	height:100%;
+	width:80%;
+	display:flex;
+	align-items:center;
+	justify-content:space-around;
+}
+.m-panel-white-slogan-font{
+	font-size: 2em;
+	color: #a78e44;
+	font-weight:900;
+	font-family: cursive;
+}
+.m-panel-white-count-font{
+	font-size: 1.2em;
+	color: #a78e44;
+	font-weight:500;
+	font-family: cursive;
+}
 .m-panel-demo {
 	display: flex;
 	position: relative;
@@ -124,27 +144,28 @@
   align-items: center;
 }
 .m-panel-white {
-	display: block;
+	display: flex;
+	justify-content:center;
 	width: 100%;
-  height: 95px;
+  height: 75px;
   margin: 0px; 
   padding: 0px;
   background-color: #f2f1ed;
+  position: relative;
+  	border-top:2px solid rgba(202,105,36,1.0);
   
 }
 .m-panel-count{
-	display: flex;
-	position: relative;
-	width: 100%;
+	display: block;
+	position: absolute;
 	height: 80%;
-	top: -290%;
+	left:30%;
 }
 .m-panel-count-scenarios{
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	
 	height: 100%;
-	margin-left: 5%;
 }
 .m-panel-count-num{
   display: flex;
