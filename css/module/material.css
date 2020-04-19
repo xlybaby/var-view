@@ -137,7 +137,10 @@
 	width: 100%;
 	height: 100%;
 	display: flex;
-	/*background-color: #ffffff;*/
+	flex-direction: column;
+	align-items: center;
+	/*
+	background-color: #ffffff;*/
 }
 .browser-selector{
 	display: none;
@@ -219,6 +222,7 @@
 	min-height: 135px;
 	align-items: center;
 	flex-direction: column;
+	overflow-y:auto;
 }
 .uc-edit-comp-r-editor-submit {
 	position: relative;
@@ -379,4 +383,31 @@
 .cn_material_label{
 	font-size: 0.9em;
 	color: #000;
+}
+
+.detect-same-hierarchy-result-box{
+	display: none;
+	position: absolute;
+	
+	flex-direction: column;
+	align-items: center;
+	
+  width: 420px;
+  height: 480px;
+  margin: 0px;	
+  padding: 0px;
+  overflow: hidden;
+  background-color: rgba(255,255,255,1.0);
+  border-radius: 10px;
+  z-index: 12;
+}
+.box-title{
+	display: flex;	
+	align-items: center;
+	justify-content: center;
+	height: 45px;
+  width: 100%;
+  font-size: 1.35em;
+  font-weight: 700;
+  color: #996633;
 }

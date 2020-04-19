@@ -225,8 +225,7 @@
 					var target = $(event.target);
 					
 					target.parents(".uc-check-box").children(".uc-float-icon-nochecked,.uc-float-icon-checked").toggleClass("uc-float-icon-nochecked uc-float-icon-checked");
-
-					callback();					
+					if(callback) callback();					
 				}, 
 				mouseover: function(event) {
 					event.stopPropagation();
@@ -289,7 +288,7 @@
 					target.parents(".uc-radio-box").children(".uc-float-icon-radio-sel,.uc-float-icon-radio-nosel").toggleClass("uc-float-icon-radio-sel uc-float-icon-radio-nosel");
 					target.parents(".uc-radio-box").toggleClass("checked");
 
-					callback();					
+					if(callback) callback();					
 				}, 
 				mouseover: function(event) {
 					event.stopPropagation();

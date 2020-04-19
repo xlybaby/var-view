@@ -113,7 +113,7 @@ $.materialItemBlock = function(data){
 	}
 	this.save = function(){
 		var type = _data["type"];
-		_data["selector"] = {}
+		_data["selectors"] = []
 		var selector;
 		if(type==="timeseries") {
 			selector = $(".timeseries-selector");
@@ -145,27 +145,58 @@ $.materialItemBlock = function(data){
 			
 		}  else if(type==="corpus") {
 			selector = $(".corpus-selector");
-			_data["selector"]["rootXpath"] = $(".corpus-selector > .container-info").find("input[name='root-xpath']").val();
-			_data["selector"]["rootLabel"] = $(".corpus-selector > .container-info").find("input[name='root-label']").val();
-			_data["selector"]["rootLinkXpath"] = $(".corpus-selector > .container-info").find("input[name='link-xpath']").val();
-			_data["selector"]["rootLinkLabel"] = $(".corpus-selector > .container-info").find("input[name='link-label']").val();
+			level=1;
+			_data["level"] =level;
+			rootselector = {};
+			rootselector["xpath"] = $(".corpus-selector > .container-info").find("input[name='root-xpath']").val();
+			rootSubXpath = $(".corpus-selector > .container-info").find("input[name='root-sub-xpath']").val();
+			rootPagiXpath = $(".corpus-selector > .container-info").find("input[name='root-pagination']").val();
+
+			if (!StringUtil.isEmpty(rootSubXpath)){
+				rootsubsel = [];
+				rootsubsel.append({"xpath":rootSubXpath});
+				rootselector["subselectors"] = rootsubsel;
+			}
+			if (!StringUtil.isEmpty(rootPagiXpath)){
+				rootpagisel ={};
+				rootpagisel["xpath"]=rootPagiXpath;
+				rootselector["pagination"] = {"selector":rootpagisel,"limit": 10,"interim": 1,"mode": "parallel"};
+			}
 			
-			var children = selector.find(".children-info").find(".child-node");
-			_data["selector"]["children"] = [];
+			_data["selectors"].append(rootselector);
+			
+			var children = selector.find(".child-node");
+			var curparent = _data;
 			for(var i=0;i<children.length;i++) {
-				var child = {};
-				child["xpath"] = children[i].find("input[name='root-xpath']").val();
-				child["label"] = children[i].find("input[name='root-label']").val(child["label"]);
-				child["linkXpath"] = children[i].find("input[name='link-xpath']").val();
-				child["linkLabel"] = children[i].find("input[name='link-label']").val();
-				_data["selector"]["children"].append(child);
+				level+=1;
+				var child = {"selectors":[],"level":level};
+				childsel = {}
+				childsel["xpath"] = children[i].find("input[name='link-xpath']").val();
+				childsubxpath= children[i].find("input[name='link-label']").val();
+				childpagixpath= children[i].find("input[name='link-pagination']").val();
+
+				if( !StringUtil.isEmpty(childsubxpath) ) {
+					childsubsel = [];
+					childsubsel.append({"xpath":childsubxpath});
+					childsel["subselectors"] = childsubsel;
+				}
+				if (!StringUtil.isEmpty(childpagixpath)){
+					childpagisel ={};
+					childpagisel["xpath"]=childpagixpath;
+					childsel["pagination"] = {"selector":childpagisel,"limit": 10,"interim": 1,"mode": "parallel"};
+				}
+				child["selectors"].append(childsel);
+				curparent["child"] = child;
+				curparent = child;
 			}
 		} 
 		var detailC = $(".uc-edit-comp-con .item-basic-info");
 		_data["addr"] = detailC.find("#website-addr-input").val();
-		_data["name"] = detailC.find("#material-name-input").val();
-		_data["keywords"] = detailC.find("#material-keywords-input").val();
-		_data["categories"] = _documentRoot.category.getSelectedItems();
+		_data["meta"] = {}
+		_data["meta"]["name"] = detailC.find("#material-name-input").val();
+		_data["meta"]["keywords"] = detailC.find("#material-keywords-input").val();
+		_data["meta"]["categories"] = _documentRoot.category.getSelectedItems();
+		console.log(_data);
 		reciever.exchange("/var/action/uc/saveUserMaterial",function(data){
 			alert("保存成功！");
 		},_data);
@@ -236,8 +267,8 @@ $.materialItemBlock = function(data){
 		this.browserContent = new $.varRadioBox({"target":$("#material-browser-article-content")});
 		this.bannerNeedLink = new $.varCheckBox({"target":$(".material-banner-need-link")});
 		this.subscribeNeedLink = new $.varCheckBox({"target":$(".material-subscribe-need-link")});
-		this.timeSeriesXAxis = new $.varCheckBox({"target":$(".material-ts-time-xaxis")});
-			
+		this.corpusCheckbox = new $.varCheckBox({"target":$(".corpus-selector > .uc-check-box")});
+		new $.varCheckBox({"target":$(".material-ts-time-xaxis")});
 		$("button[name='add-new-material-button']").click(function(e){
 			addNew();
 		});
@@ -283,5 +314,5 @@ $.materialItemBlock = function(data){
 $(document).ready(function(){ 
 	mainInit();
 	_documentRoot = new $.documentRoot();
-	//root.ini();
+	_documentRoot.ini();
 });

@@ -1,0 +1,906 @@
+		<script type="text/javascript" src="/var/js/interact_v1.3.4.js" ></script>
+		<script type="text/javascript" src="/var/js/render.js?v=130" ></script>
+		<script type="text/javascript" src="/var/js/module/component.js?v=130"></script>
+		<script type="text/javascript" src="/var/js/findElementsByText.js?v=130"></script>
+		
+		<link rel="stylesheet" type="text/css" href="/var/css/module/material.css?v=130" />
+		<script type="text/javascript" src="/var/js/module/material.js?v=130"></script>
+		<style>
+			.slider {
+				width: 25px;
+				height: 25px;
+				
+			}
+		</style>
+		<!-- Dynamic code blocks, 
+         use id attribute to bind corresponding component -->
+<div class="uc-edit-components">
+	<div class="uc-edit-comp-l">
+		<div class="uc-edit-components-top">
+			<div class="uc-edit-components-bro-win">
+				<div class="uc-edit-components-bro-win-frame">
+					<div class="uc-edit-panel-material" id="temp">
+						
+							<div class="uc-edit-panel-block">
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+														
+															<div class="uc-input-block-table-row" id="material-type-selector">
+															<div style="width: 65px; display: flex; align-items: center; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">选择类型</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="display: flex; padding: 7px 0px; align-items: center; justify-content:space-around;width:110px;">
+																	<div class="uc-radio-box" item="timeseries" style="align-items: center; white-space : nowrap;">
+																		<div class="uc-float-icon-radio-sel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="图表"  csstyle="justify-content" align="flex-end" class="uc-float-icon uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-paiming1"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-radio-nosel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="图表"  csstyle="justify-content" align="flex-end" class="uc-float-icon-selected uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-paiming1"></use>
+																			</svg>
+																		</div>
+																	</div>	
+																	<div class="uc-radio-box" item="subscribe" style="align-items: center; white-space : nowrap;">
+																		<div class="uc-float-icon-radio-sel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="订阅"  csstyle="justify-content" align="flex-end" class="uc-float-icon uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-dingyue"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-radio-nosel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="订阅"  csstyle="justify-content" align="flex-end" class="uc-float-icon-selected uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-dingyue"></use>
+																			</svg>
+																		</div>
+																	</div>	
+																	<div class="uc-radio-box" item="banner" style="align-items: center; white-space : nowrap;">
+																		<div class="uc-float-icon-radio-sel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="轮播"  csstyle="justify-content" align="flex-end" class="uc-float-icon uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-banner"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-radio-nosel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="轮播"  csstyle="justify-content" align="flex-end" class="uc-float-icon-selected uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-banner"></use>
+																			</svg>
+																		</div>
+																	</div>	
+																	<div class="uc-radio-box checked" item="browser" style="align-items: center; white-space : nowrap;">
+																		<div class="uc-float-icon-radio-nosel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="阅读器"  csstyle="justify-content" align="flex-end" class="uc-float-icon uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-yemianzujian"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-radio-sel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="阅读器"  csstyle="justify-content" align="flex-end" class="uc-float-icon-selected uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-yemianzujian"></use>
+																			</svg>
+																		</div>
+																	</div>	
+																	<div class="uc-radio-box" item="corpus" style="align-items: center; white-space : nowrap;">
+																		<div class="uc-float-icon-radio-sel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="收集者"  csstyle="justify-content" align="flex-end" class="uc-float-icon uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-chazhao"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-radio-nosel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" title="收集者"  csstyle="justify-content" align="flex-end" class="uc-float-icon-selected uc-temp-justify-content" style="font-size: 1.25em; font-weight: 400;" aria-hidden="true">				    				
+																			    <use xlink:href="#icon-chazhao"></use>
+																			</svg>
+																		</div>
+																	</div>	
+																	
+																	
+																	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block">
+												<div class="uc-input-area" style="background-color: rgba(255,255,255,0.0);border-radius:0px;">
+													<div style="width: 100%;display: flex;height: 35px;align-items: center;justify-content: center;">
+															<button name="add-new-material-button" class="uc-temp-grid-btn" style="display: flex; justify-content: center; border:2px dashed #efefef; background-color: rgba(255,255,255,0.0); border-radius: 10px; width: 100%; height: 100%; align-items: center; " data-spin="up">
+																<svg onmouseover="changPointer(this)" class="uc-float-icon" style=" font-size: 1.47em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-iconfont7"></use>
+																</svg>
+															</button>	
+													</div>
+												</div>
+											</div>
+											<div class="uc-edit-panel-block">
+												<div class="uc-input-area" style="background-color: #ffffff;">
+													<div style="width: 100%;display: flex;background-color: #ffffff;height: 25px;align-items: center;justify-content: center;">
+																						<input type="text" id="uc-material-search-keywords" placeholder="关键字..."  style="width: 80%; height: 100%; border:0px;" />													
+																						<button class="uc-temp-grid-btn" style="display: flex; justify-content: center; border:0px; align-items: center; " data-spin="up">
+																							<svg onmouseover="changPointer(this)" class="uc-float-icon" style=" font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																						    		<use xlink:href="#icon-sousuo"></use>
+																								</svg>
+																						</button>
+																						
+																					</div>
+												</div>
+												</div>
+								<div class="uc-edit-panel-block uc-component-datasource">
+												<div class="uc-input-area">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+														
+														</div>
+													</div>
+												</div>
+											</div> 
+						</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		<div class="uc-edit-comp-m">
+		<div class="uc-edit-comp-r-top">
+			<div class="uc-edit-comp-r-container">
+				<div class="uc-edit-comp-r-editor" style="background-color: rgba(255,255,255,0.0);">
+					<div class="uc-edit-comp-r-editor-con">
+						<div class="uc-edit-comp-r-editor-content">
+							<div class="uc-edit-comp-r-editor-baseinfo">
+								<div class="uc-edit-panel-block">
+												<div class="uc-input-area-solid" style="background-color: rgba(255,255,255,0.0);border-radius:0px;">
+													<div style="width: 100%;display: flex;height: 35px;align-items: center;justify-content: space-around;">
+															<button name="save-material-button" class="uc-temp-grid-btn" style="display: flex; align-items:center;justify-content: center; border:0px dashed #efefef; background-color: rgba(232,232,232,1.0); border-radius: 10px; width: 45%; height: 100%; align-items: center; " data-spin="up">
+																<span class="uc-text cn_block_title">保存</span>
+																<svg onmouseover="changPointer(this)" class="uc-float-icon" style=" font-size: 1.17em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-iconfontyixuancopy2"></use>
+																</svg>
+															</button>	
+															<button name="delete-material-button" class="uc-temp-grid-btn" style="display: flex; align-items:center;justify-content: center; border:0px dashed #efefef; background-color: rgba(232,232,232,1.0); border-radius: 10px; width: 45%; height: 100%; align-items: center; " data-spin="up">
+																<span class="uc-text cn_block_title">删除</span>
+																<svg onmouseover="changPointer(this)" class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+																<use xlink:href="#icon-clear2"></use>
+																</svg>
+															</button>	
+													</div>
+												</div>
+											</div>
+								<div class="uc-edit-panel-block item-basic-info">
+										<span class="uc-text cn_block_title">基本信息</span> <img src="/var/images/icon_help.svg" />
+										<div class="uc-input-area-solid">
+											<div class="uc-input-block">
+												<div class="uc-input-block-table">
+													<div class="uc-input-block-table-row">
+														<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+															<span class="uc-text cn_input_label">网站地址</span><span class="uc-text cn_input_label">：</span>
+														</div>
+														<div style="width: 75%; ">
+															<input type="text" id="website-addr-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														</div>
+														
+													</div>
+													<div class="uc-input-block-table-row">
+														<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+															<span class="uc-text cn_input_label">素材名称</span><span class="uc-text cn_input_label">：</span>
+														</div>
+														<div style="width: 75%; ">
+															<input type="text" id="material-name-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														</div>
+													</div>
+													<div class="uc-input-block-table-row">
+														<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+															<span class="uc-text cn_input_label">分类</span><span class="uc-text cn_input_label">：</span>
+														</div>
+														<div style="width: 75%; ">
+															<input type="text" id="material-category-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														</div>
+													</div>
+													<div class="uc-input-block-table-row">
+														<div style="width: 65px; display: flex; align-items: flex-end; white-space : nowrap;">
+															<span class="uc-text cn_input_label">关键字</span><span class="uc-text cn_input_label">：</span>
+														</div>
+														<div style="width: 75%; ">
+															<input type="text" id="material-keywords-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+									</div> 
+									<div class="uc-edit-comp-r-editor-content">
+										<div class="uc-edit-components-selector browser-selector">
+											<div class="uc-edit-panel-block container-info">
+												<span class="uc-text cn_block_title">目录素材</span> <img src="/var/images/icon_help.svg" />
+												
+												<div class="uc-input-area-solid">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaXPath" name="list-xpath-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索文字</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text"  class="seaLabel" name="list-label-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="margin-top: 7px; width: 100%;display: flex;height: 30px;align-items: center;justify-content: center;">
+																	<button type="button" class="uc-temp-grid-btn selector-edit-button" style="display: flex; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(255,255,255,1.0); border-radius: 10px; width: 100%; height: 100%; align-items: center; " data-spin="up">
+																		<span class="uc-text cn_input_label">点我编辑</span>
+																	</button>	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block container-info">
+												<span class="uc-text cn_block_title">正文素材</span> <img src="/var/images/icon_help.svg" />
+												
+												<div class="uc-input-area-solid">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+														<div class="uc-input-block-table-row" id="material-browser-article-content">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">内容</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="display: flex; width: 75%; ">
+																	<div class="uc-radio-box checked" item="text" style="align-items: center; white-space : nowrap;">
+																		<div class="uc-float-icon-radio-nosel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg  onmouseover="changPointer(this)" class="uc-float-icon" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-radio-sel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" class="uc-float-icon" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																			</svg>
+																		</div>
+																</div>
+																<div style="display:flex; align-items: center; white-space : nowrap;">
+																<span class="uc-text cn_input_hint">仅文本</span>
+																</div>
+																<div class="uc-radio-box" item="richtext" style="align-items: center; white-space : nowrap;">
+																		<div class="uc-float-icon-radio-sel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg  onmouseover="changPointer(this)" class="uc-float-icon" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuanweixuanzhong1"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-radio-nosel" style="height: 100%; width: 16px; align-items: center; position: relative;" value="left">
+																			<svg onmouseover="changPointer(this)" class="uc-float-icon" style="position: absolute; left: 0px; font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-danxuankuangxuanzhong"></use>
+																			</svg>
+																		</div>
+																</div>
+																<div style="display:flex; align-items: center; white-space : nowrap;">
+																<span class="uc-text cn_input_hint">图文</span>
+																</div>
+																</div>
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaXPath"  name="article-xpath-input"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索文字</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text"  class="seaLabel"  name="article-label-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="margin-top: 7px; width: 100%;display: flex;height: 30px;align-items: center;justify-content: center;">
+																	<button type="button" class="uc-temp-grid-btn selector-edit-button" style="display: flex; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(255,255,255,1.0); border-radius: 10px; width: 100%; height: 100%; align-items: center; " data-spin="up">
+																		<span class="uc-text cn_input_label">点我编辑</span>
+																	</button>	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											
+											</div>
+											<div class="uc-edit-components-selector corpus-selector">
+											<div class="uc-edit-panel-block container-info">
+												<div  style="display: flex; justify-content: space-between; align-items: center;">
+												<span class="uc-text cn_block_title">节点素材</span> 
+												<div   style="display: flex; ">
+												<button type="button" class="uc-temp-grid-btn addChildBtn" style="display: flex; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(255,255,255,0.0); border-radius: 10px;  height: 100%; align-items: center; " data-spin="up">
+													<svg  value="display" class="uc-float-icon" style="font-size: 1.07em; font-weight: 900;color: #333;" aria-hidden="true">				    				
+														<use xlink:href="#icon-iconfont7"></use>
+													</svg>		
+												</button>	
+												
+												</div>	
+												</div>
+												<div class="uc-input-area-solid">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">标题xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaXPath"  name="root-xpath" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">内容xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaLabel"   name="root-sub-xpath" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">分页xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text"  class="seaLabel" name="root-pagination" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">扩探</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<div  class="uc-check-box root-need-extract" style="display: flex;height:22px;align-items: flex-end;">
+																		<div class="uc-float-icon-nochecked checked" value="display" style="height: 100%; width: 16px; align-items:  flex-end; position: relative;">
+																			<svg  value="display" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    			<use xlink:href="#icon-2"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-checked" value="display" style="height: 100%; width: 16px; align-items:  flex-end; position: relative;">
+																			<svg  value="hidden" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-icon-test"></use>
+																			</svg>
+																		</div>
+																	</div>
+																</div>
+																
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="uc-edit-panel-block child-node-template" style="display:none; width:100%;">
+												<div  style="display: flex; justify-content: space-between;  align-items: center;">
+													<span class="uc-text cn_block_title">子节点</span> 
+													<div   style="display: flex; ">
+													<!-- 
+													<button type="button" class="uc-temp-grid-btn addChildBtn" style="display: flex; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(255,255,255,0.0); border-radius: 10px;  height: 100%; align-items: center; " data-spin="up">
+														<svg  value="display" class="uc-float-icon" style="font-size: 1.07em; font-weight: 900;color: #333;" aria-hidden="true">				    				
+															<use xlink:href="#icon-iconfont7"></use>
+														</svg>		
+													</button>	 -->
+													<button type="button" class="uc-temp-grid-btn delChildNodeBtn" style="display: flex; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(255,255,255,0.0); border-radius: 10px;  height: 100%; align-items: center; " data-spin="up">
+														<svg  value="display" class="uc-float-icon" style="font-size: 1.07em; font-weight: 900;color: #333;" aria-hidden="true">				    				
+															<use xlink:href="#icon-jianhao"></use>
+														</svg>		
+													</button>	
+													</div>
+												</div>
+												
+												<div class="uc-input-area-solid">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+														
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">标题xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaXPath"  name="link-xpath"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">内容xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text"  class="seaLabel" name="link-label" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">分页xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text"  class="seaLabel" name="link-pagination" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">扩探</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<div  class="uc-check-box node-need-extract" style="display: flex;height:22px;align-items: flex-end;">
+																		<div class="uc-float-icon-nochecked checked" value="display" style="height: 100%; width: 16px; align-items: flex-end; position: relative;">
+																			<svg  value="display" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    			<use xlink:href="#icon-2"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-checked" value="display" style="height: 100%; width: 16px; align-items:  flex-end; position: relative;">
+																			<svg  value="hidden" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-icon-test"></use>
+																			</svg>
+																		</div>
+																	</div>
+																</div>
+																
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											</div> 
+											
+											</div>
+										<div class="uc-edit-components-selector banner-selector">
+											<div class="uc-edit-panel-block container-info">
+												<span class="uc-text cn_block_title">图片素材</span> <img src="/var/images/icon_help.svg" />
+												
+												<div class="uc-input-area-solid">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text"  class="seaXPath"  name="img-xpath-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索文字</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text"  class="seaLabel"  name="img-label-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">超链接</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<div  class="uc-check-box material-banner-need-link" style="display: flex;height:22px;align-items: center;">
+																		<div class="uc-float-icon-checked checked" value="display" style="height: 100%; width: 16px; align-items: center; position: relative;">
+																			<svg  value="display" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    			<use xlink:href="#icon-2"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-nochecked" value="display" style="height: 100%; width: 16px; align-items: center; position: relative;">
+																			<svg  value="hidden" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-icon-test"></use>
+																			</svg>
+																		</div>
+																	</div>
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="margin-top: 7px; width: 100%;display: flex;height: 30px;align-items: center;justify-content: center;">
+																	<button type="button" class="uc-temp-grid-btn selector-edit-button" style="display: flex; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(255,255,255,1.0); border-radius: 10px; width: 100%; height: 100%; align-items: center; " data-spin="up">
+																		<span class="uc-text cn_input_label">点我编辑</span>
+																	</button>	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											
+											</div>
+											<div class="uc-edit-components-selector subscribe-selector">
+											<div class="uc-edit-panel-block container-info">
+												<span class="uc-text cn_block_title">订阅素材</span> <img src="/var/images/icon_help.svg" />
+												
+												<div class="uc-input-area-solid">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaXPath"   name="item-xpath-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索文字</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaLabel"  name="item-label-input"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">超链接</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<div  class="uc-check-box material-subscribe-need-link" style="display: flex;height:22px;align-items: center;">
+																		<div class="uc-float-icon-checked checked" value="display" style="height: 100%; width: 16px; align-items: center; position: relative;">
+																			<svg  value="display" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    			<use xlink:href="#icon-2"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-nochecked" value="display" style="height: 100%; width: 16px; align-items: center; position: relative;">
+																			<svg  value="hidden" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-icon-test"></use>
+																			</svg>
+																		</div>
+																	</div>
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="margin-top: 7px; width: 100%;display: flex;height: 30px;align-items: center;justify-content: center;">
+																	<button type="button" class="uc-temp-grid-btn selector-edit-button" style="display: flex; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(255,255,255,1.0); border-radius: 10px; width: 100%; height: 100%; align-items: center; " data-spin="up">
+																		<span class="uc-text cn_input_label">点我编辑</span>
+																	</button>	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											
+											</div>
+											<div class="uc-edit-components-selector timeseries-selector">
+											<div class="uc-edit-panel-block container-info">
+												<span class="uc-text cn_block_title">X轴素材</span> <img src="/var/images/icon_help.svg" />
+												
+												<div class="uc-input-area-solid">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">时间轴</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<div  class="uc-check-box material-ts-time-xaxis" style="display: flex;height:22px;align-items: center;justify-content: space-around;">
+																		<div class="uc-float-icon-nochecked checked" value="display" style="height: 100%; width: 16px; align-items: center; position: relative;">
+																			<svg  value="display" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																    			<use xlink:href="#icon-2"></use>
+																			</svg>
+																			
+																		</div>
+																		<div class="uc-float-icon-checked" value="display" style="height: 100%; width: 16px; align-items: center; position: relative;">
+																			<svg  value="hidden" class="uc-float-icon" style="font-size: 0.87em; font-weight: 400;color: #888888;" aria-hidden="true">				    				
+																	    		<use xlink:href="#icon-icon-test"></use>
+																			</svg>
+																		</div>
+																	</div>
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaXPath"  name="xaxis-xpath-input"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索文字</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaLabel"  name="xaxis-label-input"   style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															
+															<div class="uc-input-block-table-row">
+																<div style="margin-top: 7px; width: 100%;display: flex;height: 30px;align-items: center;justify-content: center;">
+																	<button type="button" class="uc-temp-grid-btn selector-edit-button" style="display: flex; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(255,255,255,1.0); border-radius: 10px; width: 100%; height: 100%; align-items: center; " data-spin="up">
+																		<span class="uc-text cn_input_label">点我编辑</span>
+																	</button>	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											<div class="uc-edit-panel-block container-info">
+												<span class="uc-text cn_block_title">Y轴素材</span> <img src="/var/images/icon_help.svg" />
+												
+												<div class="uc-input-area-solid">
+													<div class="uc-input-block">
+														<div class="uc-input-block-table">
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索xpath</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaXPath"  name="yaxis-xpath-input"  style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															<div class="uc-input-block-table-row">
+																<div style="width: 65px; display: flex; align-items:  flex-end; white-space : nowrap;">
+																	<span class="uc-text cn_input_label">搜索文字</span><span class="uc-text cn_input_label">：</span>
+																</div>
+																<div style="width: 75%; ">
+																	<input type="text" class="seaLabel"   name="yaxis-label-input" style="width: 90%; background-color: rgb(213,213,213,0.0);border-bottom: 1px solid rgb(204,188,138,1.0); border-top:0px; border-right:0px; border-left:0px;" />
+																</div>
+																
+															</div>
+															
+															<div class="uc-input-block-table-row">
+																<div style="margin-top: 7px; width: 100%;display: flex;height: 30px;align-items: center;justify-content: center;">
+																	<button type="button" class="uc-temp-grid-btn selector-edit-button" style="display: flex; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(255,255,255,1.0); border-radius: 10px; width: 100%; height: 100%; align-items: center; " data-spin="up">
+																		<span class="uc-text cn_input_label">点我编辑</span>
+																	</button>	
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
+											</div>
+									</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+		<div class="uc-edit-comp-r">
+			<div class="uc-edit-comp-r-tool">
+				<div style="display: flex; padding-top: 5px; padding-bottom: 5px; justify-content: center; width: 100%; height: 35px;">
+					
+					<div style="display: flex;  border: 2px solid #efefef;  border-radius: 10px; align-items: center; justify-content: space-around;  height: 100%; width: 95%; ">
+						<div style="width: 50px; margin-left: 5px;margin-right: 5px; white-space : nowrap;">
+							<span class="uc-text cn_input_label" style="color: #fff;">地址</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
+						</div>
+						<input type="text" id="material-adjust-frame-addr" style="width: 100%; background-color: rgba(255,255,255,0.0);border:0px; color: #fff;" />
+					</div>
+				</div>
+				<div style="display: flex; padding-top: 5px; padding-bottom: 5px; justify-content: center; width: 100%; height: 35px;">
+					
+					<div style="display: flex;  border: 2px solid #efefef;  border-radius: 10px; align-items: center; justify-content: space-around;  height: 100%; width: 95%; ">
+						<div style="width: 50px; margin-left: 5px;margin-right: 5px; white-space : nowrap;">
+							<span class="uc-text cn_input_label" style="color: #fff;">xpath</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
+						</div>
+						<input type="text" id="material-adjust-frame-xpath"   style="width: 100%; background-color: rgba(255,255,255,0.0);border:0px; color: #fff;" />
+					</div>
+				</div>
+				<div style="display: flex; padding-top: 5px; padding-bottom: 5px; justify-content: center; width: 100%; height: 35px;">
+					
+					<div style="display: flex;  border: 2px solid #efefef;  border-radius: 10px; align-items: center; justify-content: space-around;  height: 100%; width: 95%; ">
+						<div style="width: 50px; margin-left: 5px;margin-right: 5px; white-space : nowrap;">
+							<span class="uc-text cn_input_label" style="color: #fff;">文字</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
+						</div>
+						<input type="text"  id="material-adjust-frame-label"  style="width: 100%; background-color: rgba(255,255,255,0.0);border:0px; color: #fff;" />
+					</div>
+				</div>
+				
+				
+			</div>
+			<div class="uc-edit-comp-r-container">
+				<div class="material-page-search-node-row template" style="display: none;width: 93%; background-color:rgba(23,44,60,1.0); border-radius:10px; padding: 5px 10px; margin:5px 0px;">
+					<div style="width: 100%; display:flex;">
+						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label" style="color: #fff;">标签名</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
+						</div>
+						<div style="margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label labelname" style="color: #fff;">a</span>
+								<input type="hidden"  value=""  name="hidden-labelname"/>
+						</div>
+					</div>
+					<div style="width: 100%; display:flex;">
+						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label" style="color: #fff;">XPath</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
+						</div>
+						<div style="margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label xpath" style="color: #fff;"></span>
+								<input type="hidden"  value=""  name="hidden-xpath"/>
+						</div>
+						<div style="margin-left: 5px;display:flex;align-items:center;white-space : nowrap;">
+								<button type="button" name="cutxpathtail" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; padding:0px 2px;justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 0px;  align-items: center; " data-spin="up">
+									<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #fff;" aria-hidden="true">				    				
+										<use xlink:href="#icon-jiandao"></use>
+									</svg>
+								</button>&nbsp;
+								<button type="button" name="restorexpathtail" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; padding:0px 2px;justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 0px; align-items: center; " data-spin="up">
+									<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #fff;" aria-hidden="true">				    				
+										<use xlink:href="#icon-huanyuan"></use>
+									</svg>
+								</button>
+						</div>
+					</div>
+					<div style="width: 100%; display:flex;">
+						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label" style="color: #fff;">abspath</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
+						</div>
+						<div style="margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label abspath" style="color: #fff;"></span>
+								<input type="hidden"  value=""  name="hidden-abspath"/>
+						</div>
+					</div>
+					<div style="width: 100%; display:flex;justify-content:center;">
+						<button type="button" name="detectSameHierarchy" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(38,157,128,1.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
+							<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+								<use xlink:href="#icon-fenxiang"></use>
+							</svg>
+						</button>	&nbsp;&nbsp;
+						<button type="button" name="detectSubSelectors" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,1.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
+							<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+								<use xlink:href="#icon-shujutance"></use>
+							</svg>
+						</button>	&nbsp;&nbsp;
+						<button type="button" name="deleteNode" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(178,190,126,1.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
+							<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+								<use xlink:href="#icon-lajitong3"></use>
+							</svg>
+						</button>	
+					</div>
+				</div>
+				<iframe style="display:none" src=""></iframe>
+			</div>
+		</div>
+</div>
+<!-- 
+<div id="multiOptionSelector" style="position:absolute;left:500px;top:500px;width:370px;height:170px;border: 7px solid #425066;z-index:15;border-radius: 1px;background-color: rgba(255,255,255,1.0); padding: 4px 4px;">
+<div style="display:flex; width:100%;height:50%;">
+<div class="selected" style="display:flex; padding: 4px 4px;align-content:flex-start;flex-wrap:wrap;width:100%;height:100%;overflow-x:hidden;overflow-y:auto;">
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>&nbsp;&nbsp;&nbsp;
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+	<div style="display:flex;align-items:center;white-space : nowrap;">
+	<span class="uc-text cn_block_title" style="color: #c83c23;">文字</span>
+	<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>
+</div>
+<div style="display:flex;align-items:flex-start;width:10px;height:100%;">
+<svg class="uc-float-icon" style=" font-size: 0.87em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-clear2"></use>
+	</svg>
+</div>
+</div>
+<div class="options" style=" padding: 4px 4px;border-top:1px solid #efefef;display:flex;flex-wrap:wrap; align-content:flex-start;align-items:flex-start;width:100%;height:50%;overflow-x:hidden;overflow-y:auto; justify-content:flex-start;">
+	<div style="width: 55px; display: flex; align-items:  flex-end; white-space : nowrap;"><span class="uc-text cn_block_title">请选择:</span></div>&nbsp;&nbsp;
+	<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button>
+	&nbsp;&nbsp;&nbsp;<button style="padding:0px 0px; border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button></span>&nbsp;&nbsp;&nbsp;<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label">文字</span></button>
+
+<div style="display:flex;align-items:center;white-space : nowrap;">
+	<input type="text" class="input-category-editor" value="" style="width: 39px;height:20px;border:0px;border-bottom: 1px solid rgb(204,188,138,1.0);outline:none;" />
+	<svg class="uc-float-icon" style=" font-size: 0.91em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-iconfontyixuancopy2"></use>
+	</svg>
+	<svg class="uc-float-icon" style=" font-size: 0.91em; font-weight: 400;color: #333;" aria-hidden="true">				    				
+		<use xlink:href="#icon-lajitong3"></use>
+	</svg>
+	</div>&nbsp;&nbsp;&nbsp;
+<button style="border:0px;outline:none;background-color:rgba(255,255,255,0.0);"><span class="uc-text cn_input_label" style="color: #c83c23;">新增</span></button>
+</div>
+</div>
+ -->
+ <div class="detect-same-hierarchy-result-box">
+				<div class="box-title">
+					以下信息感兴趣吗？
+				</div>
+				<div class="content" style="display:flex; flex-direction: column;align-items: center;height:90%;width:100%;overflow-y:auto;">
+					
+				</div>
+				
+				<div class="uc-edit-panel-block row-template" style="display:none;margin: 0px 0px;">
+						<div class="uc-input-area">
+							<div style="width: 100%; display:flex; align-items:center;justify-content:center;height: auto; border: 0px solid rgb(204,188,138,1.0);border-radius:15px;">
+								<span class="uc-text cn_input_label" style="color: #333;">文字</span>
+							</div>
+						</div>
+					</div>
+				
+				<div class="uc-edit-panel-block button-panel">
+					<div style="width: 100%; height: 55px; display: flex; align-items: center; justify-content: space-around;">
+						<button name="submit-ok"  style="width: 95px; height: 65%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" ><span class="uc-text cn_input_label">就是这些</span></button>
+						<button name="submit-cancel"  style="width: 95px; height: 65%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" ><span class="uc-text cn_input_label">不，谢谢</span></button>
+					</div>
+				</div>
+			</div>

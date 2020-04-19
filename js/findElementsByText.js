@@ -1,5 +1,26 @@
-var paths={};
+//var paths={};
 var re = /\[\d+\]/g;
+function findElementsByXPath(xpath,document) {
+	var evaluator = new XPathEvaluator();
+	var result = evaluator.evaluate(xpath, document.documentElement, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+	var xnodes = [];
+	var xres;
+	while (xres = result.iterateNext()) {
+		xnodes.push(xres);
+	}
+	return xnodes;
+}
+function detectSameHierarchy(xpath,document) {
+	xpathary = xpath.split('/');
+	for(var i=xpathary.length;i>0;i--) {
+		xp = xpathary.join('/');
+		xnodes = findElementsByXPath(xp,document);
+		console.log("find "+xnodes.length+" nodes in path: "+xp);
+		xpathary.pop();
+		if( xnodes.length > 3 ) 
+			return xnodes;
+	}
+}
 function getPathTo(element) {
     //if (element.id!=='')
         //return '[@id="'+element.id+'"]';
@@ -30,13 +51,13 @@ function findElementsXPath(element) {
 	else
 		return "//*"+path;
 }
-function findElementsInFrame(pnode, text, nodes){
+function findElementsInFrame(pnode, text, nodes,paths){
 	var childs=pnode.childNodes;
 	var added=false;
 	for(var i=0;i<childs.length;i++){
 		if(childs[i].nodeType===3){
 			if(childs[i].nodeValue.indexOf(text)>=0){
-				nodes.push(pnode);
+				
 				var xpath=findElementsXPath(pnode);
 				var abspath = xpath.replace(re,"");
 				if (!paths[abspath]){
@@ -44,9 +65,10 @@ function findElementsInFrame(pnode, text, nodes){
 				}
 				paths[abspath].push(xpath);
 				added=true;
+				nodes.push({"node":pnode,"xpath":xpath,"abspath":abspath});
 			}
 		}else if(childs[i].nodeType===1&&childs[i].childNodes&&childs[i].nodeName.toLowerCase()!=="script"){
-			findElementsInFrame(childs[i], text, nodes);
+			findElementsInFrame(childs[i], text, nodes,paths);
 		}
 		
 	}
@@ -54,8 +76,9 @@ function findElementsInFrame(pnode, text, nodes){
 
 function findElementsContainsSpecifiedTextInSingleDocument(currentDocument, location, text){
 	var nodes=Array();
-	findElementsInFrame(currentDocument.body, text, nodes);
-	return nodes;
+	var paths={};
+	findElementsInFrame(currentDocument.body, text, nodes,paths);
+	return {"nodes":nodes,"paths":paths};
 }
 function findElementsContainsSpecifiedTextInMultiDocuments(currentDocument, location, text){
 	var nodes=Array();
@@ -75,12 +98,12 @@ function findElementsContainsSpecifiedTextInMultiDocuments(currentDocument, loca
 	return Array();
 }
 
-finds=findElementsContainsSpecifiedTextInMultiDocuments(document, null, "年化收益率");
-console.log(paths);
+//finds=findElementsContainsSpecifiedTextInMultiDocuments(document, null, "年化收益率");
+//console.log(paths);
 //for(var i=0;i<finds.length;i++){
 //	console.log(finds[i]);
 //}
-function findIterator() {
+function findIterator(paths) {
 	var keys=Object.keys(paths)
 	for(var i=0;i<keys.length;i++){
 		var key=keys[i];
@@ -114,4 +137,4 @@ function findIterator() {
 		}
 	}
 }
-findIterator();
+//findIterator();
