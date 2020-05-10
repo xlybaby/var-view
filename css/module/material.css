@@ -139,6 +139,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow-y:auto;
 	/*
 	background-color: #ffffff;*/
 }
@@ -385,7 +386,7 @@
 	color: #000;
 }
 
-.detect-same-hierarchy-result-box{
+.detect-same-hierarchy-result-box, .relative-searching-nodes-box, .pagination-searching-nodes-box{
 	display: none;
 	position: absolute;
 	
@@ -410,4 +411,16 @@
   font-size: 1.35em;
   font-weight: 700;
   color: #996633;
+}
+.box-input{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 25px;
+      width: 90%;
+      font-size: 0.9em;
+      font-weight: 400;
+      color: #996633;
+      margin-top: 7px;
+      border-bottom: 2px #efefef solid;
 }

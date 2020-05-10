@@ -1,10 +1,10 @@
 		<script type="text/javascript" src="/var/js/interact_v1.3.4.js" ></script>
 		<script type="text/javascript" src="/var/js/render.js?v=130" ></script>
-		<script type="text/javascript" src="/var/js/module/component.js?v=130"></script>
-		<script type="text/javascript" src="/var/js/findElementsByText.js?v=130"></script>
+		<script type="text/javascript" src="/var/js/module/component.js?v=136"></script>
+		<script type="text/javascript" src="/var/js/findElementsByText.js?v=136"></script>
 		
-		<link rel="stylesheet" type="text/css" href="/var/css/module/material.css?v=130" />
-		<script type="text/javascript" src="/var/js/module/material.js?v=130"></script>
+		<link rel="stylesheet" type="text/css" href="/var/css/module/material.css?v=136" />
+		<script type="text/javascript" src="/var/js/module/material.js?v=136"></script>
 		<style>
 			.slider {
 				width: 25px;
@@ -724,58 +724,107 @@
 				
 			</div>
 			<div class="uc-edit-comp-r-container">
-				<div class="material-page-search-node-row template" style="display: none;width: 93%; background-color:rgba(23,44,60,1.0); border-radius:10px; padding: 5px 10px; margin:5px 0px;">
+				<div class="material-page-search-node-row template" style="display: none;width: 93%; background-color:rgba(255,255,255,1.0); border-radius:10px; padding: 5px 10px; margin:5px 0px;">
 					<div style="width: 100%; display:flex;">
 						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
-								<span class="uc-text cn_input_label" style="color: #fff;">标签名</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
+							<span class="uc-text cn_input_label" >地址</span><span class="uc-text cn_input_label" >：</span>
 						</div>
-						<div style="margin-left: 5px;white-space : nowrap;">
-								<span class="uc-text cn_input_label labelname" style="color: #fff;">a</span>
+						<div style="width: 80%;margin-left: 5px;white-space : nowrap;">
+							<span class="uc-text cn_input_label address" ></span>
+						</div>
+					</div>
+					<div style="width: 100%; display:flex;">
+						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label" >标签</span><span class="uc-text cn_input_label" >：</span>
+						</div>
+						<div style="width: 80%;margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label labelname" ></span>
 								<input type="hidden"  value=""  name="hidden-labelname"/>
 						</div>
 					</div>
 					<div style="width: 100%; display:flex;">
 						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
-								<span class="uc-text cn_input_label" style="color: #fff;">XPath</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
+							<span class="uc-text cn_input_label" >内容</span><span class="uc-text cn_input_label" >：</span>
 						</div>
-						<div style="margin-left: 5px;white-space : nowrap;">
-								<span class="uc-text cn_input_label xpath" style="color: #fff;"></span>
+						<div style="width: 80%;margin-left: 5px;overflow:hidden; text-overflow:ellipsis;white-space : nowrap;">
+							<span class="uc-text cn_input_label texts" ></span>
+						</div>
+					</div>
+					<div style="width: 100%; display:flex;">
+						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label" >路径</span><span class="uc-text cn_input_label" >：</span>
+						</div>
+						<div style="margin-left: 5px;width: 80%; overflow:hidden; text-overflow:ellipsis;cursor:pointer;white-space : nowrap;">
+								<span class="uc-text cn_input_label xpath" ></span>
 								<input type="hidden"  value=""  name="hidden-xpath"/>
 						</div>
 						<div style="margin-left: 5px;display:flex;align-items:center;white-space : nowrap;">
 								<button type="button" name="cutxpathtail" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; padding:0px 2px;justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 0px;  align-items: center; " data-spin="up">
-									<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #fff;" aria-hidden="true">				    				
+									<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;" aria-hidden="true">
 										<use xlink:href="#icon-jiandao"></use>
 									</svg>
 								</button>&nbsp;
 								<button type="button" name="restorexpathtail" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; padding:0px 2px;justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 0px; align-items: center; " data-spin="up">
-									<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #fff;" aria-hidden="true">				    				
+									<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;" aria-hidden="true">
 										<use xlink:href="#icon-huanyuan"></use>
 									</svg>
 								</button>
 						</div>
 					</div>
 					<div style="width: 100%; display:flex;">
-						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
-								<span class="uc-text cn_input_label" style="color: #fff;">abspath</span><span class="uc-text cn_input_label" style="color: #fff;">：</span>
-						</div>
+						<!--<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+								<span class="uc-text cn_input_label" >abspath</span><span class="uc-text cn_input_label" >：</span>
+						</div>-->
 						<div style="margin-left: 5px;white-space : nowrap;">
-								<span class="uc-text cn_input_label abspath" style="color: #fff;"></span>
+								<span class="uc-text cn_input_label abspath" style="color: #fff;display:none;"></span>
 								<input type="hidden"  value=""  name="hidden-abspath"/>
 						</div>
 					</div>
+					<div style="width: 100%; display:flex;">
+						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+							<span class="uc-text cn_input_label" >同源</span><span class="uc-text cn_input_label" >：</span>
+						</div>
+						<div style="width: 80%;margin-left: 5px;white-space : nowrap;">
+							<span class="uc-text cn_input_label samehia" ></span>
+							<input type="hidden"  value=""  name="hidden-samehia"/>
+						</div>
+					</div>
+					<div style="width: 100%; display:flex;">
+						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+							<span class="uc-text cn_input_label" >关联</span><span class="uc-text cn_input_label" >：</span>
+						</div>
+						<div style="width: 80%;margin-left: 5px;white-space : nowrap;">
+							<span class="uc-text cn_input_label siblings" ></span>
+							<input type="hidden"  value=""  name="hidden-siblings"/>
+						</div>
+					</div>
+					<div style="width: 100%; display:flex;">
+						<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+							<span class="uc-text cn_input_label" >页码</span><span class="uc-text cn_input_label" >：</span>
+						</div>
+						<div style="width: 80%;margin-left: 5px;white-space : nowrap;">
+							<span class="uc-text cn_input_label pagination" ></span>
+							<input type="hidden"  value=""  name="hidden-pagination"/>
+						</div>
+					</div>
+
 					<div style="width: 100%; display:flex;justify-content:center;">
-						<button type="button" name="detectSameHierarchy" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(38,157,128,1.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
+						<button type="button" name="detectSameHierarchy" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(38,157,128,0.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
 							<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
 								<use xlink:href="#icon-fenxiang"></use>
 							</svg>
 						</button>	&nbsp;&nbsp;
-						<button type="button" name="detectSubSelectors" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,1.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
+						<button type="button" name="detectSubSelectors" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
 							<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
 								<use xlink:href="#icon-shujutance"></use>
 							</svg>
 						</button>	&nbsp;&nbsp;
-						<button type="button" name="deleteNode" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:0px solid #cfcfcf; background-color: rgba(178,190,126,1.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
+						<button type="button" name="detectPaginationSelectors" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(244,208,0,0.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
+							<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">
+								<use xlink:href="#icon-fenye"></use>
+							</svg>
+						</button>	&nbsp;
+						<button type="button" name="deleteNode" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; justify-content: center; border:1px solid #cfcfcf; background-color: rgba(178,190,126,0.0); border-radius: 20px; width: 30px;  height: 30px; align-items: center; " data-spin="up">
 							<svg class="uc-float-icon" style=" font-size: 1.07em; font-weight: 400;color: #333;" aria-hidden="true">				    				
 								<use xlink:href="#icon-lajitong3"></use>
 							</svg>
@@ -896,11 +945,162 @@
 							</div>
 						</div>
 					</div>
-				
+				 <div class="uc-edit-panel-block adjust-panel">
+					 <div style="width: 100%; height: 55px; display: flex; align-items: center; justify-content: center;">
+						 <button name="adjust-max-iterator-add"  style="width: 95px; height: 65%; border: 0px solid rgb(204,188,138,1.0);border-radius:15px;" >
+							 <svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #333;" aria-hidden="true">
+								 <use xlink:href="#icon-iconfont7"></use>
+							 </svg>
+						 </button>
+						 <input type="text" id="max-iterator-num" value="3" style="width: 13px; background-color: rgba(255,255,255,0.0);border:0px; border-bottom: 1px #efefef solid;color: #333;" />
+						 <button name="adjust-max-iterator-minus"  style="width: 95px; height: 65%; border: 0px solid rgb(204,188,138,1.0);border-radius:15px;" >
+							 <svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #333;" aria-hidden="true">
+								 <use xlink:href="#icon-jianhao"></use>
+							 </svg>
+						 </button>
+					 </div>
+				 </div>
 				<div class="uc-edit-panel-block button-panel">
 					<div style="width: 100%; height: 55px; display: flex; align-items: center; justify-content: space-around;">
 						<button name="submit-ok"  style="width: 95px; height: 65%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" ><span class="uc-text cn_input_label">就是这些</span></button>
 						<button name="submit-cancel"  style="width: 95px; height: 65%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" ><span class="uc-text cn_input_label">不，谢谢</span></button>
 					</div>
 				</div>
+ </div>
+
+		<div class="relative-searching-nodes-box">
+			<div class="box-input">
+				<input type="text" id="sea-label" style="width: 90%; background-color: rgba(255,255,255,0.0);border:0px; border-bottom: 2px #efefef solid;color: #333;" />
 			</div>
+			<div class="content" style="display:flex; flex-direction: column;align-items: center;height:90%;width:100%;overflow-y:auto;">
+
+			</div>
+
+			<div class="relative-searching-node-row row-template" style="display: none;width: 93%; background-color:rgba(243,243,243,1.0); border-radius:10px; padding: 5px 10px; margin:5px 0px;">
+				<div style="width: 100%; display:flex;">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">节点内容</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<div style="margin-left: 5px;white-space : nowrap;width: 80%;">
+						<textarea class="uc-text cn_input_label labelname" style="background-color:rgba(255,255,255,0.0);width: 100%; height: 45px; border:0px;"></textarea>
+						<input type="hidden"  value=""  name="hidden-labelname"/>
+					</div>
+				</div>
+				<div style="width: 100%; display:flex;">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">绝对路径</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<div style="margin-left: 5px;width: 80%; overflow:hidden; text-overflow:ellipsis;cursor:pointer;white-space : nowrap;">
+						<span class="uc-text cn_input_label xpath"></span>
+						<input type="hidden"  value=""  name="hidden-xpath"/>
+					</div>
+
+				</div>
+				<div style="width: 100%; display:flex;">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">相对路径</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<div style="margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label relativexpath"></span>
+						<input type="hidden"  value=""  name="hidden-xpath-4str"/>
+						<input type="hidden"  value=""  name="hidden-relativexpath"/>
+					</div>
+					<div style="margin-left: 5px;display:flex;align-items:center;white-space : nowrap;">
+						<button type="button" name="cutxpathtail" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; padding:0px 2px;justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 0px;  align-items: center; " data-spin="up">
+							<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #333;" aria-hidden="true">
+								<use xlink:href="#icon-jiandao"></use>
+							</svg>
+						</button>&nbsp;
+						<button type="button" name="restorexpathtail" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; padding:0px 2px;justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 0px; align-items: center; " data-spin="up">
+							<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #333;" aria-hidden="true">
+								<use xlink:href="#icon-huanyuan"></use>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="uc-edit-panel-block button-panel">
+				<div style="width: 100%; height: 55px; display: flex; align-items: center; justify-content: space-around;">
+					<button name="submit-ok"  style="width: 95px; height: 65%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" ><span class="uc-text cn_input_label">就是这些</span></button>
+					<button name="submit-cancel"  style="width: 95px; height: 65%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" ><span class="uc-text cn_input_label">不，谢谢</span></button>
+				</div>
+			</div>
+		</div>
+
+		<div class="pagination-searching-nodes-box">
+			<div style="display: flex;flex-direction: column;align-items: center;	width: 100%;margin: 0px;	padding: 0px;">
+				<div class="box-input">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<input type="text" id="sea-tag" style="width: 90%; background-color: rgba(255,255,255,0.0);border:0px;color: #333;" />
+				</div>
+				<div class="box-input">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">文字</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<input type="text" id="sea-tag-label" style="width: 90%; background-color: rgba(255,255,255,0.0);border:0px;color: #333;" />
+				</div>
+				<div class="box-input">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">属性</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<input type="text" id="sea-tag-attribute" style="width: 90%; background-color: rgba(255,255,255,0.0);border:0px;color: #333;" />
+				</div>
+				<div class="box-input">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">属性值</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<input type="text" id="sea-tag-attribute-val" style="width: 90%; background-color: rgba(255,255,255,0.0);border:0px;color: #333;" />
+
+				</div>
+			</div>
+
+
+
+			<div class="content" style="display:flex; flex-direction: column;align-items: center;height:90%;width:100%;overflow-y:auto;">
+
+			</div>
+
+			<div class="pagination-searching-nodes-row row-template" style="display: none;width: 93%; background-color:rgba(243,243,243,1.0); border-radius:10px; padding: 5px 10px; margin:5px 0px;">
+				<div style="width: 100%; display:flex;">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">标签</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<div style="margin-left: 5px;white-space : nowrap;width: 80%;">
+						<span class="uc-text cn_input_label labelname"></span>
+						<input type="hidden"  value=""  name="hidden-labelname"/>
+					</div>
+				</div>
+				<div style="width: 100%; display:flex;">
+					<div style="width: 50px; margin-left: 5px;white-space : nowrap;">
+						<span class="uc-text cn_input_label">路径</span><span class="uc-text cn_input_label">：</span>
+					</div>
+					<div style="margin-left: 5px;width: 80%; overflow:hidden; text-overflow:ellipsis;cursor:pointer;white-space : nowrap;">
+						<span class="uc-text cn_input_label xpath"></span>
+						<input type="hidden"  value=""  name="hidden-xpath"/>
+					</div>
+					<div style="margin-left: 5px;display:flex;align-items:center;white-space : nowrap;">
+						<button type="button" name="cutxpathtail" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; padding:0px 2px;justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 0px;  align-items: center; " data-spin="up">
+							<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #333;" aria-hidden="true">
+								<use xlink:href="#icon-jiandao"></use>
+							</svg>
+						</button>&nbsp;
+						<button type="button" name="restorexpathtail" class="uc-temp-grid-btn" style="display: flex; white-space : nowrap; padding:0px 2px;justify-content: center; border:0px solid #cfcfcf; background-color: rgba(217,104,49,0.0); border-radius: 0px; align-items: center; " data-spin="up">
+							<svg class="uc-float-icon" style=" font-size: 0.9em; font-weight: 400;color: #333;" aria-hidden="true">
+								<use xlink:href="#icon-huanyuan"></use>
+							</svg>
+						</button>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="uc-edit-panel-block button-panel">
+				<div style="width: 100%; height: 55px; display: flex; align-items: center; justify-content: space-around;">
+					<button name="submit-ok"  style="width: 95px; height: 65%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" ><span class="uc-text cn_input_label">就是这些</span></button>
+					<button name="submit-cancel"  style="width: 95px; height: 65%; border: 1px solid rgb(204,188,138,1.0);border-radius:15px;" ><span class="uc-text cn_input_label">不，谢谢</span></button>
+				</div>
+			</div>
+		</div>

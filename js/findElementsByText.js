@@ -1,24 +1,31 @@
 //var paths={};
 var re = /\[\d+\]/g;
 function findElementsByXPath(xpath,document) {
-	var evaluator = new XPathEvaluator();
-	var result = evaluator.evaluate(xpath, document.documentElement, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-	var xnodes = [];
-	var xres;
-	while (xres = result.iterateNext()) {
-		xnodes.push(xres);
-	}
-	return xnodes;
-}
-function detectSameHierarchy(xpath,document) {
+ 	var evaluator = new XPathEvaluator();
+ 	var result = evaluator.evaluate(xpath, document.documentElement, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+ 	var xnodes = [];
+ 	var xres;
+ 	while (xres = result.iterateNext()) {
+ 		xnodes.push(xres);
+ 	}
+ 	return xnodes;
+ }
+function findElementsStrings(xpath,document) {
+ 	var evaluator = new XPathEvaluator();
+ 	var result = evaluator.evaluate('string('+xpath+')', document.documentElement, null, XPathResult.STRING_TYPE, null);
+
+ 	return result.stringValue;
+ }
+function detectSameHierarchy(xpath,document, iternum) {
 	xpathary = xpath.split('/');
-	for(var i=xpathary.length;i>0;i--) {
-		xp = xpathary.join('/');
+	child=xpathary.pop();
+	while(xpathary.length>0) {
+		xp = xpathary.join('/') + '/' + child.replace(re,"");;
 		xnodes = findElementsByXPath(xp,document);
 		console.log("find "+xnodes.length+" nodes in path: "+xp);
-		xpathary.pop();
-		if( xnodes.length > 3 ) 
-			return xnodes;
+		child = xpathary.pop() +'/'+ child;
+		if( xnodes.length > iternum )
+			return {"xnodes":xnodes,"xpath":xp};
 	}
 }
 function getPathTo(element) {
